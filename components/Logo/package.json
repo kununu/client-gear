@@ -1,0 +1,8 @@
+{
+  "name": "kununu-logo",
+  "version": "1.0.0",
+  "description": "kununu logo",
+  "main": "index.jsx",
+  "author": "kununu",
+  "license": "ISC"
+}
