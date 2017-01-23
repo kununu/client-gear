@@ -4,5 +4,14 @@
   "description": "kununu logo",
   "main": "index.jsx",
   "author": "kununu",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "react": "15.4.2"
+  },
+  "dependencies": {
+    "react-state-animation": "0.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=15.0.0"
+  }
 }
