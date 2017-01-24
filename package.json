@@ -1,0 +1,15 @@
+{
+  "name": "client-gear",
+  "version": "1.0.0",
+  "description": "Layout and theming utilities, shared molecular components for kununu.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kununu/client-gear.git"
+  },
+  "author": "kununu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kununu/client-gear/issues"
+  },
+  "homepage": "https://github.com/kununu/client-gear#readme"
+}
