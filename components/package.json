@@ -69,11 +69,6 @@
   },
   "scripts": {
     "start": "webpack-dev-server --inline --hot --port 3000",
-    "babel": "babel ./components --out-dir ./dist",
-    "eslint": "eslint ./components ./playground ./tests --max-warnings 0 --ext jsx --ext js",
-    "eslint-fix": "eslint ./components ./tests --max-warnings 0 --ext jsx --ext js --fix",
-    "sasslint": "sass-lint --verbose",
-    "lint": "npm run eslint && npm run sasslint",
     "test": "jest",
     "coverage": "jest --coverage"
   }
