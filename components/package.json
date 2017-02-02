@@ -63,6 +63,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --inline --hot --port 3000",
+    "postinstall": "./install-components-deps.sh",
     "test": "jest",
     "coverage": "jest --coverage"
   }
