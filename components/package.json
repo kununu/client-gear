@@ -1,7 +1,7 @@
 {
-  "name": "client-gear",
+  "name": "client-gear-development",
   "version": "1.0.0",
-  "description": "Layout and theming utilities, shared molecular components for kununu.",
+  "description": "A place to test and development kununu components",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kununu/client-gear.git"
