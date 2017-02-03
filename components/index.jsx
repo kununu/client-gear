@@ -7,7 +7,7 @@ import 'main.scss';
 
 const App = (
   <div className="app-container container">
-    <Logo />
+    <Logo link={<a href="/">kununu gmbH</a>} />
   </div>
 );
 
