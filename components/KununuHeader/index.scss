@@ -1,0 +1,58 @@
+@import '~kununu-theme/scss/base/variables';
+
+.header {
+  background-color: $teal;
+  color: $white;
+  max-height: 60px;
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.title {
+  color: $gray-light;
+  font-size: 12px;
+  line-height: 18px;
+  padding-left: 15px;
+}
+
+.pullLeft,
+.pullRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pullLeft {
+  float: left;
+}
+
+.pullRight {
+  float: right;
+}
+
+.headerNav {
+  ul {
+    margin: 0;
+  }
+
+  li {
+    list-style-type: none;
+    display: inline-block;
+    margin-left: 20px;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
