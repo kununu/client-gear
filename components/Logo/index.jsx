@@ -5,15 +5,14 @@ import styles from './index.scss';
 
 export default class Logo extends Component {
   static propTypes = {
-    baseLink: PropTypes.element,
     duration: PropTypes.number,
     isSpinning: PropTypes.bool.isRequired,
+    link: PropTypes.element,
     shade: PropTypes.oneOf(['dark', 'light']),
     title: PropTypes.string.isRequired
   };
 
   static defaultProps = {
-    baseLink: (<a href="/" />), // eslint-disable-line jsx-a11y/anchor-has-content
     duration: 1400,
     isSpinning: false,
     shade: 'dark',
@@ -56,7 +55,7 @@ export default class Logo extends Component {
 
   render () {
     const {
-      baseLink,
+      link,
       shade
     } = this.props;
 
@@ -74,8 +73,8 @@ export default class Logo extends Component {
 
     return (
       <div className={styles.logoContainer}>
-        {baseLink ?
-          React.cloneElement(baseLink, baseLink.props, content)
+        {link ?
+          React.cloneElement(link, link.props, content)
         : content}
       </div>
     );
