@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
 import ReactStateAnimation from 'react-state-animation';
 
 import styles from './index.scss';
