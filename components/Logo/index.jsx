@@ -1,19 +1,30 @@
 import React, {Component, PropTypes} from 'react';
-import {Link} from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
 import ReactStateAnimation from 'react-state-animation';
 
 import styles from './index.scss';
 
 export default class Logo extends Component {
-  constructor (props) {
-    super(props);
-    this.animate = new ReactStateAnimation(this);
-    this.isCanceled = false;
-  }
+  static propTypes = {
+    baseLink: PropTypes.element,
+    duration: PropTypes.number,
+    isSpinning: PropTypes.bool.isRequired,
+    shade: PropTypes.oneOf(['dark', 'light']),
+    title: PropTypes.string.isRequired
+  };
+
+  static defaultProps = {
+    baseLink: (<a href="/" />), // eslint-disable-line jsx-a11y/anchor-has-content
+    duration: 1400,
+    isSpinning: false,
+    shade: 'dark',
+    title: 'kununu GmbH'
+  };
 
   state = {
+    animate: new ReactStateAnimation(this),
+    isCanceled: false,
     spinnerDegrees: 0
-  };
+  }
 
   componentWillMount () {
     this.spinIfNeeded(this.props);
@@ -24,8 +35,8 @@ export default class Logo extends Component {
   }
 
   componentWillUnmount () {
-    this.animate.stop();
-    this.isCanceled = true;
+    this.state.animate.stop();
+    this.state.isCanceled = true;
   }
 
   spinIfNeeded (props) {
@@ -35,43 +46,38 @@ export default class Logo extends Component {
   }
 
   spinOnce () {
-    this.animate.linearInOut('spinnerDegrees', 360, this.props.duration)
+    this.state.animate.linearInOut('spinnerDegrees', 360, this.props.duration)
       .then(() => {
-        if (this.isCanceled) return;
+        if (this.state.isCanceled) return;
         this.setState({spinnerDegrees: 0});
         if (this.props.isSpinning) this.spinOnce();
       });
   }
 
   render () {
-    const {shade, href} = this.props;
-    return (
-      <Link to={href} className={`${styles.logo} ${styles[shade]}`}>
-        <h1 className="sr-only">{this.props.title}</h1>
+    const {
+      baseLink,
+      shade
+    } = this.props;
 
+    const content = (
+      <div className={`${styles.logo} ${styles[shade]}`}>
+        <h1 className="sr-only">{this.props.title}</h1>
         <span
           className={`${styles.starSpinner} ${styles[shade]}`}
           style={{
             transform: `rotate(${this.state.spinnerDegrees}deg)`
           }}
           aria-hidden="true" />
-      </Link>
+      </div>
+    );
+
+    return (
+      <div className={styles.logoContainer}>
+        {baseLink ?
+          React.cloneElement(baseLink, baseLink.props, content)
+        : content}
+      </div>
     );
   }
 }
-
-Logo.propTypes = {
-  duration: PropTypes.number,
-  href: PropTypes.string.isRequired,
-  isSpinning: PropTypes.bool.isRequired,
-  shade: PropTypes.oneOf(['dark', 'light']).isRequired,
-  title: PropTypes.string.isRequired
-};
-
-Logo.defaultProps = {
-  duration: 1400,
-  href: '/',
-  isSpinning: false,
-  shade: 'dark',
-  title: 'kununu GmbH'
-};
