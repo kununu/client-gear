@@ -23,7 +23,9 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.9.0",
     "lerna": "2.0.0-beta.36",
+    "node-sass": "^4.5.0",
     "sass-loader": "^4.1.1",
-    "sasslint-loader": "^0.0.1"
+    "sasslint-loader": "^0.0.1",
+    "webpack": "1.14.0"
   }
 }
