@@ -1,3 +1,5 @@
+@import '~kununu-theme/scss/base/variables';
+
 .logo {
   background-image: url(./img/kununu-logo-light-no-star.svg);
   background-repeat: no-repeat;
@@ -49,5 +51,10 @@
 
   &.dark {
     background: url(./img/kununu-star-dark.svg) no-repeat 0;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    top: 18px;
+    right: 4px;
   }
 }
