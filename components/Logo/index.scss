@@ -1,5 +1,12 @@
 @import '~kununu-theme/scss/base/variables';
 
+.logoContainer {
+  &,
+  a {
+    display: inline-block;
+  }
+}
+
 .logo {
   background-image: url(./img/kununu-logo-light-no-star.svg);
   background-repeat: no-repeat;
