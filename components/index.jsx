@@ -15,30 +15,30 @@ const App = (
       <HeaderNav>
         <HeaderNavItem>
           <a href="">
-            <i className="fa fa-search" aria-hidden="true" /> Suchen
+            <span className="hidden-xs"><i className="fa fa-search hidden-xs" aria-hidden="true" />&nbsp; Suchen</span>
+            <i className="fa fa-search visible-xs" aria-hidden="true" />
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
-          <a href="">
-            Mein kununu
+          <a className="" href="/">
+            <span className="hidden-xs">Mein kununu </span>
+            <i className="fa fa-user visible-xs" />
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
-          <button className="btn btn-primary">Bewerten</button>
+          <a href="/" className="btn btn-dd-sm btn-primary">Firma bewerten</a>
         </HeaderNavItem>
       </HeaderNav>
     </Header>
     <main role="main">
-      <div className="container-fluid" style={{backgroundColor: '#fff'}}>
-        <div className="row">
-          <div className="col-lg-8">
-            <h2>
-              Welcome to kununu component dev playground!
-            </h2>
-            <p>
-              jiasds
-            </p>
-          </div>
+      <div className="container-fluid">
+        <div style={{backgroundColor: '#fff', padding: '10px 20px'}}>
+          <h2>
+            Welcome to kununu component dev playground!
+          </h2>
+          <p>
+            jiasds
+          </p>
         </div>
       </div>
     </main>

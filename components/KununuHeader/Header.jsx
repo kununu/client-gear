@@ -13,12 +13,14 @@ export default function Header ({
   return (
     <header role="banner" className={`${styles.header} ${fixed && styles.fixed}`}>
       <div className={container}>
-        <div className={styles.pullLeft}>
-          <Logo shade="light" />
-          <span className={styles.title}>{title}</span>
-        </div>
-        <div className={styles.pullRight}>
-          {children}
+        <div className={styles.flex}>
+          <div className={styles.pullLeft}>
+            <Logo shade="light" />
+            <span className={styles.title}>{title}</span>
+          </div>
+          <div className={styles.pullRight}>
+            {children}
+          </div>
         </div>
       </div>
     </header>
