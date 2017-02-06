@@ -37,6 +37,7 @@
     "eslint-plugin-sorting": "0.3.0",
     "file-loader": "0.10.0",
     "jest": "18.0.0",
+    "kununu-theme": "3.0.0",
     "less": "2.7.1",
     "node-sass": "4.3.0",
     "node-sass-module-importer": "0.1.0",
@@ -49,18 +50,17 @@
     "sass-loader": "4.1.0",
     "sasslint-loader": "0.0.1",
     "style-loader": "0.13.1",
-    "kununu-theme": "3.0.0",
     "url-loader": "0.5.7",
     "webpack": "1.14.0",
     "webpack-dev-server": "1.16.2"
   },
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "react": "15.4.1",
     "react-dom": "15.4.1"
   },
   "scripts": {
     "start": "webpack-dev-server --inline --hot --port 3000",
-    "postinstall": "./install-components-deps.sh",
     "test": "jest",
     "coverage": "jest --coverage"
   }
