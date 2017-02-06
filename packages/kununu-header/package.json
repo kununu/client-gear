@@ -9,7 +9,8 @@
     "react": "15.4.2"
   },
   "dependencies": {
-    "kununu-logo": "1.0.0"
+    "kununu-logo": "1.0.0",
+    "kununu-theme": "^3.0.0"
   },
   "peerDependencies": {
     "react": ">=15.0.0"

@@ -12,6 +12,7 @@
     "react": ">=15.0.0"
   },
   "dependencies": {
+    "kununu-theme": "^3.0.0",
     "react-state-animation": ">=0.1.0"
   }
 }
