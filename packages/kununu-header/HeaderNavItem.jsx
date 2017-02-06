@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react';
 import styles from './index.scss';
 
 export default function HeaderNavItem ({
-  children
+  children,
 }) {
   return (
     <li className={styles.headerNavItem}>
@@ -13,5 +13,5 @@ export default function HeaderNavItem ({
 }
 
 HeaderNavItem.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
 };

@@ -31,12 +31,12 @@ Header.propTypes = {
   children: PropTypes.any,
   container: PropTypes.string,
   fixed: PropTypes.bool,
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 Header.defaultProps = {
   container: 'container-fluid',
   fixed: true,
-  title: ''
+  title: '',
 };
 

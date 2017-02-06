@@ -9,20 +9,20 @@ export default class Logo extends Component {
     isSpinning: PropTypes.bool.isRequired,
     link: PropTypes.element,
     shade: PropTypes.oneOf(['dark', 'light']),
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
     duration: 1400,
     isSpinning: false,
     shade: 'dark',
-    title: 'kununu GmbH'
+    title: 'kununu GmbH',
   };
 
   state = {
     animate: new ReactStateAnimation(this),
     isCanceled: false,
-    spinnerDegrees: 0
+    spinnerDegrees: 0,
   }
 
   componentWillMount () {
@@ -56,7 +56,7 @@ export default class Logo extends Component {
   render () {
     const {
       link,
-      shade
+      shade,
     } = this.props;
 
     const content = (
@@ -65,9 +65,10 @@ export default class Logo extends Component {
         <span
           className={`${styles.starSpinner} ${styles[shade]}`}
           style={{
-            transform: `rotate(${this.state.spinnerDegrees}deg)`
+            transform: `rotate(${this.state.spinnerDegrees}deg)`,
           }}
-          aria-hidden="true" />
+          aria-hidden="true"
+        />
       </div>
     );
 
