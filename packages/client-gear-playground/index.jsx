@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-import KununuHeader from 'KununuHeader';
+import KununuHeader from '../kununu-header';
 
 import 'main.scss';
 
