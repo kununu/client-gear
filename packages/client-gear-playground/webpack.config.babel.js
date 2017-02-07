@@ -67,6 +67,6 @@ module.exports = {
   },
   postcss: [autoprefixer],
   sasslint: {
-    configFile: '.sass-lint.yml',
+    configFile: '../../.sass-lint.yml',
   },
 };
