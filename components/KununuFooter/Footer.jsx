@@ -16,10 +16,10 @@ export default function Footer ({
       className={`navbar-default ${styles.footer}`}>
       <div className="container-fluid">
         <div className="row">
-          {children.map(child => {
+          {children.map((child, index) => {
             if (child.props.type === 'row') return false;
             return (
-              <div className={styles.menuColumns}>
+              <div className={styles.menuColumns} key={index}>
                 {child}
               </div>
             );
@@ -66,6 +66,6 @@ export default function Footer ({
 
 Footer.propTypes = {
   children: PropTypes.any,
-  infoText: PropTypes.string.isRequired,
+  infoText: PropTypes.element.isRequired,
   tuv: PropTypes.object
 };

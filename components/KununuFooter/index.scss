@@ -8,23 +8,43 @@
 }
 
 .footerNav {
-  margin-bottom: 0;
-  padding-left: 0;
   list-style: none;
+  margin-bottom: 0;
+  overflow: hidden;
+  padding-left: 0;
+  transition: max-height .2s ease-out;
 
   a {
     color: $text-muted-dark;
     display: inline-block;
     font-size: $font-size-xs;
     padding: 4px 0;
+    transition: padding .1s cubic-bezier(.215, .61, .355, 1) .5s;
 
     @media (min-width: $screen-sm-min) {
       font-size: $font-size-xs;
     }
 
+    @media (max-width: $screen-xs-max) {
+      font-size: $font-size-base;
+    }
+
     &:hover {
       text-decoration: underline;
       color: $white;
+    }
+  }
+
+  @media (max-width: $screen-xs-max) {
+    max-height: 0;
+
+    &.open {
+      max-height: 220px;
+
+      a {
+        transition: padding .4s cubic-bezier(.215, .61, .355, 1);
+        padding-left: 20px;
+      }
     }
   }
 
@@ -146,9 +166,31 @@ div.title {
 }
 
 .accordionTitle {
-  color: $gray-base-40;
-  outline: none;
-  border: 0;
-  width: 100%;
   background-color: transparent;
+  border: 0;
+  color: $gray-base-40;
+  font-weight: $font-weight-semibold;
+  margin-top: 18px;
+  outline: none;
+  position: relative;
+  padding: 0 0 11px;
+  text-align: left;
+  width: 100%;
+  transition: all 1s ease;
+
+  i {
+    position: absolute;
+    right: 0;
+    transition: all .3s ease;
+  }
+
+  &.open {
+    i {
+      transform: rotate(45deg);
+    }
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
