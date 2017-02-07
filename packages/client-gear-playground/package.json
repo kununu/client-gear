@@ -1,0 +1,32 @@
+{
+  "name": "client-gear-playground",
+  "version": "1.0.0",
+  "description": "A place to test and development kununu components",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kununu/client-gear.git"
+  },
+  "author": "kununu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kununu/client-gear/issues"
+  },
+  "homepage": "https://github.com/kununu/client-gear#readme",
+  "devDependencies": {
+    "@karlhorky/react-scripts": "^0.8.3-alpha.2",
+    "kununu-theme": "3.0.0"
+  },
+  "dependencies": {
+    "bootstrap-sass": "3.3.7",
+    "font-awesome": "^4.7.0",
+    "react": "15.4.1",
+    "react-dom": "15.4.1",
+    "webpack": "1.14.0",
+    "webpack-dev-server": "1.16.2"
+  },
+  "scripts": {
+    "start": "NODE_ENV=development webpack-dev-server --inline --hot --port 3000",
+    "test": "jest",
+    "coverage": "jest --coverage"
+  }
+}

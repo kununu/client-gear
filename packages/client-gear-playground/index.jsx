@@ -1,9 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
+import './main.scss';
 
-import KununuHeader from 'KununuHeader';
-
-import 'main.scss';
+import KununuHeader from '../kununu-header';
 
 const Header = KununuHeader.Header;
 const HeaderNav = KununuHeader.HeaderNav;
@@ -47,5 +46,5 @@ const App = (
 
 render(
   App,
-  document.getElementById('client-gear-playground')
+  document.getElementById('client-gear-playground'),
 );

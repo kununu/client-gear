@@ -11,5 +11,21 @@
   "bugs": {
     "url": "https://github.com/kununu/client-gear/issues"
   },
-  "homepage": "https://github.com/kununu/client-gear#readme"
+  "homepage": "https://github.com/kununu/client-gear#readme",
+  "devDependencies": {
+    "@karlhorky/react-scripts": "^0.8.3-alpha.2",
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.15.0",
+    "eslint-config-kununu": "^2.0.0",
+    "eslint-plugin-babel": "^4.0.1",
+    "eslint-plugin-flowtype": "^2.30.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.9.0",
+    "lerna": "2.0.0-beta.36",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^4.1.1",
+    "sasslint-loader": "^0.0.1",
+    "webpack": "1.14.0"
+  }
 }
