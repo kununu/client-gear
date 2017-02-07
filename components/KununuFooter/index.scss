@@ -1,0 +1,154 @@
+@import '~kununu-theme/scss/base/variables';
+
+.footer {
+  display: table;
+  padding-top: 20px;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.footerNav {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+
+  a {
+    color: $text-muted-dark;
+    display: inline-block;
+    font-size: $font-size-xs;
+    padding: 4px 0;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: $font-size-xs;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      color: $white;
+    }
+  }
+
+  &.row {
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: inline-block;
+      padding-left: 2px;
+
+      &,
+      a {
+        display: inline-block;
+      }
+
+      a {
+        padding: 4px 0;
+        font-size: $font-size-small;
+
+        &:hover {
+          text-decoration: none;
+          color: $white;
+        }
+      }
+
+      &:after {
+        content: '\2219'; // bullet http://codepoints.net/U+2219
+        display: inline-block;
+        padding-left: 2px;
+      }
+
+      &:last-child {
+        padding-left: 0;
+
+        &:after {
+          content: none;
+        }
+      }
+    }
+  }
+}
+
+.tuvColumn,
+.menuColumns,
+.infoTextColumn {
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.menuColumns {
+  width: 19%;
+
+  @media (max-width: $screen-sm-max) {
+    width: 33.333333%;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    width: 100%;
+  }
+}
+
+.tuvColumn {
+  width: 8.333333%;
+}
+
+.infoTextColumn {
+  width: 34.666667%;
+
+  @media (max-width: $screen-sm-max) {
+    width: 100%;
+  }
+}
+
+div.title {
+  margin-top: 0;
+}
+
+.footerNavItem {
+  position: relative;
+  display: block;
+
+  &.active a {
+    font-weight: $font-weight-semibold;
+  }
+}
+
+
+
+.tuv {
+  padding: 0;
+  width: 128px;
+}
+
+.infoText {
+  font-size: $font-size-sm;
+
+  @media (max-width: $screen-sm-max) {
+    width: 100%;
+  }
+}
+
+.bottomMenu {
+  border-top: 1px solid $gray-base-60;
+  display: table;
+  padding-top: 10px;
+  width: 100%;
+
+  > div {
+    float: right;
+
+    &:first-child {
+      float: left;
+    }
+  }
+}
+
+.accordionTitle {
+  color: $gray-base-40;
+  outline: none;
+  border: 0;
+  width: 100%;
+  background-color: transparent;
+}
