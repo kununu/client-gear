@@ -19,13 +19,13 @@
     display: inline-block;
     font-size: $font-size-xs;
     padding: 4px 0;
-    transition: padding .1s cubic-bezier(.215, .61, .355, 1) .5s;
 
     @media (min-width: $screen-sm-min) {
       font-size: $font-size-xs;
     }
 
     @media (max-width: $screen-xs-max) {
+      transition: padding .1s cubic-bezier(.215, .61, .355, 1) .5s;
       font-size: $font-size-base;
     }
 
