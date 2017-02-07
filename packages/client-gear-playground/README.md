@@ -1,4 +1,4 @@
-The playground for components can be installed and run this way
+The playground can be installed and run this way
 
 ```
 lerna bootstrap # Install all dependencies in all packages
