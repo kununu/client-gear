@@ -59,7 +59,7 @@ const App = (
       <FooterNav
         id="about kununu"
         title="Für Mitarbeiter">
-        <FooterNavItem active="true">
+        <FooterNavItem active>
           <a href="asdsad">Gehaltsrechner</a>
         </FooterNavItem>
         <FooterNavItem>
@@ -96,7 +96,7 @@ const App = (
         <FooterNavItem>
           <a href="asdsad">Datenschutz</a>
         </FooterNavItem>
-        <FooterNavItem active="true">
+        <FooterNavItem active>
           <a href="asdasd">Disclaimer</a>
         </FooterNavItem>
         <FooterNavItem>
