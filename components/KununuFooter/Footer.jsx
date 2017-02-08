@@ -17,7 +17,7 @@ export default function Footer ({
       <div className="container-fluid">
         <div className="row">
           {children.map((child, index) => {
-            if (child.props.type === 'row') return false;
+            if (child.props.type !== 'col') return false;
             return (
               <div className={styles.menuColumns} key={index}>
                 {child}
@@ -56,7 +56,7 @@ export default function Footer ({
             {children.filter(child => child.props.type === 'row')}
           </div>
           <div className="hidden-xs">
-            country picker
+            {children.filter(child => child.props.type === 'countryPicker')}
           </div>
         </div>
       </div>

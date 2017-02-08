@@ -54,7 +54,7 @@ export default class FooterNav extends Component {
           className={`
             nav-sm
             ${styles.footerNav}
-            ${type === 'row' && styles.row}
+            ${styles[type]}
             ${this.state.open && styles.open}`}>
           {children}
         </ul>

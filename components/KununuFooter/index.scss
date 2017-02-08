@@ -18,6 +18,7 @@
     color: $text-muted-dark;
     display: inline-block;
     font-size: $font-size-xs;
+    width: 100%;
     padding: 4px 0;
 
     @media (min-width: $screen-sm-min) {
@@ -129,6 +130,10 @@ div.title {
 .footerNavItem {
   position: relative;
   display: block;
+
+  a {
+    width: auto;
+  }
 
   &.active a {
     font-weight: $font-weight-semibold;
