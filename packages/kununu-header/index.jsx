@@ -1,9 +1,3 @@
-import Header from './Header';
-import HeaderNav from './HeaderNav';
-import HeaderNavItem from './HeaderNavItem';
-
-Header.Header = Header;
-Header.HeaderNav = HeaderNav;
-Header.HeaderNavItem = HeaderNavItem;
-
-module.exports = Header;
+export {default as Header} from './Header';
+export {default as HeaderNav} from './HeaderNav';
+export {default as HeaderNavItem} from './HeaderNavItem';

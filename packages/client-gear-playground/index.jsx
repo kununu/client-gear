@@ -2,11 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import './main.scss';
 
-import KununuHeader from '../kununu-header';
-
-const Header = KununuHeader.Header;
-const HeaderNav = KununuHeader.HeaderNav;
-const HeaderNavItem = KununuHeader.HeaderNavItem;
+import {Header, HeaderNav, HeaderNavItem} from '../kununu-header';
 
 const App = (
   <div className="app-container">
