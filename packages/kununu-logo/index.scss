@@ -1,3 +1,5 @@
+@import '~kununu-theme/scss/base/variables';
+
 .logoContainer {
   &,
   a {
@@ -9,7 +11,7 @@
   background-image: url(./img/kununu-logo-light-no-star.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 126px;
+  background-size: 140px;
   border: 0;
   display: inline-block;
   position: relative;
@@ -19,7 +21,7 @@
 
   &.dark {
     background-image: url(./img/kununu-logo-dark-no-star.svg);
-    background-size: 126px;
+    background-size: 140px;
   }
 
   &:hover {
@@ -51,10 +53,15 @@
   position: absolute;
   width: 11px;
   height: 11px;
-  top: 17px;
-  right: 5px;
+  top: 15px;
+  right: 0;
 
   &.dark {
     background: url(./img/kununu-star-dark.svg) no-repeat 0;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    top: 18px;
+    right: 4px;
   }
 }

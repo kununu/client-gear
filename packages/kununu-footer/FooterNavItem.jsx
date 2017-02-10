@@ -4,7 +4,7 @@ import styles from './index.scss';
 
 export default function FooterNavItem ({
   active,
-  children
+  children,
 }) {
   return (
     <li className={`${styles.footerNavItem} ${active && styles.active}`}>
@@ -15,5 +15,5 @@ export default function FooterNavItem ({
 
 FooterNavItem.propTypes = {
   active: PropTypes.bool,
-  children: PropTypes.any
+  children: PropTypes.element,
 };

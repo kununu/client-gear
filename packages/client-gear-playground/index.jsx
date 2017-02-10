@@ -1,25 +1,35 @@
 import React from 'react';
 import {render} from 'react-dom';
+import './main.scss';
 
-import Logo from 'Logo';
-import KununuFooter from 'KununuFooter';
-
-import 'main.scss';
-
-const {
-  Footer,
-  FooterNav,
-  FooterNavItem
-} = KununuFooter;
+import {Header, HeaderNav, HeaderNavItem} from '../kununu-header';
+import {Footer, FooterNav, FooterNavItem} from '../kununu-footer';
 
 const infoText = (
   <span>Auf kununu wurden bereits <b className="text-green">1.475.000</b> authentische Erfahrungsberichte über Gehalt, Betriebsklima und Bewerbungsprozesse zu <b className="text-green">297.000</b> Unternehmen abgegeben</span>
 );
 
-
 const App = (
   <div className="appContainer">
-    <Logo link={<a href="/">kununu gmbH</a>} />
+    <Header title="Volle Transparenz am Arbeitsmarkt">
+      <HeaderNav>
+        <HeaderNavItem>
+          <a href="">
+            <span className="hidden-xs"><i className="fa fa-search hidden-xs" aria-hidden="true" />&nbsp; Suchen</span>
+            <i className="fa fa-search visible-xs" aria-hidden="true" />
+          </a>
+        </HeaderNavItem>
+        <HeaderNavItem>
+          <a className="" href="/">
+            <span className="hidden-xs">Mein kununu </span>
+            <i className="fa fa-user visible-xs" />
+          </a>
+        </HeaderNavItem>
+        <HeaderNavItem>
+          <a href="/" className="btn btn-dd-sm btn-primary">Firma bewerten</a>
+        </HeaderNavItem>
+      </HeaderNav>
+    </Header>
     <main role="main">
       <div className="container-fluid">
         <div style={{backgroundColor: '#fff', padding: '10px 20px'}}>
@@ -37,11 +47,13 @@ const App = (
       tuv={{
         alt: 'Hi',
         src: 'https://assets.kununu.com/build/img/tuev-saarland-siegel.svg',
-        title: 'Hi hi hi'
-      }}>
+        title: 'Hi hi hi',
+      }}
+    >
       <FooterNav
         id="about kununu"
-        title="Über kununu">
+        title="Über kununu"
+      >
         <FooterNavItem>
           <a href="asdsad">Was ist kununu</a>
         </FooterNavItem>
@@ -58,7 +70,8 @@ const App = (
 
       <FooterNav
         id="about kununu"
-        title="Für Mitarbeiter">
+        title="Für Mitarbeiter"
+      >
         <FooterNavItem active>
           <a href="asdsad">Gehaltsrechner</a>
         </FooterNavItem>
@@ -69,7 +82,8 @@ const App = (
 
       <FooterNav
         id="about kununu"
-        title="Für Unternehmen">
+        title="Für Unternehmen"
+      >
         <FooterNavItem>
           <a href="asdasd">Unsere Produkte</a>
         </FooterNavItem>
@@ -86,7 +100,8 @@ const App = (
 
       <FooterNav
         type="row"
-        id="about kununu">
+        id="about kununu"
+      >
         <FooterNavItem>
           <a href="asdasd">AGB</a>
         </FooterNavItem>
@@ -109,5 +124,5 @@ const App = (
 
 render(
   App,
-  document.getElementById('client-gear-playground')
+  document.getElementById('client-gear-playground'),
 );

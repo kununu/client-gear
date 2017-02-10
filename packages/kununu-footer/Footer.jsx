@@ -1,19 +1,19 @@
 import React, {PropTypes} from 'react';
-
-import Logo from 'Logo';
+import Logo from 'kununu-logo';
 
 import styles from './index.scss';
 
 export default function Footer ({
   children,
   infoText,
-  tuv
+  tuv,
 }) {
   return (
     <footer
       role="banner"
       id="footer"
-      className={`navbar-default ${styles.footer}`}>
+      className={`navbar-default ${styles.footer}`}
+    >
       <div className="container-fluid">
         <div className="row">
           {children.map((child, index) => {
@@ -34,7 +34,8 @@ export default function Footer ({
                 data-placement="top"
                 data-html="true"
                 src={tuv.src}
-                title={tuv.title} />
+                title={tuv.title}
+              />
             </div>
             : ''
           }
@@ -53,10 +54,10 @@ export default function Footer ({
         </div>
         <div className={styles.bottomMenu}>
           <div>
-            {children.filter(child => child.props.type === 'row')}
+            {children.filter((child) => child.props.type === 'row')}
           </div>
           <div className="hidden-xs">
-            {children.filter(child => child.props.type === 'countryPicker')}
+            {children.filter((child) => child.props.type === 'countryPicker')}
           </div>
         </div>
       </div>
@@ -65,7 +66,7 @@ export default function Footer ({
 }
 
 Footer.propTypes = {
-  children: PropTypes.any,
-  infoText: PropTypes.element.isRequired,
-  tuv: PropTypes.object
+  children: PropTypes.any, // eslint-disable-line
+  infoText: PropTypes.element,
+  tuv: PropTypes.object, // eslint-disable-line
 };

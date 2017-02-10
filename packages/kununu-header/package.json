@@ -1,0 +1,19 @@
+{
+  "name": "kununu-header",
+  "version": "1.0.0",
+  "description": "kununu Header",
+  "main": "index.jsx",
+  "author": "kununu",
+  "license": "ISC",
+  "devDependencies": {
+    "react": "15.4.2",
+    "kununu-theme": "^3.0.0"
+  },
+  "dependencies": {
+    "kununu-logo": "1.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=15.0.0",
+    "kununu-theme": "^3.0.0"
+  }
+}

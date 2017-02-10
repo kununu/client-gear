@@ -4,23 +4,23 @@ import styles from './index.scss';
 
 export default class FooterNav extends Component {
   static propTypes = {
-    children: PropTypes.any,
+    children: PropTypes.array, // eslint-disable-line
     id: PropTypes.string,
     title: PropTypes.string,
-    type: PropTypes.oneOf(['row', 'col'])
+    type: PropTypes.oneOf(['row', 'col']),
   };
 
   static defaultProps = {
-    type: 'col'
+    type: 'col',
   };
 
   state = {
-    open: false
+    open: false,
   }
 
   onClick = () => {
     this.setState({
-      open: !this.state.open
+      open: !this.state.open,
     });
   }
 
@@ -29,7 +29,7 @@ export default class FooterNav extends Component {
       children,
       id,
       title,
-      type
+      type,
     } = this.props;
 
     return (
@@ -41,7 +41,8 @@ export default class FooterNav extends Component {
             </div>
             <button
               className={`visible-xs ${styles.accordionTitle} ${this.state.open && styles.open}`}
-              onClick={this.onClick}>
+              onClick={this.onClick}
+            >
               <span>{title}</span>
               <i className="fa fa-plus" />
             </button>
@@ -55,7 +56,8 @@ export default class FooterNav extends Component {
             nav-sm
             ${styles.footerNav}
             ${styles[type]}
-            ${this.state.open && styles.open}`}>
+            ${this.state.open && styles.open}`}
+        >
           {children}
         </ul>
       </div>
