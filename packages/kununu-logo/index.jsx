@@ -35,7 +35,9 @@ export default class Logo extends Component {
 
   componentWillUnmount () {
     this.state.animate.stop();
-    this.state.isCanceled = true;
+    this.setState({
+      isCanceled: true,
+    });
   }
 
   spinIfNeeded (props) {

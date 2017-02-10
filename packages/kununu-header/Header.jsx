@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-
 import Logo from 'kununu-logo';
 
 import styles from './index.scss';
@@ -28,7 +27,7 @@ export default function Header ({
 }
 
 Header.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.element,
   container: PropTypes.string,
   fixed: PropTypes.bool,
   title: PropTypes.string,
