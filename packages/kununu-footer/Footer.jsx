@@ -66,7 +66,11 @@ export default function Footer ({
 }
 
 Footer.propTypes = {
-  children: PropTypes.any, // eslint-disable-line
+  children: PropTypes.arrayOf(PropTypes.object),
   infoText: PropTypes.element,
-  tuv: PropTypes.object, // eslint-disable-line
+  tuv: PropTypes.shape({
+    alt: React.PropTypes.string,
+    src: React.PropTypes.string,
+    title: React.PropTypes.string,
+  }),
 };

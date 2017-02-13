@@ -4,7 +4,7 @@ import styles from './index.scss';
 
 export default class FooterNav extends Component {
   static propTypes = {
-    children: PropTypes.array, // eslint-disable-line
+    children: PropTypes.arrayOf(PropTypes.object),
     id: PropTypes.string,
     title: PropTypes.string,
     type: PropTypes.oneOf(['row', 'col']),
