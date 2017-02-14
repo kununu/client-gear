@@ -1,9 +1,17 @@
 import React from 'react';
 import {render} from 'react-dom';
+import {DropDown} from 'nukleus';
+
 import './main.scss';
 
 import {Header, HeaderNav, HeaderNavItem} from '../kununu-header';
 import {Footer, FooterNav} from '../kununu-footer';
+
+const at = require('./img/at.gif');
+const ch = require('./img/ch.gif');
+const de = require('./img/de.gif');
+const us = require('./img/us.gif');
+
 
 const infoText = (
   <span>Auf kununu wurden bereits <b className="text-green">1.475.000</b> authentische Erfahrungsberichte über Gehalt, Betriebsklima und Bewerbungsprozesse zu <b className="text-green">297.000</b> Unternehmen abgegeben</span>
@@ -58,25 +66,25 @@ const App = (
         items={[
           {
             active: false,
-            icon: <i className="fa fa-times" />,
+            icon: <img title="Swiss Flag" alt="Swiss Flag" src={at} />,
             link: <a href="/">test</a>,
             value: 'Österreich',
           },
           {
             active: true,
-            icon: <i className="fa fa-times" />,
+            icon: <img title="Swiss Flag" alt="Swiss Flag" src={de} />,
             link: <a href="/">test</a>,
             value: 'Deutschland',
           },
           {
             active: false,
-            icon: <i className="fa fa-times" />,
+            icon: <img title="Swiss Flag" alt="Swiss Flag" src={ch} />,
             link: <a href="/">test</a>,
             value: 'Switzerland',
           },
           {
             active: false,
-            icon: <i className="fa fa-times" />,
+            icon: <img title="Swiss Flag" alt="Swiss Flag" src={us} />,
             link: <a>test</a>,
             value: 'United States',
           },
@@ -184,6 +192,35 @@ const App = (
             value: 'Sitemap',
           },
         ]}
+      />
+
+      <DropDown
+        position="top"
+        items={
+        [{
+          active: false,
+          icon: <img title="Austrian Flag" alt="Austrian Flag" src={at} />,
+          link: <a href="">test</a>,
+          value: 'Austria',
+        },
+          {
+            active: false,
+            icon: <img title="German Flag" alt="German Flag" src={de} />,
+            link: <a href="">test</a>,
+            value: 'German',
+          },
+          {
+            active: false,
+            icon: <img title="Swiss Flag" alt="Swiss Flag" src={ch} />,
+            value: 'Switzerland',
+          },
+          {
+            active: true,
+            icon: <img title="American Flag" alt="American Flag" src={us} />,
+            link: <a href="">test</a>,
+            value: 'United States',
+          }]
+        }
       />
     </Footer>
   </div>

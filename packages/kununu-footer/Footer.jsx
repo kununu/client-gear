@@ -57,7 +57,7 @@ export default function Footer ({
             {children.filter((child) => child.props.type === 'row')}
           </div>
           <div className="hidden-xs">
-            {children.filter((child) => child.props.type === 'countryPicker')}
+            {children.filter((child) => child.type.name === 'Dropdown')}
           </div>
         </div>
       </div>
