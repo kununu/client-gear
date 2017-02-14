@@ -26,6 +26,7 @@
     }
 
     @media (max-width: $screen-xs-max) {
+      display: block;
       transition: padding .1s cubic-bezier(.215, .61, .355, 1) .5s;
       font-size: $font-size-base;
     }
@@ -99,11 +100,27 @@
   padding-right: 20px;
 }
 
+.flex {
+  @media (min-width: $screen-md-min) {
+    display: flex;
+  }
+}
+
+.menuColumns,
+.tuvColumn,
+.infoTextColumn {
+  @media (min-width: $screen-md-min) {
+    flex-grow: 1;
+  }
+}
+
 .menuColumns {
-  width: 19%;
+  @media (min-width: $screen-md-min) {
+    min-width: 200px;
+  }
 
   @media (max-width: $screen-sm-max) {
-    width: 33.333333%;
+    width: 25%;
   }
 
   @media (max-width: $screen-xs-max) {
@@ -112,11 +129,19 @@
 }
 
 .tuvColumn {
-  width: 8.333333%;
+  @media (min-width: $screen-md-min) {
+    min-width: 120px;
+  }
+
+  @media (max-width: $screen-md-max) {
+    width: 8.333333%;
+  }
 }
 
 .infoTextColumn {
-  width: 34.666667%;
+  @media (min-width: $screen-md-min) {
+    max-width: 550px;
+  }
 
   @media (max-width: $screen-sm-max) {
     width: 100%;
@@ -183,19 +208,37 @@ div.title {
   width: 100%;
   transition: all 1s ease;
 
-  i {
+  .icon {
     position: absolute;
     right: 0;
     transition: all .3s ease;
   }
 
   &.open {
-    i {
+    .icon {
       transform: rotate(45deg);
     }
   }
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
+  }
+}
+
+.itemIcon {
+  display: none;
+
+  @media (max-width: $screen-xs-max) {
+    display: block;
+    float: right;
+  }
+}
+
+.titleIcon {
+  display: none;
+
+  @media (max-width: $screen-xs-max) {
+    display: inline-block;
+    padding-left: 10px;
   }
 }

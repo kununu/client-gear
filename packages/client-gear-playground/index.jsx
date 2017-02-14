@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import './main.scss';
 
 import {Header, HeaderNav, HeaderNavItem} from '../kununu-header';
-import {Footer, FooterNav, FooterNavItem} from '../kununu-footer';
+import {Footer, FooterNav} from '../kununu-footer';
 
 const infoText = (
   <span>Auf kununu wurden bereits <b className="text-green">1.475.000</b> authentische Erfahrungsberichte über Gehalt, Betriebsklima und Bewerbungsprozesse zu <b className="text-green">297.000</b> Unternehmen abgegeben</span>
@@ -51,73 +51,140 @@ const App = (
       }}
     >
       <FooterNav
+        menuClass="visible-xs"
+        id="country picker"
+        title="Country"
+        dynamicNav
+        items={[
+          {
+            active: false,
+            icon: <i className="fa fa-times" />,
+            link: <a href="/">test</a>,
+            value: 'Österreich',
+          },
+          {
+            active: true,
+            icon: <i className="fa fa-times" />,
+            link: <a href="/">test</a>,
+            value: 'Deutschland',
+          },
+          {
+            active: false,
+            icon: <i className="fa fa-times" />,
+            link: <a href="/">test</a>,
+            value: 'Switzerland',
+          },
+          {
+            active: false,
+            icon: <i className="fa fa-times" />,
+            link: <a>test</a>,
+            value: 'United States',
+          },
+        ]}
+      />
+
+      <FooterNav
         id="about kununu"
         title="Über kununu"
-      >
-        <FooterNavItem>
-          <a href="asdsad">Was ist kununu</a>
-        </FooterNavItem>
-        <FooterNavItem>
-          <a href="asdasd">Karriere</a>
-        </FooterNavItem>
-        <FooterNavItem>
-          <a href="asdsad">Presse</a>
-        </FooterNavItem>
-        <FooterNavItem>
-          <a href="asdsad">News</a>
-        </FooterNavItem>
-      </FooterNav>
+        items={[
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'Was ist kununu',
+          },
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'Karriere',
+          },
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'Presse',
+          },
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'News',
+          },
+        ]}
+      />
 
       <FooterNav
         id="about kununu"
         title="Für Mitarbeiter"
-      >
-        <FooterNavItem active>
-          <a href="asdsad">Gehaltsrechner</a>
-        </FooterNavItem>
-        <FooterNavItem>
-          <a href="asdasd">Hilfe & Kontakt</a>
-        </FooterNavItem>
-      </FooterNav>
+        items={[
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'Gehaltsrechner',
+          },
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'Hilfe & Kontakt',
+          },
+        ]}
+      />
 
       <FooterNav
         id="about kununu"
         title="Für Unternehmen"
-      >
-        <FooterNavItem>
-          <a href="asdasd">Unsere Produkte</a>
-        </FooterNavItem>
-        <FooterNavItem>
-          <a href="asdasd">FAQ</a>
-        </FooterNavItem>
-        <FooterNavItem>
-          <a href="asdsad">Kontakt</a>
-        </FooterNavItem>
-        <FooterNavItem>
-          <a href="asdasd">Toolkit</a>
-        </FooterNavItem>
-      </FooterNav>
+        items={[
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'Unsere Produkte',
+          },
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'FAQ',
+          },
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'Kontakt',
+          },
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'Toolkit',
+          },
+        ]}
+      />
 
       <FooterNav
         type="row"
         id="about kununu"
-      >
-        <FooterNavItem>
-          <a href="asdasd">AGB</a>
-        </FooterNavItem>
-        <FooterNavItem>
-          <a href="asdasd">Impressum</a>
-        </FooterNavItem>
-        <FooterNavItem>
-          <a href="asdsad">Datenschutz</a>
-        </FooterNavItem>
-        <FooterNavItem active>
-          <a href="asdasd">Disclaimer</a>
-        </FooterNavItem>
-        <FooterNavItem>
-          <a href="asdasd">Sitemap</a>
-        </FooterNavItem>
-      </FooterNav>
+        items={[
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'AGB',
+          },
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'Impressum',
+          },
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'Datenschutz',
+          },
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'Disclaimer',
+          },
+          {
+            active: false,
+            link: <a href="/">test</a>,
+            value: 'Sitemap',
+          },
+        ]}
+      />
     </Footer>
   </div>
 );

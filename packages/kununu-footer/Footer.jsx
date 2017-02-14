@@ -15,11 +15,11 @@ export default function Footer ({
       className={`navbar-default ${styles.footer}`}
     >
       <div className="container-fluid">
-        <div className="row">
+        <div className={`row ${styles.flex}`}>
           {children.map((child, index) => {
             if (child.props.type !== 'col') return false;
             return (
-              <div className={styles.menuColumns} key={index}>
+              <div className={`${styles.menuColumns} ${child.props.menuClass}`} key={index}>
                 {child}
               </div>
             );

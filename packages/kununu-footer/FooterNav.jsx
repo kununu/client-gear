@@ -4,8 +4,9 @@ import styles from './index.scss';
 
 export default class FooterNav extends Component {
   static propTypes = {
-    children: PropTypes.arrayOf(PropTypes.object),
+    dynamicNav: PropTypes.bool,
     id: PropTypes.string,
+    items: PropTypes.arrayOf(PropTypes.object),
     title: PropTypes.string,
     type: PropTypes.oneOf(['row', 'col']),
   };
@@ -15,19 +16,55 @@ export default class FooterNav extends Component {
   };
 
   state = {
+    active: this.getActiveItem(),
     open: false,
   }
 
-  onClick = () => {
+  onClickButton = () => {
     this.setState({
       open: !this.state.open,
     });
   }
 
+  onClickItem (item) {
+    this.setState({
+      active: item,
+    });
+  }
+
+  getActiveItem () {
+    const selected = this.props.items.filter((item) => item.active);
+    return selected[0] ? selected[0] : this.props.items[0];
+  }
+
+
+  getMenuTitle = (item) => (
+    <span>
+      {item.value}
+      {item.icon ?
+        <span className={styles.titleIcon}>
+          {item.icon}
+        </span>
+          : ''}
+    </span>
+    )
+
+  getItem = (item) => (
+    <span>
+      {item.value}
+      {
+        item.icon ?
+          <span className={styles.itemIcon}>{item.icon}</span>
+        : ''
+      }
+    </span>
+  )
+
   render () {
     const {
-      children,
+      dynamicNav,
       id,
+      items,
       title,
       type,
     } = this.props;
@@ -41,10 +78,12 @@ export default class FooterNav extends Component {
             </div>
             <button
               className={`visible-xs ${styles.accordionTitle} ${this.state.open && styles.open}`}
-              onClick={this.onClick}
+              onClick={this.onClickButton}
             >
-              <span>{title}</span>
-              <i className="fa fa-plus" />
+              <span>
+                {dynamicNav ? this.getMenuTitle(this.state.active) : title}
+              </span>
+              <i className={`fa fa-plus ${styles.icon}`} />
             </button>
           </div>
           : ''
@@ -58,7 +97,15 @@ export default class FooterNav extends Component {
             ${styles[type]}
             ${this.state.open && styles.open}`}
         >
-          {children}
+          {items.map((item, index) => (
+            <li // eslint-disable-line
+              key={index}
+              className={`${styles.footerNavItem} ${item.active && styles.active}`}
+              onClick={() => this.onClickItem(item)}
+            >
+              {React.cloneElement(item.link, {}, this.getItem(item))}
+            </li>
+          ))}
         </ul>
       </div>
     );
