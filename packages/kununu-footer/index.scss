@@ -37,15 +37,17 @@
     }
   }
 
-  @media (max-width: $screen-xs-max) {
-    max-height: 0;
+  &.col {
+    @media (max-width: $screen-xs-max) {
+      max-height: 0;
 
-    &.open {
-      max-height: 220px;
+      &.open {
+        max-height: 220px;
 
-      a {
-        transition: padding .4s cubic-bezier(.215, .61, .355, 1);
-        padding-left: 20px;
+        a {
+          transition: padding .4s cubic-bezier(.215, .61, .355, 1);
+          padding-left: 20px;
+        }
       }
     }
   }
@@ -53,6 +55,10 @@
   &.row {
     padding: 0;
     margin: 0;
+
+    @media (max-width: $screen-xs-max) {
+      text-align: center;
+    }
 
     li {
       display: inline-block;
