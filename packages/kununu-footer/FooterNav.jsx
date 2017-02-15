@@ -5,7 +5,6 @@ import styles from './index.scss';
 export default class FooterNav extends Component {
   static propTypes = {
     dynamicNav: PropTypes.bool,
-    id: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.object),
     title: PropTypes.string,
     type: PropTypes.oneOf(['row', 'col']),
@@ -63,7 +62,6 @@ export default class FooterNav extends Component {
   render () {
     const {
       dynamicNav,
-      id,
       items,
       title,
       type,
@@ -71,7 +69,7 @@ export default class FooterNav extends Component {
 
     return (
       <div>
-        {title ?
+        {title || dynamicNav ?
           <div>
             <div className={`h3 text-muted hidden-xs ${styles.title}`}>
               {title}
@@ -90,7 +88,6 @@ export default class FooterNav extends Component {
         }
         <ul
           role="navigation"
-          id={id}
           className={`
             nav-sm
             ${styles.footerNav}

@@ -245,5 +245,6 @@ div.title {
   @media (max-width: $screen-xs-max) {
     display: inline-block;
     padding-left: 10px;
+    vertical-align: middle;
   }
 }

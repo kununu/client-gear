@@ -1,11 +1,10 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {DropDown} from 'nukleus';
 
 import './main.scss';
 
 import {Header, HeaderNav, HeaderNavItem} from '../kununu-header';
-import {Footer, FooterNav} from '../kununu-footer';
+import {Footer} from '../kununu-footer';
 
 const at = require('./img/at.gif');
 const ch = require('./img/ch.gif');
@@ -57,152 +56,14 @@ const App = (
         src: 'https://assets.kununu.com/build/img/tuev-saarland-siegel.svg',
         title: 'Hi hi hi',
       }}
-    >
-      <FooterNav
-        menuClass="visible-xs"
-        id="country picker"
-        title="Country"
-        dynamicNav
-        items={[
+      items={{
+        countrySwitcher: [
           {
             active: false,
-            icon: <img title="Swiss Flag" alt="Swiss Flag" src={at} />,
-            link: <a href="/">test</a>,
-            value: 'Österreich',
+            icon: <img title="Austrian Flag" alt="Austrian Flag" src={at} />,
+            link: <a href="">test</a>,
+            value: 'Austria',
           },
-          {
-            active: true,
-            icon: <img title="Swiss Flag" alt="Swiss Flag" src={de} />,
-            link: <a href="/">test</a>,
-            value: 'Deutschland',
-          },
-          {
-            active: false,
-            icon: <img title="Swiss Flag" alt="Swiss Flag" src={ch} />,
-            link: <a href="/">test</a>,
-            value: 'Switzerland',
-          },
-          {
-            active: false,
-            icon: <img title="Swiss Flag" alt="Swiss Flag" src={us} />,
-            link: <a>test</a>,
-            value: 'United States',
-          },
-        ]}
-      />
-
-      <FooterNav
-        id="about kununu"
-        title="Über kununu"
-        items={[
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'Was ist kununu',
-          },
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'Karriere',
-          },
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'Presse',
-          },
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'News',
-          },
-        ]}
-      />
-
-      <FooterNav
-        id="about kununu"
-        title="Für Mitarbeiter"
-        items={[
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'Gehaltsrechner',
-          },
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'Hilfe & Kontakt',
-          },
-        ]}
-      />
-
-      <FooterNav
-        id="about kununu"
-        title="Für Unternehmen"
-        items={[
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'Unsere Produkte',
-          },
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'FAQ',
-          },
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'Kontakt',
-          },
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'Toolkit',
-          },
-        ]}
-      />
-
-      <FooterNav
-        type="row"
-        id="about kununu"
-        items={[
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'AGB',
-          },
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'Impressum',
-          },
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'Datenschutz',
-          },
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'Disclaimer',
-          },
-          {
-            active: false,
-            link: <a href="/">test</a>,
-            value: 'Sitemap',
-          },
-        ]}
-      />
-
-      <DropDown
-        position="top"
-        items={
-        [{
-          active: false,
-          icon: <img title="Austrian Flag" alt="Austrian Flag" src={at} />,
-          link: <a href="">test</a>,
-          value: 'Austria',
-        },
           {
             active: false,
             icon: <img title="German Flag" alt="German Flag" src={de} />,
@@ -212,6 +73,7 @@ const App = (
           {
             active: false,
             icon: <img title="Swiss Flag" alt="Swiss Flag" src={ch} />,
+            link: <a href="">test</a>,
             value: 'Switzerland',
           },
           {
@@ -219,10 +81,110 @@ const App = (
             icon: <img title="American Flag" alt="American Flag" src={us} />,
             link: <a href="">test</a>,
             value: 'United States',
-          }]
-        }
-      />
-    </Footer>
+          },
+        ],
+        navs: {
+          cols: [
+            {
+              items: [
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'Was ist kununu',
+                },
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'Karriere',
+                },
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'Presse',
+                },
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'News',
+                }],
+              title: 'Über kununu',
+            },
+            {
+              items: [
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'Gehaltsrechner',
+                },
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'Hilfe & Kontakt',
+                },
+              ],
+              title: 'Für Mitarbeiter',
+            },
+            {
+              items: [
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'Unsere Produkte',
+                },
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'FAQ',
+                },
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'Kontakt',
+                },
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'Toolkit',
+                },
+              ],
+              title: 'Für Unternehmen',
+            },
+          ],
+          rows: [
+            {
+              items: [
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'AGB',
+                },
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'Impressum',
+                },
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'Datenschutz',
+                },
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'Disclaimer',
+                },
+                {
+                  active: false,
+                  link: <a href="/">test</a>,
+                  value: 'Sitemap',
+                },
+              ],
+            },
+          ],
+        },
+      }}
+    />
+
   </div>
 );
 

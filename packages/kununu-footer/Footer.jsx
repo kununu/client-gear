@@ -1,11 +1,14 @@
 import React, {PropTypes} from 'react';
 import Logo from 'kununu-logo';
+import {DropDown} from 'nukleus';
+
+import {FooterNav} from '../kununu-footer';
 
 import styles from './index.scss';
 
 export default function Footer ({
-  children,
   infoText,
+  items,
   tuv,
 }) {
   return (
@@ -16,14 +19,23 @@ export default function Footer ({
     >
       <div className="container-fluid">
         <div className={`row ${styles.flex}`}>
-          {children.map((child, index) => {
-            if (child.props.type !== 'col') return false;
-            return (
-              <div className={`${styles.menuColumns} ${child.props.menuClass}`} key={index}>
-                {child}
-              </div>
-            );
-          })}
+          <div className={`${styles.menuColumns} visible-xs`}>
+            <FooterNav
+              dynamicNav
+              items={items.countrySwitcher}
+              type="col"
+            />
+          </div>
+          {items.navs.cols.map((item, index) => (
+            <div className={styles.menuColumns} key={index}>
+              <FooterNav
+                items={item.items}
+                title={item.title}
+                type="col"
+              />
+            </div>
+            ),
+          )}
 
           {tuv ?
             <div className={`${styles.tuvColumn} no-padding hidden-xs hidden-sm`}>
@@ -54,10 +66,20 @@ export default function Footer ({
         </div>
         <div className={styles.bottomMenu}>
           <div>
-            {children.filter((child) => child.props.type === 'row')}
+            {items.navs.rows.map((item, index) => (
+              <FooterNav
+                key={index}
+                items={item.items}
+                type="row"
+              />
+              ),
+            )}
           </div>
           <div className="hidden-xs">
-            {children.filter((child) => child.type.name === 'Dropdown')}
+            <DropDown
+              position="top"
+              items={items.countrySwitcher}
+            />
           </div>
         </div>
       </div>
@@ -66,8 +88,8 @@ export default function Footer ({
 }
 
 Footer.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object),
   infoText: PropTypes.element,
+  items: PropTypes.object, // eslint-disable-line
   tuv: PropTypes.shape({
     alt: React.PropTypes.string,
     src: React.PropTypes.string,
