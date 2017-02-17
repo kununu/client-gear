@@ -1,98 +1,115 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Logo from 'kununu-logo';
 import {DropDown} from 'nukleus';
 
 import {FooterNav} from '../kununu-footer';
 
+import tuvImage from './img/tuev-saarland-siegel.svg';
 import styles from './index.scss';
 
-export default function Footer ({
-  infoText,
-  items,
-  tuv,
-}) {
-  return (
-    <footer
-      role="banner"
-      id="footer"
-      className={`navbar-default ${styles.footer}`}
-    >
-      <div className="container-fluid">
-        <div className={`row ${styles.flex}`}>
-          <div className={`${styles.menuColumns} visible-xs`}>
-            <FooterNav
-              dynamicNav
-              items={items.countrySwitcher}
-              type="col"
-            />
-          </div>
-          {items.navs.cols.map((item, index) => (
-            <div className={styles.menuColumns} key={index}>
+export default class Footer extends Component { // eslint-disable-line
+  static propTypes = {
+    infoText: PropTypes.element,
+    items: PropTypes.object, // eslint-disable-line
+    pathname: PropTypes.string.isRequired,
+    tuv: PropTypes.bool,
+  };
+
+  getActiveItem () {
+    const {pathname, items} = this.props;
+    return items.filter((item) => {
+      const {props} = item.link;
+      // Depending on which link it is (from react-router, from react-server, simple link) we need to access the local pathname according to the respective API
+      const localPathname = props.href || props.path || props.to.pathname;
+      return (pathname === localPathname);
+    })[0];
+  }
+
+  render () {
+    const {
+      infoText,
+      items,
+      pathname,
+      tuv,
+    } = this.props;
+
+    return (
+      <footer
+        role="banner"
+        id="footer"
+        className={`navbar-default ${styles.footer}`}
+      >
+        <div className="container-fluid">
+          <div className={`row ${styles.flex}`}>
+            <div className={`${styles.menuColumns} visible-xs`}>
               <FooterNav
-                items={item.items}
-                title={item.title}
+                dynamicNav
+                items={items.countrySwitcher}
+                pathname={pathname}
                 type="col"
               />
             </div>
-            ),
-          )}
-
-          {tuv ?
-            <div className={`${styles.tuvColumn} no-padding hidden-xs hidden-sm`}>
-              <img
-                alt={tuv.alt}
-                className={styles.tuv}
-                data-toggle="tooltip"
-                data-placement="top"
-                data-html="true"
-                src={tuv.src}
-                title={tuv.title}
-              />
-            </div>
-            : ''
-          }
-
-          <div className={`${styles.infoTextColumn} text-right text-center-xs text-center-sm text-muted`}>
-            <Logo shade="light" />
-
-            <p className={styles.infoText}>
-              {infoText}
-            </p>
-
-            <p className="text-xs">
-              made with <i className="fa fa-heart-o text-red" /> in Vienna
-            </p>
-          </div>
-        </div>
-        <div className={styles.bottomMenu}>
-          <div>
-            {items.navs.rows.map((item, index) => (
-              <FooterNav
-                key={index}
-                items={item.items}
-                type="row"
-              />
+            {items.navs.cols.map((item, index) => (
+              <div className={styles.menuColumns} key={index}>
+                <FooterNav
+                  items={item.items}
+                  pathname={pathname}
+                  title={item.title}
+                  type="col"
+                />
+              </div>
               ),
             )}
+
+            {tuv ?
+              <div className={`${styles.tuvColumn} no-padding hidden-xs hidden-sm`}>
+                <img
+                  alt="hi"
+                  className={styles.tuv}
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  data-html="true"
+                  src={tuvImage}
+                  title="hi"
+                />
+              </div>
+              : ''
+            }
+
+            <div className={`${styles.infoTextColumn} text-right text-center-xs text-center-sm text-muted`}>
+              <Logo shade="light" />
+
+              <p className={styles.infoText}>
+                {infoText}
+              </p>
+
+              <p className="text-xs">
+                made with <i className="fa fa-heart-o text-red" /> in Vienna
+              </p>
+            </div>
           </div>
-          <div className="hidden-xs">
-            <DropDown
-              position="top"
-              items={items.countrySwitcher}
-            />
+          <div className={styles.bottomMenu}>
+            <div>
+              {items.navs.rows.map((item, index) => (
+                <FooterNav
+                  key={index}
+                  pathname={pathname}
+                  items={item.items}
+                  type="row"
+                />
+                ),
+              )}
+            </div>
+            <div className="hidden-xs">
+              <DropDown
+                position="top"
+                pathname={pathname}
+                items={items.countrySwitcher}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
-  );
+      </footer>
+    );
+  }
 }
-
-Footer.propTypes = {
-  infoText: PropTypes.element,
-  items: PropTypes.object, // eslint-disable-line
-  tuv: PropTypes.shape({
-    alt: React.PropTypes.string,
-    src: React.PropTypes.string,
-    title: React.PropTypes.string,
-  }),
-};

@@ -6,6 +6,7 @@ export default class FooterNav extends Component {
   static propTypes = {
     dynamicNav: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.object),
+    pathname: PropTypes.string.isRequired,
     title: PropTypes.string,
     type: PropTypes.oneOf(['row', 'col']),
   };
@@ -59,6 +60,12 @@ export default class FooterNav extends Component {
     </span>
   )
 
+  isActive = (item) => {
+    const {pathname} = this.props;
+    const localPathname = item.props.href || item.props.path || item.props.to;
+    return (pathname === localPathname);
+  }
+
   render () {
     const {
       dynamicNav,
@@ -97,7 +104,7 @@ export default class FooterNav extends Component {
           {items.map((item, index) => (
             <li // eslint-disable-line
               key={index}
-              className={`${styles.footerNavItem} ${item.active && styles.active}`}
+              className={`${styles.footerNavItem} ${this.isActive(item.link) && styles.active}`}
               onClick={() => this.onClickItem(item)}
             >
               {React.cloneElement(item.link, {}, this.getItem(item))}
