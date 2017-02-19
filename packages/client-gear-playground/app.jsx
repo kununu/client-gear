@@ -55,22 +55,22 @@ const App = ({location: {pathname}}) => (
         countrySwitcher: [
           {
             icon: <img title="Austrian Flag" alt="Austrian Flag" src={at} />,
-            link: <Link to="/">test</Link>,
+            link: <Link to={{pathname: '/'}}>test</Link>,
             value: 'Austria',
           },
           {
             icon: <img title="German Flag" alt="German Flag" src={de} />,
-            link: <Link to="/de">test</Link>,
+            link: <Link to={{pathname: '/de'}}>test</Link>,
             value: 'German',
           },
           {
             icon: <img title="Swiss Flag" alt="Swiss Flag" src={ch} />,
-            link: <Link to="/ch">test</Link>,
+            link: <Link to={{pathname: '/ch'}}>test</Link>,
             value: 'Switzerland',
           },
           {
             icon: <img title="American Flag" alt="American Flag" src={us} />,
-            link: <Link to="/us">test</Link>,
+            link: <Link to={{pathname: '/us'}}>test</Link>,
             value: 'United States',
           },
         ],
