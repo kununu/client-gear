@@ -16,7 +16,6 @@ export default class FooterNav extends Component {
   };
 
   state = {
-    active: this.getActiveItem(),
     open: false,
   }
 
@@ -25,18 +24,6 @@ export default class FooterNav extends Component {
       open: !this.state.open,
     });
   }
-
-  onClickItem (item) {
-    this.setState({
-      active: item,
-    });
-  }
-
-  getActiveItem () {
-    const selected = this.props.items.filter((item) => item.active);
-    return selected[0] ? selected[0] : this.props.items[0];
-  }
-
 
   getMenuTitle = (item) => (
     <span>
@@ -60,9 +47,22 @@ export default class FooterNav extends Component {
     </span>
   )
 
+  getActiveItem = () => {
+    const {pathname, items} = this.props;
+    const activeItem = items.filter((item) => {
+      // Depending on which link it is (from react-router, from react-server, simple link) we need to access the local pathname according to the respective API
+      const localPathname = this.getLocalPathname(item.link);
+      return (pathname === localPathname);
+    })[0];
+
+    return this.getMenuTitle(activeItem || items[0]);
+  }
+
+  getLocalPathname = (item) => item.props.href || item.props.path || item.props.to.pathname;
+
   isActive = (item) => {
     const {pathname} = this.props;
-    const localPathname = item.props.href || item.props.path || item.props.to;
+    const localPathname = this.getLocalPathname(item);
     return (pathname === localPathname);
   }
 
@@ -86,7 +86,7 @@ export default class FooterNav extends Component {
               onClick={this.onClickButton}
             >
               <span>
-                {dynamicNav ? this.getMenuTitle(this.state.active) : title}
+                {dynamicNav ? this.getActiveItem() : title}
               </span>
               <i className={`fa fa-plus ${styles.icon}`} />
             </button>
@@ -102,10 +102,9 @@ export default class FooterNav extends Component {
             ${this.state.open && styles.open}`}
         >
           {items.map((item, index) => (
-            <li // eslint-disable-line
+            <li
               key={index}
               className={`${styles.footerNavItem} ${this.isActive(item.link) && styles.active}`}
-              onClick={() => this.onClickItem(item)}
             >
               {React.cloneElement(item.link, {}, this.getItem(item))}
             </li>
