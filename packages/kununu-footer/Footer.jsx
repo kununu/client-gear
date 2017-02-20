@@ -11,8 +11,30 @@ import styles from './index.scss';
 
 export default class Footer extends Component { // eslint-disable-line
   static propTypes = {
-    infoText: PropTypes.element,
-    items: PropTypes.object, // eslint-disable-line
+    infoText: PropTypes.element.isRequired,
+    items: PropTypes.shape({
+      countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
+        icon: PropTypes.element,
+        link: PropTypes.element.isRequired,
+        value: PropTypes.string.isRequired,
+      })),
+      navs: PropTypes.shape({
+        cols: PropTypes.arrayOf(PropTypes.shape({
+          items: PropTypes.arrayOf(PropTypes.shape({
+            link: PropTypes.element.isRequired,
+            value: PropTypes.string.isRequired,
+          })),
+          title: PropTypes.string,
+        })),
+        rows: PropTypes.arrayOf(PropTypes.shape({
+          items: PropTypes.arrayOf(PropTypes.shape({
+            link: PropTypes.element.isRequired,
+            value: PropTypes.string.isRequired,
+          })),
+          title: PropTypes.string,
+        })),
+      }),
+    }),
     pathname: PropTypes.string.isRequired,
     tuv: PropTypes.bool,
   };
