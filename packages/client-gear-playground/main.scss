@@ -14,6 +14,7 @@
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/scaffolding';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/type';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/grid';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/tooltip';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/utilities';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities';
 
@@ -42,7 +43,6 @@ body {
   font-size: 14px;
 }
 
-body > div,
 .appContainer {
   height: 100%;
 }

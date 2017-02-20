@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Logo from 'kununu-logo';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
 import {DropDown} from 'nukleus';
 
 import {FooterNav} from '../kununu-footer';
@@ -33,6 +35,16 @@ export default class Footer extends Component { // eslint-disable-line
       tuv,
     } = this.props;
 
+    const tooltip = (
+      <Tooltip id="tooltip">
+        <ul className={styles.tooltipContent}>
+          <li>Anonyme Bewertung</li>
+          <li>Schutz der persönlichen Daten</li>
+          <li>Transparente Bewertungsstandards</li>
+        </ul>
+      </Tooltip>
+    );
+
     return (
       <footer
         role="banner"
@@ -62,16 +74,25 @@ export default class Footer extends Component { // eslint-disable-line
             )}
 
             {tuv ?
-              <div className={`${styles.tuvColumn} no-padding hidden-xs hidden-sm`}>
-                <img
-                  alt="hi"
-                  className={styles.tuv}
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  data-html="true"
-                  src={tuvImage}
-                  title="hi"
-                />
+              <div
+                className={`
+                  ${styles.tuvColumn}
+                  no-padding
+                  hidden-xs
+                  hidden-sm
+                `}
+              >
+                <OverlayTrigger
+                  placement="top"
+                  id="tooltip"
+                  overlay={tooltip}
+                >
+                  <img
+                    alt="hi"
+                    className={styles.tuv}
+                    src={tuvImage}
+                  />
+                </OverlayTrigger>
               </div>
               : ''
             }
