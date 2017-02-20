@@ -1,5 +1,14 @@
 {
   "name": "client-gear",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "identity-obj-proxy"
+    },
+    "moduleDirectories": [
+      "packages",
+      "node_modules"
+    ]
+  },
   "version": "1.0.0",
   "description": "Layout and theming utilities, shared molecular components for kununu.",
   "repository": {
@@ -15,6 +24,8 @@
   "devDependencies": {
     "@karlhorky/react-scripts": "^0.8.3-alpha.2",
     "babel-eslint": "^7.1.1",
+    "babel-jest": "^18.0.0",
+    "babel-polyfill": "^6.23.0",
     "eslint": "^3.15.0",
     "eslint-config-kununu": "^2.0.0",
     "eslint-plugin-babel": "^4.0.1",
@@ -22,10 +33,17 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.9.0",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "^18.1.0",
     "lerna": "2.0.0-beta.36",
     "node-sass": "^4.5.0",
+    "react": "15.4.2",
+    "react-test-renderer": "15.4.2",
     "sass-loader": "^4.1.1",
     "sasslint-loader": "^0.0.1",
     "webpack": "1.14.0"
+  },
+  "scripts": {
+    "test": "jest --no-cache"
   }
 }
