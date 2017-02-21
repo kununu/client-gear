@@ -4,6 +4,7 @@
     "moduleNameMapper": {
       "\\.(css|scss)$": "identity-obj-proxy"
     },
+    "moduleFileExtensions": ["js", "jsx"],
     "moduleDirectories": [
       "packages",
       "node_modules"
