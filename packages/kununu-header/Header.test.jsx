@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import renderer from 'react-test-renderer'; // eslint-disable-line import/no-extraneous-dependencies
 
 import {Header, HeaderNav, HeaderNavItem} from '.';
 
@@ -14,7 +14,7 @@ test('Renders Logo without crashing', () => {
           </a>
         </HeaderNavItem>
       </HeaderNav>
-    </Header>
+    </Header>,
   );
 
   const tree = component.toJSON();
