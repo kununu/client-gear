@@ -5,6 +5,7 @@
       "\\.(css|scss)$": "identity-obj-proxy"
     },
     "moduleFileExtensions": ["js", "jsx"],
+    "transformIgnorePatterns": ["client-gear/node_modules"],
     "moduleDirectories": [
       "packages",
       "node_modules"
@@ -45,6 +46,7 @@
     "webpack": "1.14.0"
   },
   "scripts": {
-    "test": "jest --no-cache"
+    "lint": "eslint packages --max-warnings 0 --ext jsx --ext js",
+    "test": "jest"
   }
 }

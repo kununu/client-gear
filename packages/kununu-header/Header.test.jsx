@@ -1,7 +1,7 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import renderer from 'react-test-renderer'; // eslint-disable-line import/no-extraneous-dependencies
 
-import {Header, HeaderNav, HeaderNavItem} from '../packages/kununu-header';
+import {Header, HeaderNav, HeaderNavItem} from '.';
 
 test('Renders Logo without crashing', () => {
   const component = renderer.create(
@@ -13,17 +13,8 @@ test('Renders Logo without crashing', () => {
             <i className="fa fa-search visible-xs" aria-hidden="true" />
           </a>
         </HeaderNavItem>
-        <HeaderNavItem>
-          <a className="" href="/">
-            <span className="hidden-xs">Mein kununu </span>
-            <i className="fa fa-user visible-xs" />
-          </a>
-        </HeaderNavItem>
-        <HeaderNavItem>
-          <a href="/" className="btn btn-dd-sm btn-primary">Firma bewerten</a>
-        </HeaderNavItem>
       </HeaderNav>
-    </Header>
+    </Header>,
   );
 
   const tree = component.toJSON();

@@ -38,4 +38,3 @@ Header.defaultProps = {
   fixed: true,
   title: '',
 };
-
