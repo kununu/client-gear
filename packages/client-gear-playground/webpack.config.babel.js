@@ -37,7 +37,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!nukleus)/,
         loader: 'babel',
       },
       {
@@ -47,11 +47,12 @@ module.exports = {
       },
       {
         test: /nukleus\/dist\/.+\.css$/,
+        include: /node_modules/,
         loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss!sass',
       },
       {
         test: /\.css$/,
-        include: /node_modules/,
+        include: /node_modules\/(?!nukleus\/dist)/,
         loader: 'style!css',
       },
       {
