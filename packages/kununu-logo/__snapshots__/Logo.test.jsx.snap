@@ -1,0 +1,44 @@
+exports[`test Renders Logo with link 1`] = `
+<div
+  className="logoContainer">
+  <a
+    href="/">
+    <div
+      className="logo light">
+      <h1
+        className="sr-only">
+        test
+      </h1>
+      <span
+        aria-hidden="true"
+        className="starSpinner light"
+        style={
+          Object {
+            "transform": "rotate(0deg)",
+          }
+        } />
+    </div>
+  </a>
+</div>
+`;
+
+exports[`test Renders Logo without crashing 1`] = `
+<div
+  className="logoContainer">
+  <div
+    className="logo dark">
+    <h1
+      className="sr-only">
+      test
+    </h1>
+    <span
+      aria-hidden="true"
+      className="starSpinner dark"
+      style={
+        Object {
+          "transform": "rotate(0deg)",
+        }
+      } />
+  </div>
+</div>
+`;

@@ -15,5 +15,5 @@ export default function HeaderNav ({
 }
 
 HeaderNav.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };

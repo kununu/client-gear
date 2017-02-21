@@ -52,6 +52,27 @@ exports[`test Renders Logo without crashing 1`] = `
                   className="fa fa-search visible-xs" />
               </a>
             </li>
+            <li
+              className="headerNavItem">
+              <a
+                className=""
+                href="/">
+                <span
+                  className="hidden-xs">
+                  Mein kununu 
+                </span>
+                <i
+                  className="fa fa-user visible-xs" />
+              </a>
+            </li>
+            <li
+              className="headerNavItem">
+              <a
+                className="btn btn-dd-sm btn-primary"
+                href="/">
+                Firma bewerten
+              </a>
+            </li>
           </ul>
         </nav>
       </div>

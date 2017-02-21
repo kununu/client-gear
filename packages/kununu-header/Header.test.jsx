@@ -13,6 +13,15 @@ test('Renders Logo without crashing', () => {
             <i className="fa fa-search visible-xs" aria-hidden="true" />
           </a>
         </HeaderNavItem>
+        <HeaderNavItem>
+          <a className="" href="/">
+            <span className="hidden-xs">Mein kununu </span>
+            <i className="fa fa-user visible-xs" />
+          </a>
+        </HeaderNavItem>
+        <HeaderNavItem>
+          <a href="/" className="btn btn-dd-sm btn-primary">Firma bewerten</a>
+        </HeaderNavItem>
       </HeaderNav>
     </Header>,
   );
