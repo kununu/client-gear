@@ -46,6 +46,6 @@
     "webpack": "1.14.0"
   },
   "scripts": {
-    "test": "jest --no-cache"
+    "test": "jest"
   }
 }
