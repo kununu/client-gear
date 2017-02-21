@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import KununuLogo from '../packages/kununu-logo';
+import KununuLogo from '.';
 
 test('Renders Logo without crashing', () => {
   const component = renderer.create(

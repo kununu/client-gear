@@ -5,6 +5,7 @@
       "\\.(css|scss)$": "identity-obj-proxy"
     },
     "moduleFileExtensions": ["js", "jsx"],
+    "transformIgnorePatterns": ["client-gear/node_modules"],
     "moduleDirectories": [
       "packages",
       "node_modules"
