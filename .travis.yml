@@ -10,7 +10,7 @@ cache:
   directories:
     - node_modules
 install:
-  - npm yarn
+  - yarn
   - lerna bootstrap
 script:
   - yarn lint
