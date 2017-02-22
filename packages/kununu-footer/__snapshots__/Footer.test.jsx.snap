@@ -1,0 +1,445 @@
+exports[`test Renders Footer without crashing 1`] = `
+<footer
+  className="navbar-default footer"
+  id="footer"
+  role="banner">
+  <div
+    className="container-fluid">
+    <div
+      className="row flex">
+      <div
+        className="menuColumns visible-xs">
+        <div>
+          <div>
+            <div
+              className="h3 text-muted hidden-xs title" />
+            <button
+              className="visible-xs accordionTitle false"
+              onClick={[Function]}>
+              <span>
+                <span>
+                  Austria
+                  <span
+                    className="titleIcon">
+                    <img
+                      alt="Austrian Flag"
+                      src=""
+                      title="Austrian Flag" />
+                  </span>
+                </span>
+              </span>
+              <i
+                className="fa fa-plus icon" />
+            </button>
+          </div>
+          <ul
+            className="
+                      nav-sm
+                      footerNav
+                      col
+                      false"
+            role="navigation">
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Austria
+                  <span
+                    className="itemIcon">
+                    <img
+                      alt="Austrian Flag"
+                      src=""
+                      title="Austrian Flag" />
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  German
+                  <span
+                    className="itemIcon">
+                    <img
+                      alt="German Flag"
+                      src=""
+                      title="German Flag" />
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Switzerland
+                  <span
+                    className="itemIcon">
+                    <img
+                      alt="Swiss Flag"
+                      src=""
+                      title="Swiss Flag" />
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  United States
+                  <span
+                    className="itemIcon">
+                    <img
+                      alt="American Flag"
+                      src=""
+                      title="American Flag" />
+                  </span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        className="menuColumns">
+        <div>
+          <div>
+            <div
+              className="h3 text-muted hidden-xs title">
+              Über kununu
+            </div>
+            <button
+              className="visible-xs accordionTitle false"
+              onClick={[Function]}>
+              <span>
+                Über kununu
+              </span>
+              <i
+                className="fa fa-plus icon" />
+            </button>
+          </div>
+          <ul
+            className="
+                      nav-sm
+                      footerNav
+                      col
+                      false"
+            role="navigation">
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Was ist kununu
+
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Karriere
+
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Presse
+
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  News
+
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        className="menuColumns">
+        <div>
+          <div>
+            <div
+              className="h3 text-muted hidden-xs title">
+              Für Mitarbeiter
+            </div>
+            <button
+              className="visible-xs accordionTitle false"
+              onClick={[Function]}>
+              <span>
+                Für Mitarbeiter
+              </span>
+              <i
+                className="fa fa-plus icon" />
+            </button>
+          </div>
+          <ul
+            className="
+                      nav-sm
+                      footerNav
+                      col
+                      false"
+            role="navigation">
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Gehaltsrechner
+
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Hilfe & Kontakt
+
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        className="menuColumns">
+        <div>
+          <div>
+            <div
+              className="h3 text-muted hidden-xs title">
+              Für Unternehmen
+            </div>
+            <button
+              className="visible-xs accordionTitle false"
+              onClick={[Function]}>
+              <span>
+                Für Unternehmen
+              </span>
+              <i
+                className="fa fa-plus icon" />
+            </button>
+          </div>
+          <ul
+            className="
+                      nav-sm
+                      footerNav
+                      col
+                      false"
+            role="navigation">
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Unsere Produkte
+
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  FAQ
+
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Kontakt
+
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Toolkit
+
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        className="
+                        tuvColumn
+                        no-padding
+                        hidden-xs
+                        hidden-sm
+                      ">
+        <img
+          alt="hi"
+          aria-describedby="tooltip"
+          className="tuv"
+          onBlur={[Function]}
+          onClick={null}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          src="" />
+      </div>
+      <div
+        className="infoTextColumn text-right text-center-xs text-center-sm text-muted">
+        <div
+          className="logoContainer">
+          <div
+            className="logo light">
+            <h1
+              className="sr-only">
+              kununu GmbH
+            </h1>
+            <span
+              aria-hidden="true"
+              className="starSpinner light"
+              style={
+                Object {
+                  "transform": "rotate(0deg)",
+                }
+              } />
+          </div>
+        </div>
+        <p
+          className="infoText">
+          <span>
+            Auf kununu wurden bereits
+            <b
+              className="text-green">
+              1.475.000
+            </b>
+             authentische Erfahrungsberichte über Gehalt, Betriebsklima und Bewerbungsprozesse zu
+            <b
+              className="text-green">
+              297.000
+            </b>
+             Unternehmen abgegeben
+          </span>
+        </p>
+        <p
+          className="text-xs">
+          made with
+          <i
+            className="fa fa-heart-o text-red" />
+           in Vienna
+        </p>
+      </div>
+    </div>
+    <div
+      className="bottomMenu">
+      <div>
+        <div>
+
+          <ul
+            className="
+                      nav-sm
+                      footerNav
+                      row
+                      false"
+            role="navigation">
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  AGB
+
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Impressum
+
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Datenschutz
+
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Disclaimer
+
+                </span>
+              </a>
+            </li>
+            <li
+              className="footerNavItem false">
+              <a
+                onClick={[Function]}
+                style={Object {}}>
+                <span>
+                  Sitemap
+
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        className="hidden-xs" />
+    </div>
+  </div>
+</footer>
+`;

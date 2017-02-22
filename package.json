@@ -2,6 +2,7 @@
   "name": "client-gear",
   "jest": {
     "moduleNameMapper": {
+      "\\.(svg)$": "<rootDir>/empty-module.js",
       "\\.(css|scss)$": "identity-obj-proxy"
     },
     "moduleFileExtensions": ["js", "jsx"],
