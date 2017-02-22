@@ -40,7 +40,7 @@ export default class FooterNav extends Component {
     <span>
       {item.value}
       {item.icon ?
-          <span className={styles.itemIcon}>{item.icon}</span>
+        <span className={styles.itemIcon}>{item.icon}</span>
         : ''}
     </span>
   )
