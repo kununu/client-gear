@@ -14,13 +14,16 @@ const infoText = (
   <span>Auf kununu wurden bereits <b className="text-green">1.475.000</b> authentische Erfahrungsberichte über Gehalt, Betriebsklima und Bewerbungsprozesse zu <b className="text-green">297.000</b> Unternehmen abgegeben</span>
 );
 
-const App = ({location: {pathname}}) => (
+const App = ({location: {pathname}, params: {country, menuItem}}) => (
   <div className="appContainer">
     <Header title="Volle Transparenz am Arbeitsmarkt">
       <HeaderNav>
         <HeaderNavItem>
           <a href="">
-            <span className="hidden-xs"><i className="fa fa-search hidden-xs" aria-hidden="true" />&nbsp; Suchen</span>
+            <span className="hidden-xs">
+              <i className="fa fa-search hidden-xs" aria-hidden="true" />
+              &nbsp; Suchen
+            </span>
             <i className="fa fa-search visible-xs" aria-hidden="true" />
           </a>
         </HeaderNavItem>
@@ -31,7 +34,9 @@ const App = ({location: {pathname}}) => (
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
-          <a href="/" className="btn btn-dd-sm btn-primary">Firma bewerten</a>
+          <a href="/" className="btn btn-dd-sm btn-primary">
+            Firma bewerten
+          </a>
         </HeaderNavItem>
       </HeaderNav>
     </Header>
@@ -55,22 +60,22 @@ const App = ({location: {pathname}}) => (
         countrySwitcher: [
           {
             icon: <img title="Austrian Flag" alt="Austrian Flag" src={at} />,
-            link: <Link to={{pathname: '/'}}>test</Link>,
+            link: <Link to={{pathname: `/at${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'Austria',
           },
           {
             icon: <img title="German Flag" alt="German Flag" src={de} />,
-            link: <Link to={{pathname: '/de'}}>test</Link>,
+            link: <Link to={{pathname: `/de${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'German',
           },
           {
             icon: <img title="Swiss Flag" alt="Swiss Flag" src={ch} />,
-            link: <Link to={{pathname: '/ch'}}>test</Link>,
+            link: <Link to={{pathname: `/ch${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'Switzerland',
           },
           {
             icon: <img title="American Flag" alt="American Flag" src={us} />,
-            link: <Link to={{pathname: '/us'}}>test</Link>,
+            link: <Link to={{pathname: `/us${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'United States',
           },
         ],
@@ -79,19 +84,19 @@ const App = ({location: {pathname}}) => (
             {
               items: [
                 {
-                  link: <Link to="/a">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/a`}}>test</Link>,
                   value: 'Was ist kununu',
                 },
                 {
-                  link: <Link to="/b">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/b`}}>test</Link>,
                   value: 'Karriere',
                 },
                 {
-                  link: <Link to="/c">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/c`}}>test</Link>,
                   value: 'Presse',
                 },
                 {
-                  link: <Link to="/d">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/d`}}>test</Link>,
                   value: 'News',
                 }],
               title: 'Über kununu',
@@ -99,11 +104,11 @@ const App = ({location: {pathname}}) => (
             {
               items: [
                 {
-                  link: <Link to="/e">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/e`}}>test</Link>,
                   value: 'Gehaltsrechner',
                 },
                 {
-                  link: <Link to="/f">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/f`}}>test</Link>,
                   value: 'Hilfe & Kontakt',
                 },
               ],
@@ -112,19 +117,19 @@ const App = ({location: {pathname}}) => (
             {
               items: [
                 {
-                  link: <Link to="/g">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/g`}}>test</Link>,
                   value: 'Unsere Produkte',
                 },
                 {
-                  link: <Link to="/h">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/h`}}>test</Link>,
                   value: 'FAQ',
                 },
                 {
-                  link: <Link to="/i">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/i`}}>test</Link>,
                   value: 'Kontakt',
                 },
                 {
-                  link: <Link to="/j">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/j`}}>test</Link>,
                   value: 'Toolkit',
                 },
               ],
@@ -135,23 +140,23 @@ const App = ({location: {pathname}}) => (
             {
               items: [
                 {
-                  link: <Link to="/k">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/k`}}>test</Link>,
                   value: 'AGB',
                 },
                 {
-                  link: <Link to="/l">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/l`}}>test</Link>,
                   value: 'Impressum',
                 },
                 {
-                  link: <Link to="/m">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/m`}}>test</Link>,
                   value: 'Datenschutz',
                 },
                 {
-                  link: <Link to="/n">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/n`}}>test</Link>,
                   value: 'Disclaimer',
                 },
                 {
-                  link: <Link to="/o">test</Link>,
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/o`}}>test</Link>,
                   value: 'Sitemap',
                 },
               ],
@@ -162,9 +167,13 @@ const App = ({location: {pathname}}) => (
     />
 
   </div>
-);
+  );
 
 App.propTypes = {
   location: PropTypes.object.isRequired, // eslint-disable-line
+  params: PropTypes.shape({
+    country: PropTypes.string,
+    menuItem: PropTypes.string,
+  }),
 };
 export default App;

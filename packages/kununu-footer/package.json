@@ -6,20 +6,24 @@
   "author": "kununu",
   "license": "ISC",
   "devDependencies": {
-    "react-router": "3.0.2"
-  },
-  "dependencies": {
-    "kununu-logo": "1.0.0",
+    "react-router": "3.0.2",
     "kununu-theme": "^3.0.0",
     "react": "15.4.2",
     "react-bootstrap": "^0.30.7",
     "react-dom": "15.4.1",
     "nukleus": "3.0.0"
   },
+  "dependencies": {
+    "kununu-logo": "1.0.0"
+  },
+  "dependencies": {
+    "kununu-logo": "1.0.0"
+  },
   "peerDependencies": {
-    "react": ">=15.0.0",
-    "react-dom": "15.4.1",
     "kununu-theme": "^3.0.0",
-    "nukleus": "3.0.0"
+    "nukleus": "3.0.0",
+    "react": ">=15.0.0",
+    "react-bootstrap": "^0.30.7",
+    "react-dom": "15.4.1"
   }
 }
