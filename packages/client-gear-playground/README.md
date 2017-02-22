@@ -6,4 +6,4 @@ cd packages/client-gear-playground
 npm start
 ```
 
-This will start a server on http://localhost:3000 where the playground lives.
+This will start a server on http://localhost:3000/at where the playground lives.

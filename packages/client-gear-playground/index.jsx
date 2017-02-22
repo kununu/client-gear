@@ -8,7 +8,7 @@ import App from './app';
 
 const getRoutes = () => (
   <Route path="/" component={App}>
-    <Route path="/:country" component={App} />
+    <Route path="/:country(/:menuItem)" component={App} />
   </Route>
 );
 

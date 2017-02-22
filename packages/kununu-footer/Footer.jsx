@@ -39,16 +39,6 @@ export default class Footer extends Component { // eslint-disable-line
     tuv: PropTypes.bool,
   };
 
-  getActiveItem () {
-    const {pathname, items} = this.props;
-    return items.filter((item) => {
-      const {props} = item.link;
-      // Depending on which link it is (from react-router, from react-server, simple link) we need to access the local pathname according to the respective API
-      const localPathname = props.href || props.path || props.to.pathname;
-      return (pathname === localPathname);
-    })[0];
-  }
-
   render () {
     const {
       infoText,

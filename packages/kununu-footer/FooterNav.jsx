@@ -50,7 +50,6 @@ export default class FooterNav extends Component {
   getActiveItem = () => {
     const {pathname, items} = this.props;
     const activeItem = items.filter((item) => {
-      // Depending on which link it is (from react-router, from react-server, simple link) we need to access the local pathname according to the respective API
       const localPathname = this.getLocalPathname(item.link);
       return (pathname === localPathname);
     })[0];
@@ -58,6 +57,7 @@ export default class FooterNav extends Component {
     return this.getMenuTitle(activeItem || items[0]);
   }
 
+  // Depending on which link it is (from react-router, from react-server, simple link) we need to access the local pathname according to the respective API
   getLocalPathname = (item) => item.props.href || item.props.path || item.props.to.pathname;
 
   isActive = (item) => {
