@@ -14,12 +14,14 @@
   "homepage": "https://github.com/kununu/client-gear#readme",
   "devDependencies": {
     "@karlhorky/react-scripts": "^0.8.3-alpha.2",
-    "kununu-theme": "3.0.0"
+    "kununu-theme": "3.0.0",
+    "less": "^2.7.2"
   },
   "dependencies": {
-    "nukleus": "3.0.0",
     "bootstrap-sass": "3.3.7",
     "font-awesome": "^4.7.0",
+    "font-awesome-webpack": "0.0.4",
+    "nukleus": "3.0.0",
     "react": "15.4.1",
     "react-dom": "15.4.1",
     "react-router": "3.0.2",
