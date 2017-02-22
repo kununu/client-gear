@@ -4,6 +4,7 @@
   background-color: $teal;
   color: $white;
   max-height: 60px;
+  z-index: $zindex-overlay;
 
   &.fixed {
     position: fixed;
