@@ -1,0 +1,82 @@
+exports[`test Renders Logo without crashing 1`] = `
+<header
+  className="header fixed"
+  role="banner">
+  <div
+    className="container-fluid">
+    <div
+      className="flex">
+      <div
+        className="pullLeft">
+        <div
+          className="logoContainer">
+          <div
+            className="logo light">
+            <h1
+              className="sr-only">
+              kununu GmbH
+            </h1>
+            <span
+              aria-hidden="true"
+              className="starSpinner light"
+              style={
+                Object {
+                  "transform": "rotate(0deg)",
+                }
+              } />
+          </div>
+        </div>
+        <span
+          className="title">
+          Volle Transparenz am Arbeitsmarkt
+        </span>
+      </div>
+      <div
+        className="pullRight">
+        <nav
+          className="headerNav">
+          <ul>
+            <li
+              className="headerNavItem">
+              <a
+                href="">
+                <span
+                  className="hidden-xs">
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-search hidden-xs" />
+                    Suchen
+                </span>
+                <i
+                  aria-hidden="true"
+                  className="fa fa-search visible-xs" />
+              </a>
+            </li>
+            <li
+              className="headerNavItem">
+              <a
+                className=""
+                href="/">
+                <span
+                  className="hidden-xs">
+                  Mein kununu 
+                </span>
+                <i
+                  className="fa fa-user visible-xs" />
+              </a>
+            </li>
+            <li
+              className="headerNavItem">
+              <a
+                className="btn btn-dd-sm btn-primary"
+                href="/">
+                Firma bewerten
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+`;

@@ -1,0 +1,255 @@
+@import '~kununu-theme/scss/base/variables';
+
+.footer {
+  display: table;
+  padding-top: 20px;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.footerNav {
+  list-style: none;
+  margin-bottom: 0;
+  overflow: hidden;
+  padding-left: 0;
+  transition: all .5s;
+
+  a {
+    color: $text-muted-dark;
+    display: inline-block;
+    font-size: $font-size-xs;
+    width: 100%;
+    padding: 4px 0;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: $font-size-xs;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      display: block;
+      transition: padding .1s cubic-bezier(.215, .61, .355, 1) .5s;
+      font-size: $font-size-base;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      color: $white;
+    }
+  }
+
+  &.col {
+    @media (max-width: $screen-xs-max) {
+      max-height: 0;
+
+      &.open {
+        max-height: 220px;
+
+        a {
+          transition: padding .4s cubic-bezier(.215, .61, .355, 1);
+          padding-left: 20px;
+        }
+      }
+    }
+  }
+
+  &.row {
+    padding: 10px 0 0;
+    margin: 0;
+
+    @media (max-width: $screen-xs-max) {
+      text-align: center;
+    }
+
+    li {
+      display: inline-block;
+      padding-left: 2px;
+
+      &,
+      a {
+        display: inline-block;
+      }
+
+      a {
+        padding: 4px 0;
+        font-size: $font-size-small;
+
+        &:hover {
+          text-decoration: none;
+          color: $white;
+        }
+      }
+
+      &:after {
+        content: '\2219'; // bullet http://codepoints.net/U+2219
+        display: inline-block;
+        padding-left: 2px;
+      }
+
+      &:last-child {
+        padding-left: 0;
+
+        &:after {
+          content: none;
+        }
+      }
+    }
+  }
+}
+
+.tuvColumn,
+.menuColumns,
+.infoTextColumn {
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.flex {
+  @media (min-width: $screen-md-min) {
+    display: flex;
+  }
+}
+
+.menuColumns,
+.tuvColumn,
+.infoTextColumn {
+  @media (min-width: $screen-md-min) {
+    flex-grow: 1;
+  }
+}
+
+.menuColumns {
+  @media (min-width: $screen-md-min) {
+    min-width: 200px;
+  }
+
+  @media (max-width: $screen-sm-max) {
+    width: 25%;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    width: 100%;
+  }
+}
+
+.tuvColumn {
+  @media (min-width: $screen-md-min) {
+    min-width: 120px;
+  }
+
+  @media (max-width: $screen-md-max) {
+    width: 8.333333%;
+  }
+}
+
+.infoTextColumn {
+  @media (min-width: $screen-md-min) {
+    max-width: 550px;
+  }
+
+  @media (max-width: $screen-sm-max) {
+    width: 100%;
+  }
+}
+
+div.title {
+  margin-top: 0;
+}
+
+.footerNavItem {
+  position: relative;
+  display: block;
+
+  a {
+    width: auto;
+  }
+
+  &.active a {
+    font-weight: $font-weight-semibold;
+  }
+}
+
+
+
+.tuv {
+  padding: 0;
+  width: 128px;
+}
+
+.infoText {
+  font-size: $font-size-sm;
+
+  @media (max-width: $screen-sm-max) {
+    width: 100%;
+  }
+}
+
+.bottomMenu {
+  border-top: 1px solid $gray-base-60;
+  display: table;
+  width: 100%;
+
+  > div {
+    float: right;
+
+    &:first-child {
+      float: left;
+    }
+  }
+}
+
+.accordionTitle {
+  background-color: transparent;
+  border: 0;
+  color: $gray-base-40;
+  font-weight: $font-weight-semibold;
+  margin-top: 18px;
+  outline: none;
+  position: relative;
+  padding: 0 0 11px;
+  text-align: left;
+  width: 100%;
+  transition: all 1s ease;
+
+  .icon {
+    position: absolute;
+    right: 0;
+    transition: all .3s ease;
+  }
+
+  &.open {
+    .icon {
+      transform: rotate(45deg);
+    }
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.itemIcon {
+  display: none;
+
+  @media (max-width: $screen-xs-max) {
+    display: block;
+    float: right;
+  }
+}
+
+.titleIcon {
+  display: none;
+
+  @media (max-width: $screen-xs-max) {
+    display: inline-block;
+    padding-left: 10px;
+    vertical-align: middle;
+  }
+}
+
+.tooltipContent {
+  padding: 5px 0 0 15px;
+  text-align: left;
+}

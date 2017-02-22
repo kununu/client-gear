@@ -8,10 +8,13 @@
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/code';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/buttons';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/forms';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/navs';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/navbar';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/normalize';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/scaffolding';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/type';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/grid';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/tooltip';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/utilities';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities';
 
@@ -21,6 +24,7 @@
 @import '~kununu-theme/scss/base/panels';
 @import '~kununu-theme/scss/base/type';
 @import '~kununu-theme/scss/base/buttons';
+@import '~kununu-theme/scss/base/colors';
 
 @import '~font-awesome/scss/variables';
 @import '~font-awesome/scss/mixins';
@@ -38,3 +42,14 @@ body {
   height: 100%;
   font-size: 14px;
 }
+
+.clientGearPlayground, // eslint-disable-line
+.appContainer {
+  height: 100%;
+}
+
+main {
+  min-height: 100%;
+}
+
+

@@ -37,7 +37,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!nukleus)/,
         loader: 'babel',
       },
       {
@@ -46,8 +46,13 @@ module.exports = {
         loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss!sass',
       },
       {
-        test: /\.css$/,
+        test: /nukleus\/dist\/.+\.css$/,
         include: /node_modules/,
+        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss!sass',
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules\/(?!nukleus\/dist)/,
         loader: 'style!css',
       },
       {
@@ -60,7 +65,7 @@ module.exports = {
         loader: 'url?limit=10000&mimetype=application/font-woff',
       },
       {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        test: /\.(ttf|eot|svg|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file',
       },
     ],
