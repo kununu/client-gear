@@ -15,5 +15,5 @@ export default function HeaderNav ({
 }
 
 HeaderNav.propTypes = {
-  children: PropTypes.array, // eslint-disable-line
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
