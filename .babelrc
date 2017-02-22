@@ -1,3 +1,10 @@
 {
-  "presets": ["react-app"]
+  "presets": ["react-app"],
+  "env": {
+    "production": {
+      "plugins": [
+        ["transform-rename-import", { original: './index.scss', replacement: './index.css' }]
+      ]
+    }
+  }
 }

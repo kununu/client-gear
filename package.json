@@ -4,8 +4,13 @@
     "moduleNameMapper": {
       "\\.(css|scss)$": "identity-obj-proxy"
     },
-    "moduleFileExtensions": ["js", "jsx"],
-    "transformIgnorePatterns": ["client-gear/node_modules"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "transformIgnorePatterns": [
+      "client-gear/node_modules"
+    ],
     "moduleDirectories": [
       "packages",
       "node_modules"
@@ -27,6 +32,7 @@
     "@karlhorky/react-scripts": "^0.8.3-alpha.2",
     "babel-eslint": "^7.1.1",
     "babel-jest": "^18.0.0",
+    "babel-plugin-transform-rename-import": "^2.0.0",
     "babel-polyfill": "^6.23.0",
     "eslint": "^3.15.0",
     "eslint-config-kununu": "^2.0.0",
