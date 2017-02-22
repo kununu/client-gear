@@ -21,13 +21,10 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
         <HeaderNavItem>
           <a href="">
             <span className="hidden-xs">
-              <i 
-                className="fa fa-search hidden-xs"
-                aria-hidden="true" />&nbsp; Suchen
+              <i className="fa fa-search hidden-xs" aria-hidden="true" />
+              &nbsp; Suchen
             </span>
-            <i
-              className="fa fa-search visible-xs"
-              aria-hidden="true" />
+            <i className="fa fa-search visible-xs" aria-hidden="true" />
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
@@ -37,9 +34,7 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
-          <a
-            href="/"
-            className="btn btn-dd-sm btn-primary">
+          <a href="/" className="btn btn-dd-sm btn-primary">
             Firma bewerten
           </a>
         </HeaderNavItem>
