@@ -39,11 +39,9 @@ export default class FooterNav extends Component {
   getItem = (item) => (
     <span>
       {item.value}
-      {
-        item.icon ?
+      {item.icon ?
           <span className={styles.itemIcon}>{item.icon}</span>
-        : ''
-      }
+        : ''}
     </span>
   )
 
@@ -57,7 +55,9 @@ export default class FooterNav extends Component {
     return this.getMenuTitle(activeItem || items[0]);
   }
 
-  // Depending on which link it is (from react-router, from react-server, simple link) we need to access the local pathname according to the respective API
+  // Depending on which link it is (from react-router, from react-server, simple link)
+  // we need to access the local pathname
+  // according to the respective API
   getLocalPathname = (item) => item.props.href || item.props.path || item.props.to.pathname;
 
   isActive = (item) => {
