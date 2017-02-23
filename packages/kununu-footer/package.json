@@ -2,7 +2,7 @@
   "name": "kununu-footer",
   "version": "1.0.0",
   "description": "kununu Footer",
-  "main": "index.jsx",
+  "main": "dist",
   "author": "kununu",
   "license": "ISC",
   "devDependencies": {
