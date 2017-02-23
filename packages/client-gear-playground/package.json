@@ -1,5 +1,6 @@
 {
   "name": "client-gear-playground",
+  "private": true,
   "version": "1.0.0",
   "description": "A place to test and development kununu client-gear",
   "repository": {

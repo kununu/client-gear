@@ -2,7 +2,13 @@ import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 
 import {Header, HeaderNav, HeaderNavItem} from '../kununu-header';
-import {Footer} from '../kununu-footer';
+import Footer from '../kununu-footer';
+
+// if you want to test the distribution, just uncomment the lines below
+/* import Header from '../kununu-header/dist/Header';
+import HeaderNav from '../kununu-header/dist/HeaderNav';
+import HeaderNavItem from '../kununu-header/dist/HeaderNavItem';
+import Footer from '../kununu-footer/dist';*/
 
 const at = require('./img/at.gif');
 const ch = require('./img/ch.gif');

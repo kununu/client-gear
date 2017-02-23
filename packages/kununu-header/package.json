@@ -2,12 +2,17 @@
   "name": "kununu-header",
   "version": "1.0.0",
   "description": "kununu Header",
-  "main": "index.jsx",
+  "main": "dist",
   "author": "kununu",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "cross-env": "^3.1.4",
+    "kununu-theme": "^3.0.0",
+    "node-sass": "^4.5.0",
+    "node-sass-module-importer": "^0.1.0",
     "react": "15.4.2",
-    "kununu-theme": "^3.0.0"
+    "rimraf": "^2.6.0"
   },
   "dependencies": {
     "kununu-logo": "1.0.0"
@@ -15,5 +20,12 @@
   "peerDependencies": {
     "react": ">=15.0.0",
     "kununu-theme": "^3.0.0"
+  },
+  "scripts": {
+    "prepublish": "yarn dist",
+    "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist",
+    "sass": "node-sass ./index.scss --output ./dist --importer node_modules/node-sass-module-importer",
+    "clean": "rimraf ./dist",
+    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel && yarn sass"
   }
 }
