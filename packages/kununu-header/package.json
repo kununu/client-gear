@@ -22,6 +22,7 @@
     "kununu-theme": "^3.0.0"
   },
   "scripts": {
+    "prepublish": "yarn dist",
     "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist",
     "sass": "node-sass ./index.scss --output ./dist --importer node_modules/node-sass-module-importer",
     "clean": "rimraf ./dist",

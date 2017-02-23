@@ -22,6 +22,7 @@
     "react-state-animation": ">=0.1.0"
   },
   "scripts": {
+    "prepublish": "yarn dist",
     "babel": "babel ./index.jsx --out-dir ./dist",
     "sass": "node-sass ./index.scss --output ./dist --importer node_modules/node-sass-module-importer",
     "clean": "rimraf ./dist",
