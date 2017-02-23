@@ -1,6 +1,6 @@
 language: node_js
 before_install:
-  - npm lerna -g
+  - npm i lerna -g
 notifications:
   email: false
 node_js:
