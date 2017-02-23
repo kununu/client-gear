@@ -48,8 +48,23 @@ module.exports = {
       {
         test: /nukleus\/dist\/.+\.css$/,
         include: /node_modules/,
-        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss!sass',
+        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
       },
+      // if you want to test the distribution, just uncomment the lines below
+      /*
+      {
+        test: /kununu-footer\/dist\/index.css$/,
+        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+      },
+      {
+        test: /kununu-header\/dist\/index.css$/,
+        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+      },
+      {
+        test: /kununu-logo\/dist\/index.css$/,
+        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+      },
+      */
       {
         test: /\.css$/,
         include: /node_modules\/(?!nukleus\/dist)/,
