@@ -1,7 +1,11 @@
 {
   "name": "kununu-header",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "kununu Header",
+  "files": [
+    "dist/",
+    "package.json"
+  ],
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
