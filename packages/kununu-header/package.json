@@ -1,6 +1,6 @@
 {
   "name": "kununu-header",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "kununu Header",
   "files": [
     "dist/",
@@ -19,7 +19,7 @@
     "rimraf": "^2.6.0"
   },
   "dependencies": {
-    "kununu-logo": "^2.0.0"
+    "kununu-logo": "^2.0.1"
   },
   "peerDependencies": {
     "react": ">=15.0.0",
