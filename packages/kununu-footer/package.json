@@ -15,14 +15,14 @@
     "rimraf": "^2.6.0",
     "react-bootstrap": "^0.30.7",
     "react-dom": "15.4.1",
-    "nukleus": "3.0.0"
+    "nukleus": "^5.0.3"
   },
   "dependencies": {
     "kununu-logo": "^2.0.0"
   },
   "peerDependencies": {
     "kununu-theme": "^3.0.0",
-    "nukleus": "3.0.0",
+    "nukleus": "^5.0.3",
     "react": ">=15.0.0",
     "react-bootstrap": "^0.30.7",
     "react-dom": "15.4.1"
