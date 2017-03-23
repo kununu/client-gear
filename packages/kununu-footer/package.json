@@ -1,6 +1,6 @@
 {
   "name": "kununu-footer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "kununu Footer",
   "main": "dist",
   "author": "kununu",
@@ -25,7 +25,7 @@
     "nukleus": "3.0.0",
     "react": ">=15.0.0",
     "react-bootstrap": "^0.30.7",
-    "react-dom": "15.4.1"
+    "react-dom": "^15.4.1"
   },
   "scripts": {
     "prepublish": "yarn dist",
