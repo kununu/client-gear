@@ -8,7 +8,7 @@ test('Renders Logo without crashing', () => {
     <Header
       title="Volle Transparenz am Arbeitsmarkt"
       logoLink={<a href="">test</a>}
-      >
+    >
       <HeaderNav>
         <HeaderNavItem>
           <a href="">
