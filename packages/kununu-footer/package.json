@@ -22,7 +22,7 @@
   },
   "peerDependencies": {
     "kununu-theme": "^3.0.0",
-    "nukleus": "5.0.3",
+    "nukleus": "6.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-bootstrap": "^0.30.7"

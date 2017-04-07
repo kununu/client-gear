@@ -22,7 +22,7 @@ const infoText = (
 
 const App = ({location: {pathname}, params: {country, menuItem}}) => (
   <div className="appContainer">
-    <Header title="Volle Transparenz am Arbeitsmarkt">
+    <Header title="Volle Transparenz am Arbeitsmarkt" logoLink={<a href="">hi</a>}>
       <HeaderNav>
         <HeaderNavItem>
           <a href="">
@@ -65,21 +65,25 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
       items={{
         countrySwitcher: [
           {
+            active: true,
             icon: <img title="Austrian Flag" alt="Austrian Flag" src={at} />,
             link: <Link to={{pathname: `/at${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'Austria',
           },
           {
+            active: false,
             icon: <img title="German Flag" alt="German Flag" src={de} />,
             link: <Link to={{pathname: `/de${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'German',
           },
           {
+            active: false,
             icon: <img title="Swiss Flag" alt="Swiss Flag" src={ch} />,
             link: <Link to={{pathname: `/ch${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'Switzerland',
           },
           {
+            active: false,
             icon: <img title="American Flag" alt="American Flag" src={us} />,
             link: <Link to={{pathname: `/us${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'United States',

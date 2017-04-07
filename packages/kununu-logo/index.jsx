@@ -9,14 +9,13 @@ export default class Logo extends Component {
     isSpinning: PropTypes.bool.isRequired,
     link: PropTypes.element,
     shade: PropTypes.oneOf(['dark', 'light']),
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
   };
 
   static defaultProps = {
     duration: 1400,
     isSpinning: false,
     shade: 'dark',
-    title: 'kununu GmbH',
   };
 
   state = {
@@ -58,12 +57,15 @@ export default class Logo extends Component {
   render () {
     const {
       link,
+      title,
       shade,
     } = this.props;
 
     const content = (
       <div className={`${styles.logo} ${styles[shade]}`}>
-        <h1 className="sr-only">{this.props.title}</h1>
+        {title &&
+          <h1 className="sr-only">{title}</h1>
+        }
         <span
           className={`${styles.starSpinner} ${styles[shade]}`}
           style={{

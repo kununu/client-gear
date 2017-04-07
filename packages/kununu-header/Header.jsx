@@ -8,13 +8,14 @@ export default function Header ({
   container,
   fixed,
   title,
+  logoLink,
 }) {
   return (
     <header role="banner" className={`${styles.header} ${fixed && styles.fixed}`}>
       <div className={container}>
         <div className={styles.flex}>
           <div className={styles.pullLeft}>
-            <Logo shade="light" />
+            <Logo shade="light" title="kununu" link={logoLink} />
             <span className={styles.title}>{title}</span>
           </div>
           <div className={styles.pullRight}>
@@ -31,6 +32,7 @@ Header.propTypes = {
   container: PropTypes.string,
   fixed: PropTypes.bool,
   title: PropTypes.string,
+  logoLink: PropTypes.element.isRequired,
 };
 
 Header.defaultProps = {
