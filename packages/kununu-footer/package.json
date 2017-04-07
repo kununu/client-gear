@@ -15,7 +15,7 @@
     "react-dom": "^15.4.2",
     "rimraf": "^2.6.0",
     "react-bootstrap": "^0.30.7",
-    "nukleus": "5.0.3"
+    "nukleus": "6.0.0"
   },
   "dependencies": {
     "kununu-logo": "^2.1.0"
