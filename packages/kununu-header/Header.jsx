@@ -31,8 +31,8 @@ Header.propTypes = {
   children: PropTypes.element,
   container: PropTypes.string,
   fixed: PropTypes.bool,
-  title: PropTypes.string,
   logoLink: PropTypes.element.isRequired,
+  title: PropTypes.string,
 };
 
 Header.defaultProps = {
