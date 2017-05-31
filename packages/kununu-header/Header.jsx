@@ -9,7 +9,7 @@ import styles from './index.scss';
 
 // todo: remove this, is only for 31/5-1/7/2017
 const now = new Date();
-const inAnniversaryPeriod = () => (now >= new Date('2017-5-31') && now <= new Date('2017-7-1'));
+const inAnniversaryPeriod = () => (now >= new Date('2017-5-31') && now < new Date('2017-7-1'));
 
 export default function Header ({
   children,
@@ -25,7 +25,7 @@ export default function Header ({
             {inAnniversaryPeriod() ?
               // todo: remove this, is only for 31/5-1/7/2017
               <div className={styles.annniversaryLogo} /> :
-              <Logo shade="light"/>
+              <Logo shade="light" />
             }
             <span className={styles.title}>{title}</span>
           </div>
