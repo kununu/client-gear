@@ -95,7 +95,9 @@
   vertical-align: top;
   width: 142px;
   height: 59px;
+
   @media (max-width: 630px) {
-    width: 56px;
+    background-size: 100px;
+    width: 40px;
   }
 }
