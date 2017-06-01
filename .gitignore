@@ -38,3 +38,6 @@ jspm_packages
 
 # Build dirs
 dist
+
+# IDEs
+.idea/
