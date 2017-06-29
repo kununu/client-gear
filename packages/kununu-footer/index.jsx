@@ -13,6 +13,7 @@ export default class Footer extends Component { // eslint-disable-line
     infoText: PropTypes.element.isRequired,
     items: PropTypes.shape({
       countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
+        active: PropTypes.boolean,
         icon: PropTypes.element,
         link: PropTypes.element.isRequired,
         value: PropTypes.string.isRequired,
@@ -135,7 +136,6 @@ export default class Footer extends Component { // eslint-disable-line
             <div className="hidden-xs">
               <DropDown
                 position="top"
-                pathname={pathname}
                 items={items.countrySwitcher}
               />
             </div>

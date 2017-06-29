@@ -5,7 +5,10 @@ import {Header, HeaderNav, HeaderNavItem} from '.';
 
 test('Renders Logo without crashing', () => {
   const component = renderer.create(
-    <Header title="Volle Transparenz am Arbeitsmarkt">
+    <Header
+      title="Volle Transparenz am Arbeitsmarkt"
+      logoLink={<a href="">test</a>}
+    >
       <HeaderNav>
         <HeaderNavItem>
           <a href="">

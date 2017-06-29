@@ -16,6 +16,7 @@ export default function Header ({
   container,
   fixed,
   title,
+  logoLink,
 }) {
   return (
     <header role="banner" className={`${styles.header} ${fixed && styles.fixed}`}>
@@ -25,7 +26,7 @@ export default function Header ({
             {inAnniversaryPeriod() ?
               // todo: remove this, is only for 31/5-1/7/2017
               <div className={styles.annniversaryLogo} /> :
-              <Logo shade="light" />
+              <Logo shade="light" title="kununu" link={logoLink} />
             }
             <span className={styles.title}>{title}</span>
           </div>
@@ -42,6 +43,7 @@ Header.propTypes = {
   children: PropTypes.element,
   container: PropTypes.string,
   fixed: PropTypes.bool,
+  logoLink: PropTypes.element.isRequired,
   title: PropTypes.string,
 };
 
