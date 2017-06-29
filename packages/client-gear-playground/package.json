@@ -24,7 +24,7 @@
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "0.0.4",
     "kununu-theme": "3.0.0",
-    "nukleus": "7.0.0",
+    "nukleus": "7.10.0",
     "react": "15.4.1",
     "react-dom": "15.4.1",
     "react-router": "3.0.2"
