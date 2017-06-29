@@ -84,3 +84,20 @@
     }
   }
 }
+
+// todo: remove this, is only for 31/5-1/7/2017
+.annniversaryLogo {
+  background-image: url(./img/logo-10-years.png);
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-size: 140px;
+  display: inline-block;
+  vertical-align: top;
+  width: 142px;
+  height: 59px;
+
+  @media (max-width: 630px) {
+    background-size: 100px;
+    width: 40px;
+  }
+}

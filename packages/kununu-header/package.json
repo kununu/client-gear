@@ -1,6 +1,6 @@
 {
   "name": "kununu-header",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "kununu Header",
   "main": "dist",
   "author": "kununu",
@@ -26,6 +26,7 @@
     "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist",
     "sass": "node-sass ./index.scss --output ./dist --importer node_modules/node-sass-module-importer",
     "clean": "rimraf ./dist",
-    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel && yarn sass"
+    "copy-imgs": "mkdir dist/img && cp ./img/*.png ./dist/img",
+    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel && yarn sass && yarn copy-imgs"
   }
 }
