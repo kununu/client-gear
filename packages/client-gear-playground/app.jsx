@@ -142,6 +142,10 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
                   link: <Link to={{pathname: `${country ? `/${country}` : ''}/j`}}>test</Link>,
                   value: 'Toolkit',
                 },
+                {
+                  link: <Link to={{pathname: `${country ? `/${country}` : ''}/k`}}>test</Link>,
+                  value: 'Toolkit 2',
+                },
               ],
               title: 'Für Unternehmen',
             },
