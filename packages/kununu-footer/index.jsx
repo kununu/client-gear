@@ -100,7 +100,7 @@ export default class Footer extends Component { // eslint-disable-line
                   overlay={tooltip}
                 >
                   <img
-                    alt="hi"
+                    alt="TÜV Saarland - Geprüftes Onlineportal"
                     className={styles.tuv}
                     src={tuvImage}
                   />
