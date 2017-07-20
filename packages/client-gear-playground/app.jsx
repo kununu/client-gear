@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 
-import {Header, HeaderNav, HeaderNavItem} from '../kununu-header';
-import Footer from '../kununu-footer';
+import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/index';
+import Footer from '../kununu-footer/index';
 
 // if you want to test the distribution, just uncomment the lines below
 /* import Header from '../kununu-header/dist/Header';
