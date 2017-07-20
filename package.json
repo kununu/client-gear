@@ -57,7 +57,4 @@
     "test": "jest",
     "coverage": "jest --coverage"
   },
-  "dependencies": {
-    "jest-cli": "^20.0.4"
-  }
 }
