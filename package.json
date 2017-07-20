@@ -56,5 +56,5 @@
     "lint": "eslint packages --max-warnings 0 --ext jsx --ext js",
     "test": "jest",
     "coverage": "jest --coverage"
-  },
+  }
 }
