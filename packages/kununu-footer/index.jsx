@@ -17,6 +17,8 @@ export default class Footer extends Component { // eslint-disable-line
         icon: PropTypes.element,
         link: PropTypes.element.isRequired,
         value: PropTypes.string.isRequired,
+
+
       })),
       navs: PropTypes.shape({
         cols: PropTypes.arrayOf(PropTypes.shape({

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './index.scss';
 
@@ -25,7 +26,7 @@ export default class FooterNav extends Component {
     });
   }
 
-  getMenuTitle = (item) => (
+  getMenuTitle = item => (
     <span>
       {item.value}
       {item.icon ?
@@ -36,7 +37,7 @@ export default class FooterNav extends Component {
     </span>
     )
 
-  getItem = (item) => (
+  getItem = item => (
     <span>
       {item.value}
       {item.icon ?
@@ -58,7 +59,7 @@ export default class FooterNav extends Component {
   // Depending on which link it is (from react-router, from react-server, simple link)
   // we need to access the local pathname
   // according to the respective API
-  getLocalPathname = (item) => item.props.href || item.props.path || item.props.to.pathname;
+  getLocalPathname = item => item.props.href || item.props.path || item.props.to.pathname;
 
   isActive = (item) => {
     const {pathname} = this.props;
