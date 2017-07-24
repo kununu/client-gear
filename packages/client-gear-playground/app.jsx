@@ -22,7 +22,11 @@ const infoText = (
 
 const App = ({location: {pathname}, params: {country, menuItem}}) => (
   <div className="appContainer">
-    <Header title="Volle Transparenz am Arbeitsmarkt" logoLink={<a href="">hi</a>}>
+    <Header
+      isLoading
+      title="Volle Transparenz am Arbeitsmarkt"
+      logoLink={<a href="">hi</a>}
+    >
       <HeaderNav>
         <HeaderNavItem>
           <a href="">
