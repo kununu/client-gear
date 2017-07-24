@@ -7,9 +7,9 @@ export default function Header ({
   children,
   container,
   fixed,
+  isLoading,
   title,
   logoLink,
-  isLoading,
 }) {
   return (
     <header role="banner" className={`${styles.header} ${fixed && styles.fixed}`}>
