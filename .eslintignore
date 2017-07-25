@@ -1,2 +1,3 @@
 dist
 node_modules
+packages/client-gear-playground/webpack.config.babel.js
