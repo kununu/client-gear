@@ -36,7 +36,16 @@ export default class Footer extends Component { // eslint-disable-line
       }),
     }),
     pathname: PropTypes.string.isRequired,
+    showCountrySwitcher: PropTypes.bool,
+    showInfo: PropTypes.bool,
+    showNavs: PropTypes.bool,
     tuv: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    showCountrySwitcher: true,
+    showInfo: true,
+    showNavs: true,
   };
 
   render () {
@@ -44,6 +53,9 @@ export default class Footer extends Component { // eslint-disable-line
       infoText,
       items,
       pathname,
+      showCountrySwitcher,
+      showInfo,
+      showNavs,
       tuv,
     } = this.props;
 
@@ -65,26 +77,31 @@ export default class Footer extends Component { // eslint-disable-line
       >
         <div className="container-fluid">
           <div className={`row ${styles.flex}`}>
-            <div className={`${styles.menuColumns} visible-xs`}>
-              <FooterNav
-                dynamicNav
-                items={items.countrySwitcher}
-                pathname={pathname}
-                type="col"
-              />
-            </div>
-            {items.navs.cols.map((item, index) => (
-              <div className={styles.menuColumns} key={index}>
+            {showCountrySwitcher ?
+              <div className={`${styles.menuColumns} visible-xs`}>
                 <FooterNav
-                  items={item.items}
+                  dynamicNav
+                  items={items.countrySwitcher}
                   pathname={pathname}
-                  title={item.title}
                   type="col"
                 />
               </div>
-              ),
-            )}
-
+              : null
+            }
+            {showNavs ?
+              items.navs.cols.map((item, index) => (
+                <div className={styles.menuColumns} key={index}>
+                  <FooterNav
+                    items={item.items}
+                    pathname={pathname}
+                    title={item.title}
+                    type="col"
+                  />
+                </div>
+                ),
+              )
+              : null
+            }
             {tuv ?
               <div
                 className={`
@@ -106,20 +123,22 @@ export default class Footer extends Component { // eslint-disable-line
                   />
                 </OverlayTrigger>
               </div>
-              : ''
+              : null
             }
+            {showInfo ?
+              <div className={`${styles.infoTextColumn} text-right text-center-xs text-center-sm text-muted`}>
+                <Logo shade="light" />
 
-            <div className={`${styles.infoTextColumn} text-right text-center-xs text-center-sm text-muted`}>
-              <Logo shade="light" />
+                <p className={styles.infoText}>
+                  {infoText}
+                </p>
 
-              <p className={styles.infoText}>
-                {infoText}
-              </p>
-
-              <p className="text-xs">
-                made with <i className="fa fa-heart-o text-red" /> in Vienna
-              </p>
-            </div>
+                <p className="text-xs">
+                  made with <i className="fa fa-heart-o text-red" /> in Vienna
+                </p>
+              </div>
+              : null
+            }
           </div>
           <div className={styles.bottomMenu}>
             <div>
@@ -134,10 +153,13 @@ export default class Footer extends Component { // eslint-disable-line
               )}
             </div>
             <div className="hidden-xs">
-              <DropDown
-                position="top"
-                items={items.countrySwitcher}
-              />
+              {showCountrySwitcher ?
+                <DropDown
+                  position="top"
+                  items={items.countrySwitcher}
+                />
+                : null
+              }
             </div>
           </div>
         </div>

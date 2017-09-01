@@ -191,6 +191,7 @@ div.title {
   border-top: 1px solid $gray-base-60;
   display: table;
   width: 100%;
+  min-height: 45px;
 
   > div {
     float: right;

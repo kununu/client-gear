@@ -182,6 +182,9 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
           ],
         },
       }}
+      showInfo={false}
+      showNavs={false}
+      showCountrySwitcher={false}
     />
 
   </div>
