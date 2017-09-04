@@ -7,6 +7,10 @@
   width: 100%;
 }
 
+.emptyFooter {
+  padding-top: 0;
+}
+
 .footerNav {
   list-style: none;
   margin-bottom: 0;
@@ -200,6 +204,10 @@ div.title {
       float: left;
     }
   }
+}
+
+.bottomMenuEmptyFooter {
+  border-top: 0;
 }
 
 .accordionTitle {

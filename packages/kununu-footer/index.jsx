@@ -59,6 +59,8 @@ export default class Footer extends Component { // eslint-disable-line
       tuv,
     } = this.props;
 
+    const empty = !showCountrySwitcher && !showInfo && !showNavs;
+
     const tooltip = (
       <Tooltip id="tooltip">
         <ul className={styles.tooltipContent}>
@@ -73,7 +75,7 @@ export default class Footer extends Component { // eslint-disable-line
       <footer
         role="banner"
         id="footer"
-        className={`navbar-default ${styles.footer}`}
+        className={`navbar-default ${styles.footer} ${empty ? styles.emptyFooter : ''}`}
       >
         <div className="container-fluid">
           <div className={`row ${styles.flex}`}>
@@ -140,7 +142,7 @@ export default class Footer extends Component { // eslint-disable-line
               : null
             }
           </div>
-          <div className={styles.bottomMenu}>
+          <div className={`${styles.bottomMenu} ${empty ? styles.bottomMenuEmptyFooter : ''}`}>
             <div>
               {items.navs.rows.map((item, index) => (
                 <FooterNav
