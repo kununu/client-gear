@@ -70,7 +70,7 @@ export default class Logo extends Component {
           <h1 className="sr-only">{title}</h1>
         }
         <span
-          className={`${styles.starSpinner} ${styles[shade]}`}
+          className={`${responsive ? styles.responsive : ''} ${styles.starSpinner} ${styles[shade]}`}
           style={{
             transform: `rotate(${this.state.spinnerDegrees}deg)`,
           }}
