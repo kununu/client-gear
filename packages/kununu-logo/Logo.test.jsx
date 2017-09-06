@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer'; // eslint-disable-line import/no-extraneous-dependencies
 
-import KununuLogo from './index.jsx';
+import KununuLogo from './index';
 
 test('Renders Logo without crashing', () => {
   const component = renderer.create(
