@@ -8,6 +8,7 @@ export default class Logo extends Component {
     duration: PropTypes.number,
     isSpinning: PropTypes.bool.isRequired,
     link: PropTypes.element,
+    responsive: PropTypes.bool,
     shade: PropTypes.oneOf(['dark', 'light']),
     title: PropTypes.string,
   };
@@ -15,6 +16,7 @@ export default class Logo extends Component {
   static defaultProps = {
     duration: 1400,
     isSpinning: false,
+    responsive: true,
     shade: 'dark',
   };
 
@@ -57,12 +59,13 @@ export default class Logo extends Component {
   render () {
     const {
       link,
-      title,
+      responsive,
       shade,
+      title,
     } = this.props;
 
     const content = (
-      <div className={`${styles.logo} ${styles[shade]}`}>
+      <div className={`${responsive ? styles.responsive : ''} ${styles.logo} ${styles[shade]}`}>
         {title &&
           <h1 className="sr-only">{title}</h1>
         }
