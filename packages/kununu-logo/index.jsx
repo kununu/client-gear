@@ -8,16 +8,16 @@ export default class Logo extends Component {
     duration: PropTypes.number,
     isSpinning: PropTypes.bool.isRequired,
     link: PropTypes.element,
-    shade: PropTypes.oneOf(['dark', 'light']),
     responsive: PropTypes.bool,
+    shade: PropTypes.oneOf(['dark', 'light']),
     title: PropTypes.string,
   };
 
   static defaultProps = {
     duration: 1400,
     isSpinning: false,
-    shade: 'dark',
     responsive: true,
+    shade: 'dark',
   };
 
   state = {
@@ -59,9 +59,9 @@ export default class Logo extends Component {
   render () {
     const {
       link,
-      title,
-      shade,
       responsive,
+      shade,
+      title,
     } = this.props;
 
     const content = (
