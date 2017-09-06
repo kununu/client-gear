@@ -9,7 +9,7 @@ export default class Logo extends Component {
     isSpinning: PropTypes.bool.isRequired,
     link: PropTypes.element,
     shade: PropTypes.oneOf(['dark', 'light']),
-    responsive: true,
+    responsive: PropTypes.bool,
     title: PropTypes.string,
   };
 
