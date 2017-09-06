@@ -13,7 +13,7 @@ export default class Footer extends Component { // eslint-disable-line
     infoText: PropTypes.element.isRequired,
     items: PropTypes.shape({
       countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
-        active: PropTypes.boolean,
+        active: PropTypes.bool,
         icon: PropTypes.element,
         link: PropTypes.element.isRequired,
         value: PropTypes.string.isRequired,
@@ -36,16 +36,12 @@ export default class Footer extends Component { // eslint-disable-line
       }),
     }),
     pathname: PropTypes.string.isRequired,
-    showCountrySwitcher: PropTypes.bool,
-    showInfo: PropTypes.bool,
-    showNavs: PropTypes.bool,
+    simpleMobile: PropTypes.bool,
     tuv: PropTypes.bool,
   };
 
   static defaultProps = {
-    showCountrySwitcher: true,
-    showInfo: true,
-    showNavs: true,
+    simpleMobile: false,
   };
 
   render () {
@@ -53,13 +49,9 @@ export default class Footer extends Component { // eslint-disable-line
       infoText,
       items,
       pathname,
-      showCountrySwitcher,
-      showInfo,
-      showNavs,
+      simpleMobile,
       tuv,
     } = this.props;
-
-    const empty = !showCountrySwitcher && !showInfo && !showNavs;
 
     const tooltip = (
       <Tooltip id="tooltip">
@@ -75,35 +67,29 @@ export default class Footer extends Component { // eslint-disable-line
       <footer
         role="banner"
         id="footer"
-        className={`navbar-default ${styles.footer} ${empty ? styles.emptyFooter : ''}`}
+        className={`navbar-default ${styles.footer} ${simpleMobile ? styles.simpleMobile : ''}`}
       >
         <div className="container-fluid">
-          <div className={`row ${styles.flex}`}>
-            {showCountrySwitcher ?
-              <div className={`${styles.menuColumns} visible-xs`}>
+          <div className={`row ${styles.flex} ${styles.contentSection}`}>
+            <div className={`${styles.menuColumns} visible-xs`}>
+              <FooterNav
+                dynamicNav
+                items={items.countrySwitcher}
+                pathname={pathname}
+                type="col"
+              />
+            </div>
+            {items.navs.cols.map((item, index) => (
+              <div className={styles.menuColumns} key={index}>
                 <FooterNav
-                  dynamicNav
-                  items={items.countrySwitcher}
+                  items={item.items}
                   pathname={pathname}
+                  title={item.title}
                   type="col"
                 />
               </div>
-              : null
-            }
-            {showNavs ?
-              items.navs.cols.map((item, index) => (
-                <div className={styles.menuColumns} key={index}>
-                  <FooterNav
-                    items={item.items}
-                    pathname={pathname}
-                    title={item.title}
-                    type="col"
-                  />
-                </div>
-                ),
-              )
-              : null
-            }
+              ),
+            )}
             {tuv ?
               <div
                 className={`
@@ -127,22 +113,19 @@ export default class Footer extends Component { // eslint-disable-line
               </div>
               : null
             }
-            {showInfo ?
-              <div className={`${styles.infoTextColumn} text-right text-center-xs text-center-sm text-muted`}>
-                <Logo shade="light" />
+            <div className={`${styles.infoTextColumn} text-right text-center-xs text-center-sm text-muted`}>
+              <Logo shade="light" />
 
-                <p className={styles.infoText}>
-                  {infoText}
-                </p>
+              <p className={styles.infoText}>
+                {infoText}
+              </p>
 
-                <p className="text-xs">
-                  made with <i className="fa fa-heart-o text-red" /> in Vienna
-                </p>
-              </div>
-              : null
-            }
+              <p className="text-xs">
+                made with <i className="fa fa-heart-o text-red" /> in Vienna
+              </p>
+            </div>
           </div>
-          <div className={`${styles.bottomMenu} ${empty ? styles.bottomMenuEmptyFooter : ''}`}>
+          <div className={styles.bottomMenu}>
             <div>
               {items.navs.rows.map((item, index) => (
                 <FooterNav
@@ -155,13 +138,10 @@ export default class Footer extends Component { // eslint-disable-line
               )}
             </div>
             <div className="hidden-xs">
-              {showCountrySwitcher ?
-                <DropDown
-                  position="top"
-                  items={items.countrySwitcher}
-                />
-                : null
-              }
+              <DropDown
+                position="top"
+                items={items.countrySwitcher}
+              />
             </div>
           </div>
         </div>

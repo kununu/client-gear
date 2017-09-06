@@ -7,8 +7,18 @@
   width: 100%;
 }
 
-.emptyFooter {
-  padding-top: 0;
+.simpleMobile {
+  @media (max-width: $screen-xs-max) {
+    padding-top: 0;
+
+    .contentSection {
+      display: none;
+    }
+
+    .bottomMenu {
+      border-top: 0;
+    }
+  }
 }
 
 .footerNav {
@@ -204,10 +214,6 @@ div.title {
       float: left;
     }
   }
-}
-
-.bottomMenuEmptyFooter {
-  border-top: 0;
 }
 
 .accordionTitle {

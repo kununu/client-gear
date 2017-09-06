@@ -66,6 +66,7 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
       infoText={infoText}
       pathname={pathname}
       tuv
+      simpleMobile
       items={{
         countrySwitcher: [
           {
