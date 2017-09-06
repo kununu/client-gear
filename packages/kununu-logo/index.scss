@@ -28,20 +28,22 @@
     text-decoration: none;
   }
 
-  @media (max-width: 830px) {
-    background-image: url(./img/kununu-k-no-star-light.svg);
-    background-size: 45px;
-    width: 38px;
-    background-position: -5px 10px;
-
-    &.dark {
-      background-image: url(./img/kununu-k-no-star-dark.svg);
+  &.responsive {
+    @media (max-width: 830px) {
+      background-image: url(./img/kununu-k-no-star-light.svg);
       background-size: 45px;
-    }
+      width: 38px;
+      background-position: -5px 10px;
 
-    &::after {
-      top: 5px;
-      right: 2px;
+      &.dark {
+        background-image: url(./img/kununu-k-no-star-dark.svg);
+        background-size: 45px;
+      }
+
+      &::after {
+        top: 5px;
+        right: 2px;
+      }
     }
   }
 }
