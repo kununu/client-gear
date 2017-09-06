@@ -11,7 +11,6 @@ export default function Header ({
   title,
   logoLink,
   responsive,
-  title,
 }) {
   return (
     <header role="banner" className={`${styles.header} ${fixed && styles.fixed}`}>
