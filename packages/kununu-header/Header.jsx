@@ -11,6 +11,7 @@ export default function Header ({
   title,
   logoLink,
   responsive,
+  title,
 }) {
   return (
     <header role="banner" className={`${styles.header} ${fixed && styles.fixed}`}>
@@ -41,14 +42,14 @@ Header.propTypes = {
   fixed: PropTypes.bool,
   isLoading: PropTypes.bool,
   logoLink: PropTypes.element.isRequired,
-  title: PropTypes.string,
   responsive: PropTypes.bool,
+  title: PropTypes.string,
 };
 
 Header.defaultProps = {
   container: 'container-fluid',
   fixed: true,
   isLoading: false,
-  title: '',
   responsive: true,
+  title: '',
 };
