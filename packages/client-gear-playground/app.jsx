@@ -26,6 +26,7 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
       isLoading
       title="Volle Transparenz am Arbeitsmarkt"
       logoLink={<a href="">hi</a>}
+      responsive={false}
     >
       <HeaderNav>
         <HeaderNavItem>

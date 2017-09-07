@@ -13,14 +13,14 @@ exports[`test Renders Logo without crashing 1`] = `
           <a
             href="">
             <div
-              className="logo light">
+              className="responsive logo light">
               <h1
                 className="sr-only">
                 kununu
               </h1>
               <span
                 aria-hidden="true"
-                className="starSpinner light"
+                className="responsive starSpinner light"
                 style={
                   Object {
                     "transform": "rotate(0deg)",
@@ -30,7 +30,7 @@ exports[`test Renders Logo without crashing 1`] = `
           </a>
         </div>
         <span
-          className="title">
+          className="title responsive">
           Volle Transparenz am Arbeitsmarkt
         </span>
       </div>

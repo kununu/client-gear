@@ -10,6 +10,7 @@ export default function Header ({
   isLoading,
   title,
   logoLink,
+  responsive,
 }) {
   return (
     <header role="banner" className={`${styles.header} ${fixed && styles.fixed}`}>
@@ -21,8 +22,9 @@ export default function Header ({
               shade="light"
               title="kununu"
               link={logoLink}
+              responsive={responsive}
             />
-            <span className={styles.title}>{title}</span>
+            <span className={`${styles.title} ${responsive ? styles.responsive : ''}`}>{title}</span>
           </div>
           <div className={styles.pullRight}>
             {children}
@@ -39,6 +41,7 @@ Header.propTypes = {
   fixed: PropTypes.bool,
   isLoading: PropTypes.bool,
   logoLink: PropTypes.element.isRequired,
+  responsive: PropTypes.bool,
   title: PropTypes.string,
 };
 
@@ -46,5 +49,6 @@ Header.defaultProps = {
   container: 'container-fluid',
   fixed: true,
   isLoading: false,
+  responsive: true,
   title: '',
 };
