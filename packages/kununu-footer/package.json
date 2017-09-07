@@ -1,6 +1,6 @@
 {
   "name": "kununu-footer",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "kununu Footer",
   "main": "dist",
   "author": "kununu",
@@ -18,7 +18,7 @@
     "nukleus": "7.11.0"
   },
   "dependencies": {
-    "kununu-logo": "3.0.0"
+    "kununu-logo": "3.0.2"
   },
   "peerDependencies": {
     "kununu-theme": "^3.0.0",

@@ -13,7 +13,7 @@ export default class Footer extends Component { // eslint-disable-line
     infoText: PropTypes.element.isRequired,
     items: PropTypes.shape({
       countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
-        active: PropTypes.boolean,
+        active: PropTypes.bool,
         icon: PropTypes.element,
         link: PropTypes.element.isRequired,
         value: PropTypes.string.isRequired,
@@ -36,7 +36,12 @@ export default class Footer extends Component { // eslint-disable-line
       }),
     }),
     pathname: PropTypes.string.isRequired,
+    simpleMobile: PropTypes.bool,
     tuv: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    simpleMobile: false,
   };
 
   render () {
@@ -44,6 +49,7 @@ export default class Footer extends Component { // eslint-disable-line
       infoText,
       items,
       pathname,
+      simpleMobile,
       tuv,
     } = this.props;
 
@@ -61,10 +67,10 @@ export default class Footer extends Component { // eslint-disable-line
       <footer
         role="banner"
         id="footer"
-        className={`navbar-default ${styles.footer}`}
+        className={`navbar-default ${styles.footer} ${simpleMobile ? styles.simpleMobile : ''}`}
       >
         <div className="container-fluid">
-          <div className={`row ${styles.flex}`}>
+          <div className={`row ${styles.flex} ${styles.contentSection}`}>
             <div className={`${styles.menuColumns} visible-xs`}>
               <FooterNav
                 dynamicNav
@@ -84,7 +90,6 @@ export default class Footer extends Component { // eslint-disable-line
               </div>
               ),
             )}
-
             {tuv ?
               <div
                 className={`
@@ -106,9 +111,8 @@ export default class Footer extends Component { // eslint-disable-line
                   />
                 </OverlayTrigger>
               </div>
-              : ''
+              : null
             }
-
             <div className={`${styles.infoTextColumn} text-right text-center-xs text-center-sm text-muted`}>
               <Logo shade="light" />
 
