@@ -15,7 +15,7 @@
     "rimraf": "^2.6.0"
   },
   "dependencies": {
-    "kununu-logo": "3.0.1"
+    "kununu-logo": "3.0.2"
   },
   "peerDependencies": {
     "react": ">=15.0.0",
