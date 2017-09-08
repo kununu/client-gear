@@ -30,7 +30,7 @@ exports[`test Renders Logo without crashing 1`] = `
           </a>
         </div>
         <span
-          className="title responsive">
+          className="title">
           Volle Transparenz am Arbeitsmarkt
         </span>
       </div>

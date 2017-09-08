@@ -24,7 +24,7 @@ export default function Header ({
               link={logoLink}
               responsive={responsive}
             />
-            <span className={`${styles.title} ${responsive ? styles.responsive : ''}`}>{title}</span>
+            <span className={styles.title}>{title}</span>
           </div>
           <div className={styles.pullRight}>
             {children}
