@@ -1,0 +1,27 @@
+{
+  "name": "kununu-utils",
+  "version": "1.0.0",
+  "description": "Utility functions used within kununu client applications",
+  "main": "dist",
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "cross-env": "3.1.4",
+    "http-status-codes": "^1.1.6",
+    "react-scroll": "1.5.5",
+    "rimraf": "2.6.0"
+  },
+  "peerDependencies": {
+    "react": ">=15.0.0",
+    "http-status-codes": "^1.1.6",
+    "react-scroll": "1.5.5"
+  },
+  "scripts": {
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf ./dist",
+    "babel": "babel $(find ./ -name 'index.js' ! -ipath '*node_modules*') --out-dir ./dist",
+    "build": "npm run clean && cross-env NODE_ENV=production npm run babel"
+  },
+  "author": "kununu",
+  "license": "ISC"
+}
