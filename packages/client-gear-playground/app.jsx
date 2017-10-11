@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 
 import {Header, HeaderNav, HeaderNavItem} from '../kununu-header';
 import Footer from '../kununu-footer';
+import Overlay from '../kununu-overlay';
 
 // if you want to test the distribution, just uncomment the lines below
 /* import Header from '../kununu-header/dist/Header';
@@ -52,6 +53,7 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
       </HeaderNav>
     </Header>
     <main role="main">
+      <Overlay />
       <div className="container-fluid">
         <div style={{backgroundColor: '#fff', padding: '10px 20px'}}>
           <h2>
