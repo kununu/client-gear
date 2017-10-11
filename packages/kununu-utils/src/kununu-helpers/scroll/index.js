@@ -1,6 +1,6 @@
 import Scroll from 'react-scroll';
 
-import getElementPositionY from '../../elementPosition';
+import getElementPositionY from '../elementPosition';
 
 const scroll = Scroll.animateScroll;
 
