@@ -1,5 +1,5 @@
 {
-  "name": "@kununu/kununu-loader",
+  "name": "@kununu/kununu-overlay",
   "version": "1.0.0",
   "description": "kununu page loading spinner",
   "main": "dist",
