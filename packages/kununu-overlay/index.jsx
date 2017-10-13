@@ -43,7 +43,7 @@ const Overlay = (props) => (
 );
 
 Overlay.propTypes = {
-  iconSize: React.PropTypes.Number,
+  iconSize: React.PropTypes.number,
 };
 
 Overlay.defaultProps = {
