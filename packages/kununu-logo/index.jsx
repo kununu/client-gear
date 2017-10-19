@@ -67,7 +67,7 @@ export default class Logo extends Component {
     const content = (
       <div className={`${responsive ? styles.responsive : ''} ${styles.logo} ${styles[shade]}`}>
         {title &&
-          <h1 className="sr-only">{title}</h1>
+          <div className="sr-only">{title}</div>
         }
         <span
           className={`${responsive ? styles.responsive : ''} ${styles.starSpinner} ${styles[shade]}`}
