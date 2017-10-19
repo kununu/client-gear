@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import Scroll from 'react-scroll';
-import getElementPositionY from '@kununu/kununu-utils/dist/kununu-helpers/elementPosition';
+import getElementPositionY from '@kununu/kununu-utils/dist/kununu-helpers/elementPosition'; // eslint-disable-line
 
 // Think about using matchMedia here and move it to utils
 const isMobile = () => (typeof window !== 'undefined' ? window.innerWidth < 550 : false);
