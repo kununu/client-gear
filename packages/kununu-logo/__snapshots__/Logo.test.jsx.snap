@@ -8,16 +8,16 @@ exports[`Renders Logo with link 1`] = `
     href="/"
   >
     <div
-      className="logo light"
+      className="responsive logo light"
     >
-      <h1
+      <div
         className="sr-only"
       >
         test
-      </h1>
+      </div>
       <span
         aria-hidden="true"
-        className="starSpinner light"
+        className="responsive starSpinner light"
         style={
           Object {
             "transform": "rotate(0deg)",
@@ -34,16 +34,16 @@ exports[`Renders Logo without crashing 1`] = `
   className="logoContainer"
 >
   <div
-    className="logo dark"
+    className="responsive logo dark"
   >
-    <h1
+    <div
       className="sr-only"
     >
       test
-    </h1>
+    </div>
     <span
       aria-hidden="true"
-      className="starSpinner dark"
+      className="responsive starSpinner dark"
       style={
         Object {
           "transform": "rotate(0deg)",

@@ -21,16 +21,16 @@ exports[`Renders Logo without crashing 1`] = `
             href=""
           >
             <div
-              className="logo light"
+              className="responsive logo light"
             >
-              <h1
+              <div
                 className="sr-only"
               >
                 kununu
-              </h1>
+              </div>
               <span
                 aria-hidden="true"
-                className="starSpinner light"
+                className="responsive starSpinner light"
                 style={
                   Object {
                     "transform": "rotate(0deg)",

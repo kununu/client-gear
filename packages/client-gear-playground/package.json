@@ -23,8 +23,8 @@
     "bootstrap-sass": "3.3.7",
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "0.0.5-beta.2",
-    "kununu-theme": "3.1.0",
-    "nukleus": "7.12.1",
+    "kununu-theme": "3.1.1",
+    "nukleus": "9.1.0",
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "react-router": "3.0.2"

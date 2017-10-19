@@ -1,6 +1,6 @@
 {
   "name": "kununu-header",
-  "version": "3.0.1",
+  "version": "3.0.5",
   "description": "kununu Header",
   "main": "dist",
   "author": "kununu",
@@ -15,7 +15,7 @@
     "rimraf": "^2.6.1"
   },
   "dependencies": {
-    "kununu-logo": "3.0.0",
+    "kununu-logo": "3.0.3",
     "prop-types": "^15.5.10"
   },
   "peerDependencies": {
@@ -27,7 +27,6 @@
     "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist",
     "sass": "node-sass ./index.scss --output ./dist --importer node_modules/node-sass-module-importer",
     "clean": "rimraf ./dist",
-    "copy-imgs": "mkdir dist/img && cp ./img/*.png ./dist/img",
-    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel && yarn sass && yarn copy-imgs"
+    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel && yarn sass"
   }
 }
