@@ -14,10 +14,10 @@ exports[`test Renders Logo without crashing 1`] = `
             href="">
             <div
               className="responsive logo light">
-              <h1
+              <div
                 className="sr-only">
                 kununu
-              </h1>
+              </div>
               <span
                 aria-hidden="true"
                 className="responsive starSpinner light"
