@@ -69,29 +69,29 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
       infoText={infoText}
       pathname={pathname}
       tuv
-      simpleMobile
+      simpleMobile={false}
       items={{
         countrySwitcher: [
           {
-            active: true,
+            active: country === 'at',
             icon: <img title="Austrian Flag" alt="Austrian Flag" src={at} />,
             link: <Link to={{pathname: `/at${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'Austria',
           },
           {
-            active: false,
+            active: country === 'de',
             icon: <img title="German Flag" alt="German Flag" src={de} />,
             link: <Link to={{pathname: `/de${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'German',
           },
           {
-            active: false,
+            active: country === 'ch',
             icon: <img title="Swiss Flag" alt="Swiss Flag" src={ch} />,
             link: <Link to={{pathname: `/ch${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'Switzerland',
           },
           {
-            active: false,
+            active: country === 'us',
             icon: <img title="American Flag" alt="American Flag" src={us} />,
             link: <Link to={{pathname: `/us${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'United States',

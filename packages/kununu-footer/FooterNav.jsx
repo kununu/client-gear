@@ -46,25 +46,13 @@ export default class FooterNav extends Component {
   )
 
   getActiveItem = () => {
-    const {pathname, items} = this.props;
-    const activeItem = items.filter((item) => {
-      const localPathname = this.getLocalPathname(item.link);
-      return (pathname === localPathname || pathname.indexOf(localPathname) !== -1);
-    })[0];
+    const {items} = this.props;
+    const activeItem = items.filter((item) => item.active)[0];
 
     return this.getMenuTitle(activeItem || items[0]);
   }
 
-  // Depending on which link it is (from react-router, from react-server, simple link)
-  // we need to access the local pathname
-  // according to the respective API
-  getLocalPathname = (item) => item.props.href || item.props.path || item.props.to.pathname;
-
-  isActive = (item) => {
-    const {pathname} = this.props;
-    const localPathname = this.getLocalPathname(item);
-    return (pathname === localPathname);
-  }
+  isActive = (item) => item.active;
 
   render () {
     const {
@@ -104,7 +92,7 @@ export default class FooterNav extends Component {
           {items.map((item, index) => (
             <li
               key={index}
-              className={`${styles.footerNavItem} ${this.isActive(item.link) && styles.active}`}
+              className={`${styles.footerNavItem} ${this.isActive(item) && styles.active}`}
             >
               {React.cloneElement(item.link, {}, this.getItem(item))}
             </li>
