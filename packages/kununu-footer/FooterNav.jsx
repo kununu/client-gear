@@ -47,7 +47,7 @@ export default class FooterNav extends Component {
 
   getActiveItem = () => {
     const {items} = this.props;
-    const activeItem = this.props.items.filter((item) => item.active)[0];
+    const activeItem = items.filter((item) => item.active)[0];
 
     return this.getMenuTitle(activeItem || items[0]);
   }
