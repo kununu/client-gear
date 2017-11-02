@@ -47,10 +47,13 @@ export default class FooterNav extends Component {
 
   getActiveItem = () => {
     const {pathname, items} = this.props;
-    const activeItem = items.filter((item) => {
-      const localPathname = this.getLocalPathname(item.link);
-      return (pathname === localPathname || pathname.indexOf(localPathname) !== -1);
-    })[0];
+    let activeItem = this.props.items.filter((item) => item.active)[0];
+    if (!activeItem) {
+      activeItem = items.filter((item) => {
+        const localPathname = this.getLocalPathname(item.link);
+        return (pathname === localPathname || pathname.indexOf(localPathname) !== -1);
+      })[0];
+    }
 
     return this.getMenuTitle(activeItem || items[0]);
   }
