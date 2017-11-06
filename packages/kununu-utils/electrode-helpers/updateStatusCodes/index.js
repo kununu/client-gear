@@ -9,7 +9,7 @@ const prefetchedStatePrefix = 'window.__PRELOADED_STATE__ = ';
  * @param {string} state
  * @return {Object}
  */
-export const getPrefetchedState = (state) => JSON.parse(state.replace(prefetchedStatePrefix, '').replace(/;([^;]*)$/, '$1'));
+export const getPrefetchedState = state => JSON.parse(state.replace(prefetchedStatePrefix, '').replace(/;([^;]*)$/, '$1'));
 
 /**
  * Change the status of the response to a 404 code

@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+
 const path = require('path');
 
 const autoprefixer = require('autoprefixer');
@@ -12,18 +13,23 @@ module.exports = {
     publicPath: '/build/',
   },
   resolve: {
-    extensions: ['', '.js', '.json', '.jsx'],
-    root: [
+    extensions: ['.js', '.json', '.jsx'],
+    modules: [
       __dirname,
       path.resolve(__dirname),
+      path.resolve(__dirname, 'node_modules'),
+      path.resolve(__dirname, '../kununu-footer/node_modules'),
+      path.resolve(__dirname, '../kununu-header/node_modules'),
+      path.resolve(__dirname, '../kununu-logo/node_modules'),
     ],
   },
   module: {
-    preLoaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
+        enforce: 'pre',
         query: {
           fix: true,
         },
@@ -31,62 +37,101 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        loader: 'sasslint',
+        loader: 'sasslint-loader',
+        enforce: 'pre',
+        options: {
+          configFile: '../../.sass-lint.yml',
+        },
       },
-    ],
-    loaders: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules\/(?!nukleus)/,
-        loader: 'babel',
+        loader: 'babel-loader',
       },
       {
         test: /\.scss$/,
         exclude: /node_modules|main\.scss/,
-        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss!sass',
+        use: [
+          'style-loader',
+          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins () {
+                return [
+                  autoprefixer,
+                ];
+              },
+            },
+          },
+          'sass-loader',
+        ],
       },
       {
         test: /nukleus\/dist\/.+\.css$/,
         include: /node_modules/,
-        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        use: [
+          'style-loader',
+          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        ],
       },
       // if you want to test the distribution, just uncomment the lines below
-      /*
-      {
+      /* {
         test: /kununu-footer\/dist\/index.css$/,
-        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        use: [
+          'style-loader',
+          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        ],
       },
       {
         test: /kununu-header\/dist\/index.css$/,
-        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-      },
+        use: [
+          'style-loader',
+          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        ],
+      },*/
       {
         test: /kununu-logo\/dist\/index.css$/,
-        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        use: [
+          'style-loader',
+          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        ],
       },
-      */
       {
         test: /\.css$/,
         include: /node_modules\/(?!nukleus\/dist)/,
-        loader: 'style!css',
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
       },
       {
         test: /main\.scss$/,
         exclude: /node_modules/,
-        loader: 'style!css!postcss!sass',
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins () {
+                return [
+                  autoprefixer,
+                ];
+              },
+            },
+          },
+          'sass-loader',
+        ],
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url?limit=10000&mimetype=application/font-woff',
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
       },
       {
         test: /\.(ttf|eot|svg|gif|png)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file',
+        loader: 'file-loader',
       },
     ],
-  },
-  postcss: [autoprefixer],
-  sasslint: {
-    configFile: '../../.sass-lint.yml',
   },
 };

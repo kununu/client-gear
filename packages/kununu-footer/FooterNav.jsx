@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './index.scss';
 
@@ -6,7 +7,6 @@ export default class FooterNav extends Component {
   static propTypes = {
     dynamicNav: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.object),
-    pathname: PropTypes.string.isRequired,
     title: PropTypes.string,
     type: PropTypes.oneOf(['row', 'col']),
   };
@@ -25,7 +25,7 @@ export default class FooterNav extends Component {
     });
   }
 
-  getMenuTitle = (item) => (
+  getMenuTitle = item => (
     <span>
       {item.value}
       {item.icon ?
@@ -36,7 +36,7 @@ export default class FooterNav extends Component {
     </span>
     )
 
-  getItem = (item) => (
+  getItem = item => (
     <span>
       {item.value}
       {item.icon ?
@@ -47,12 +47,12 @@ export default class FooterNav extends Component {
 
   getActiveItem = () => {
     const {items} = this.props;
-    const activeItem = items.filter((item) => item.active)[0];
+    const activeItem = items.filter(item => item.active)[0];
 
     return this.getMenuTitle(activeItem || items[0]);
   }
 
-  isActive = (item) => item.active;
+  isActive = item => item.active;
 
   render () {
     const {

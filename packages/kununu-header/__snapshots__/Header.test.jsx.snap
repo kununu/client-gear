@@ -1,21 +1,31 @@
-exports[`test Renders Logo without crashing 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Logo without crashing 1`] = `
 <header
   className="header fixed"
-  role="banner">
+  role="banner"
+>
   <div
-    className="container-fluid">
+    className="container-fluid"
+  >
     <div
-      className="flex">
+      className="flex"
+    >
       <div
-        className="pullLeft">
+        className="pullLeft"
+      >
         <div
-          className="logoContainer">
+          className="logoContainer"
+        >
           <a
-            href="">
+            href=""
+          >
             <div
-              className="responsive logo light">
+              className="responsive logo light"
+            >
               <div
-                className="sr-only">
+                className="sr-only"
+              >
                 kununu
               </div>
               <span
@@ -25,54 +35,69 @@ exports[`test Renders Logo without crashing 1`] = `
                   Object {
                     "transform": "rotate(0deg)",
                   }
-                } />
+                }
+              />
             </div>
           </a>
         </div>
         <span
-          className="title">
+          className="title"
+        >
           Volle Transparenz am Arbeitsmarkt
         </span>
       </div>
       <div
-        className="pullRight">
+        className="pullRight"
+      >
         <nav
-          className="headerNav">
+          className="headerNav"
+        >
           <ul>
             <li
-              className="headerNavItem">
+              className="headerNavItem"
+            >
               <a
-                href="">
+                href=""
+              >
                 <span
-                  className="hidden-xs">
+                  className="hidden-xs"
+                >
                   <i
                     aria-hidden="true"
-                    className="fa fa-search hidden-xs" />
+                    className="fa fa-search hidden-xs"
+                  />
                     Suchen
                 </span>
                 <i
                   aria-hidden="true"
-                  className="fa fa-search visible-xs" />
+                  className="fa fa-search visible-xs"
+                />
               </a>
             </li>
             <li
-              className="headerNavItem">
+              className="headerNavItem"
+            >
               <a
                 className=""
-                href="/">
+                href="/"
+              >
                 <span
-                  className="hidden-xs">
+                  className="hidden-xs"
+                >
                   Mein kununu 
                 </span>
                 <i
-                  className="fa fa-user visible-xs" />
+                  className="fa fa-user visible-xs"
+                />
               </a>
             </li>
             <li
-              className="headerNavItem">
+              className="headerNavItem"
+            >
               <a
                 className="btn btn-dd-sm btn-primary"
-                href="/">
+                href="/"
+              >
                 Firma bewerten
               </a>
             </li>

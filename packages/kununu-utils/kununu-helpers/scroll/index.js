@@ -59,7 +59,7 @@ const findParentFormGroup = (element) => {
  * @param  {DOMElement}          element
  * @return {DOMElement || null}
  */
-const findControlLabel = (element) =>
+const findControlLabel = element =>
   element.querySelector('[class*="index__controlLabel__"]:not([class*="index__hidden"])') ||
   element.querySelector('[class*="index__labelContainer__"]:not([class*="index__hidden"])') || element;
 

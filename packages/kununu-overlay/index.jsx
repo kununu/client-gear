@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './index.scss';
 
-const Overlay = (props) => (
+const Overlay = props => (
   <div className={styles.overlay}>
     <div className={styles.container}>
       <svg

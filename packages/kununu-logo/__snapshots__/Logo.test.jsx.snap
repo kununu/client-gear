@@ -1,12 +1,18 @@
-exports[`test Renders Logo with link 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Logo with link 1`] = `
 <div
-  className="logoContainer">
+  className="logoContainer"
+>
   <a
-    href="/">
+    href="/"
+  >
     <div
-      className="responsive logo light">
+      className="responsive logo light"
+    >
       <div
-        className="sr-only">
+        className="sr-only"
+      >
         test
       </div>
       <span
@@ -16,19 +22,23 @@ exports[`test Renders Logo with link 1`] = `
           Object {
             "transform": "rotate(0deg)",
           }
-        } />
+        }
+      />
     </div>
   </a>
 </div>
 `;
 
-exports[`test Renders Logo without crashing 1`] = `
+exports[`Renders Logo without crashing 1`] = `
 <div
-  className="logoContainer">
+  className="logoContainer"
+>
   <div
-    className="responsive logo dark">
+    className="responsive logo dark"
+  >
     <div
-      className="sr-only">
+      className="sr-only"
+    >
       test
     </div>
     <span
@@ -38,7 +48,8 @@ exports[`test Renders Logo without crashing 1`] = `
         Object {
           "transform": "rotate(0deg)",
         }
-      } />
+      }
+    />
   </div>
 </div>
 `;
