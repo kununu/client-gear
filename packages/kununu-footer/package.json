@@ -1,6 +1,6 @@
 {
   "name": "kununu-footer",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "kununu Footer",
   "main": "dist",
   "author": "kununu",
@@ -15,7 +15,7 @@
     "react-dom": "^15.6.1",
     "rimraf": "^2.6.1",
     "react-bootstrap": "^0.31.1",
-    "nukleus": "7.12.1"
+    "nukleus": "10.0.2"
   },
   "dependencies": {
     "kununu-logo": "3.0.3",
@@ -23,7 +23,7 @@
   },
   "peerDependencies": {
     "kununu-theme": "^3.1.0",
-    "nukleus": "7.12.1",
+    "nukleus": "10.0.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-bootstrap": "^0.31.1"
