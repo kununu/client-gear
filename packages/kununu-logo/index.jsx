@@ -68,7 +68,7 @@ export default class Logo extends Component {
 
     const content = (
       <div className={styles.container}>
-        <div className={`${styles.logoDesktop}`}>
+        <div className={`${responsive ? styles.responsive : ''} ${styles.logoDesktop}`}>
           <svg className={styles.logo} x="0px" y="0px" viewBox="35 0 785 253.1" fill={fillColor}>
             <title>{title}</title>
             <path
@@ -106,6 +106,7 @@ export default class Logo extends Component {
         </div>
         <div className={`${styles.logoMobile} ${responsive ? styles.responsive : ''}`}>
           <svg x="0px" y="0px" viewBox="20 0 170 225.9" fill={fillColor}>
+            <title>{title}</title>
             <path
               d="M34,182h21.8c2,0,3.6-1.6,3.6-3.6v-29.4h0.2c0-7.7,6.4-14,14.4-14h7.7c7.9,0,14.4,6.3,14.4,14v7.2h0.1v22.2
               c0,2,1.6,3.6,3.6,3.6h21.8c2,0,3.6-1.6,3.6-3.6l0.4-22.2v-7.2c0-11-4.3-21-11.3-28.6c6.8-7.5,11-17.4,11-28.3V85h-0.1

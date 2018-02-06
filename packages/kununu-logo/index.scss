@@ -12,18 +12,18 @@
 }
 
 .logoDesktop {
-  display: none;
+  &.responsive {
+    @media (max-width: 830px) {
+      display: none;
+    }
+  }
 
-  @media (min-width: 830px) {
-    display: block;
+  svg {
+    width: 128px;
+    height: 60px;
 
-    svg {
-      width: 128px;
-      height: 60px;
-
-      &:hover {
-        text-decoration: none;
-      }
+    &:hover {
+      text-decoration: none;
     }
   }
 }
