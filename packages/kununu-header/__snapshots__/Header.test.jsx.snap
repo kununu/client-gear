@@ -84,7 +84,7 @@ exports[`Renders Logo without crashing 1`] = `
                 <span
                   className="hidden-xs"
                 >
-                  Mein kununu
+                  Mein kununu 
                 </span>
                 <i
                   className="fa fa-user visible-xs"
