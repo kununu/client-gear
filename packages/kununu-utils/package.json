@@ -7,13 +7,15 @@
     "babel-cli": "6.26.0",
     "cross-env": "3.1.4",
     "http-status-codes": "^1.1.6",
+    "react-dom": "15.4.2",
     "react-scroll": "1.5.5",
     "rimraf": "2.6.0"
   },
   "peerDependencies": {
     "react": ">=15.0.0",
     "http-status-codes": "^1.1.6",
-    "react-scroll": "1.5.5"
+    "react-scroll": "1.5.5",
+    "supertest": "^3.0.0"
   },
   "scripts": {
     "prepublish": "npm run build",
@@ -23,5 +25,10 @@
     "build": "npm run clean && cross-env NODE_ENV=production npm run babel"
   },
   "author": "kununu",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "supertest": "^3.0.0"
+  }
 }
