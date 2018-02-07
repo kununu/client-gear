@@ -1,6 +1,6 @@
 {
   "name": "kununu-footer",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "description": "kununu Footer",
   "main": "dist",
   "author": "kununu",
@@ -33,7 +33,6 @@
     "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist",
     "sass": "node-sass ./index.scss --output ./dist --importer node_modules/node-sass-module-importer",
     "clean": "rimraf ./dist",
-    "copy-imgs": "mkdir dist/img && cp ./img/*.svg ./dist/img",
-    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel && yarn sass && yarn copy-imgs"
+    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel && yarn sass"
   }
 }

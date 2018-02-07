@@ -5,7 +5,7 @@ import Tooltip from 'react-bootstrap/lib/Tooltip';
 import {DropDown} from 'nukleus';
 
 import FooterNav from './FooterNav';
-import TuvImage from './tuev-saarland-siegel';
+import TuvImage from './TuevSiegel';
 import styles from './index.scss';
 
 export default class Footer extends Component { // eslint-disable-line
@@ -104,9 +104,9 @@ export default class Footer extends Component { // eslint-disable-line
                   id="tooltip"
                   overlay={tooltip}
                 >
-                  <span className={styles.tuv}>
+                  <div>
                     <TuvImage />
-                  </span>
+                  </div>
                 </OverlayTrigger>
               </div>
               : null

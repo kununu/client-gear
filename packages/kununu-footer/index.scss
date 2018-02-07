@@ -150,6 +150,11 @@
 }
 
 .tuvColumn {
+  svg {
+    padding: 0;
+    width: 128px;
+  }
+
   @media (min-width: $screen-md-min) {
     min-width: 120px;
   }
@@ -184,13 +189,6 @@ div.title {
   &.active a {
     font-weight: $font-weight-semibold;
   }
-}
-
-
-
-.tuv {
-  padding: 0;
-  width: 128px;
 }
 
 .infoText {
