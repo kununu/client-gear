@@ -40,7 +40,8 @@ export function updateStatusCode (result) {
   const {statusCodes} = prefetchedState;
   switch (statusCodes.code) {
     case HttpStatus.NOT_FOUND:
-      return getResponseWithCustomStatus(result, HttpStatus.NOT_FOUND);
+    case HttpStatus.SERVICE_UNAVAILABLE:
+      return getResponseWithCustomStatus(result, statusCodes.code);
     case HttpStatus.MOVED_PERMANENTLY:
     case HttpStatus.MOVED_TEMPORARILY:
       return {
