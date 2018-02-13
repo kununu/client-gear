@@ -49,11 +49,11 @@
   font-size: $font-size-sm;
 
   i {
-    @media (max-width: $screen-sm-min) {
+    @media (max-width: $screen-xs-max) {
       font-size: 21px;
     }
 
-    @media (max-width: $screen-xs-min) {
+    @media (max-width: $screen-xs-max) {
       font-size: $font-size-lg;
     }
   }
