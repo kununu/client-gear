@@ -15,7 +15,7 @@
     "rimraf": "^2.6.1"
   },
   "dependencies": {
-    "kununu-logo": "3.1.0",
+    "kununu-logo": "3.1.1",
     "prop-types": "^15.5.10"
   },
   "peerDependencies": {
