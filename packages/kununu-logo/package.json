@@ -1,6 +1,6 @@
 {
   "name": "kununu-logo",
-  "version": "3.0.3",
+  "version": "3.1.1",
   "description": "kununu logo",
   "main": "dist",
   "author": "kununu",
@@ -27,7 +27,6 @@
     "babel": "babel ./index.jsx --out-dir ./dist",
     "sass": "node-sass ./index.scss --output ./dist --importer node_modules/node-sass-module-importer",
     "clean": "rimraf ./dist",
-    "copy-imgs": "mkdir dist/img && cp ./img/*.svg ./dist/img",
-    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel && yarn sass && yarn copy-imgs"
+    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel && yarn sass"
   }
 }

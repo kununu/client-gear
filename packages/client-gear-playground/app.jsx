@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 import {Header, HeaderNav, HeaderNavItem} from '../kununu-header';
 import Footer from '../kununu-footer';
 import Overlay from '../kununu-overlay';
+import Logo from '../kununu-logo';
 
 // if you want to test the distribution, just uncomment the lines below
 /* import Header from '../kununu-header/dist/Header';
@@ -62,6 +63,13 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
           <p>
             jiasds
           </p>
+          <div style={{backgroundColor: '#000', width: '500px', height: '500px'}}>
+            <Logo
+              shade="light"
+              title="kununu"
+              responsive
+            />
+          </div>
         </div>
       </div>
     </main>
