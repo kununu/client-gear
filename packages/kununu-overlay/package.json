@@ -16,7 +16,8 @@
   },
   "peerDependencies": {
     "react": ">=15.0.0",
-    "kununu-theme": "^3.0.0"
+    "kununu-theme": "^3.0.0",
+    "prop-types": "^15.6.0"
   },
   "scripts": {
     "prepublish": "yarn dist",
