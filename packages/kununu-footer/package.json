@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "kununu-logo": "3.1.1",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.6.0"
   },
   "peerDependencies": {
     "kununu-theme": "^3.1.0",
