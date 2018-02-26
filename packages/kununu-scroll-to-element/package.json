@@ -21,6 +21,7 @@
     "kununu-theme": "^3.0.0",
     "prop-types": "^15.6.0",
     "react": ">=15.0.0",
+    "react-dom": "15.5.4",
     "react-scroll": "1.5.5"
   },
   "scripts": {
