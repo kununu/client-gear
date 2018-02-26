@@ -1,6 +1,6 @@
 {
   "name": "kununu-header",
-  "version": "3.0.8",
+  "version": "3.0.9",
   "description": "kununu Header",
   "main": "dist",
   "author": "kununu",
@@ -15,7 +15,7 @@
     "rimraf": "^2.6.1"
   },
   "dependencies": {
-    "kununu-logo": "3.1.1",
+    "kununu-logo": "3.1.2",
     "prop-types": "^15.6.0"
   },
   "peerDependencies": {
