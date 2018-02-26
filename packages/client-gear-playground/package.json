@@ -1,7 +1,7 @@
 {
   "name": "client-gear-playground",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A place to test and development kununu client-gear",
   "repository": {
     "type": "git",
