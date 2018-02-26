@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './index.scss';
 
@@ -43,7 +44,7 @@ const Overlay = props => (
 );
 
 Overlay.propTypes = {
-  iconSize: React.PropTypes.number,
+  iconSize: PropTypes.number,
 };
 
 Overlay.defaultProps = {

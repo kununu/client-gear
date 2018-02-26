@@ -2,8 +2,9 @@
 
 .logoContainer {
   &,
-  a {
-    display: inline-block;
+  a,
+  svg {
+    display: block;
   }
 }
 
