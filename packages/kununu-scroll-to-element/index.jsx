@@ -1,4 +1,5 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Scroll from 'react-scroll';
 import getElementPositionY from '@kununu/kununu-utils/dist/kununu-helpers/elementPosition'; // eslint-disable-line
 
