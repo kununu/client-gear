@@ -1,10 +1,11 @@
 @import '~kununu-theme/scss/base/variables';
 
 .logoContainer {
+  height: 60px;
+
   &,
-  a,
-  svg {
-    display: block;
+  a {
+    display: inline-block;
   }
 }
 

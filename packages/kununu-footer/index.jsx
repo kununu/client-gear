@@ -68,7 +68,7 @@ export default class Footer extends Component { // eslint-disable-line
       <footer
         role="banner"
         id="footer"
-        className={`navbar-default ${styles.footer} ${simpleMobile ? styles.simpleMobile : ''}`}
+        className={`${styles.footer} ${simpleMobile ? styles.simpleMobile : ''}`}
       >
         <div className="container-fluid">
           <div className={`row ${styles.flex} ${styles.contentSection}`}>
@@ -120,7 +120,7 @@ export default class Footer extends Component { // eslint-disable-line
               </p>
 
               <p className="text-xs">
-                made with <i className="fa fa-heart-o text-red" /> in Vienna
+                made with <i className={`fa fa-heart-o ${styles.heart}`} /> in Vienna
               </p>
             </div>
           </div>
