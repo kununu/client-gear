@@ -1,6 +1,7 @@
 files:
   ignore:
     - 'node_modules/**/*.*'
+    - 'packages/client-gear-playground/main.scss'
 options:
   formatter: stylish
   merge-default-rules: false
@@ -13,10 +14,6 @@ rules:
     - 2
     - convention: camelcase
       convention-explanation: We use camelCase for class names because we are using CSS Modules.
-  clean-import-paths:
-    - 2
-    - filename-extension: false
-      leading-underscore: false
   empty-line-between-blocks:
     - 2
     - ignore-single-line-rulesets: true
