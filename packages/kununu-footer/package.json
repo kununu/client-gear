@@ -8,7 +8,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "cross-env": "^5.0.1",
-    "kununu-theme": "^3.1.0",
+    "@kununu/kununu-theme-v2": "^1.0.2",
     "node-sass": "^4.5.3",
     "node-sass-module-importer": "^0.1.0",
     "react": "^15.6.1",
@@ -18,11 +18,12 @@
     "nukleus": "10.0.2"
   },
   "dependencies": {
-    "kununu-logo": "3.2.0",
+    "kununu-logo": "^3.2.0",
     "prop-types": "^15.6.0"
   },
   "peerDependencies": {
-    "kununu-theme": "^3.1.0",
+    "@kununu/kununu-theme-v2": "^1.0.2",
+    "kununu-logo": "^3.2.0",
     "nukleus": "10.0.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
