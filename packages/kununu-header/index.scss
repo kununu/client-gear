@@ -1,10 +1,10 @@
-@import '~kununu-theme/scss/base/variables';
+@import '~@kununu/kununu-theme-v2/scss/base/variables';
 
 .header {
   background-color: $teal;
   color: $white;
   max-height: 60px;
-  z-index: $zindex-overlay;
+  z-index: 990;
 
   &.fixed {
     position: fixed;
