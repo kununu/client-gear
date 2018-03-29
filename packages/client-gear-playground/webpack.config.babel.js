@@ -89,14 +89,21 @@ module.exports = {
           'style-loader',
           'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
         ],
-      },*/
-      // {
-      //   test: /kununu-logo\/dist\/index.css$/,
-      //   use: [
-      //     'style-loader',
-      //     'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-      //   ],
-      // },
+      },
+      {
+        test: /kununu-logo\/dist\/index.css$/,
+        use: [
+          'style-loader',
+          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        ],
+      },
+      {
+        test: /kununu-overlay\/dist\/index.css$/,
+        use: [
+          'style-loader',
+          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        ],
+      }, */
       {
         test: /\.css$/,
         include: /node_modules\/(?!nukleus\/dist)/,
