@@ -120,7 +120,7 @@ export default class Footer extends Component { // eslint-disable-line
               </p>
 
               <p className="text-xs">
-                made with <i className={`fa fa-heart-o ${styles.heart}`} /> in Vienna
+                made with <i className={`fa fa-heart-o ${styles.heart}`} /> in Vienna, Boston, Porto, Berlin
               </p>
             </div>
           </div>
