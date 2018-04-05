@@ -1,4 +1,4 @@
-@import '~kununu-theme/scss/base/variables';
+@import '~@kununu/kununu-theme-v2/scss/base/variables';
 
 .overlay {
   background-color: rgba($white, .7);
@@ -7,7 +7,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: $zindex-overlay - 1;
+  z-index: 989;
   text-align: center;
   overflow: hidden;
   pointer-events: none;
