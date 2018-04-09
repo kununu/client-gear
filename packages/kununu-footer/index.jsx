@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Logo from 'kununu-logo';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
-import {DropDown} from 'nukleus';
+import DropDown from 'nukleus/dist/components/DropDown';
 
 import FooterNav from './FooterNav';
 import TuvImage from './TuevSiegel';
