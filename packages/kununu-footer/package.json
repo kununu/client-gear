@@ -1,6 +1,6 @@
 {
-  "name": "kununu-footer",
-  "version": "4.2.1",
+  "name": "@kununu/kununu-footer",
+  "version": "1.0.0",
   "description": "kununu Footer",
   "main": "dist",
   "author": "kununu",
