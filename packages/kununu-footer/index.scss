@@ -112,8 +112,22 @@
   }
 }
 
+.icon {
+  position: relative;
+  top: 2px;
+}
+
 .heart {
-  color: $red;
+  fill: $red;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+
+.plus {
+  width: 11px;
+  height: 11px;
+  fill: $gray-base-40;
 }
 
 .tuvColumn,

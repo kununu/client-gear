@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './index.scss';
+import IconPlus from './IconPlus';
 
 export default class FooterNav extends Component {
   static propTypes = {
@@ -76,7 +77,7 @@ export default class FooterNav extends Component {
               <span>
                 {dynamicNav ? this.getActiveItem() : title}
               </span>
-              <i className={`fa fa-plus ${styles.icon}`} />
+              <IconPlus className={`${styles.plus} ${styles.icon}`} />
             </button>
           </div>
           : ''

@@ -8,6 +8,7 @@ import DropDown from 'nukleus/dist/components/DropDown';
 import FooterNav from './FooterNav';
 import TuvImage from './TuevSiegel';
 import styles from './index.scss';
+import IconHeartOutlined from './IconHeartOutlined';
 
 export default class Footer extends Component { // eslint-disable-line
   static propTypes = {
@@ -120,7 +121,7 @@ export default class Footer extends Component { // eslint-disable-line
               </p>
 
               <p className="text-xs">
-                made with <i className={`fa fa-heart-o ${styles.heart}`} /> in Vienna, Boston, Porto, Berlin
+                made with <IconHeartOutlined className={`${styles.heart} ${styles.icon}`} /> in Vienna, Boston, Porto, Berlin
               </p>
             </div>
           </div>
