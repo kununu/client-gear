@@ -6,26 +6,26 @@
   "author": "kununu",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "cross-env": "^5.0.1",
-    "kununu-theme": "^3.1.0",
-    "node-sass": "^4.5.3",
-    "node-sass-module-importer": "^0.1.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "rimraf": "^2.6.1",
+    "babel-cli": "6.24.1",
+    "cross-env": "5.0.1",
+    "kununu-theme": "3.1.0",
+    "node-sass": "4.5.3",
+    "node-sass-module-importer": "0.1.0",
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
+    "rimraf": "2.6.1",
     "nukleus": "11.1.0"
   },
   "dependencies": {
     "@kununu/kununu-theme-v2": "2.0.0",
     "kununu-logo": "3.3.0",
-    "prop-types": "^15.6.0"
+    "prop-types": "15.6.0"
   },
   "peerDependencies": {
     "@kununu/kununu-theme-v2": "2.0.0",
     "nukleus": "11.1.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react": "15.6.1",
+    "react-dom": "15.6.1"
   },
   "scripts": {
     "prepublish": "yarn dist",
