@@ -66,11 +66,11 @@ export default class FooterNav extends Component {
       <div>
         {title || dynamicNav ?
           <div>
-            <div className={`h3 text-muted hidden-xs ${styles.title}`}>
+            <span className={styles.title}>
               {title}
-            </div>
+            </span>
             <button
-              className={`visible-xs ${styles.accordionTitle} ${this.state.open && styles.open}`}
+              className={`${styles.accordionTitle} ${this.state.open && styles.open}`}
               onClick={this.onClickButton}
             >
               <span>
@@ -84,7 +84,6 @@ export default class FooterNav extends Component {
         <ul
           role="navigation"
           className={`
-            nav-sm
             ${styles.footerNav}
             ${styles[type]}
             ${this.state.open && styles.open}`}

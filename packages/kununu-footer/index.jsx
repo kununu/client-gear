@@ -72,7 +72,7 @@ export default class Footer extends Component { // eslint-disable-line
       >
         <div className="container-fluid">
           <div className={`row ${styles.flex} ${styles.contentSection}`}>
-            <div className={`${styles.menuColumns} visible-xs`}>
+            <div className={`${styles.menuColumns} ${styles.visibleXs}`}>
               <FooterNav
                 dynamicNav
                 items={items.countrySwitcher}
@@ -95,8 +95,7 @@ export default class Footer extends Component { // eslint-disable-line
               <div
                 className={`
                   ${styles.tuvColumn}
-                  no-padding
-                  hidden-xs
+                  ${styles.hiddenXs}
                   hidden-sm
                 `}
               >
@@ -136,7 +135,7 @@ export default class Footer extends Component { // eslint-disable-line
                 ),
               )}
             </div>
-            <div className="hidden-xs">
+            <div className={styles.hiddenXs}>
               <DropDown
                 position="top"
                 items={items.countrySwitcher}

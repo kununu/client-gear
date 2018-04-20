@@ -112,6 +112,27 @@
   }
 }
 
+.title {
+  color: $gray-base-40;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0;
+  line-height: $line-height-h3;
+  font-weight: 600;
+  display: block;
+  font-size: 18px;
+  margin-bottom: $baseline-grid * 2;
+  margin-top: $baseline-grid * 3;
+
+  @media (max-width: $screen-sm-max) {
+    font-size: 14px;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    display: none;
+  }
+}
+
 .heart {
   color: $red;
 }
@@ -156,6 +177,8 @@
 }
 
 .tuvColumn {
+  padding: 0;
+
   svg {
     padding: 0;
     width: 128px;
@@ -233,6 +256,10 @@ div.title {
   width: 100%;
   transition: all 1s ease;
 
+  @media (min-width: $screen-sm-min) {
+    display: none;
+  }
+
   .icon {
     position: absolute;
     right: 0;
@@ -272,4 +299,22 @@ div.title {
 .tooltipContent {
   padding: 5px 0 0 15px;
   text-align: left;
+}
+
+.hiddenXs {
+  @media (max-width: $screen-xs-max) {
+    display: none;
+  }
+}
+
+.hiddenSm {
+  @media (max-width: $screen-sm-max) {
+
+  }
+}
+
+.visibleXs {
+  @media (min-width: $screen-sm-min) {
+    display: none;
+  }
 }
