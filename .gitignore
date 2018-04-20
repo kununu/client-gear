@@ -41,3 +41,6 @@ dist
 
 # IDEs
 .idea/
+
+# package lock files
+packages/kununu-footer/package-lock.json

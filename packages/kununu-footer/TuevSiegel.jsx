@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default () => (
+const TUV = ({className}) => (
   <svg
-    id="Ebene_1"
+    id="#tuv"
+    className={className}
     data-name="Ebene 1"
     viewBox="0 0 411.65 193.66"
   >
@@ -133,3 +135,9 @@ export default () => (
     />
   </svg>
 );
+
+TUV.propTypes = {
+  className: PropTypes.string.isRequired,
+};
+
+export default TUV;
