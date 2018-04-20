@@ -170,9 +170,10 @@
 }
 
 .tuvColumn {
-  svg {
+  .tuvIcon {
     padding: 0;
     width: 128px;
+    height: auto;
   }
 
   @media (min-width: $screen-md-min) {

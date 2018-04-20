@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Logo from 'kununu-logo';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
+import ToolTip from 'nukleus/dist/components/ToolTip';
 import DropDown from 'nukleus/dist/components/DropDown';
 
 import FooterNav from './FooterNav';
@@ -55,16 +54,6 @@ export default class Footer extends Component { // eslint-disable-line
       tuv,
     } = this.props;
 
-    const tooltip = (
-      <Tooltip id="tooltip">
-        <ul className={styles.tooltipContent}>
-          <li>Anonyme Bewertung</li>
-          <li>Schutz der persönlichen Daten</li>
-          <li>Transparente Bewertungsstandards</li>
-        </ul>
-      </Tooltip>
-    );
-
     return (
       <footer
         role="banner"
@@ -92,7 +81,7 @@ export default class Footer extends Component { // eslint-disable-line
               </div>
               ),
             )}
-            {tuv ?
+            {tuv ? (
               <div
                 className={`
                   ${styles.tuvColumn}
@@ -101,17 +90,19 @@ export default class Footer extends Component { // eslint-disable-line
                   hidden-sm
                 `}
               >
-                <OverlayTrigger
-                  placement="top"
-                  id="tooltip"
-                  overlay={tooltip}
-                >
-                  <div>
-                    <TuvImage />
-                  </div>
-                </OverlayTrigger>
+                <ToolTip
+                  icon={<TuvImage className={styles.tuvIcon} />}
+                  label="TUV"
+                  content={(
+                    <ul className={styles.tooltipContent}>
+                      <li>Anonyme Bewertung</li>
+                      <li>Schutz der persönlichen Daten</li>
+                      <li>Transparente Bewertungsstandards</li>
+                    </ul>
+                  )}
+                />
               </div>
-              : null
+              ) : null
             }
             <div className={`${styles.infoTextColumn} text-right text-center-xs text-center-sm text-muted`}>
               <Logo shade="light" />
