@@ -37,8 +37,8 @@
     width: 100%;
     padding: 4px 0;
 
-    @media (min-width: $screen-sm-min) {
-      font-size: $font-size-xs;
+    @media (min-width: $screen-md-min) {
+      font-size: $font-size-base;
     }
 
     @media (max-width: $screen-xs-max) {
@@ -214,6 +214,10 @@ div.title {
 
 .infoText {
   font-size: $font-size-sm;
+
+  @media (min-width: $screen-md-min) {
+    font-size: $font-size-base;
+  }
 
   @media (max-width: $screen-sm-max) {
     width: 100%;
