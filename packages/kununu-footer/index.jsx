@@ -111,7 +111,7 @@ export default class Footer extends Component { // eslint-disable-line
                 {infoText}
               </p>
 
-              <p className="text-xs">
+              <p className={styles.infoText}>
                 made with <IconHeartOutlined className={`${styles.heart} ${styles.icon}`} /> in Vienna, Boston, Porto, Berlin
               </p>
             </div>
@@ -128,7 +128,7 @@ export default class Footer extends Component { // eslint-disable-line
                 ),
               )}
             </div>
-            <div className="hidden-xs">
+            <div className={`${styles.dropdown} hidden-xs`}>
               <DropDown
                 position="top"
                 items={items.countrySwitcher}

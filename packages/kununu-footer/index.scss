@@ -89,6 +89,10 @@
         padding: 4px 0;
         font-size: $font-size-small;
 
+        @media (min-width: $screen-md-min) {
+          font-size: $font-size-base;
+        }
+
         &:hover {
           text-decoration: none;
           color: $white;
@@ -291,4 +295,10 @@ div.title {
 .tooltipContent {
   padding: 5px 0 0 15px;
   text-align: left;
+}
+
+.dropdown {
+  @media (min-width: $screen-md-min) {
+    font-size: $font-size-base;
+  }
 }
