@@ -300,5 +300,9 @@ div.title {
 .dropdown {
   @media (min-width: $screen-md-min) {
     font-size: $font-size-base;
+
+    li {
+      font-size: $font-size-base;
+    }
   }
 }
