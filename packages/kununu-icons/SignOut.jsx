@@ -19,4 +19,4 @@ Icon.defaultProps = {
   className: '',
 };
 
-export default IconSearch;
+export default Icon;
