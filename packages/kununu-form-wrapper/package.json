@@ -1,0 +1,25 @@
+{
+    "name": "@kununu/kununu-form-wrapper",
+    "version": "1.0.0",
+    "description": "kununu form wrapper HOC",
+    "main": "dist",
+    "author": "kununu",
+    "license": "ISC",
+    "devDependencies": {
+        "babel-cli": "^6.23.0",
+        "cross-env": "^3.1.4",
+        "react": "15.4.2",
+        "rimraf": "^2.6.0"
+    },
+    "peerDependencies": {
+        "prop-types": "^15.6.0",
+        "react": ">=15.0.0",
+        "react-dom": "15.5.4"
+    },
+    "scripts": {
+        "prepublish": "yarn dist",
+        "babel": "babel ./index.jsx --out-dir ./dist",
+        "clean": "rimraf ./dist",
+        "dist": "npm run clean && cross-env NODE_ENV=production yarn babel"
+    }
+}
