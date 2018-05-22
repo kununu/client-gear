@@ -9,12 +9,14 @@
         "babel-cli": "^6.23.0",
         "cross-env": "^3.1.4",
         "react": "15.4.2",
-        "rimraf": "^2.6.0"
+        "rimraf": "^2.6.0",
+        "@kununu/kununu-utils": "1.0.4"
     },
     "peerDependencies": {
         "prop-types": "^15.6.0",
         "react": ">=15.0.0",
-        "react-dom": "15.5.4"
+        "react-dom": "15.5.4",
+        "@kununu/kununu-utils": "1.0.4"
     },
     "scripts": {
         "prepublish": "yarn dist",

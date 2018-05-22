@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import {validateField} from '../kununu-utils/kununu-helpers/formValidation';
+import {validateField} from '@kununu/kununu-utils/dist/kununu-helpers/formValidation';
 
 const FormWrapper = (WrappedComponent) => {
   class HOC extends React.Component {
