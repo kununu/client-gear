@@ -50,6 +50,7 @@
     "lerna": "2.0.0",
     "node-sass": "^4.5.3",
     "react": "16.3.2",
+    "react-dom": "16.3.2",
     "react-test-renderer": "16.3.2",
     "sass-loader": "^6.0.6",
     "sasslint-loader": "^0.0.1",
