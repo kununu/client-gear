@@ -44,7 +44,6 @@ describe('possible interactions', () => {
         updateStateFromLocalStorage: PropTypes.func,
         updateLocalStorageFromState: PropTypes.func,
         handleUserInput: PropTypes.func,
-        resetFormFields: PropTypes.func,
         handleSubmit: PropTypes.func,
         touchForm: PropTypes.func,
         testProp: PropTypes.string,
@@ -59,7 +58,7 @@ describe('possible interactions', () => {
 
       render () {
         return (
-          <form onSubmit={e => this.props.handleSubmit(e, () => { console.log('submit callback'); })}>
+          <form onSubmit={e => this.props.handleSubmit(e, () => {})}>
             <input
               type="text"
               name={this.props.testProp}
