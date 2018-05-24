@@ -15,7 +15,10 @@
       "packages",
       "node_modules"
     ],
-    "setupTestFrameworkScriptFile": "./config/jest/setupTests.js"
+    "setupTestFrameworkScriptFile": "./config/jest/setupTests.js",
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
   },
   "version": "1.0.0",
   "description": "Layout and theming utilities, shared molecular components for kununu.",
@@ -47,6 +50,7 @@
     "identity-obj-proxy": "3.0.0",
     "jest": "^19.0.2",
     "jest-cli": "^19.0.2",
+    "jest-localstorage-mock": "^2.2.0",
     "lerna": "2.0.0",
     "node-sass": "^4.5.3",
     "react": "15.6.1",
