@@ -57,14 +57,9 @@ describe('possible interactions', () => {
         this.props.updateLocalStorageFromState('some_key');
       }
 
-      onSubmit = () => {
-        console.log('submitting .......');
-        this.props.resetFormFields();
-      }
-
       render () {
         return (
-          <form onSubmit={e => this.props.handleSubmit(e, this.onSubmit)}>
+          <form onSubmit={e => this.props.handleSubmit(e, () => { console.log('submit callback'); })}>
             <input
               type="text"
               name={this.props.testProp}
@@ -183,7 +178,6 @@ describe('possible interactions', () => {
     expect(wrapper.state().fields.answer.touched).toEqual(true);
   });
 
-
   it('will reset fields on sumbit', () => {
     const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
     const form = mount(wrapper.get(0)); // eslint-disable-line
@@ -197,12 +191,27 @@ describe('possible interactions', () => {
       },
     });
 
-    const spy = jest.spyOn(wrapper.instance(), 'validateForm');
-
-    // resets the input values
-    formElement.simulate('submit', {});
+    formElement.simulate('submit');
+    wrapper.props().resetFormFields(true);
 
     expect(wrapper.state().fields.answer.value.length).toEqual(0);
   });
+
+/*   fit('will fire a callback defined in child component on submit', () => {
+    const wrapper = mount(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
+    const formElement = wrapper.find('form');
+    const input = wrapper.find('input');
+
+    input.simulate('change', {
+      target: {
+        value: 'some input text',
+        name: 'answer',
+      },
+    });
+
+    formElement.simulate('submit');
+
+    console.log(wrapper.state());
+  }); */
 });
 
