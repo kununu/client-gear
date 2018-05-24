@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme'; // eslint-disable-line
+import {shallow} from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import toJson from 'enzyme-to-json';
 import {validationTypes} from '@kununu/kununu-utils/dist/kununu-helpers/formValidation';
 
