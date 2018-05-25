@@ -46,6 +46,7 @@ describe('possible interactions', () => {
         handleUserInput: PropTypes.func,
         handleSubmit: PropTypes.func,
         touchForm: PropTypes.func,
+        resetFormFields: PropTypes.func,
         testProp: PropTypes.string,
       }
       componentDidMount () {
@@ -56,9 +57,13 @@ describe('possible interactions', () => {
         this.props.updateLocalStorageFromState('some_key');
       }
 
+      onSubmit = () => {
+        this.props.resetFormFields();
+      }
+
       render () {
         return (
-          <form onSubmit={e => this.props.handleSubmit(e, () => {})}>
+          <form onSubmit={e => this.props.handleSubmit(e, this.onSubmit)}>
             <input
               type="text"
               name={this.props.testProp}
@@ -143,25 +148,14 @@ describe('possible interactions', () => {
 
     const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
     // still mount form, in order to trigger componentDidMount
-    const form = mount(wrapper.get(0)); // eslint-disable-line
-
-    expect(wrapper.state().fields.answer.value).toEqual(expectedInputValue);
-  });
-
-  it('will load field value from localstorage on mount', () => {
-    const expectedInputValue = 'will be stored in localstorage';
-    localStorage.setItem('some_key', JSON.stringify({fields: {answer: {value: expectedInputValue}}}));
-
-    const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
-    // still mount form, in order to trigger componentDidMount
-    const form = mount(wrapper.get(0)); // eslint-disable-line
+    const form = mount(wrapper.get(0)); // eslint-disable-line no-unused-vars
 
     expect(wrapper.state().fields.answer.value).toEqual(expectedInputValue);
   });
 
   it('will touch fields when triggered', () => {
     const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
-    const form = mount(wrapper.get(0)); // eslint-disable-line
+    const form = mount(wrapper.get(0));
     const input = form.find('input');
     const button = form.find('button');
 
@@ -177,26 +171,7 @@ describe('possible interactions', () => {
     expect(wrapper.state().fields.answer.touched).toEqual(true);
   });
 
-  it('will reset fields on sumbit', () => {
-    const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
-    const form = mount(wrapper.get(0)); // eslint-disable-line
-    const formElement = form.find('form');
-    const input = form.find('input');
-
-    input.simulate('change', {
-      target: {
-        value: 'some input text',
-        name: 'answer',
-      },
-    });
-
-    formElement.simulate('submit');
-    wrapper.props().resetFormFields(true);
-
-    expect(wrapper.state().fields.answer.value.length).toEqual(0);
-  });
-
-/*   fit('will fire a callback defined in child component on submit', () => {
+  it('will fire a callback defined in child component on submit and reset field values', () => {
     const wrapper = mount(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
     const formElement = wrapper.find('form');
     const input = wrapper.find('input');
@@ -210,7 +185,25 @@ describe('possible interactions', () => {
 
     formElement.simulate('submit');
 
-    console.log(wrapper.state());
-  }); */
+    expect(wrapper.state().fields.answer.value.length).toEqual(0);
+  });
+
+  it('will give you back props based on provided ID', () => {
+    const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
+    const form = mount(wrapper.get(0)); // eslint-disable-line
+    const input = form.find('input');
+    const expectedOutput = 'some input text';
+
+    input.simulate('change', {
+      target: {
+        name: 'answer',
+        value: expectedOutput,
+      },
+    });
+
+    const propsFromWrapper = wrapper.props().getFormFieldProps('answer');
+    expect(propsFromWrapper.id).toEqual('answer');
+    expect(propsFromWrapper.input.value).toEqual('some input text');
+  });
 });
 
