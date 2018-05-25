@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Returns current domain from a request object renders without crashing 1`] = `
+<MockComponent
+  fields={
+    Object {
+      "answer": Object {
+        "error": false,
+        "touched": false,
+        "validations": Array [
+          Object {
+            "message": "COMPANY_PROFILE_QA_ANSWER_AS_EMPLOYER",
+            "type": "isEmpty",
+          },
+        ],
+        "value": "",
+      },
+    }
+  }
+  getFormFieldProps={[Function]}
+  getInitialFields={[Function]}
+  handleSubmit={[Function]}
+  handleUserBlur={[Function]}
+  handleUserInput={[Function]}
+  resetFormFields={[Function]}
+  touchForm={[Function]}
+  updateLocalStorageFromState={[Function]}
+  updateStateFromLocalStorage={[Function]}
+/>
+`;
