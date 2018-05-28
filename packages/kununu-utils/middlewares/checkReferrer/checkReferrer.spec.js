@@ -16,7 +16,7 @@ describe('Middleware checkReferrer', () => {
     const rfr = 'testrfr';
     const domain = 'www.domain.test';
 
-    const expectedCookie = `referrer=${rfr}; Domain=${domain}; Path=/; HttpOnly; Secure`;
+    const expectedCookie = `referrer=${rfr}; Domain=${domain}; Path=/; Secure`;
 
     const result = await request(app)
       .get(`/?rfr=${rfr}`)
