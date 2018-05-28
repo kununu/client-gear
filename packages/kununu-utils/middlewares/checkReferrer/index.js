@@ -9,7 +9,7 @@ export default () => (req, res, next) => {
     res.cookie(referrerCookie, req.query.rfr, {
       domain: getDomain(req),
       secure: true,
-      httpOnly: true,
+      httpOnly: false,
       overwrite: true,
     });
   }
