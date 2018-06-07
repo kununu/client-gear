@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-icons",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "kununu icons",
   "main": "index.js",
   "author": "kununu",
@@ -18,9 +18,9 @@
     "react": ">=15.0.0"
   },
   "scripts": {
-    "prepublish": "npm run dist",
+    "prepublish": "yarn dist",
     "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist",
     "clean": "rimraf ./dist",
-    "dist": "npm run clean && cross-env NODE_ENV=production npm run babel"
+    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel"
   }
 }
