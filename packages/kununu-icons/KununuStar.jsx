@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Icon = ({className}) => (
+const Icon = ({className, ariaHidden}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="-143 144.1 223.3 225.9"
     className={className}
+    aria-hidden={ariaHidden}
   >
     <path d="M-98.1,247.5c3.9,3.9,10.2,3.7,14.1-0.1l3.7-3.6c4-3.8,4.1-10.1,0.2-14l-29.2-28.6c-4.9-4.8-4.8-12.8,0.1-17.6
     	l4.8-4.7c4.9-4.8,13-4.8,17.9,0l29.1,28.6c3.9,3.8,10.5,3.5,14.4-0.3l3.7-3.6c3.9-3.9,3.9-10.2,0-14l-1.8-1.8l-27.3-26.6
