@@ -29,7 +29,6 @@ Icon.propTypes = {
 
 Icon.defaultProps = {
   className: '',
-  ariaHidden: false,
 };
 
 export default Icon;
