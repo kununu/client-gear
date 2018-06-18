@@ -24,12 +24,11 @@ const Icon = ({className, ariaHidden}) => (
 
 Icon.propTypes = {
   className: PropTypes.string,
-  ariaHidden: PropTypes.string,
+  ariaHidden: PropTypes.bool,
 };
 
 Icon.defaultProps = {
   className: '',
-  ariaHidden: '',
 };
 
 export default Icon;
