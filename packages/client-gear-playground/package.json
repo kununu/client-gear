@@ -1,7 +1,7 @@
 {
   "name": "client-gear-playground",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A place to test and development kununu client-gear",
   "repository": {
     "type": "git",
@@ -26,8 +26,8 @@
     "font-awesome-webpack": "0.0.5-beta.2",
     "nukleus": "11.1.0",
     "prop-types": "^15.6.0",
-    "react": "15.6.1",
-    "react-dom": "15.6.1",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
     "react-router": "3.0.2"
   },
   "scripts": {
