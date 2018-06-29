@@ -8,7 +8,7 @@
   "devDependencies": {
     "@kununu/kununu-theme-v2": "2.0.1",
     "babel-cli": "^6.24.1",
-    "cross-env": "5.1.6",
+    "cross-env": "5.2.0",
     "node-sass": "4.9.0",
     "node-sass-module-importer": "^0.1.0",
     "react": "16.4.1",
@@ -19,7 +19,7 @@
     "react": "16.4.1"
   },
   "dependencies": {
-    "prop-types": "^15.6.1",
+    "prop-types": "^15.6.2",
     "react-state-animation": ">=0.1.0"
   },
   "scripts": {
