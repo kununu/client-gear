@@ -200,11 +200,12 @@ const FormWrapper = (WrappedComponent) => {
     }
   }
 
+  HOC.propTypes = {
+    getInitialFields: PropTypes.func.isRequired,
+  };
+
   return HOC;
 };
 
-FormWrapper.propTypes = {
-  getInitialFields: PropTypes.func.isRequired,
-};
 
 export default FormWrapper;
