@@ -5,22 +5,6 @@ import ReactStateAnimation from 'react-state-animation';
 import styles from './index.scss';
 
 export default class Logo extends Component {
-  static propTypes = {
-    duration: PropTypes.number,
-    isSpinning: PropTypes.bool.isRequired,
-    link: PropTypes.element,
-    responsive: PropTypes.bool,
-    shade: PropTypes.oneOf(['dark', 'light']),
-    title: PropTypes.string,
-  };
-
-  static defaultProps = {
-    duration: 1400,
-    isSpinning: false,
-    responsive: true,
-    shade: 'dark',
-  };
-
   state = {
     animate: new ReactStateAnimation(this),
     isCanceled: false,
@@ -150,8 +134,24 @@ export default class Logo extends Component {
       <div className={styles.logoContainer}>
         {link ?
           React.cloneElement(link, link.props, content)
-        : content}
+          : content}
       </div>
     );
   }
 }
+
+Logo.propTypes = {
+  duration: PropTypes.number,
+  isSpinning: PropTypes.bool.isRequired,
+  link: PropTypes.element,
+  responsive: PropTypes.bool,
+  shade: PropTypes.oneOf(['dark', 'light']),
+  title: PropTypes.string,
+};
+
+Logo.defaultProps = {
+  duration: 1400,
+  isSpinning: false,
+  responsive: true,
+  shade: 'dark',
+};

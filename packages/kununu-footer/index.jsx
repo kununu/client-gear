@@ -10,40 +10,6 @@ import styles from './index.scss';
 import IconHeartOutlined from './IconHeartOutlined';
 
 export default class Footer extends Component { // eslint-disable-line
-  static propTypes = {
-    infoText: PropTypes.element.isRequired,
-    items: PropTypes.shape({
-      countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
-        active: PropTypes.bool,
-        icon: PropTypes.element,
-        link: PropTypes.element.isRequired,
-        value: PropTypes.string.isRequired,
-      })),
-      navs: PropTypes.shape({
-        cols: PropTypes.arrayOf(PropTypes.shape({
-          items: PropTypes.arrayOf(PropTypes.shape({
-            link: PropTypes.element.isRequired,
-            value: PropTypes.string.isRequired,
-          })),
-          title: PropTypes.string,
-        })),
-        rows: PropTypes.arrayOf(PropTypes.shape({
-          items: PropTypes.arrayOf(PropTypes.shape({
-            link: PropTypes.element.isRequired,
-            value: PropTypes.string.isRequired,
-          })),
-          title: PropTypes.string,
-        })),
-      }),
-    }),
-    pathname: PropTypes.string.isRequired,
-    simpleMobile: PropTypes.bool,
-    tuv: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    simpleMobile: false,
-  };
 
   render () {
     const {
@@ -79,7 +45,7 @@ export default class Footer extends Component { // eslint-disable-line
                   type="col"
                 />
               </div>
-              ),
+            ),
             )}
             {tuv ? (
               <div
@@ -102,7 +68,7 @@ export default class Footer extends Component { // eslint-disable-line
                   )}
                 />
               </div>
-              ) : null
+            ) : null
             }
             <div className={`${styles.infoTextColumn} text-right text-center-xs text-center-sm text-muted`}>
               <Logo shade="light" />
@@ -125,7 +91,7 @@ export default class Footer extends Component { // eslint-disable-line
                   items={item.items}
                   type="row"
                 />
-                ),
+              ),
               )}
             </div>
             <div className={`${styles.dropdown} hidden-xs`}>
@@ -140,3 +106,38 @@ export default class Footer extends Component { // eslint-disable-line
     );
   }
 }
+
+Footer.propTypes = {
+  infoText: PropTypes.element.isRequired,
+  items: PropTypes.shape({
+    countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
+      active: PropTypes.bool,
+      icon: PropTypes.element,
+      link: PropTypes.element.isRequired,
+      value: PropTypes.string.isRequired,
+    })),
+    navs: PropTypes.shape({
+      cols: PropTypes.arrayOf(PropTypes.shape({
+        items: PropTypes.arrayOf(PropTypes.shape({
+          link: PropTypes.element.isRequired,
+          value: PropTypes.string.isRequired,
+        })),
+        title: PropTypes.string,
+      })),
+      rows: PropTypes.arrayOf(PropTypes.shape({
+        items: PropTypes.arrayOf(PropTypes.shape({
+          link: PropTypes.element.isRequired,
+          value: PropTypes.string.isRequired,
+        })),
+        title: PropTypes.string,
+      })),
+    }),
+  }),
+  pathname: PropTypes.string.isRequired,
+  simpleMobile: PropTypes.bool,
+  tuv: PropTypes.bool,
+};
+
+Footer.defaultProps = {
+  simpleMobile: false,
+};

@@ -7,22 +7,6 @@ import getElementPositionY from '@kununu/kununu-utils/dist/kununu-helpers/elemen
 const isMobile = () => (typeof window !== 'undefined' ? window.innerWidth < 550 : false);
 
 export default class ScrollToElement extends Component {
-  static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
-    ]).isRequired,
-    className: PropTypes.string,
-    duration: PropTypes.number,
-    mobileOnly: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    className: null,
-    duration: 500,
-    mobileOnly: true,
-  }
-
   /**
    * This function returns a list of props, that is optional.
    * We use reduce to only add the props, when they have some useful
@@ -70,9 +54,25 @@ export default class ScrollToElement extends Component {
             key: index,
             scrollTo: this.scrollTo,
           }))
-        : React.cloneElement(children, {scrollTo: this.scrollTo})
+          : React.cloneElement(children, {scrollTo: this.scrollTo})
         }
       </div>
     );
   }
 }
+
+ScrollToElement.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  className: PropTypes.string,
+  duration: PropTypes.number,
+  mobileOnly: PropTypes.bool,
+};
+
+ScrollToElement.defaultProps = {
+  className: null,
+  duration: 500,
+  mobileOnly: true,
+};

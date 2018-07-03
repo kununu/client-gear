@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {Route, Router, hashHistory} from 'react-router';
+import {BrowserRouter, Route, hashHistory} from 'react-router-dom';
 import 'font-awesome-webpack';
 
 import './main.scss';
@@ -16,7 +16,7 @@ const getRoutes = () => (
 
 
 render(
-  <Router
+  <BrowserRouter
     routes={getRoutes()}
     history={hashHistory}
   />,
