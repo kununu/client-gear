@@ -14,7 +14,7 @@
     "react": "16.4.1",
     "react-dom": "16.4.1",
     "rimraf": "2.6.2",
-    "nukleus": "12.0.1"
+    "nukleus": "12.0.2"
   },
   "dependencies": {
     "@kununu/kununu-theme-v2": "2.0.1",
@@ -23,7 +23,7 @@
   },
   "peerDependencies": {
     "@kununu/kununu-theme-v2": "2.0.1",
-    "nukleus": "12.0.1",
+    "nukleus": "12.0.2",
     "react": "16.4.1",
     "react-dom": "16.4.1"
   },
