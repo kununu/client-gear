@@ -63,6 +63,6 @@
   "scripts": {
     "lint": "eslint packages --max-warnings 0 --ext jsx --ext js",
     "test": "jest",
-    "coverage": "jest --coverage --env=jsdom --setupTestFrameworkScriptFile=raf/polyfill"
+    "coverage": "jest --coverage"
   }
 }
