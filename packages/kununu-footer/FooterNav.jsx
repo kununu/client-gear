@@ -5,17 +5,6 @@ import styles from './index.scss';
 import IconPlus from './IconPlus';
 
 export default class FooterNav extends Component {
-  static propTypes = {
-    dynamicNav: PropTypes.bool,
-    items: PropTypes.arrayOf(PropTypes.object),
-    title: PropTypes.string,
-    type: PropTypes.oneOf(['row', 'col']),
-  };
-
-  static defaultProps = {
-    type: 'col',
-  };
-
   state = {
     open: false,
   }
@@ -33,9 +22,9 @@ export default class FooterNav extends Component {
         <span className={styles.titleIcon}>
           {item.icon}
         </span>
-          : ''}
+        : ''}
     </span>
-    )
+  )
 
   getItem = item => (
     <span>
@@ -104,3 +93,13 @@ export default class FooterNav extends Component {
   }
 }
 
+FooterNav.propTypes = {
+  dynamicNav: PropTypes.bool,
+  items: PropTypes.arrayOf(PropTypes.object),
+  title: PropTypes.string,
+  type: PropTypes.oneOf(['row', 'col']),
+};
+
+FooterNav.defaultProps = {
+  type: 'col',
+};

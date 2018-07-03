@@ -38,9 +38,10 @@ jspm_packages
 
 # Build dirs
 dist
+build
 
 # IDEs
 .idea/
 
 # package lock files
-packages/kununu-footer/package-lock.json
+/**/package-lock.json

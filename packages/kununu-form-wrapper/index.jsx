@@ -4,10 +4,6 @@ import {validateField} from '@kununu/kununu-utils/dist/kununu-helpers/formValida
 
 const FormWrapper = (WrappedComponent) => {
   class HOC extends React.Component {
-    static propTypes = {
-      getInitialFields: PropTypes.func.isRequired,
-    }
-
     constructor (props) {
       super(props);
       this.state = {
@@ -204,7 +200,12 @@ const FormWrapper = (WrappedComponent) => {
     }
   }
 
+  HOC.propTypes = {
+    getInitialFields: PropTypes.func.isRequired,
+  };
+
   return HOC;
 };
+
 
 export default FormWrapper;

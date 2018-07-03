@@ -1,24 +1,24 @@
 {
   "name": "@kununu/kununu-utils",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
     "babel-cli": "6.26.0",
-    "cookie-parser": "^1.4.3",
-    "cross-env": "3.1.4",
-    "express": "^4.16.2",
-    "http-status-codes": "^1.1.6",
-    "react": ">=15.0.0",
-    "react-dom": "15.4.2",
-    "react-scroll": "1.5.5",
-    "rimraf": "2.6.0",
-    "supertest": "^3.0.0"
+    "cookie-parser": "1.4.3",
+    "cross-env": "5.2.0",
+    "express": "4.16.3",
+    "http-status-codes": "1.1.6",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
+    "react-scroll": "1.7.9",
+    "rimraf": "2.6.2",
+    "supertest": "3.1.0"
   },
   "peerDependencies": {
-    "http-status-codes": "^1.1.6",
-    "react": ">=15.0.0",
-    "react-scroll": "1.5.5"
+    "http-status-codes": "1.1.6",
+    "react": "16.4.1",
+    "react-scroll": "1.7.9"
   },
   "scripts": {
     "prepublish": "npm run build",
