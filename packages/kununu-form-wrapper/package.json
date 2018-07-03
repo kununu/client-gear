@@ -7,14 +7,14 @@
     "license": "ISC",
     "devDependencies": {
         "@kununu/kununu-utils": "1.0.5",
-        "babel-cli": "^6.23.0",
+        "babel-cli": "6.23.0",
         "cross-env": "5.2.0",
-        "enzyme-to-json": "^3.3.4",
+        "enzyme-to-json": "3.3.4",
         "react": "16.4.1",
-        "rimraf": "^2.6.0"
+        "rimraf": "2.6.0"
     },
     "peerDependencies": {
-        "prop-types": "^15.6.0",
+        "prop-types": "15.6.0",
         "react": "16.4.1",
         "react-dom": "16.4.1",
         "@kununu/kununu-utils": "1.0.5"
