@@ -6,13 +6,13 @@
   "author": "kununu",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "cross-env": "^5.2.0",
-    "react": "^16.4.1",
-    "rimraf": "^2.6.1"
+    "babel-cli": "6.24.1",
+    "cross-env": "5.2.0",
+    "react": "16.4.1",
+    "rimraf": "2.6.1"
   },
   "dependencies": {
-    "prop-types": "^15.6.2"
+    "prop-types": "15.6.2"
   },
   "peerDependencies": {
     "react": "16.4.1"

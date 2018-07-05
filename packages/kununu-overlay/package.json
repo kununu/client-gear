@@ -6,13 +6,13 @@
   "author": "kununu",
   "license": "ISC",
   "devDependencies": {
-    "@kununu/kununu-theme-v2": "^2.0.1",
-    "babel-cli": "^6.23.0",
-    "cross-env": "^5.2.0",
-    "node-sass": "^4.9.0",
+    "@kununu/kununu-theme-v2": "2.0.1",
+    "babel-cli": "6.23.0",
+    "cross-env": "5.2.0",
+    "node-sass": "4.9.0",
     "node-sass-module-importer": "0.1.0",
-    "react": "^16.4.1",
-    "rimraf": "^2.6.0"
+    "react": "16.4.1",
+    "rimraf": "2.6.0"
   },
   "peerDependencies": {
     "@kununu/kununu-theme-v2": "2.0.1",
