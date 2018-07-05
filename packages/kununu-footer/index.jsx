@@ -1,49 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Logo from 'kununu-logo';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
-import {DropDown} from 'nukleus';
+import ToolTip from 'nukleus/dist/components/ToolTip';
+import DropDown from 'nukleus/dist/components/DropDown';
 
 import FooterNav from './FooterNav';
 import TuvImage from './TuevSiegel';
 import styles from './index.scss';
+import IconHeartOutlined from './IconHeartOutlined';
 
 export default class Footer extends Component { // eslint-disable-line
-  static propTypes = {
-    infoText: PropTypes.element.isRequired,
-    items: PropTypes.shape({
-      countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
-        active: PropTypes.bool,
-        icon: PropTypes.element,
-        link: PropTypes.element.isRequired,
-        value: PropTypes.string.isRequired,
-      })),
-      navs: PropTypes.shape({
-        cols: PropTypes.arrayOf(PropTypes.shape({
-          items: PropTypes.arrayOf(PropTypes.shape({
-            link: PropTypes.element.isRequired,
-            value: PropTypes.string.isRequired,
-          })),
-          title: PropTypes.string,
-        })),
-        rows: PropTypes.arrayOf(PropTypes.shape({
-          items: PropTypes.arrayOf(PropTypes.shape({
-            link: PropTypes.element.isRequired,
-            value: PropTypes.string.isRequired,
-          })),
-          title: PropTypes.string,
-        })),
-      }),
-    }),
-    pathname: PropTypes.string.isRequired,
-    simpleMobile: PropTypes.bool,
-    tuv: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    simpleMobile: false,
-  };
 
   render () {
     const {
@@ -53,16 +19,6 @@ export default class Footer extends Component { // eslint-disable-line
       simpleMobile,
       tuv,
     } = this.props;
-
-    const tooltip = (
-      <Tooltip id="tooltip">
-        <ul className={styles.tooltipContent}>
-          <li>Anonyme Bewertung</li>
-          <li>Schutz der persönlichen Daten</li>
-          <li>Transparente Bewertungsstandards</li>
-        </ul>
-      </Tooltip>
-    );
 
     return (
       <footer
@@ -89,9 +45,9 @@ export default class Footer extends Component { // eslint-disable-line
                   type="col"
                 />
               </div>
-              ),
+            ),
             )}
-            {tuv ?
+            {tuv ? (
               <div
                 className={`
                   ${styles.tuvColumn}
@@ -99,17 +55,19 @@ export default class Footer extends Component { // eslint-disable-line
                   hidden-sm
                 `}
               >
-                <OverlayTrigger
-                  placement="top"
-                  id="tooltip"
-                  overlay={tooltip}
-                >
-                  <div>
-                    <TuvImage />
-                  </div>
-                </OverlayTrigger>
+                <ToolTip
+                  icon={<TuvImage className={styles.tuvIcon} />}
+                  label="TUV"
+                  content={(
+                    <ul className={styles.tooltipContent}>
+                      <li>Anonyme Bewertung</li>
+                      <li>Schutz der persönlichen Daten</li>
+                      <li>Transparente Bewertungsstandards</li>
+                    </ul>
+                  )}
+                />
               </div>
-              : null
+            ) : null
             }
             <div className={`${styles.infoTextColumn} text-right text-center-xs text-center-sm text-muted`}>
               <Logo shade="light" />
@@ -118,8 +76,8 @@ export default class Footer extends Component { // eslint-disable-line
                 {infoText}
               </p>
 
-              <p className="text-xs">
-                made with <i className={`fa fa-heart-o ${styles.heart}`} /> in Vienna
+              <p className={styles.infoText}>
+                made with <IconHeartOutlined className={`${styles.heart} ${styles.icon}`} /> in Vienna, Boston, Porto, Berlin
               </p>
             </div>
           </div>
@@ -132,10 +90,10 @@ export default class Footer extends Component { // eslint-disable-line
                   items={item.items}
                   type="row"
                 />
-                ),
+              ),
               )}
             </div>
-            <div className={styles.hiddenXs}>
+            <div className={`${styles.dropdown} ${styles.hiddenXs}`}>
               <DropDown
                 position="top"
                 items={items.countrySwitcher}
@@ -147,3 +105,38 @@ export default class Footer extends Component { // eslint-disable-line
     );
   }
 }
+
+Footer.propTypes = {
+  infoText: PropTypes.element.isRequired,
+  items: PropTypes.shape({
+    countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
+      active: PropTypes.bool,
+      icon: PropTypes.element,
+      link: PropTypes.element.isRequired,
+      value: PropTypes.string.isRequired,
+    })),
+    navs: PropTypes.shape({
+      cols: PropTypes.arrayOf(PropTypes.shape({
+        items: PropTypes.arrayOf(PropTypes.shape({
+          link: PropTypes.element.isRequired,
+          value: PropTypes.string.isRequired,
+        })),
+        title: PropTypes.string,
+      })),
+      rows: PropTypes.arrayOf(PropTypes.shape({
+        items: PropTypes.arrayOf(PropTypes.shape({
+          link: PropTypes.element.isRequired,
+          value: PropTypes.string.isRequired,
+        })),
+        title: PropTypes.string,
+      })),
+    }),
+  }),
+  pathname: PropTypes.string.isRequired,
+  simpleMobile: PropTypes.bool,
+  tuv: PropTypes.bool,
+};
+
+Footer.defaultProps = {
+  simpleMobile: false,
+};

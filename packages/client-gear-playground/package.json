@@ -20,12 +20,12 @@
     "webpack-dev-server": "2.5.1"
   },
   "dependencies": {
-    "@kununu/kununu-theme-v2": "1.0.2",
+    "@kununu/kununu-theme-v2": "2.0.0",
     "bootstrap": "^4.0.0",
     "bootstrap-sass": "3.3.7",
-    "font-awesome": "^4.7.0",
+    "font-awesome": "4.7.0",
     "font-awesome-webpack": "0.0.5-beta.2",
-    "nukleus": "10.0.2",
+    "nukleus": "12.0.2",
     "prop-types": "^15.6.0",
     "react": "15.6.1",
     "react-dom": "15.6.1",

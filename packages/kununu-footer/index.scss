@@ -37,8 +37,8 @@
     width: 100%;
     padding: 4px 0;
 
-    @media (min-width: $screen-sm-min) {
-      font-size: $font-size-xs;
+    @media (min-width: $screen-md-min) {
+      font-size: $font-size-base;
     }
 
     @media (max-width: $screen-xs-max) {
@@ -89,6 +89,10 @@
         padding: 4px 0;
         font-size: $font-size-small;
 
+        @media (min-width: $screen-md-min) {
+          font-size: $font-size-base;
+        }
+
         &:hover {
           text-decoration: none;
           color: $white;
@@ -133,8 +137,22 @@
   }
 }
 
+.icon {
+  position: relative;
+  top: 2px;
+}
+
 .heart {
-  color: $red;
+  fill: $red;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+
+.plus {
+  width: 11px;
+  height: 11px;
+  fill: $gray-base-40;
 }
 
 .tuvColumn,
@@ -179,9 +197,10 @@
 .tuvColumn {
   padding: 0;
 
-  svg {
+  .tuvIcon {
     padding: 0;
     width: 128px;
+    height: auto;
   }
 
   @media (min-width: $screen-md-min) {
@@ -222,6 +241,10 @@ div.title {
 
 .infoText {
   font-size: $font-size-sm;
+
+  @media (min-width: $screen-md-min) {
+    font-size: $font-size-base;
+  }
 
   @media (max-width: $screen-sm-max) {
     width: 100%;
@@ -307,14 +330,18 @@ div.title {
   }
 }
 
-.hiddenSm {
-  @media (max-width: $screen-sm-max) {
-
-  }
-}
-
 .visibleXs {
   @media (min-width: $screen-sm-min) {
     display: none;
+  }
+}
+
+.dropdown {
+  @media (min-width: $screen-md-min) {
+    font-size: $font-size-base;
+
+    li {
+      font-size: $font-size-base;
+    }
   }
 }

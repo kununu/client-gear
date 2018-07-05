@@ -1,25 +1,25 @@
 {
   "name": "kununu-logo",
-  "version": "3.2.0",
+  "version": "3.4.0",
   "description": "kununu logo",
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
   "devDependencies": {
+    "@kununu/kununu-theme-v2": "^2.0.1",
     "babel-cli": "^6.24.1",
-    "cross-env": "^5.0.1",
-    "@kununu/kununu-theme-v2": "^1.0.2",
-    "node-sass": "^4.5.3",
-    "node-sass-module-importer": "^0.1.0",
-    "react": "15.6.1",
-    "rimraf": "^2.6.1"
+    "cross-env": "^5.2.0",
+    "node-sass": "^4.9.0",
+    "node-sass-module-importer": "0.1.0",
+    "react": "^16.4.1",
+    "rimraf": "^2.6.2"
   },
   "peerDependencies": {
-    "react": ">=15.0.0",
-    "@kununu/kununu-theme-v2": "^1.0.2"
+    "@kununu/kununu-theme-v2": "2.0.1",
+    "react": "16.4.1"
   },
   "dependencies": {
-    "prop-types": "^15.6.0",
+    "prop-types": "^15.6.2",
     "react-state-animation": ">=0.1.0"
   },
   "scripts": {
