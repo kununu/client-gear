@@ -10,7 +10,6 @@
 @import '~@kununu/kununu-theme-v2/scss/base/buttons';
 @import '~@kununu/kununu-theme-v2/scss/base/colors';
 
-
 html,
 body {
   height: 100%;
@@ -24,14 +23,6 @@ body {
 
 main {
   min-height: 100%;
-}
-
-.meow {
-  padding-left: 30px;
-  padding-right: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1450px;
 }
 
 
