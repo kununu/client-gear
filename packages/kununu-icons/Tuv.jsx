@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TUV = ({className}) => (
+const Icon = ({className, ariaHidden}) => (
   <svg
-    id="#tuv"
-    className={className}
-    data-name="Ebene 1"
+    xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 411.65 193.66"
+    className={className}
+    aria-hidden={ariaHidden}
   >
-    <title>TUV logo</title>
     <polygon
       style={{fill: '#fff'}}
       points="410.64 192.66 1 192.66 1 1 410.64 1 410.64 192.66 410.64 192.66"
@@ -136,8 +135,14 @@ const TUV = ({className}) => (
   </svg>
 );
 
-TUV.propTypes = {
-  className: PropTypes.string.isRequired,
+
+Icon.propTypes = {
+  className: PropTypes.string,
+  ariaHidden: PropTypes.bool,
 };
 
-export default TUV;
+Icon.defaultProps = {
+  className: '',
+};
+
+export default Icon;

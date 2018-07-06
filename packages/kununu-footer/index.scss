@@ -10,15 +10,29 @@
 }
 
 .simpleMobile {
-  @media (max-width: $screen-xs-max) {
-    padding-top: 0;
+  padding-top: 0;
 
-    .contentSection {
-      display: none;
+  @media (min-width: $screen-sm-min) {
+    padding-top: 20px;
+  }
+
+  .bottomMenu {
+    border-top: 0;
+
+    @media (min-width: $screen-sm-min) {
+      border-top: 1px solid $gray-base-60;
+    }
+  }
+
+  .contentSection {
+    display: none;
+
+    @media (min-width: $screen-sm-min) {
+      display: block;
     }
 
-    .bottomMenu {
-      border-top: 0;
+    @media (min-width: $screen-md-min) {
+      display: flex;
     }
   }
 }
@@ -69,10 +83,12 @@
   }
 
   &.row {
+    margin-right: -20px;
+    margin-left: -20px;
     padding: 10px 0 0;
     margin: 0;
 
-    @media (max-width: $screen-xs-max) {
+    @media (max-width: $screen-sm-max) {
       text-align: center;
     }
 
@@ -113,6 +129,26 @@
         }
       }
     }
+  }
+}
+
+.title {
+  color: $gray-base-40;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0;
+  line-height: $line-height-h3;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: $baseline-grid * 2;
+  display: none;
+
+  @media (min-width: $screen-sm-min) {
+    display: block;
+  }
+
+  @media (min-width: $screen-md-min) {
+    font-size: 18px;
   }
 }
 
@@ -160,20 +196,21 @@
 }
 
 .menuColumns {
+  width: 100%;
+
   @media (min-width: $screen-md-min) {
     min-width: 200px;
   }
 
-  @media (max-width: $screen-sm-max) {
+  @media (min-width: $screen-sm-min) {
     width: 25%;
-  }
-
-  @media (max-width: $screen-xs-max) {
-    width: 100%;
   }
 }
 
 .tuvColumn {
+  padding: 0;
+  width: 8.333333%;
+
   .tuvIcon {
     padding: 0;
     width: 128px;
@@ -183,24 +220,16 @@
   @media (min-width: $screen-md-min) {
     min-width: 120px;
   }
-
-  @media (max-width: $screen-md-max) {
-    width: 8.333333%;
-  }
 }
 
 .infoTextColumn {
+  width: 100%;
+  text-align: center;
+
   @media (min-width: $screen-md-min) {
+    text-align: right;
     max-width: 550px;
   }
-
-  @media (max-width: $screen-sm-max) {
-    width: 100%;
-  }
-}
-
-div.title {
-  margin-top: 0;
 }
 
 .footerNavItem {
@@ -218,13 +247,10 @@ div.title {
 
 .infoText {
   font-size: $font-size-sm;
+  width: 100%;
 
   @media (min-width: $screen-md-min) {
     font-size: $font-size-base;
-  }
-
-  @media (max-width: $screen-sm-max) {
-    width: 100%;
   }
 }
 
@@ -256,6 +282,10 @@ div.title {
   width: 100%;
   transition: all 1s ease;
 
+  @media (min-width: $screen-sm-min) {
+    display: none;
+  }
+
   .icon {
     position: absolute;
     right: 0;
@@ -274,27 +304,49 @@ div.title {
 }
 
 .itemIcon {
-  display: none;
+  display: block;
+  float: right;
 
-  @media (max-width: $screen-xs-max) {
-    display: block;
-    float: right;
+  @media (min-width: $screen-sm-min) {
+    display: none;
   }
 }
 
 .titleIcon {
-  display: none;
+  display: inline-block;
+  padding-left: 10px;
+  vertical-align: middle;
 
-  @media (max-width: $screen-xs-max) {
-    display: inline-block;
-    padding-left: 10px;
-    vertical-align: middle;
+  @media (min-width: $screen-sm-min) {
+    display: none;
   }
 }
 
 .tooltipContent {
   padding: 5px 0 0 15px;
   text-align: left;
+}
+
+.hiddenXs {
+  display: none;
+
+  @media (min-width: $screen-sm-min) {
+    display: block;
+  }
+}
+
+.hiddenSm {
+  display: none;
+
+  @media (min-width: $screen-md-min) {
+    display: block;
+  }
+}
+
+.visibleXs {
+  @media (min-width: $screen-sm-min) {
+    display: none;
+  }
 }
 
 .dropdown {

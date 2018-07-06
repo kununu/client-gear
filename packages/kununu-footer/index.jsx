@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Logo from 'kununu-logo';
 import ToolTip from 'nukleus/dist/components/ToolTip';
 import DropDown from 'nukleus/dist/components/DropDown';
+import Logo from 'kununu-logo';
+import TuvIcon from '@kununu/kununu-icons/dist/Tuv';
+import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
 
 import FooterNav from './FooterNav';
-import TuvImage from './TuevSiegel';
 import styles from './index.scss';
-import IconHeartOutlined from './IconHeartOutlined';
 
 export default class Footer extends Component { // eslint-disable-line
-
   render () {
     const {
+      container,
       infoText,
       items,
       pathname,
@@ -26,9 +26,9 @@ export default class Footer extends Component { // eslint-disable-line
         id="footer"
         className={`${styles.footer} ${simpleMobile ? styles.simpleMobile : ''}`}
       >
-        <div className="container-fluid">
-          <div className={`row ${styles.flex} ${styles.contentSection}`}>
-            <div className={`${styles.menuColumns} visible-xs`}>
+        <div className={container}>
+          <div className={`${styles.row} ${styles.flex} ${styles.contentSection}`}>
+            <div className={`${styles.menuColumns} ${styles.visibleXs}`}>
               <FooterNav
                 dynamicNav
                 items={items.countrySwitcher}
@@ -51,13 +51,11 @@ export default class Footer extends Component { // eslint-disable-line
               <div
                 className={`
                   ${styles.tuvColumn}
-                  no-padding
-                  hidden-xs
-                  hidden-sm
+                  ${styles.hiddenSm}
                 `}
               >
                 <ToolTip
-                  icon={<TuvImage className={styles.tuvIcon} />}
+                  icon={<TuvIcon className={styles.tuvIcon} />}
                   label="TUV"
                   content={(
                     <ul className={styles.tooltipContent}>
@@ -70,7 +68,7 @@ export default class Footer extends Component { // eslint-disable-line
               </div>
             ) : null
             }
-            <div className={`${styles.infoTextColumn} text-right text-center-xs text-center-sm text-muted`}>
+            <div className={`${styles.infoTextColumn}`}>
               <Logo shade="light" />
 
               <p className={styles.infoText}>
@@ -78,7 +76,7 @@ export default class Footer extends Component { // eslint-disable-line
               </p>
 
               <p className={styles.infoText}>
-                made with <IconHeartOutlined className={`${styles.heart} ${styles.icon}`} /> in Vienna, Boston, Porto, Berlin
+                made with <HeartIcon className={`${styles.heart} ${styles.icon}`} /> in Vienna, Boston, Porto, Berlin
               </p>
             </div>
           </div>
@@ -94,7 +92,7 @@ export default class Footer extends Component { // eslint-disable-line
               ),
               )}
             </div>
-            <div className={`${styles.dropdown} hidden-xs`}>
+            <div className={`${styles.dropdown} ${styles.hiddenXs}`}>
               <DropDown
                 position="top"
                 items={items.countrySwitcher}
@@ -108,6 +106,7 @@ export default class Footer extends Component { // eslint-disable-line
 }
 
 Footer.propTypes = {
+  container: PropTypes.string,
   infoText: PropTypes.element.isRequired,
   items: PropTypes.shape({
     countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
@@ -140,4 +139,5 @@ Footer.propTypes = {
 
 Footer.defaultProps = {
   simpleMobile: false,
+  container: 'container-fluid',
 };
