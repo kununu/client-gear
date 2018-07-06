@@ -20,7 +20,7 @@
     "webpack-dev-server": "2.5.1"
   },
   "dependencies": {
-    "@kununu/kununu-theme-v2": "2.0.0",
+    "@kununu/kununu-theme-v2": "2.0.2",
     "bootstrap": "4.0.0",
     "bootstrap-sass": "3.3.7",
     "font-awesome": "4.7.0",

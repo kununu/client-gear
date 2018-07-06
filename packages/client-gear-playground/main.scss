@@ -1,33 +1,7 @@
-@import '~bootstrap/scss/_functions';
-@import '~bootstrap/scss/_variables';
-@import '~bootstrap/scss/_mixins';
-@import '~bootstrap/scss/_utilities';
-
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/variables';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/normalize';
 
 @import '~@kununu/kununu-theme-v2/scss/base/variables';
 @import '~@kununu/kununu-theme-v2/scss/base/mixins';
-
-@import '~bootstrap/scss/_reboot';
-@import '~bootstrap/scss/_root';
-@import '~bootstrap/scss/_nav';
-@import '~bootstrap/scss/_navbar';
-@import '~bootstrap/scss/_grid';
-
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/code';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/buttons';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/forms';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/navs';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/navbar';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/normalize';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/scaffolding';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/type';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/grid';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/tooltip';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/utilities';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities';
-
 @import '~@kununu/kununu-theme-v2/scss/base/grid';
 @import '~@kununu/kununu-theme-v2/scss/base/core';
 @import '~@kununu/kununu-theme-v2/scss/effects/core';
@@ -36,12 +10,11 @@
 @import '~@kununu/kununu-theme-v2/scss/base/buttons';
 @import '~@kununu/kununu-theme-v2/scss/base/colors';
 
+
 html,
 body {
   height: 100%;
   font-size: 14px;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
 }
 
 .clientGearPlayground, // eslint-disable-line
@@ -51,6 +24,14 @@ body {
 
 main {
   min-height: 100%;
+}
+
+.meow {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1450px;
 }
 
 
