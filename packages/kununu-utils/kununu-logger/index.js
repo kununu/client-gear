@@ -30,10 +30,10 @@ export const customFormat = printf((info) => {
   const prefix = getColorizedMessage(`[${info.label}][${info.timestamp}][${info.level}]`);
 
   if (info.custom) {
-    return printf(`${prefix} – custom logger - ${JSON.stringify(info)}`);
+    return `${prefix} – custom logger - ${JSON.stringify(info)}`;
   }
 
-  return printf(`${prefix} – middleware logger - ${formatNodeRequest(info)}`);
+  return `${prefix} – middleware logger - ${formatNodeRequest(info)}`;
 });
 
 export const logger = createLogger({
