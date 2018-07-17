@@ -35,16 +35,18 @@ describe('Returns correct log format', () => {
 
   it('returns expected format for custom request logs', async () => {
     const label = 'test2';
-    const currentDate = new Date('2018-01-01T12:00:00');
-    const spyFunc = jest.fn(val => JSON.stringify(val));
+    let generatedLog = '';
 
-    global.Date = jest.fn(() => currentDate);
+    const spyFunc = jest.fn((val) => {
+      generatedLog = JSON.parse(val.slice(val.indexOf('{')));
+    });
+
     global.console = {log: spyFunc};
 
     app.get('/2', (req, res) => {
       logger.log('info', {
         custom: true,
-        message: 'This is a test log',
+        message: 'Test',
         label,
       });
 
@@ -52,6 +54,9 @@ describe('Returns correct log format', () => {
     });
 
     await request(app).get('/2');
-    expect(spyFunc.mock.calls[0][0]).toEqual('\u001b[32m[test2][2018-01-01T11:00:00.000Z][info]\u001b[0m – custom logger - {"custom":true,"message":"This is a test log","label":"test2","level":"info","timestamp":"2018-01-01T11:00:00.000Z"}');
+    expect(generatedLog.custom).toEqual(true);
+    expect(generatedLog.message).toEqual('Test');
+    expect(generatedLog.level).toEqual('info');
+    expect(generatedLog.label).toEqual(label);
   });
 });
