@@ -27,13 +27,19 @@ export const formatNodeRequest = ({req, res, label}) => JSON.stringify({
  * on the custom param.
  */
 export const customFormat = printf((info) => {
-  const prefix = getColorizedMessage(`[${info.label}][${info.timestamp}][${info.level}]`);
+  const colorizedMessage = getColorizedMessage(`[${info.label}][${info.timestamp}][${info.level}]`);
+  const loggerType = info.custom ? '– custom logger -' : ' – middleware logger - ';
+  const kibanaFormatting = process.env.LOG_AS === 'json';
+
+  // Kibana only supports JSON and not text so the prefix only added
+  // on non kibana formatting
+  const prefix = kibanaFormatting ? '' : `${colorizedMessage}${loggerType}`;
 
   if (info.custom) {
-    return `${prefix} – custom logger - ${JSON.stringify(info)}`;
+    return `${prefix}${JSON.stringify({...info, logType: 'custom_logger'})}`;
   }
 
-  return `${prefix} – middleware logger - ${formatNodeRequest(info)}`;
+  return `${prefix}${formatNodeRequest(info)}`;
 });
 
 export const logger = createLogger({

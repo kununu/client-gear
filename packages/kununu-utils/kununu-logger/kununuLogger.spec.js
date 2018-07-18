@@ -1,9 +1,9 @@
-import {formatNodeRequest, logger} from './index';
+import {formatNodeRequest, logger, customFormat} from './index';
 
 const express = require('express');
 const request = require('supertest');
 
-describe('Returns correct log format', () => {
+describe('Returns correct log format with text format', () => {
   const app = express();
 
   it('returns correct format for express request logs', async () => {
@@ -58,5 +58,32 @@ describe('Returns correct log format', () => {
     expect(generatedLog.message).toEqual('Test');
     expect(generatedLog.level).toEqual('info');
     expect(generatedLog.label).toEqual(label);
+  });
+});
+
+describe('Returns correct log format with json format', () => {
+  beforeEach(() => {
+    process.env.LOG_AS = 'json';
+  });
+
+  afterEach(() => {
+    delete process.env.LOG_AS;
+  });
+
+  it('returns correct log', () => {
+    const info = {
+      label: 'test',
+      level: 'info',
+      custom: true,
+    };
+
+    const printf = customFormat;
+    const value = printf.template(info);
+    expect(JSON.parse(value)).toEqual({
+      label: 'test',
+      level: 'info',
+      custom: true,
+      logType: 'custom_logger',
+    });
   });
 });
