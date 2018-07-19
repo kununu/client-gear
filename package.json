@@ -62,7 +62,8 @@
   },
   "scripts": {
     "lint": "eslint packages --max-warnings 0 --ext jsx --ext js",
-    "test": "jest",
+    "test": "jest --verbose --no-cache",
+    "test:watch": "jest --watch --verbose",
     "coverage": "jest --coverage"
   },
   "dependencies": {
