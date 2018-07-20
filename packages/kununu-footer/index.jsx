@@ -27,7 +27,7 @@ export default class Footer extends Component { // eslint-disable-line
         className={`${styles.footer} ${simpleMobile ? styles.simpleMobile : ''}`}
       >
         <div className={container}>
-          <div className={`${styles.row} ${styles.flex} ${styles.contentSection}`}>
+          <div className={`${styles.flex} ${styles.contentSection}`}>
             <div className={`${styles.menuColumns} ${styles.visibleXs}`}>
               <FooterNav
                 dynamicNav
