@@ -10,8 +10,13 @@
 }
 
 .contentSection {
-  margin-right: -20px;
-  margin-left: -20px;
+  margin-right: -10px;
+  margin-left: -10px;
+
+  @media (min-width: $screen-sm-min) {
+    margin-right: -20px;
+    margin-left: -20px;
+  }
 }
 
 .simpleMobile {
