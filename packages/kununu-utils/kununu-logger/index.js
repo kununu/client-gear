@@ -8,7 +8,7 @@ const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
  * @param  object containing res and req
  * @return string stringified object
  */
-export const formatNodeRequest = ({req, res, label}) => JSON.stringify({
+export const formatNodeRequest = ({req, res, label, timeTakenMicros}) => JSON.stringify({
   label,
   time: new Date().toISOString(),
   method: req.method,
@@ -19,6 +19,8 @@ export const formatNodeRequest = ({req, res, label}) => JSON.stringify({
   forwarded_for: req.headers['x-forwarded-for'] || '-',
   trace_id: req.headers['x-amzn-trace-id'] || '-',
   logType: 'middleware_logger',
+  user_agent: req.headers['user-agent'] || '-',
+  time_taken_micros: timeTakenMicros,
 });
 
 /**
