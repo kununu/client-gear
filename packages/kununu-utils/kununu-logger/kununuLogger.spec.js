@@ -21,10 +21,11 @@ describe('Returns correct log format with text format', () => {
         forwarded_for: '-',
         trace_id: '-',
         logType: 'middleware_logger',
+        timeTakenMicros: 1000,
       };
 
       res.send({
-        formatedRequest: formatNodeRequest({req, res, label}),
+        formatedRequest: formatNodeRequest({req, res, label, timeTakenMicros: 1000}),
         expectedRequest,
       });
     });

@@ -9,6 +9,8 @@ import {logger} from '../../kununu-logger';
  */
 const expressLogger = label => (req, res, next) => {
   // log initial incoming request
+  const startDate = new Date();
+
   logger.log('info', {req, res, label});
 
   // Log request using kununu-logger
@@ -21,7 +23,7 @@ const expressLogger = label => (req, res, next) => {
     res.removeListener('close', log);
     res.removeListener('error', log);
 
-    logger.log(this.status, {req, res, label});
+    logger.log(this.status, {req, res, label, timeTakenMicros: (new Date() - startDate) * 1000});
   }
 
   // logs any successfully finished pipeline
