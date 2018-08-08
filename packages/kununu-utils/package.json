@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-utils",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
@@ -20,7 +20,8 @@
     "http-status-codes": "1.1.6",
     "react": "16.4.1",
     "react-scroll": "1.7.9",
-    "winston": "3.0.0"
+    "winston": "3.0.0",
+    "jwt-decode": "2.2.0"
   },
   "scripts": {
     "prepublish": "npm run build",
