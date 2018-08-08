@@ -1,5 +1,6 @@
 require('isomorphic-fetch');
 const jwtDecode = require('jwt-decode');
+
 const {logger} = require('../../kununu-logger');
 
 
@@ -44,7 +45,7 @@ function refreshAuthCookie (label) {
         custom: true,
         message: 'Error parsing auth cookie',
         error: err,
-        label: label,
+        label,
       });
       return false;
     }
@@ -95,10 +96,10 @@ function refreshAuthCookie (label) {
    * @param {string} newAuthCookie
    */
   function updateAccessTokenCookieForRequest (req, newAuthCookie) {
-    req.cookies[accessTokenCookieKey] = getDecodedToken(newAuthCookie);
+    req.cookies[accessTokenCookieKey] = getDecodedToken(newAuthCookie); // eslint-disable-line no-param-reassign
 
     // Request cookie object is a long string with semicolon and space separated cookies
-    req.headers.cookie = Object.keys(req.cookies)
+    req.headers.cookie = Object.keys(req.cookies) // eslint-disable-line no-param-reassign
       .reduce((acc, key) => [
         ...acc,
         `${key}=${encodeURIComponent(req.cookies[key])}`,
@@ -118,7 +119,6 @@ function refreshAuthCookie (label) {
   }
 
   return (req, res, next) => {
-    console.log('refreshAuthCookie');
     // Check if request has an access token cookie
     const accessToken = getAccessTokenBy(req);
 
