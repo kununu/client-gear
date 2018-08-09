@@ -1,50 +1,131 @@
-const express = require('express');
-const request = require('supertest');
+import request from 'supertest';
+import express from 'express';
+import fetchMock from 'fetch-mock';
+import jwt from 'jsonwebtoken';
 
-const requestLogging = require('.');
+import refreshAuthCookie from '../refreshAuthCookie';
+
+const cookieParser = require('cookie-parser');
+
+const cookieKey = 'kununu_access_token_v1';
+const refreshURL = `${process.env.BFF_URL}/middlewares2/auth/refresh-token`;
+
+jest.mock('../../kununu-logger');
+
+/**
+ *
+ * Creates an object that
+ *
+ * @param {Object} data
+ * @param {data} exp
+ * @return string
+ */
+function getJWTToken (data, exp) {
+  const secretKey = 'somesecret';
+  return jwt.sign({
+    ...data,
+    exp,
+  }, secretKey);
+}
+
+/**
+ * Creates an object that can be used as the authorization cookie
+ * in tests.
+ *
+ * @param {Object} data
+ * @param {number} expires
+ * @return {Object}
+ */
+function getAuthCookie (data, expires = 400) {
+  const accessToken = getJWTToken(data, Math.floor(Date.now() / 1000) + expires);
+
+  const refreshToken = getJWTToken({
+    token: 'somerefreshtoken',
+  }, Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 30));
+
+  return {
+    [cookieKey]: {
+      access_token: accessToken,
+      refresh_token: refreshToken,
+    },
+  };
+}
+
+const cookieExpire = getAuthCookie({
+  sub: 1,
+}, 200);
+
+const cookieLongLiving = getAuthCookie({
+  sub: 1,
+}, 60 * 60 * 1000);
 
 describe('middlewares', () => {
-  describe('requestLogging', () => {
-    it('logs a normal request', async () => {
-      const app = express();
-      app.use(requestLogging());
-      app.get('/someroute', (req, res) => {
-        res.send();
-      });
+  const app = express();
+  app.use(cookieParser());
+  app.use(refreshAuthCookie('app-mykununu'));
+  app.get('/someroute', (req, res) => res.send());
+  app.get('/app-mykununu/js/resource', (req, res) => res.send());
 
-      const result = await request(app).get('/someroute');
-      expect(result.statusCode).toEqual(200);
+  afterEach(() => {
+    fetchMock.reset();
+  });
+
+  describe('refreshAuthCookie', () => {
+    it('does not try to refresh the auth cookie, when its not about to expire', async () => {
+      const strinigifiedCookie = `${cookieKey}=${encodeURIComponent(JSON.stringify(cookieLongLiving[cookieKey]))}`;
+      const result = await request(app)
+        .get('/someroute')
+        .set('cookie', strinigifiedCookie);
+
+      expect(fetchMock.called()).toEqual(false);
+      expect(result.status).toEqual(200);
     });
 
-    it('logs more information for 500 requests', async () => {
-      const app = express();
-      app.use(requestLogging());
-      app.get('/error-route', (req, res) => {
-        res.status(500).send();
-      });
+    it('does not try to refresh the token, when a resource route is called', async () => {
+      const strinigifiedCookie = `${cookieKey}=${encodeURIComponent(JSON.stringify(cookieLongLiving[cookieKey]))}`;
+      const result = await request(app)
+        .get('/app-mykununu/js/resource')
+        .set('cookie', strinigifiedCookie);
 
-      const result = await request(app).get('/error-route');
-      expect(result.statusCode).toEqual(500);
+      expect(fetchMock.called()).toEqual(false);
+      expect(result.status).toEqual(200);
     });
 
-    it('logs more information for other statuscodes, if they are supplied as options', async () => {
-      const app = express();
-      app.use(requestLogging({statusCodes: [202]}));
-      app.get('/custom-status-code', (req, res) => {
-        res.status(202).send();
+    it('calls the refresh-token route, when the auth cookie is about to expire', async () => {
+      const strinigifiedCookie = `${cookieKey}=${encodeURIComponent(JSON.stringify(cookieExpire[cookieKey]))}`;
+
+      fetchMock.post(refreshURL, {
+        status: 200,
+        headers: {
+          'set-cookie': `${cookieKey}=newcookie`,
+        },
       });
 
-      const result = await request(app).get('/custom-status-code');
-      expect(result.statusCode).toEqual(202);
+      const result = await request(app)
+        .get('/someroute')
+        .set('cookie', strinigifiedCookie);
+
+      expect(fetchMock.called()).toEqual(true);
+      expect(result.status).toEqual(200);
     });
 
-    it('throws an error, when status codes are supplied, but not as an array', async () => {
-      const app = express();
-      try {
-        app.use(requestLogging({statusCodes: {202: 202}}));
-      } catch (err) {
-        expect(err).not.toBe(null);
-      }
+    it('handles malformed jwt tokens', async () => {
+      const malformedStringifiedCookie = `${cookieKey}=${encodeURIComponent(JSON.stringify({
+        access_token: 'somemalformedtoken',
+      }))}`;
+      const result = await request(app)
+        .get('/someroute')
+        .set('cookie', malformedStringifiedCookie);
+
+      expect(result.status).toEqual(200);
+    });
+
+    it('does not fail, when no auth cookie is set', async () => {
+      const result = await request(app)
+        .get('/someroute')
+        .set('cookie', 'othercookie=data');
+
+      expect(result.status).toEqual(200);
     });
   });
 });
