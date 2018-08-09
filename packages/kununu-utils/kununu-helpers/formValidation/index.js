@@ -51,8 +51,9 @@ export function isEmail (value) {
  * @author Pedro Menezes
  * @param {string} value [of input field]
  */
-export function isRegexMatch (value, match) {
-  if (!match.test(value)) {
+export function isRegexMatch (value, rule) {
+  const pattern = new RegExp(rule);
+  if (!pattern.test(value)) {
     return NOT_VALID;
   }
 

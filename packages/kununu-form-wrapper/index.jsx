@@ -80,11 +80,15 @@ const FormWrapper = (WrappedComponent) => {
     handleUserInput = (event) => {
       const {name, value} = event.target;
 
-      this.setState({
+      const fields = {
         fields: {
           ...this.state.fields,
           ...this.updateField(value, name),
         },
+      };
+
+      return new Promise(resolve => {
+        this.setState(fields, resolve);
       });
     };
 
@@ -97,11 +101,15 @@ const FormWrapper = (WrappedComponent) => {
 
       // When the form is submit, setting state in blur stops event propagation
       if (event.relatedTarget && event.relatedTarget.type !== 'submit') {
-        this.setState({
+        const fields = {
           fields: {
             ...this.state.fields,
             ...this.updateField(value, name, true),
           },
+        };
+
+        return new Promise(resolve => {
+          this.setState(fields, resolve);
         });
       }
     };
