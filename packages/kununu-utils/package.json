@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-utils",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
@@ -8,7 +8,11 @@
     "cookie-parser": "1.4.3",
     "cross-env": "5.2.0",
     "express": "4.16.3",
+    "fetch-mock": "^6.5.2",
     "http-status-codes": "1.1.6",
+    "isomorphic-fetch": "2.2.1",
+    "jsonwebtoken": "^8.3.0",
+    "jwt-decode": "2.2.0",
     "react": "16.4.1",
     "react-dom": "16.4.1",
     "react-scroll": "1.7.9",
@@ -18,9 +22,11 @@
   },
   "peerDependencies": {
     "http-status-codes": "1.1.6",
+    "isomorphic-fetch": "2.2.1",
     "react": "16.4.1",
     "react-scroll": "1.7.9",
-    "winston": "3.0.0"
+    "winston": "3.0.0",
+    "jwt-decode": "2.2.0"
   },
   "scripts": {
     "prepublish": "npm run build",
@@ -30,5 +36,6 @@
     "build": "npm run clean && cross-env NODE_ENV=production npm run babel"
   },
   "author": "kununu",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }
