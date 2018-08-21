@@ -63,12 +63,15 @@ describe('Returns correct log format with text format', () => {
 });
 
 describe('Returns correct log format with json format', () => {
+  let originalEnv;
+
   beforeEach(() => {
-    process.env.LOG_AS = 'json';
+    originalEnv = process.env.NODE_ENV;
+    process.env.NODE_ENV = 'production';
   });
 
   afterEach(() => {
-    delete process.env.LOG_AS;
+    process.env.NODE_ENV = originalEnv;
   });
 
   it('returns correct log', () => {
