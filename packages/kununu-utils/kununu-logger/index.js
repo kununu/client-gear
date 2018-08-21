@@ -31,7 +31,7 @@ export const formatNodeRequest = ({req, res, label, timeTakenMicros}) => JSON.st
 export const customFormat = printf((info) => {
   const colorizedMessage = getColorizedMessage(`[${info.label}][${info.timestamp}][${info.level}]`);
   const loggerType = info.custom ? '– custom logger -' : ' – middleware logger - ';
-  const kibanaFormatting = process.env.LOG_AS === 'json';
+  const kibanaFormatting = process.env.NODE_ENV === 'production';
 
   // Kibana only supports JSON and not text so the prefix only added
   // on non kibana formatting
