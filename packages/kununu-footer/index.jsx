@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import ToolTip from 'nukleus/dist/components/ToolTip';
 import DropDown from 'nukleus/dist/components/DropDown';
 import Logo from 'kununu-logo';
-import TuvIcon from '@kununu/kununu-icons/dist/Tuv';
 import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
 
 import FooterNav from './FooterNav';
 import styles from './index.scss';
+import TuvIcon from './Tuv';
 
 export default class Footer extends Component { // eslint-disable-line
   render () {
