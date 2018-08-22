@@ -44,8 +44,10 @@ export default class ScrollToElement extends Component {
       children,
     } = this.props;
 
+    const CustomTag = this.props.tagName;
+
     return (
-      <div
+      <CustomTag
         {...this.getAdditionalProps()}
         ref={(node) => { this.node = node; }}
       >
@@ -53,10 +55,14 @@ export default class ScrollToElement extends Component {
           children.map((child, index) => React.cloneElement(child, {
             key: index,
             scrollTo: this.scrollTo,
+            container: this.node,
           }))
-          : React.cloneElement(children, {scrollTo: this.scrollTo})
+          : React.cloneElement(children, {
+            scrollTo: this.scrollTo,
+            container: this.node,
+          })
         }
-      </div>
+      </CustomTag>
     );
   }
 }
@@ -69,10 +75,12 @@ ScrollToElement.propTypes = {
   className: PropTypes.string,
   duration: PropTypes.number,
   mobileOnly: PropTypes.bool,
+  tagName: PropTypes.string,
 };
 
 ScrollToElement.defaultProps = {
   className: null,
   duration: 500,
   mobileOnly: true,
+  tagName: 'div',
 };
