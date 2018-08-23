@@ -7,9 +7,9 @@ exports[`Renders Logo with link 1`] = `
   <img
     alt="test"
     className="logo"
-    sizes="(max-width: 830px) 38px, 128px"
+    sizes="(max-width: 830px) 38px, 138px"
     src="https://assets.kununu.com/images/footer/logo-desktop.svg"
-    srcSet="https://assets.kununu.com/images/footer/logo-mobile.svg 38w, https://assets.kununu.com/images/footer/logo-desktop.svg 128w"
+    srcSet="https://assets.kununu.com/images/footer/logo-mobile.svg 38w, https://assets.kununu.com/images/footer/logo-desktop.svg 138w"
   />
 </a>
 `;
@@ -18,8 +18,8 @@ exports[`Renders Logo without crashing 1`] = `
 <img
   alt="test"
   className="logo"
-  sizes="(max-width: 830px) 38px, 128px"
+  sizes="(max-width: 830px) 38px, 138px"
   src="https://assets.kununu.com/images/footer/logo-desktop.svg"
-  srcSet="https://assets.kununu.com/images/footer/logo-mobile.svg 38w, https://assets.kununu.com/images/footer/logo-desktop.svg 128w"
+  srcSet="https://assets.kununu.com/images/footer/logo-mobile.svg 38w, https://assets.kununu.com/images/footer/logo-desktop.svg 138w"
 />
 `;

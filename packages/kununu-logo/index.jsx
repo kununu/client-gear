@@ -9,13 +9,15 @@ const Logo = ({
   assetsPath,
   logoMobile,
   logoDesktop,
+  mobileSize,
+  desktopSize,
 }) => {
   const logoContent = (
     <img
       className={styles.logo}
       src={`${assetsPath}/${logoDesktop}`}
-      srcSet={`${assetsPath}/${logoMobile} 38w, ${assetsPath}/${logoDesktop} 128w`}
-      sizes="(max-width: 830px) 38px, 128px"
+      srcSet={`${assetsPath}/${logoMobile} ${mobileSize}w, ${assetsPath}/${logoDesktop} ${desktopSize}w`}
+      sizes={`(max-width: 830px) ${mobileSize}px, ${desktopSize}px`}
       alt={title}
     />
   );
@@ -31,6 +33,8 @@ Logo.propTypes = {
   assetsPath: PropTypes.string,
   logoDesktop: PropTypes.string,
   logoMobile: PropTypes.string,
+  mobileSize: PropTypes.number,
+  desktopSize: PropTypes.number,
 };
 
 Logo.defaultProps = {
@@ -39,6 +43,8 @@ Logo.defaultProps = {
   assetsPath: 'https://assets.kununu.com/images/footer',
   logoDesktop: 'logo-desktop.svg',
   logoMobile: 'logo-mobile.svg',
+  mobileSize: 38,
+  desktopSize: 138,
 };
 
 export default Logo;
