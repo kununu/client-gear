@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import ToolTip from 'nukleus/dist/components/ToolTip';
 import DropDown from 'nukleus/dist/components/DropDown';
 import Logo from 'kununu-logo';
-import TuvIcon from '@kununu/kununu-icons/dist/Tuv';
 import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
 
 import FooterNav from './FooterNav';
 import styles from './index.scss';
+import TuvIcon from './Tuv';
 
 export default class Footer extends Component { // eslint-disable-line
   render () {
@@ -18,6 +18,7 @@ export default class Footer extends Component { // eslint-disable-line
       pathname,
       simpleMobile,
       tuv,
+      assetsPath,
     } = this.props;
 
     return (
@@ -55,7 +56,10 @@ export default class Footer extends Component { // eslint-disable-line
                 `}
               >
                 <ToolTip
-                  icon={<TuvIcon className={styles.tuvIcon} />}
+                  icon={<TuvIcon
+                    className={styles.tuvIcon}
+                    assetsPath={assetsPath}
+                  />}
                   label="TUV"
                   content={(
                     <ul className={styles.tooltipContent}>
@@ -108,6 +112,7 @@ export default class Footer extends Component { // eslint-disable-line
 Footer.propTypes = {
   container: PropTypes.string,
   infoText: PropTypes.element.isRequired,
+  assetsPath: PropTypes.string,
   items: PropTypes.shape({
     countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
       active: PropTypes.bool,
@@ -140,4 +145,5 @@ Footer.propTypes = {
 Footer.defaultProps = {
   simpleMobile: false,
   container: 'container-fluid',
+  assetsPath: 'https://assets.kununu.com/images/footer',
 };

@@ -5,21 +5,21 @@ const request = require('supertest');
 
 describe('Express logger', () => {
   const app = express();
-  let logAs;
+  let originalEnv;
   app.get('/', expressLogger('app-reviews'), (req, res) => {
     res.send();
   });
 
   beforeAll(() => {
-    logAs = process.env.LOG_AS;
-    process.env.LOG_AS = 'json';
+    originalEnv = process.env.NODE_ENV;
+    process.env.NODE_ENV = 'production';
   });
 
   afterAll(() => {
-    process.env.LOG_AS = logAs;
+    process.env.NODE_ENV = originalEnv;
   });
 
-  it('Log one intial request and one final request', async () => {
+  it('Logs a request with the expected info', async () => {
     const spyFunc = jest.fn();
 
     global.console = {
@@ -27,10 +27,8 @@ describe('Express logger', () => {
     };
 
     await request(app).get('/');
-    expect(spyFunc.mock.calls.length).toEqual(2);
-    const logObjectRequestStart = JSON.parse(spyFunc.mock.calls[0][0]);
-    const logObjectRequestEnd = JSON.parse(spyFunc.mock.calls[1][0]);
-    expect(Object.keys(logObjectRequestStart).sort()).toEqual(['label', 'logType', 'time', 'method', 'request', 'status', 'remote_ip', 'referer', 'forwarded_for', 'trace_id', 'user_agent'].sort());
-    expect(Object.keys(logObjectRequestEnd).sort()).toEqual(['label', 'logType', 'time', 'method', 'request', 'status', 'remote_ip', 'referer', 'forwarded_for', 'trace_id', 'user_agent', 'time_taken_micros'].sort());
+    expect(spyFunc.mock.calls.length).toEqual(1);
+    const logObjectRequest = JSON.parse(spyFunc.mock.calls[0][0]);
+    expect(Object.keys(logObjectRequest).sort()).toEqual(['label', 'logType', 'time', 'method', 'request', 'status', 'remote_ip', 'referer', 'forwarded_for', 'trace_id', 'user_agent', 'time_taken_micros'].sort());
   });
 });
