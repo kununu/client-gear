@@ -46,10 +46,30 @@ export function isEmail (value) {
   return undefined;
 }
 
+/**
+ * Validates if a value matches a given regex
+ * @author Pedro Menezes
+ * @param {string} value [of input field]
+ */
+export function isRegexMatch (value, rule, allowEmpty) {
+  const pattern = new RegExp(rule);
+
+  if (value.trim().length === 0 && allowEmpty) {
+    return undefined;
+  }
+
+  if (!pattern.test(value)) {
+    return NOT_VALID;
+  }
+
+  return undefined;
+}
+
 export const validationTypes = {
   isEmpty: 'isEmpty',
   minLength: 'minLength',
   isEmail: 'isEmail',
+  isRegexMatch: 'isRegexMatch',
 };
 
 /**
@@ -71,6 +91,9 @@ export function validateField (value, validations) {
         break;
       case validationTypes.isEmail:
         if (isEmail(value) !== undefined) return validation.message;
+        break;
+      case validationTypes.isRegexMatch:
+        if (isRegexMatch(value, validation.regexRule, validation.allowEmpty) !== undefined) return validation.message;
         break;
       default:
         break;
