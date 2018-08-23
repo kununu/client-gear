@@ -1,6 +1,6 @@
 {
-  "name": "kununu-logo",
-  "version": "3.4.0",
+  "name": "@kununu/kununu-logo",
+  "version": "1.0.0",
   "description": "kununu logo",
   "main": "dist",
   "author": "kununu",
@@ -19,8 +19,7 @@
     "react": "16.4.1"
   },
   "dependencies": {
-    "prop-types": "15.6.2",
-    "react-state-animation": ">=0.1.0"
+    "prop-types": "15.6.2"
   },
   "scripts": {
     "prepublish": "yarn dist",
