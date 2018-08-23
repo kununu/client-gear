@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Logo from 'kununu-logo';
+import Logo from '@kununu/kununu-logo';
 
 import styles from './index.scss';
 
@@ -8,10 +8,9 @@ export default function Header ({
   children,
   container,
   fixed,
-  isLoading,
+  assetsPath,
   title,
   logoLink,
-  responsive,
 }) {
   return (
     <header role="banner" className={`${styles.header} ${fixed && styles.fixed}`}>
@@ -19,13 +18,10 @@ export default function Header ({
         <div className={styles.flex}>
           <div className={styles.pullLeft}>
             <Logo
-              isSpinning={isLoading}
-              shade="light"
-              title="kununu"
               link={logoLink}
-              responsive={responsive}
+              assetsPath={assetsPath}
+              title={title}
             />
-            <span className={styles.title}>{title}</span>
           </div>
           <div className={styles.pullRight}>
             {children}
@@ -40,10 +36,9 @@ Header.propTypes = {
   children: PropTypes.element,
   container: PropTypes.string,
   fixed: PropTypes.bool,
-  isLoading: PropTypes.bool,
   logoLink: PropTypes.element.isRequired,
-  responsive: PropTypes.bool,
   title: PropTypes.string,
+  assetsPath: PropTypes.string,
 };
 
 Header.defaultProps = {
@@ -52,4 +47,5 @@ Header.defaultProps = {
   isLoading: false,
   responsive: true,
   title: '',
+  assetsPath: 'https://assets.kununu.com/images/footer',
 };
