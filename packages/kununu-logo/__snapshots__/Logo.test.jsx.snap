@@ -6,20 +6,32 @@ exports[`Renders Logo with link 1`] = `
 >
   <img
     alt="test"
-    className="logo"
-    sizes="(max-width: 830px) 38px, 138px"
+    className="logoDesktop"
     src="https://assets.kununu.com/images/footer/logo-desktop.svg"
-    srcSet="https://assets.kununu.com/images/footer/logo-mobile.svg 38w, https://assets.kununu.com/images/footer/logo-desktop.svg 138w"
+  />
+  <img
+    alt="test"
+    aria-hidden="true"
+    className="logoMobile"
+    rel="presentation"
+    src="https://assets.kununu.com/images/footer/logo-mobile.svg"
   />
 </a>
 `;
 
 exports[`Renders Logo without crashing 1`] = `
-<img
-  alt="test"
-  className="logo"
-  sizes="(max-width: 830px) 38px, 138px"
-  src="https://assets.kununu.com/images/footer/logo-desktop.svg"
-  srcSet="https://assets.kununu.com/images/footer/logo-mobile.svg 38w, https://assets.kununu.com/images/footer/logo-desktop.svg 138w"
-/>
+Array [
+  <img
+    alt="test"
+    className="logoDesktop"
+    src="https://assets.kununu.com/images/footer/logo-desktop.svg"
+/>,
+  <img
+    alt="test"
+    aria-hidden="true"
+    className="logoMobile"
+    rel="presentation"
+    src="https://assets.kununu.com/images/footer/logo-mobile.svg"
+/>,
+]
 `;

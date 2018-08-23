@@ -1,8 +1,16 @@
-.logo {
+.logoDesktop {
   width: 138px;
 
   @media (max-width: 830px) {
-    width: 38px;
+    display: none;
+  }
+}
+
+.logoMobile {
+  width: 38px;
+
+  @media (min-width: 831px) {
+    display: none;
   }
 
   @media (max-width: 480px) {
