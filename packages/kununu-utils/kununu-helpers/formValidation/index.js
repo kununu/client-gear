@@ -54,7 +54,7 @@ export function isEmail (value) {
 export function isRegexMatch (value, rule, allowEmpty) {
   const pattern = new RegExp(rule);
 
-  if(value.trim().length === 0 && allowEmpty) {
+  if (value.trim().length === 0 && allowEmpty) {
     return undefined;
   }
 

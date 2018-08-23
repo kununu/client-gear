@@ -87,7 +87,7 @@ const FormWrapper = (WrappedComponent) => {
         },
       };
 
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         this.setState(fields, resolve);
       });
     };
@@ -108,10 +108,12 @@ const FormWrapper = (WrappedComponent) => {
           },
         };
 
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           this.setState(fields, resolve);
         });
       }
+
+      return null;
     };
 
     /**
