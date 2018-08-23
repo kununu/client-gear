@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ToolTip from 'nukleus/dist/components/ToolTip';
 import DropDown from 'nukleus/dist/components/DropDown';
-import Logo from 'kununu-logo';
 import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
+import Logo from '@kununu/kununu-logo';
 
 import FooterNav from './FooterNav';
 import styles from './index.scss';
@@ -73,7 +73,9 @@ export default class Footer extends Component { // eslint-disable-line
             ) : null
             }
             <div className={`${styles.infoTextColumn}`}>
-              <Logo shade="light" />
+              <div className={styles.logoContainer}>
+                <Logo assetsPath={assetsPath} />
+              </div>
 
               <p className={styles.infoText}>
                 {infoText}

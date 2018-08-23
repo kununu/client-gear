@@ -19,16 +19,13 @@
   "dependencies": {
     "@kununu/kununu-theme-v2": "2.0.2",
     "@kununu/kununu-icons": "1.2.0",
-    "kununu-logo": "3.3.0",
+    "@kununu/kununu-logo": "1.0.0",
     "prop-types": "15.6.2"
   },
   "peerDependencies": {
-    "@kununu/kununu-icons": "1.2.0",
-    "@kununu/kununu-theme-v2": "2.0.2",
-    "kununu-logo": "3.2.0",
     "nukleus": "12.0.2",
-    "react": "16.4.1",
-    "react-dom": "16.4.1"
+    "react": "16.4.2",
+    "react-dom": "16.4.2"
   },
   "scripts": {
     "prepublish": "yarn dist",

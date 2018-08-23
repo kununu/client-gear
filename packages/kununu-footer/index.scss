@@ -368,3 +368,14 @@
     }
   }
 }
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+
+  @media (min-width: $screen-md-min) {
+    justify-content: flex-end;
+  }
+}
