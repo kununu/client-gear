@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './index.scss';
@@ -9,17 +9,22 @@ const Logo = ({
   assetsPath,
   logoMobile,
   logoDesktop,
-  mobileSize,
-  desktopSize,
 }) => {
   const logoContent = (
-    <img
-      className={styles.logo}
-      src={`${assetsPath}/${logoDesktop}`}
-      srcSet={`${assetsPath}/${logoMobile} ${mobileSize}w, ${assetsPath}/${logoDesktop} ${desktopSize}w`}
-      sizes={`(max-width: 830px) ${mobileSize}px, ${desktopSize}px`}
-      alt={title}
-    />
+    <Fragment>
+      <img
+        className={styles.logoDesktop}
+        src={`${assetsPath}/${logoDesktop}`}
+        alt={title}
+      />
+      <img
+        rel="presentation"
+        aria-hidden="true"
+        className={styles.logoMobile}
+        src={`${assetsPath}/${logoMobile}`}
+        alt={title}
+      />
+    </Fragment>
   );
 
   return link ?
@@ -33,8 +38,6 @@ Logo.propTypes = {
   assetsPath: PropTypes.string,
   logoDesktop: PropTypes.string,
   logoMobile: PropTypes.string,
-  mobileSize: PropTypes.number,
-  desktopSize: PropTypes.number,
 };
 
 Logo.defaultProps = {
@@ -43,8 +46,6 @@ Logo.defaultProps = {
   assetsPath: 'https://assets.kununu.com/images/footer',
   logoDesktop: 'logo-desktop.svg',
   logoMobile: 'logo-mobile.svg',
-  mobileSize: 38,
-  desktopSize: 138,
 };
 
 export default Logo;
