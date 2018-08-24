@@ -19,10 +19,15 @@ exports[`Renders Logo without crashing 1`] = `
         >
           <img
             alt="Volle Transparenz am Arbeitsmarkt"
-            className="logo"
-            sizes="(max-width: 830px) 38px, 128px"
-            src="https://assets.kununu.com/images/footer/logo-full.svg"
-            srcSet="https://assets.kununu.com/images/footer/logo-mobile.svg 38w, https://assets.kununu.com/images/footer/logo-full.svg 128w"
+            className="logoDesktop"
+            src="https://assets.kununu.com/images/footer/logo-desktop.svg"
+          />
+          <img
+            alt="Volle Transparenz am Arbeitsmarkt"
+            aria-hidden="true"
+            className="logoMobile"
+            rel="presentation"
+            src="https://assets.kununu.com/images/footer/logo-mobile.svg"
           />
         </a>
       </div>
