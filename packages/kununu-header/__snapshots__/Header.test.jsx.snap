@@ -30,6 +30,11 @@ exports[`Renders Logo without crashing 1`] = `
             src="https://assets.kununu.com/images/footer/logo-mobile.svg"
           />
         </a>
+        <span
+          className="title"
+        >
+          Volle Transparenz am Arbeitsmarkt
+        </span>
       </div>
       <div
         className="pullRight"

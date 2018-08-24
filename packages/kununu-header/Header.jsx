@@ -22,6 +22,7 @@ export default function Header ({
               assetsPath={assetsPath}
               title={title}
             />
+            <span className={styles.title}>{title}</span>
           </div>
           <div className={styles.pullRight}>
             {children}
