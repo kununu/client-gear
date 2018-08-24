@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './index.scss';
@@ -53,9 +53,9 @@ export default class FooterNav extends Component {
     } = this.props;
 
     return (
-      <div>
+      <Fragment>
         {title || dynamicNav ?
-          <div>
+          <Fragment>
             <span className={styles.title}>
               {title}
             </span>
@@ -68,7 +68,7 @@ export default class FooterNav extends Component {
               </span>
               <IconPlus className={`${styles.plus} ${styles.icon}`} />
             </button>
-          </div>
+          </Fragment>
           : ''
         }
         <ul
@@ -87,7 +87,7 @@ export default class FooterNav extends Component {
             </li>
           ))}
         </ul>
-      </div>
+      </Fragment>
     );
   }
 }
