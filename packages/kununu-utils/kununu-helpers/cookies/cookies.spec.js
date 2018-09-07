@@ -1,4 +1,4 @@
-import cookies from '../index';
+import cookies from './index';
 
 describe('cookies', () => {
   it('sets cookie by providing name and value', () => {
