@@ -25,13 +25,13 @@ Array [
     alt="test"
     className="logoDesktop"
     src="https://assets.kununu.com/images/footer/logo-desktop.svg"
-  />,
+/>,
   <img
     alt="test"
     aria-hidden="true"
     className="logoMobile"
     rel="presentation"
     src="https://assets.kununu.com/images/footer/logo-mobile.svg"
-  />,
+/>,
 ]
 `;
