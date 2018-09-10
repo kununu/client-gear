@@ -35,7 +35,7 @@
   "homepage": "https://github.com/kununu/client-gear#readme",
   "devDependencies": {
     "@karlhorky/react-scripts": "0.8.3-alpha.2",
-    "babel-eslint": "9.0.0",
+    "babel-eslint": "7.2.3",
     "babel-jest": "23.4.2",
     "babel-plugin-transform-rename-import": "2.3.0",
     "babel-polyfill": "6.26.0",
