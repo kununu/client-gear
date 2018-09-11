@@ -18,7 +18,8 @@
     "setupTestFrameworkScriptFile": "./config/jest/setupTests.js",
     "setupFiles": [
       "jest-localstorage-mock"
-    ]
+    ],
+    "testURL": "https://www.kununu.com"
   },
   "version": "1.0.0",
   "description": "Layout and theming utilities, shared molecular components for kununu.",
