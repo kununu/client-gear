@@ -1,3 +1,5 @@
+import cookie from 'cookie';
+
 const cookies = {
   get: name => document.cookie.split('; ').reduce((r, v) => {
     const parts = v.split('=');
@@ -6,15 +8,16 @@ const cookies = {
     return shouldBeParsed ? JSON.parse(cookie) : cookie;
   }, ''),
   set: (name, value, options) => {
+    // allow you to work with cookies as objects.
+    if (typeof value === 'object') {
+      value = JSON.stringify(value);
+    }
+
     const parsedOptions = typeof options === 'object' ?
       Object.keys(options).map(key => `${key}=${options[key]}`).join('; ') :
       null;
 
-    const cookie = parsedOptions === null ?
-      `${name}=${value}; ` :
-      `${name}=${value}; ${parsedOptions}`;
-
-    document.cookie = cookie;
+    document.cookie = cookie.serialize(name, value, parsedOptions);
   },
 };
 
