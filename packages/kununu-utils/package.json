@@ -38,7 +38,5 @@
   },
   "author": "kununu",
   "license": "ISC",
-  "dependencies": {
-    "cookie": "0.3.1"
-  }
+  "dependencies": {}
 }
