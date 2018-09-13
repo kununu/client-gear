@@ -1,4 +1,4 @@
-import cookie from 'cookie';
+import {serialize} from 'cookie';
 
 const cookies = {
   get: name => document.cookie.split('; ').reduce((r, v) => {
@@ -17,7 +17,7 @@ const cookies = {
       Object.keys(options).map(key => `${key}=${options[key]}`).join('; ') :
       null;
 
-    document.cookie = cookie.serialize(name, value, parsedOptions);
+    document.cookie = serialize(name, value, parsedOptions);
   },
 };
 
