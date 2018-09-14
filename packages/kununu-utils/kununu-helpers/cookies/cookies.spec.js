@@ -18,15 +18,6 @@ describe('cookies', () => {
     expect(cookies.get('kununu_country')).toEqual('de');
   });
 
-  it('can parse json cookie', () => {
-    const cookieName = 'kununu_user_info';
-    const cookieValue = '%7B%22username%22%3A%22u38894%22%2C%22email%22%3A%22u38894%40kununu.dev%22%7D';
-    const expectedParsedObject = {username: 'u38894', email: 'u38894@kununu.dev'};
-    cookies.set(cookieName, cookieValue);
-
-    expect(cookies.get(cookieName)).toEqual(expectedParsedObject);
-  });
-
   it('can sucessfully save a cookie when its given value is an unparsed object', () => {
     const cookieName = 'kununu_cookie_name';
     const cookieValue = {valueA: 1, valueB: 2};
