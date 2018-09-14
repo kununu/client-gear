@@ -10,7 +10,7 @@ const cookies = {
   set: (name, value, options) => {
     // allow you to work with cookies as objects.
     if (typeof value === 'object') {
-      value = JSON.stringify(value);
+      value = JSON.stringify(value); // eslint-disable-line no-param-reassign
     }
 
     const parsedOptions = typeof options === 'object' ?
