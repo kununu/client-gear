@@ -13,11 +13,7 @@ const cookies = {
       value = JSON.stringify(value); // eslint-disable-line no-param-reassign
     }
 
-    const parsedOptions = typeof options === 'object' ?
-      Object.keys(options).map(key => `${key}=${options[key]}`).join('; ') :
-      null;
-
-    document.cookie = serialize(name, value, parsedOptions);
+    document.cookie = serialize(name, value, options);
   },
 };
 
