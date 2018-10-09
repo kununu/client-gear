@@ -7,8 +7,6 @@ import getElementPositionY from '@kununu/kununu-utils/dist/kununu-helpers/elemen
 const isMobile = () => (typeof window !== 'undefined' ? window.innerWidth < 550 : false);
 
 export default class ScrollToElement extends Component {
-  state = {node: null};
-
   /**
    * This function returns a list of props, that is optional.
    * We use reduce to only add the props, when they have some useful
@@ -26,7 +24,7 @@ export default class ScrollToElement extends Component {
     if (this.props.mobileOnly && !isMobile()) return false;
 
     // When the component is rerendering, the ref might not exist, when this happens
-    if (this.state.node === null) {
+    if (this.node === null) {
       requestAnimationFrame(() => {
         this.scrollTo(offSet);
       });
@@ -34,7 +32,7 @@ export default class ScrollToElement extends Component {
       return false;
     }
 
-    const elementPos = getElementPositionY(this.state.node, offSet);
+    const elementPos = getElementPositionY(this.node, offSet);
     const scroll = Scroll.animateScroll;
     return scroll.scrollTo(elementPos, {
       duration: this.props.duration,
@@ -51,19 +49,17 @@ export default class ScrollToElement extends Component {
     return (
       <CustomTag
         {...this.getAdditionalProps()}
-        ref={(node) => {
-          if (!this.state.node) this.setState({node});
-        }}
+        ref={(node) => { this.node = node; }}
       >
         {children.length ?
           children.map((child, index) => React.cloneElement(child, {
             key: index,
             scrollTo: this.scrollTo,
-            container: this.state.node,
+            container: () => this.node,
           }))
           : React.cloneElement(children, {
             scrollTo: this.scrollTo,
-            container: this.state.node,
+            container: () => this.node,
           })
         }
       </CustomTag>
