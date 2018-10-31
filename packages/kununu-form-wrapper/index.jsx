@@ -4,13 +4,6 @@ import {validateField} from '@kununu/kununu-utils/dist/kununu-helpers/formValida
 
 const FormWrapper = (WrappedComponent) => {
   class HOC extends React.Component {
-    constructor (props) {
-      super(props);
-      this.state = {
-        fields: this.props.getInitialFields(),
-      };
-    }
-
     /**
      * If the initial fields are loaded
      * async then they will be empty upon initial load.
@@ -24,6 +17,14 @@ const FormWrapper = (WrappedComponent) => {
 
       return {
         fields: nextProps.getInitialFields(),
+      };
+    }
+
+
+    constructor (props) {
+      super(props);
+      this.state = {
+        fields: this.props.getInitialFields(),
       };
     }
 
