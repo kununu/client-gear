@@ -11,6 +11,22 @@ const FormWrapper = (WrappedComponent) => {
       };
     }
 
+    /**
+     * If the initial fields are loaded
+     * async then they will be empty upon initial load.
+     * If this is the case we will try to update them
+     * until fields contain a value
+     */
+    static getDerivedStateFromProps (nextProps, prevState) {
+      const currentStateIsNotEmpty = Object.keys(prevState.fields).length;
+
+      if (currentStateIsNotEmpty) return null;
+
+      return {
+        fields: nextProps.getInitialFields(),
+      };
+    }
+
     getFormFieldProps = id => ({
       id,
       input: {
@@ -58,6 +74,14 @@ const FormWrapper = (WrappedComponent) => {
     isFormValid = () => Object.keys(this.state.fields).reduce((acc, field) => acc && !this.state.fields[field].error, true);
 
     /**
+     * Checks if all the fields do not contain
+     * a value
+     * @returns {bool}
+     */
+    formIsEmpty = () => !Object.keys(this.state.fields)
+      .every(key => this.state.fields[key].value)
+
+    /**
      * Validate a given field and return the updated field object
      *
      * @param {string} value
@@ -72,6 +96,30 @@ const FormWrapper = (WrappedComponent) => {
         error: validateField(value, this.state.fields[key].validations),
       },
     });
+
+    /**
+     *
+     * Allows you to update a field
+     * error manually.
+     *
+     * @param {string} key
+     * @param {string} error
+     */
+    handleCustomError = (key, error) => {
+      const fields = {
+        fields: {
+          ...this.state.fields,
+          [key]: {
+            ...this.state.fields[key],
+            error,
+          },
+        },
+      };
+
+      return new Promise((resolve) => {
+        this.setState(fields, resolve);
+      });
+    }
 
     /**
      * Is called when onChange event of a field is called
@@ -146,21 +194,14 @@ const FormWrapper = (WrappedComponent) => {
      * Validate all form fields
      */
     validateForm (callback) {
-      this.setState({
-        fields: Object.keys(this.state.fields).reduce((acc, key) => ({
-          ...acc,
-          ...this.updateField(this.state.fields[key].value, key, true),
-        }), {}),
-      }, () => {
-        const isFormValid = this.isFormValid();
+      const isFormValid = this.isFormValid();
 
-        if (isFormValid) {
-          // this will be submit function in the child component
-          callback(this.getFormValues());
-        } else {
-          this.touchForm(true);
-        }
-      });
+      if (isFormValid) {
+        // this will be submit function in the child component
+        callback(this.getFormValues());
+      } else {
+        this.touchForm(true);
+      }
     }
 
     handleSubmit = (e, callback) => {
@@ -195,8 +236,10 @@ const FormWrapper = (WrappedComponent) => {
     render () {
       return (
         <WrappedComponent
+          formIsEmpty={this.formIsEmpty}
           handleUserInput={this.handleUserInput}
           handleUserBlur={this.handleUserBlur}
+          handleCustomError={this.handleCustomError}
           fields={this.state.fields}
           handleSubmit={this.handleSubmit}
           touchForm={this.touchForm}
