@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Returns current domain from a request object renders async initial fields without crashing 1`] = `
+<MockComponent
+  fields={Object {}}
+  formIsEmpty={[Function]}
+  getFormFieldProps={[Function]}
+  getInitialFields={[Function]}
+  handleCustomError={[Function]}
+  handleSubmit={[Function]}
+  handleUserBlur={[Function]}
+  handleUserInput={[Function]}
+  resetFormFields={[Function]}
+  touchForm={[Function]}
+  updateLocalStorageFromState={[Function]}
+  updateStateFromLocalStorage={[Function]}
+/>
+`;
+
 exports[`Returns current domain from a request object renders without crashing 1`] = `
 <MockComponent
   fields={
@@ -17,8 +34,10 @@ exports[`Returns current domain from a request object renders without crashing 1
       },
     }
   }
+  formIsEmpty={[Function]}
   getFormFieldProps={[Function]}
   getInitialFields={[Function]}
+  handleCustomError={[Function]}
   handleSubmit={[Function]}
   handleUserBlur={[Function]}
   handleUserInput={[Function]}
