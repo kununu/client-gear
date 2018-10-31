@@ -31,6 +31,35 @@ describe('Returns current domain from a request object', () => {
     const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+
+  it('renders async initial fields without crashing', () => {
+    const MockComponent = () => (
+      <input type="text" name="mock_input" />
+    );
+
+    const WrapperComponent = FormWrapper(MockComponent);
+
+    let initialFields = () => ({});
+
+    setTimeout(() => {
+      initialFields = () => ({
+        answer: {
+          value: '',
+          error: false,
+          touched: false,
+          validations: [
+            {
+              type: validationTypes.isEmpty,
+              message: 'COMPANY_PROFILE_QA_ANSWER_AS_EMPLOYER',
+            },
+          ],
+        },
+      });
+    }, 1000);
+
+    const wrapper = shallow(<WrapperComponent getInitialFields={() => initialFields()} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });
 
 describe('possible interactions', () => {
@@ -204,6 +233,33 @@ describe('possible interactions', () => {
     const propsFromWrapper = wrapper.props().getFormFieldProps('answer');
     expect(propsFromWrapper.id).toEqual('answer');
     expect(propsFromWrapper.input.value).toEqual('some input text');
+  });
+
+  it('will check if form is empty', () => {
+    const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
+    const form = mount(wrapper.get(0)); // eslint-disable-line
+
+    const propsFromWrapperBefore = wrapper.props().formIsEmpty();
+    expect(propsFromWrapperBefore).toEqual(true);
+
+    const input = form.find('input');
+
+    input.simulate('change', {
+      target: {
+        name: 'answer',
+        value: 'Oh hi',
+      },
+    });
+
+    const propsFromWrapperAfter = wrapper.props().formIsEmpty();
+    expect(propsFromWrapperAfter).toEqual(false);
+  });
+
+  it('will handle custom errors', () => {
+    const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
+
+    wrapper.props().handleCustomError('answer', 'custom error');
+    expect(wrapper.state().fields.answer.error).toEqual('custom error');
   });
 });
 
