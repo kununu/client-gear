@@ -1,6 +1,6 @@
 {
     "name": "@kununu/kununu-form-wrapper",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "description": "kununu form wrapper HOC",
     "main": "dist",
     "author": "kununu",

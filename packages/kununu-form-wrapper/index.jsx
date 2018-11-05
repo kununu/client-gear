@@ -79,8 +79,8 @@ const FormWrapper = (WrappedComponent) => {
      * a value
      * @returns {bool}
      */
-    formIsEmpty = () => !Object.keys(this.state.fields)
-      .every(key => this.state.fields[key].value)
+    formIsEmpty = () => Object.keys(this.state.fields)
+      .every(key => !this.state.fields[key].value)
 
     /**
      * Validate a given field and return the updated field object
