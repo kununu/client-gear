@@ -19,8 +19,7 @@
     "rimraf": "2.6.2",
     "supertest": "3.3.0",
     "winston": "3.1.0",
-    "cookie": "0.3.1",
-    "on-headers": "1.0.1"
+    "cookie": "0.3.1"
   },
   "peerDependencies": {
     "http-status-codes": "1.1.6",
@@ -39,5 +38,8 @@
     "build": "npm run clean && cross-env NODE_ENV=production npm run babel"
   },
   "author": "kununu",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "on-headers": "1.0.1"
+  }
 }
