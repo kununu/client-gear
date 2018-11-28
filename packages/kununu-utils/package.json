@@ -39,5 +39,7 @@
   },
   "author": "kununu",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "on-headers": "^1.0.1"
+  }
 }
