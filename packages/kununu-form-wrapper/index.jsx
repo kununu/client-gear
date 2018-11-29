@@ -83,16 +83,35 @@ const FormWrapper = (WrappedComponent) => {
       .every(key => !this.state.fields[key].value)
 
     /**
+     * Handles different form values types
+     */
+    handleFieldTypes = (prevVal, val) => {
+      if (typeof prevVal === 'string') {
+        return val;
+      }
+
+      if (Array.isArray(prevVal)) {
+        if (prevVal.includes(val)) {
+          return prevVal.filter(item => item !== val);
+        }
+
+        prevVal.push(val);
+
+        return prevVal;
+      }
+    }
+
+    /**
      * Validate a given field and return the updated field object
      *
-     * @param {string} value
+     * @param {string, array} value
      * @param {string} key
      * @param {bool} touched
      */
     updateField = (value, key, touched = false) => ({
       [key]: {
         ...this.state.fields[key],
-        value,
+        value: this.handleFieldTypes(this.state.fields[key].value, value),
         touched: this.state.fields[key].touched || touched, // touched is unset when field is loaded from local storage
         error: validateField(value, this.state.fields[key].validations),
       },
