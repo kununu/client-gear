@@ -86,10 +86,6 @@ const FormWrapper = (WrappedComponent) => {
      * Handles different form values types
      */
     handleFieldTypes = (prevVal, val) => {
-      if (typeof prevVal === 'string') {
-        return val;
-      }
-
       if (Array.isArray(prevVal)) {
         if (prevVal.includes(val)) {
           return prevVal.filter(item => item !== val);
@@ -99,6 +95,8 @@ const FormWrapper = (WrappedComponent) => {
 
         return prevVal;
       }
+
+      return val;
     }
 
     /**

@@ -272,7 +272,6 @@ describe('possible interactions', () => {
     });
 
     const wrapper = mount(<WrapperComponent getInitialFields={() => initialFields()} />);
-    const formElement = wrapper.find('form');
     const input = wrapper.find('input');
 
     input.simulate('change', {
