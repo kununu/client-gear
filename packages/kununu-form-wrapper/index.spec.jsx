@@ -255,6 +255,71 @@ describe('possible interactions', () => {
     expect(propsFromWrapperAfter).toEqual(false);
   });
 
+  it('will handle different field value types', () => {
+    const initialFields = () => ({
+      question: {
+        value: '',
+        error: false,
+        touched: false,
+        validations: [],
+      },
+      answers: {
+        value: [],
+        error: false,
+        touched: false,
+        validations: [],
+      },
+    });
+
+    const wrapper = mount(<WrapperComponent getInitialFields={() => initialFields()} />);
+    const input = wrapper.find('input');
+
+    input.simulate('change', {
+      target: {
+        value: 'question1',
+        name: 'question',
+      },
+    });
+
+    expect(wrapper.state().fields.question.value).toEqual('question1');
+
+    input.simulate('change', {
+      target: {
+        value: 'question2',
+        name: 'question',
+      },
+    });
+
+    expect(wrapper.state().fields.question.value).toEqual('question2');
+
+    input.simulate('change', {
+      target: {
+        value: 'answer1',
+        name: 'answers',
+      },
+    });
+
+    expect(wrapper.state().fields.answers.value).toEqual(['answer1']);
+
+    input.simulate('change', {
+      target: {
+        value: 'answer2',
+        name: 'answers',
+      },
+    });
+
+    expect(wrapper.state().fields.answers.value).toEqual(['answer1', 'answer2']);
+
+    input.simulate('change', {
+      target: {
+        value: 'answer1',
+        name: 'answers',
+      },
+    });
+
+    expect(wrapper.state().fields.answers.value).toEqual(['answer2']);
+  });
+
   it('will handle custom errors', () => {
     const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
 
@@ -262,4 +327,3 @@ describe('possible interactions', () => {
     expect(wrapper.state().fields.answer.error).toEqual('custom error');
   });
 });
-
