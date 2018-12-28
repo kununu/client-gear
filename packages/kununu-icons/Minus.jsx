@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 const Icon = ({className, ariaHidden}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 448 512"
+    viewBox="0 0 512 512"
     className={className}
     aria-hidden={ariaHidden}
   >
-    <path d="M424 318.2c13.3 0 24-10.7 24-24v-76.4c0-13.3-10.7-24-24-24H24c-13.3 0-24 10.7-24 24v76.4c0 13.3 10.7 24 24 24h400z"/>
+    <path d="M0 13v6c0 0.552 0.448 1 1 1h30c0.552 0 1-0.448 1-1v-6c0-0.552-0.448-1-1-1h-30c-0.552 0-1 0.448-1 1z"></path>
   </svg>
 );
 
