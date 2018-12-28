@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Icon = ({className, ariaHidden}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 512 512"
+    viewBox="0 0 32 32"
     className={className}
     aria-hidden={ariaHidden}
   >
