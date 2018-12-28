@@ -8,7 +8,7 @@ const Icon = ({className, ariaHidden}) => (
     className={className}
     aria-hidden={ariaHidden}
   >
-    <path d="M27 4l-15 15-7-7-5 5 12 12 20-20z"></path>
+    <path d="M27 4l-15 15-7-7-5 5 12 12 20-20z" />
   </svg>
 );
 
