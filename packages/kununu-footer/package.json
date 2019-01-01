@@ -1,19 +1,23 @@
 {
   "name": "@kununu/kununu-footer",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "kununu Footer",
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.2.2",
+    "@babel/plugin-proposal-class-properties": "7.2.3",
+    "@babel/preset-env": "7.2.3",
+    "@babel/preset-react": "7.0.0",
     "@kununu/kununu-theme-v2": "2.0.2",
-    "babel-cli": "6.26.0",
     "cross-env": "5.2.0",
-    "node-sass": "4.9.0 ",
+    "node-sass": "4.11.0 ",
     "node-sass-module-importer": "0.1.0",
-    "nukleus": "12.0.2",
-    "react": "16.4.1",
-    "react-dom": "16.4.1",
+    "nukleus": "13.1.1",
+    "react": "16.7.0",
+    "react-dom": "16.7.0",
     "rimraf": "2.6.2"
   },
   "dependencies": {
@@ -23,9 +27,9 @@
     "prop-types": "15.6.2"
   },
   "peerDependencies": {
-    "nukleus": "12.0.2",
-    "react": "16.4.2",
-    "react-dom": "16.4.2"
+    "nukleus": "13.1.1",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
   },
   "scripts": {
     "prepublish": "yarn dist",

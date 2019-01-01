@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ToolTip from 'nukleus/dist/components/ToolTip';
 import DropDown from 'nukleus/dist/components/DropDown';
-import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
 import Logo from '@kununu/kununu-logo';
+import IconHeart from '@kununu/kununu-icons/dist/HeartOutline';
+import IconTuv from '@kununu/kununu-icons/dist/Tuv';
 
 import FooterNav from './FooterNav';
 import styles from './index.scss';
-import TuvIcon from './Tuv';
 
 export default class Footer extends Component { // eslint-disable-line
   render () {
@@ -56,10 +56,7 @@ export default class Footer extends Component { // eslint-disable-line
                 `}
               >
                 <ToolTip
-                  icon={<TuvIcon
-                    className={styles.tuvIcon}
-                    assetsPath={assetsPath}
-                  />}
+                  icon={<IconTuv className={styles.tuvIcon} />}
                   label="TUV"
                   content={(
                     <ul className={styles.tooltipContent}>
@@ -82,7 +79,7 @@ export default class Footer extends Component { // eslint-disable-line
               </p>
 
               <p className={styles.infoText}>
-                made with <HeartIcon className={`${styles.heart} ${styles.icon}`} /> in Vienna, Boston, Porto, Berlin
+                made with <IconHeart className={`${styles.heart} ${styles.icon}`} /> in Vienna, Boston, Porto, Berlin
               </p>
             </div>
           </div>

@@ -1,10 +1,21 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import IconPlus from '@kununu/kununu-icons/dist/Plus';
 
 import styles from './index.scss';
-import IconPlus from './IconPlus';
 
 export default class FooterNav extends Component {
+  static propTypes = {
+    dynamicNav: PropTypes.bool,
+    items: PropTypes.arrayOf(PropTypes.object),
+    title: PropTypes.string,
+    type: PropTypes.oneOf(['row', 'col']),
+  };
+
+  static defaultProps = {
+    type: 'col',
+  };
+
   state = {
     open: false,
   }
@@ -53,9 +64,9 @@ export default class FooterNav extends Component {
     } = this.props;
 
     return (
-      <Fragment>
+      <>
         {title || dynamicNav ?
-          <Fragment>
+          <>
             <span className={styles.title}>
               {title}
             </span>
@@ -68,7 +79,7 @@ export default class FooterNav extends Component {
               </span>
               <IconPlus className={`${styles.plus} ${styles.icon}`} />
             </button>
-          </Fragment>
+          </>
           : ''
         }
         <ul
@@ -87,18 +98,7 @@ export default class FooterNav extends Component {
             </li>
           ))}
         </ul>
-      </Fragment>
+      </>
     );
   }
 }
-
-FooterNav.propTypes = {
-  dynamicNav: PropTypes.bool,
-  items: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string,
-  type: PropTypes.oneOf(['row', 'col']),
-};
-
-FooterNav.defaultProps = {
-  type: 'col',
-};
