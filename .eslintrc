@@ -1,0 +1,19 @@
+{
+  "extends": "@kununu",
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.spec.jsx",
+          "**/*.spec.js",
+          "**/*.pact.js",
+          "**/test-*/*.js",
+          "**/test-*/*.jsx",
+          "config/**/*.js",
+          "next.config.js"
+        ]
+      }
+    ]
+  }
+}
