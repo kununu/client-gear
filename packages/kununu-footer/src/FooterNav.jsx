@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import IconPlus from '@kununu/kununu-icons/dist/Plus';
 
@@ -64,9 +64,9 @@ export default class FooterNav extends Component {
     } = this.props;
 
     return (
-      <>
+      <Fragment>
         {title || dynamicNav ?
-          <>
+          <Fragment>
             <span className={styles.title}>
               {title}
             </span>
@@ -79,7 +79,7 @@ export default class FooterNav extends Component {
               </span>
               <IconPlus className={`${styles.plus} ${styles.icon}`} />
             </button>
-          </>
+          </Fragment>
           : ''
         }
         <ul
@@ -98,7 +98,7 @@ export default class FooterNav extends Component {
             </li>
           ))}
         </ul>
-      </>
+      </Fragment>
     );
   }
 }
