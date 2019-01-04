@@ -20,7 +20,7 @@ import IconClose from '@kununu/kununu-icons/dist/Close';
 <IconClose />
 ```
 
-You can assign them classes too:
+You can also assign them custom classes:
 ```javascript
 <IconPlus className={styles.iconGreen} />
 ```
