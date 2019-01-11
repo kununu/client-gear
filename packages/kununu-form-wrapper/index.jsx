@@ -212,14 +212,21 @@ const FormWrapper = (WrappedComponent) => {
      * Validate all form fields
      */
     validateForm (callback) {
-      const isFormValid = this.isFormValid();
+      this.setState({
+        fields: Object.keys(this.state.fields).reduce((acc, key) => ({
+          ...acc,
+          ...this.updateField(this.state.fields[key].value, key, true),
+        }), {}),
+      }, () => {
+        const isFormValid = this.isFormValid();
 
-      if (isFormValid) {
-        // this will be submit function in the child component
-        callback(this.getFormValues());
-      } else {
-        this.touchForm(true);
-      }
+        if (isFormValid) {
+          // this will be submit function in the child component
+          callback(this.getFormValues());
+        } else {
+          this.touchForm(true);
+        }
+      });
     }
 
     handleSubmit = (e, callback) => {
