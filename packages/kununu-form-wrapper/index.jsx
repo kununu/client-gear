@@ -86,7 +86,8 @@ const FormWrapper = (WrappedComponent) => {
      * Handles different form values types
      */
     handleFieldTypes = (prevVal, val) => {
-      if (Array.isArray(prevVal)) {
+      if (Array.isArray(prevVal) && !Array.isArray(val)) {
+        // if it is already there, then the user is removing the item
         if (prevVal.includes(val)) {
           return prevVal.filter(item => item !== val);
         }
