@@ -272,6 +272,7 @@ describe('possible interactions', () => {
     });
 
     const wrapper = mount(<WrapperComponent getInitialFields={() => initialFields()} />);
+    const form = mount(wrapper.get(0));
     const input = wrapper.find('input');
 
     input.simulate('change', {
@@ -318,6 +319,30 @@ describe('possible interactions', () => {
     });
 
     expect(wrapper.state().fields.answers.value).toEqual(['answer2']);
+
+    input.simulate('change', {
+      target: {
+        value: 'answer3',
+        name: 'answers',
+      },
+    });
+
+    form.simulate('submit');
+
+    expect(wrapper.state().fields).toEqual({
+      question: {
+        value: 'question2',
+        error: false,
+        touched: false,
+        validations: [],
+      },
+      answers: {
+        value: ['answer2', 'answer3'],
+        error: false,
+        touched: false,
+        validations: [],
+      },
+    });
   });
 
   it('will handle custom errors', () => {
