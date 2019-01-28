@@ -12,7 +12,9 @@ import TuvIcon from './Tuv';
 export default class Footer extends Component { // eslint-disable-line
   activeCountry = () => {
     const {items: {countrySwitcher}} = this.props;
-    return countrySwitcher.map(item => item.active ? (<span>{item.value} {item.icon}</span>) : '');
+    const active = countrySwitcher.filter(item => item.active);
+
+    return (<span>{active[0].value} {active[0].icon}</span>);
   }
 
   render () {
@@ -112,7 +114,7 @@ export default class Footer extends Component { // eslint-disable-line
                 direction="up"
                 showOnHover={false}
                 pullRight
-                title={this.activeCountry}
+                title={this.activeCountry()}
               >
                 {countrySwitcher.map((item, index) => (
                   <DropDownItem
