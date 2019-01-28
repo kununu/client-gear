@@ -360,6 +360,21 @@
 }
 
 .dropdown {
+  button {
+    font-weight: 600;
+    color: $white;
+  }
+
+  ul li {
+    &:first-child {
+      padding-top: 15px;
+    }
+
+    a {
+      color: $text-color;
+    }
+  }
+
   @media (min-width: $screen-md-min) {
     font-size: $font-size-base;
 
