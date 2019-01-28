@@ -23,7 +23,6 @@ export default class Footer extends Component { // eslint-disable-line
       infoText,
       items: {
         countrySwitcher,
-        items,
         navs,
       },
       pathname,
@@ -120,7 +119,8 @@ export default class Footer extends Component { // eslint-disable-line
                 {countrySwitcher.map((item, index) => (
                   <DropDownItem
                     key={index}
-                    icon={item.icon}>
+                    icon={item.icon}
+                  >
                     {item.link}
                   </DropDownItem>
                 ))}
