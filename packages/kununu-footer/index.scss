@@ -361,7 +361,8 @@
 
 .dropdown {
   button {
-    font-weight: 600;
+    padding-right: 0;
+    font-weight: $font-weight-semibold;
     color: $white;
   }
 
