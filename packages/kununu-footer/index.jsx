@@ -108,9 +108,8 @@ export default class Footer extends Component { // eslint-disable-line
               ),
               )}
             </div>
-            <div className={styles.hiddenXs}>
+            <div className={`${styles.dropdown} ${styles.hiddenXs}`}>
               <DropDown
-                className={styles.dropdown}
                 direction="up"
                 showOnHover={false}
                 pullRight
