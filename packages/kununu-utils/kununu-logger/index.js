@@ -1,5 +1,5 @@
 import {createLogger, transports, format} from 'winston';
-import {uuidv4} from 'uuid/v4';
+import uuidv4 from 'uuid/v4';
 
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
