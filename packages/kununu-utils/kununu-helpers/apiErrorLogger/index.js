@@ -1,7 +1,7 @@
 import {logger} from '../../kununu-logger';
 import isClientRender from '../isClientRender';
 
-export default function apiErrorLogger(error, label) {
+export default function (error, label) {
   if (!isClientRender()) {
     const {status, url} = error.response;
 
