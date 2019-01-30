@@ -1,7 +1,10 @@
 import {createLogger, transports, format} from 'winston';
+import {uuidv4} from 'uuid/v4';
 
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
+
+const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
 
 /**
  * Format request and response data
@@ -17,10 +20,11 @@ export const formatNodeRequest = ({req, res, label, timeTakenMicros}) => JSON.st
   remote_ip: req.connection.remoteAddress || '-',
   referer: req.headers.referer || '-',
   forwarded_for: req.headers['x-forwarded-for'] || '-',
-  trace_id: req.headers['x-amzn-trace-id'] || '-',
+  trace_id: req.headers['x-amzn-trace-id'] || uuidv4(),
   logType: 'middleware_logger',
   user_agent: req.headers['user-agent'] || '-',
   time_taken_micros: timeTakenMicros,
+  build: process.env.BUILD_NAME || '-',
 });
 
 /**
@@ -54,6 +58,7 @@ export const logger = createLogger({
       name: 'console',
       colorize: true,
       showLevel: true,
+      level: minimumLogLevel
     }),
   ],
 });
