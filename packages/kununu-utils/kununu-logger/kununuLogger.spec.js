@@ -16,7 +16,7 @@ const spyFunc = jest.fn((val) => {
   generatedLog = JSON.parse(val.slice(val.indexOf('{')));
 });
 
-global.console = {log: spyFunc, error: console.error};
+global.console = {log: spyFunc};
 
 afterEach(() => {
   spyFunc.mockClear();
