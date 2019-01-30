@@ -10,9 +10,3 @@ export default function (error, label) {
     });
   }
 }
-
-// window.onerror = (msg, url, lineNo, columnNo, error) => {
-//   consoleErrorLogger({msg, url, lineNo, columnNo, error}, 'app-reviews');
-//
-//   return false;
-// }
