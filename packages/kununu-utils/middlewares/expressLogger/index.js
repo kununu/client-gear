@@ -36,4 +36,3 @@ const expressLogger = label => (req, res, next) => {
 };
 
 export default expressLogger;
-
