@@ -1,4 +1,7 @@
-export function consoleErrorLogger(error, label) {
+import {logger} from '../../kununu-logger';
+import isClientRender from '../isClientRender';
+
+export default function consoleErrorLogger(error, label) {
   if (isClientRender()) {
     logger.log('error', {
       custom: true,
