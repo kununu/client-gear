@@ -21,16 +21,17 @@ const expressLogger = label => (req, res, next) => {
     res.removeListener('close', log);
     res.removeListener('error', log);
 
-    logger.log(this.status, {req, res, label, timeTakenMicros: (new Date() - startDate) * 1000});
+    const status = res.statusCode < 400 ? 'info' : 'error';
+
+    logger.log(status, {req, res, label, timeTakenMicros: (new Date() - startDate) * 1000});
   }
 
   // logs any successfully finished pipeline
-  res.on('finish', log.bind({status: 'info'}));
+  res.once('finish', log.bind());
   // logs any aborted pipeline
-  res.on('close', log.bind({status: 'error'}));
+  res.once('close', log.bind());
   // logs any internal errors
-  res.on('error', log.bind({status: 'error'}));
-
+  res.once('error', log.bind());
 
   next();
 };
