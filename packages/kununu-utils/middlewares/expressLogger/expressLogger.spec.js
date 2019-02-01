@@ -22,7 +22,7 @@ describe('Express logger', () => {
 
   it('logs a request with the expected info', async () => {
     const spyFunc = jest.fn();
-    
+
     global.console = {
       log: spyFunc,
     };
@@ -32,6 +32,17 @@ describe('Express logger', () => {
 
     const logObjectRequest = JSON.parse(spyFunc.mock.calls[0][0]);
     expect(Object.keys(logObjectRequest).sort()).toEqual(['custom', 'label', 'level', 'logType', 'timestamp', 'method', 'request'].sort());
+  });
+
+  it('logs a response with the expected info', async () => {
+    const spyFunc = jest.fn();
+
+    global.console = {
+      log: spyFunc,
+    };
+
+    await request(app).get('/');
+    expect(spyFunc.mock.calls.length).toEqual(2);
 
     const logObjectResponse = JSON.parse(spyFunc.mock.calls[1][0]);
     expect(Object.keys(logObjectResponse).sort()).toEqual(['build', 'label', 'logType', 'time', 'method', 'request', 'status', 'remote_ip', 'referer', 'forwarded_for', 'trace_id', 'user_agent', 'time_taken_micros'].sort());
