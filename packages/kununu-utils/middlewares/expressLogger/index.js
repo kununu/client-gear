@@ -11,6 +11,9 @@ const expressLogger = label => (req, res, next) => {
   // log initial incoming request
   const startDate = new Date();
 
+  // log request in before processing
+  logger.log('info', {req, res, label, timeTakenMicros: (new Date() - startDate) * 1000});
+
   // Log request using kununu-logger
   function log () {
     // ensure that no hanging listeners exist
