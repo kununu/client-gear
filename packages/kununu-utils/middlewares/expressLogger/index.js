@@ -12,7 +12,12 @@ const expressLogger = label => (req, res, next) => {
   const startDate = new Date();
 
   // log request in before processing
-  logger.log('info', {req, res, label});
+  logger.log('info', {
+    custom: true,
+    method: req.method,
+    request: req.originalUrl,
+    label,
+  });
 
   // Log request using kununu-logger
   function log () {
