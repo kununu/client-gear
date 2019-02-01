@@ -20,16 +20,19 @@ describe('Express logger', () => {
     process.env.NODE_ENV = originalEnv;
   });
 
-  it('Logs a request with the expected info', async () => {
+  it('logs a request with the expected info', async () => {
     const spyFunc = jest.fn();
-
+    
     global.console = {
       log: spyFunc,
     };
 
     await request(app).get('/');
     expect(spyFunc.mock.calls.length).toEqual(2);
-    const logObjectRequest = JSON.parse(spyFunc.mock.calls[1][0]);
-    expect(Object.keys(logObjectRequest).sort()).toEqual(['build', 'label', 'logType', 'time', 'method', 'request', 'status', 'remote_ip', 'referer', 'forwarded_for', 'trace_id', 'user_agent', 'time_taken_micros'].sort());
+    const logObjectRequest = JSON.parse(spyFunc.mock.calls[0][0]);
+    const logObjectResponse = JSON.parse(spyFunc.mock.calls[1][0]);
+    expect(Object.keys(logObjectResponse).sort()).toEqual(['build', 'label', 'logType', 'time', 'method', 'request', 'status', 'remote_ip', 'referer', 'forwarded_for', 'trace_id', 'user_agent', 'time_taken_micros'].sort());
+    expect(logObjectRequest.status).toBe(200);
+    expect(logObjectResponse.status).toBe(500);
   });
 });
