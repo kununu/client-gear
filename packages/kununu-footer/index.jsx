@@ -114,6 +114,7 @@ export default class Footer extends Component { // eslint-disable-line
                 showOnHover={false}
                 pullRight
                 title={this.activeCountry()}
+                type="countrySwitcher"
               >
                 {countrySwitcher.map((item, index) => (
                   <DropDownItem
