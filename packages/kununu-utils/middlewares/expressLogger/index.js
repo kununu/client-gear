@@ -12,7 +12,7 @@ const expressLogger = label => (req, res, next) => {
   const startDate = new Date();
 
   // log request in before processing
-  logger.log('info', {req, res, label, timeTakenMicros: (new Date() - startDate) * 1000});
+  logger.log('info', {req, res, label});
 
   // Log request using kununu-logger
   function log () {
