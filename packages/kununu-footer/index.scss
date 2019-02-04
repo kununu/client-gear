@@ -359,6 +359,21 @@
   }
 }
 
+.dropdown {
+  .toggleButton {
+    padding-right: 0;
+    font-weight: $font-weight-semibold;
+  }
+
+  @media (min-width: $screen-md-min) {
+    font-size: $font-size-base;
+
+    .item {
+      font-size: $font-size-base;
+    }
+  }
+}
+
 .logoContainer {
   display: flex;
   justify-content: center;
