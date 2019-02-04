@@ -11,7 +11,7 @@
     "cross-env": "5.2.0",
     "node-sass": "4.9.0 ",
     "node-sass-module-importer": "0.1.0",
-    "nukleus": "14.1.0",
+    "nukleus": "14.1.1",
     "react": "16.4.1",
     "react-dom": "16.4.1",
     "rimraf": "2.6.2"
@@ -23,7 +23,7 @@
     "prop-types": "15.6.2"
   },
   "peerDependencies": {
-    "nukleus": "14.1.0",
+    "nukleus": "14.1.1",
     "react": "16.4.2",
     "react-dom": "16.4.2"
   },
