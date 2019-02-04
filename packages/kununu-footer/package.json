@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-footer",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "kununu Footer",
   "main": "dist",
   "author": "kununu",
@@ -9,23 +9,23 @@
     "@kununu/kununu-theme-v2": "2.0.2",
     "babel-cli": "6.26.0",
     "cross-env": "5.2.0",
-    "node-sass": "4.9.0 ",
+    "node-sass": "4.11.0",
     "node-sass-module-importer": "0.1.0",
     "nukleus": "14.1.1",
-    "react": "16.4.1",
-    "react-dom": "16.4.1",
-    "rimraf": "2.6.2"
+    "react": "16.7.0",
+    "react-dom": "16.7.0",
+    "rimraf": "2.6.3"
   },
   "dependencies": {
     "@kununu/kununu-theme-v2": "2.0.2",
-    "@kununu/kununu-icons": "1.2.0",
+    "@kununu/kununu-icons": "1.4.0",
     "@kununu/kununu-logo": "1.1.0",
     "prop-types": "15.6.2"
   },
   "peerDependencies": {
     "nukleus": "14.1.1",
-    "react": "16.4.2",
-    "react-dom": "16.4.2"
+    "react": "16.7.0",
+    "react-dom": "16.7.0"
   },
   "scripts": {
     "prepublish": "yarn dist",

@@ -111,10 +111,10 @@ export default class Footer extends Component { // eslint-disable-line
             <div className={`${styles.dropdown} ${styles.hiddenXs}`}>
               <DropDown
                 direction="up"
+                shade="light"
                 showOnHover={false}
                 pullRight
                 title={this.activeCountry()}
-                type="countrySwitcher"
               >
                 {countrySwitcher.map((item, index) => (
                   <DropDownItem
