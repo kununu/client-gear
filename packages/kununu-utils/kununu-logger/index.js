@@ -1,5 +1,4 @@
 import {createLogger, transports, format} from 'winston';
-import uuidv4 from 'uuid/v4';
 
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
@@ -20,7 +19,7 @@ export const formatNodeRequest = ({req, res, label, timeTakenMicros}) => JSON.st
   remote_ip: req.connection.remoteAddress || '-',
   referer: req.headers.referer || '-',
   forwarded_for: req.headers['x-forwarded-for'] || '-',
-  trace_id: req.headers['x-amzn-trace-id'] || uuidv4(),
+  trace_id: req.headers['x-amzn-trace-id'] || '-',
   logType: 'middleware_logger',
   user_agent: req.headers['user-agent'] || '-',
   time_taken_micros: timeTakenMicros,
@@ -42,7 +41,7 @@ export const customFormat = printf((info) => {
   const prefix = kibanaFormatting ? '' : `${colorizedMessage}${loggerType}`;
 
   if (info.custom) {
-    return `${prefix}${JSON.stringify({...info, logType: 'custom_logger'})}`;
+    return `${prefix}${JSON.stringify({...info, logType: 'custom_logger', build: process.env.BUILD_NAME || '-'})}`;
   }
 
   return `${prefix}${formatNodeRequest(info)}`;
