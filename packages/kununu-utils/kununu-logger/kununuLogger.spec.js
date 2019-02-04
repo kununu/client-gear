@@ -4,12 +4,6 @@ import {formatNodeRequest, logger, customFormat} from './index';
 const express = require('express');
 const request = require('supertest');
 
-jest.mock('uuid', () => {
-  return {
-    v4: jest.fn(() => 'uuid-test-1')
-  };
-});
-
 let generatedLog = '';
 
 const spyFunc = jest.fn((val) => {
@@ -39,7 +33,7 @@ describe('Returns correct log format with text format', () => {
         remote_ip: '::ffff:127.0.0.1',
         referer: '-',
         forwarded_for: '-',
-        trace_id: 'uuid-test-1',
+        trace_id: '-',
         logType: 'middleware_logger',
         timeTakenMicros: 1000,
         build: 'build-123',
@@ -98,6 +92,7 @@ describe('Returns correct log format with json format', () => {
     const printf = customFormat;
     const value = printf.template(info);
     expect(JSON.parse(value)).toEqual({
+      build: '-',
       label: 'test',
       level: 'info',
       custom: true,
