@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-footer",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "kununu Footer",
   "main": "dist",
   "author": "kununu",
@@ -11,7 +11,7 @@
     "cross-env": "5.2.0",
     "node-sass": "4.11.0",
     "node-sass-module-importer": "0.1.0",
-    "nukleus": "14.1.1",
+    "nukleus": "14.1.2",
     "react": "16.7.0",
     "react-dom": "16.7.0",
     "rimraf": "2.6.3"
@@ -23,7 +23,7 @@
     "prop-types": "15.6.2"
   },
   "peerDependencies": {
-    "nukleus": "14.1.1",
+    "nukleus": "14.1.2",
     "react": "16.7.0",
     "react-dom": "16.7.0"
   },
