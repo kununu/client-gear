@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ToolTip from 'nukleus/dist/components/ToolTip';
-import DropDown from 'nukleus/dist/components/DropDown';
+import {DropDown, DropDownItem} from 'nukleus/dist/components/DropDown';
 import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
 import Logo from '@kununu/kununu-logo';
 
@@ -10,11 +10,21 @@ import styles from './index.scss';
 import TuvIcon from './Tuv';
 
 export default class Footer extends Component { // eslint-disable-line
+  activeCountry = () => {
+    const {items: {countrySwitcher}} = this.props;
+    const active = countrySwitcher.filter(item => item.active);
+
+    return (<span>{active[0].value} {active[0].icon}</span>);
+  }
+
   render () {
     const {
       container,
       infoText,
-      items,
+      items: {
+        countrySwitcher,
+        navs,
+      },
       pathname,
       simpleMobile,
       tuv,
@@ -32,12 +42,12 @@ export default class Footer extends Component { // eslint-disable-line
             <div className={`${styles.menuColumns} ${styles.visibleXs}`}>
               <FooterNav
                 dynamicNav
-                items={items.countrySwitcher}
+                items={countrySwitcher}
                 pathname={pathname}
                 type="col"
               />
             </div>
-            {items.navs.cols.map((item, index) => (
+            {navs.cols.map((item, index) => (
               <div className={styles.menuColumns} key={index}>
                 <FooterNav
                   items={item.items}
@@ -88,7 +98,7 @@ export default class Footer extends Component { // eslint-disable-line
           </div>
           <div className={styles.bottomMenu}>
             <div>
-              {items.navs.rows.map((item, index) => (
+              {navs.rows.map((item, index) => (
                 <FooterNav
                   key={index}
                   pathname={pathname}
@@ -100,9 +110,21 @@ export default class Footer extends Component { // eslint-disable-line
             </div>
             <div className={`${styles.dropdown} ${styles.hiddenXs}`}>
               <DropDown
-                position="top"
-                items={items.countrySwitcher}
-              />
+                direction="up"
+                shade="light"
+                showOnHover={false}
+                pullRight
+                title={this.activeCountry()}
+              >
+                {countrySwitcher.map((item, index) => (
+                  <DropDownItem
+                    key={index}
+                    icon={item.icon}
+                  >
+                    {item.link}
+                  </DropDownItem>
+                ))}
+              </DropDown>
             </div>
           </div>
         </div>
