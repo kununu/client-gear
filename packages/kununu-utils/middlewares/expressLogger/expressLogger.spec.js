@@ -10,12 +10,10 @@ describe('Express logger', () => {
   app.use(expressLogger('app'));
 
   app.get('/', (req, res) => {
-    res.header('x-amzn-trace-id', '0000');
     res.send();
   });
 
   app.get('/error', (req, res) => {
-    res.header('x-amzn-trace-id', '0000');
     res.status(500).send();
   });
 

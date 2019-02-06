@@ -5,6 +5,7 @@
   "main": "dist",
   "devDependencies": {
     "babel-cli": "6.26.0",
+    "beedle": "0.7.1",
     "cookie": "0.3.1",
     "cookie-parser": "1.4.3",
     "cross-env": "5.2.0",
