@@ -12,19 +12,19 @@ module.exports = class kununu extends TransportStream {
     this.triggerLevel = options.triggerLevel || 'error';
   
     const actions = {
-      updateLog(context, payload) {
-        context.commit('setLog', payload);
+      update(context, payload) {
+        context.commit('update', payload);
       }
     };
     
     const mutations = {
-      setLog(state, payload) {
-        state = payload;
+      update(state, payload) {
+        state = state.push(payload);
         return state;
       }
     };
     
-    const initialState = {};
+    const initialState = [];
 
     this.storeInstance = new Store({
       actions,
@@ -37,11 +37,11 @@ module.exports = class kununu extends TransportStream {
     setImmediate(() => this.emit('logged', info));
     
     // Store all response logs on local store instance
-    this.storeInstance.dispatch('updateLog', JSON.parse(formatNodeRequest(info)));
+    this.storeInstance.dispatch('update', JSON.parse(formatNodeRequest(info)));
     
     // If is above minimum log level, then recover previous logs
     if(this.isAboveMinimumLogLevel(info)) {
-      this.recoverPreviousLogs();
+      this.recoverLogs();
     }
 
     callback();
@@ -51,7 +51,7 @@ module.exports = class kununu extends TransportStream {
     return this.triggerLevel === info[LEVEL];
   }
   
-  recoverPreviousLogs () {
+  recoverLogs () {
     const {state} = this.storeInstance;
     
     console.log(state);
