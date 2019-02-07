@@ -1,6 +1,5 @@
 const TransportStream = require('winston-transport');
 const {LEVEL, MESSAGE} = require('triple-beam');
-const Store = require('beedle');
 
 import {formatNodeRequest} from './index';
 
@@ -32,56 +31,38 @@ module.exports = class kununu extends TransportStream {
   
     this.name = 'kununu-winston';
     this.triggerLevel = options.triggerLevel || 'error';
-  
-    // Setup local state, may be overengineering
-    const actions = {
-      update(context, payload) {
-        context.commit('update', payload);
-      }
-    };
-    
-    const mutations = {
-      update(state, payload) {
-        state = state.push(payload);
-        return state;
-      }
-    };
-    
-    const initialState = [];
 
-    this.storeInstance = new Store({
-      actions,
-      mutations,
-      initialState
-    });
+    this.state = [];
   }
 
-  log(info, callback) {
+  pushToState (log) {
+    this.state.push(log);
+  }
+
+  log (info, callback) {
     setImmediate(() => this.emit('logged', info));
     
-    const parsedInfo = JSON.parse(formatNodeRequest(info));
+    const formatedLog = JSON.parse(formatNodeRequest(info));
     
     // Store all response logs on local store instance
-    this.storeInstance.dispatch('update', parsedInfo);
+    this.pushToState(formatedLog);
     
     // If is below minimum log level, then recover previous logs
     if(this.isAboveMinimumLogLevel(info)) {
-      const recoverLogs = this.recoverLogs(parsedInfo);
+      const recoverLogs = this.recoverLogs(formatedLog);
       console.log(recoverLogs);
     }
 
     callback();
   }
 
+  // Check whether request is below minimum log level
   isAboveMinimumLogLevel (info) {
-    // Check whether request is below minimum log level
     return getLoggingLevel(info[LEVEL]) <= getLoggingLevel(this.triggerLevel);
   }
   
+  // Recover logs with same trace id as the error
   recoverLogs (info) {
-    const {state} = this.storeInstance;
-    
-    // Recover logs with same trace id as the error
-    return state.filter(log => info.trace_id === log.trace_id);
+    return this.state.filter(log => info.trace_id === log.trace_id);
   }
 };
