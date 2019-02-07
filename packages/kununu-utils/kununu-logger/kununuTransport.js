@@ -44,7 +44,7 @@ module.exports = class kununu extends TransportStream {
     
     const formatedLog = JSON.parse(formatNodeRequest(info));
     
-    // Store all response logs on local store instance
+    // Store all response logs on state
     this.pushToState(formatedLog);
     
     // If is below minimum log level, then recover previous logs
