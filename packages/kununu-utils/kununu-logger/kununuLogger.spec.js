@@ -1,4 +1,3 @@
-process.env.MINIMUM_LOG_LEVEL = 'build-123';
 import {formatNodeRequest, logger, customFormat} from './index';
 
 const express = require('express');
@@ -102,10 +101,10 @@ describe('Returns correct log format with json format', () => {
 });
 
 describe('Logs according to defined level', () => {
-  let originalEnv = process.env.MINIMUM_LOG_LEVEL;
+  const originalEnv = process.env.MINIMUM_LOG_LEVEL;
   jest.resetModules();
   process.env.MINIMUM_LOG_LEVEL = 'debug';
-  const {logger: loggerLevelTest} = require('./index');
+  const {logger: loggerLevelTest} = require('./index'); // eslint-disable-line global-require
 
   afterAll(() => {
     process.env.MINIMUM_LOG_LEVEL = originalEnv;

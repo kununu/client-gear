@@ -1,6 +1,6 @@
 import {createLogger, transports, format} from 'winston';
 
-const kununu = require('./kununuTransport');
+const kununuTransport = require('./kununuTransport');
 
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
@@ -52,18 +52,18 @@ export const customFormat = printf((info) => {
 export const logger = createLogger({
   format: format.combine(
     timestamp(),
-    customFormat
+    customFormat,
   ),
   transports: [
     new (transports.Console)({
       name: 'console',
       colorize: true,
       showLevel: true,
-      level: minimumLogLevel
+      level: minimumLogLevel,
     }),
-    new (kununu)({
+    new (kununuTransport)({ // eslint-disable-line new-cap
       name: 'kununu',
-      triggerLevel: 'error'
+      triggerLevel: 'error',
     }),
   ],
 });

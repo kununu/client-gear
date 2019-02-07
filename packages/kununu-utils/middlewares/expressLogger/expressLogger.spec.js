@@ -6,7 +6,7 @@ const request = require('supertest');
 describe('Express logger', () => {
   const app = express();
   let originalEnv;
-  
+
   app.use(expressLogger('app'));
 
   app.get('/', (req, res) => {
