@@ -1,11 +1,11 @@
 import {createLogger, transports, format} from 'winston';
 
-const kununu = require('./kununu');
+const kununu = require('./kununuTransport');
 
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
 
-const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'error';
+const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
 
 /**
  * Format request and response data
@@ -55,12 +55,12 @@ export const logger = createLogger({
     customFormat
   ),
   transports: [
-    // new (transports.Console)({
-    //   name: 'console',
-    //   colorize: true,
-    //   showLevel: true,
-    //   level: minimumLogLevel
-    // }),
+    new (transports.Console)({
+      name: 'console',
+      colorize: true,
+      showLevel: true,
+      level: minimumLogLevel
+    }),
     new (kununu)({
       name: 'kununu',
       triggerLevel: 'error'

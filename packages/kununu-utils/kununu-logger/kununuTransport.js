@@ -2,7 +2,29 @@ const TransportStream = require('winston-transport');
 const {LEVEL, MESSAGE} = require('triple-beam');
 const Store = require('beedle');
 
-import {formatNodeRequest} from './';
+import {formatNodeRequest} from './index';
+
+/**
+ * Receives Winston logging level and
+ * return its correspondent specified by RFC5424
+ *
+ * @param  {String} winstonLevel
+ * @return {Integer}
+ */
+const getLoggingLevel = (level) => {
+  const levels = { 
+    emerg: 0, 
+    alert: 1, 
+    crit: 2, 
+    error: 3, 
+    warning: 4, 
+    notice: 5, 
+    info: 6, 
+    debug: 7
+  };
+
+  return levels[level.toLowerCase()];
+}
 
 module.exports = class kununu extends TransportStream {
   constructor(options = {}) {
@@ -11,6 +33,7 @@ module.exports = class kununu extends TransportStream {
     this.name = 'kununu-winston';
     this.triggerLevel = options.triggerLevel || 'error';
   
+    // Setup local state, may be overengineering
     const actions = {
       update(context, payload) {
         context.commit('update', payload);
@@ -36,24 +59,29 @@ module.exports = class kununu extends TransportStream {
   log(info, callback) {
     setImmediate(() => this.emit('logged', info));
     
-    // Store all response logs on local store instance
-    this.storeInstance.dispatch('update', JSON.parse(formatNodeRequest(info)));
+    const parsedInfo = JSON.parse(formatNodeRequest(info));
     
-    // If is above minimum log level, then recover previous logs
+    // Store all response logs on local store instance
+    this.storeInstance.dispatch('update', parsedInfo);
+    
+    // If is below minimum log level, then recover previous logs
     if(this.isAboveMinimumLogLevel(info)) {
-      this.recoverLogs();
+      const recoverLogs = this.recoverLogs(parsedInfo);
+      console.log(recoverLogs);
     }
 
     callback();
   }
-  
+
   isAboveMinimumLogLevel (info) {
-    return this.triggerLevel === info[LEVEL];
+    // Check whether request is below minimum log level
+    return getLoggingLevel(info[LEVEL]) <= getLoggingLevel(this.triggerLevel);
   }
   
-  recoverLogs () {
+  recoverLogs (info) {
     const {state} = this.storeInstance;
     
-    console.log(state);
+    // Recover logs with same trace id as the error
+    return state.filter(log => info.trace_id === log.trace_id);
   }
 };
