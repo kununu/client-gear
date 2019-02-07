@@ -38,4 +38,18 @@ describe('kununu Transport for kununu-logger', () => {
     expect(spyFunc.mock.calls[0][0][0].trace_id).toBe('trace-id-3');
     expect(spyFunc.mock.calls[0][0][1].trace_id).toBe('trace-id-3');
   });
+
+  it('logs requests and return nothing because there are no errors', async () => {
+    const spyFunc = jest.fn();
+
+    global.console = {
+      log: spyFunc,
+    };
+
+    await request(app).post('/post').set('x-amzn-trace-id', 'trace-id-1');
+    await request(app).get('/').set('x-amzn-trace-id', 'trace-id-2');
+    await request(app).get('/').set('x-amzn-trace-id', 'trace-id-3');
+
+    expect(spyFunc.mock.calls.length).toBe(0);
+  });
 });
