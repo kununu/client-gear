@@ -51,8 +51,8 @@ module.exports = class kununu extends TransportStream {
     // Store all response logs on state
     this.pushState(formatedLog);
 
-    // If is below minimum log level, then recover previous logs
-    if(this.isAboveMinimumLogLevel(info)) {
+    // If has required minimum log level, then recover previous logs
+    if(this.hasRequiredMinimumLevel(info)) {
       const recoverLogs = this.recoverLogs(formatedLog);
 
       // Remove recovered logs from state
@@ -65,8 +65,8 @@ module.exports = class kununu extends TransportStream {
     callback();
   }
 
-  // Check whether request is below minimum log level
-  isAboveMinimumLogLevel (info) {
+  // Check whether request has required minimum log level
+  hasRequiredMinimumLevel (info) {
     return getLoggingLevel(info[LEVEL]) <= getLoggingLevel(this.triggerLevel);
   }
   
