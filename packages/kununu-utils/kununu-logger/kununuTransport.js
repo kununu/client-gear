@@ -35,8 +35,12 @@ module.exports = class kununu extends TransportStream {
     this.state = [];
   }
 
-  pushToState (log) {
+  pushState (log) {
     this.state.push(log);
+  }
+
+  removeState (trace_id) {
+    this.state = this.state.filter(log => trace_id !== log.trace_id);
   }
 
   log (info, callback) {
@@ -45,11 +49,16 @@ module.exports = class kununu extends TransportStream {
     const formatedLog = JSON.parse(formatNodeRequest(info));
     
     // Store all response logs on state
-    this.pushToState(formatedLog);
-    
+    this.pushState(formatedLog);
+
     // If is below minimum log level, then recover previous logs
     if(this.isAboveMinimumLogLevel(info)) {
       const recoverLogs = this.recoverLogs(formatedLog);
+
+      // Remove recovered logs from state
+      this.removeState(formatedLog.trace_id);
+
+      // Output recovered logs with same trace id
       console.log(recoverLogs);
     }
 
