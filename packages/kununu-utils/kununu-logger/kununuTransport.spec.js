@@ -21,18 +21,21 @@ describe('kununu Transport for kununu-logger', () => {
   });
 
   it('logs requests and return errors and previous requests that share same trace id', async () => {
-    // const spyFunc = jest.fn();
+    const spyFunc = jest.fn();
 
-    // global.console = {
-    //   log: spyFunc,
-    // };
+    global.console = {
+      log: spyFunc,
+    };
 
     await request(app).post('/post').set('x-amzn-trace-id', 'trace-id-1');
     await request(app).get('/').set('x-amzn-trace-id', 'trace-id-2');
     await request(app).get('/').set('x-amzn-trace-id', 'trace-id-3');
     await request(app).get('/error').set('x-amzn-trace-id', 'trace-id-3');
 
-    // const logObjectRequest = JSON.parse(spyFunc.mock.calls);
-    // expect(logObjectRequest).toMatchObject({1: 'b'});
+    expect(spyFunc.mock.calls.length).toBe(1); // One console.log call
+    expect(spyFunc.mock.calls[0][0].length).toBe(2); // Two requests logged
+    // Requests share same trace_id
+    expect(spyFunc.mock.calls[0][0][0].trace_id).toBe('trace-id-3');
+    expect(spyFunc.mock.calls[0][0][1].trace_id).toBe('trace-id-3');
   });
 });

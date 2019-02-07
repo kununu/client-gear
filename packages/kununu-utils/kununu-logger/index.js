@@ -55,12 +55,6 @@ export const logger = createLogger({
     customFormat,
   ),
   transports: [
-    new (transports.Console)({
-      name: 'console',
-      colorize: true,
-      showLevel: true,
-      level: minimumLogLevel,
-    }),
     new (kununuTransport)({ // eslint-disable-line new-cap
       name: 'kununu',
       triggerLevel: 'error',
