@@ -1,6 +1,6 @@
 import {createLogger, transports, format} from 'winston';
 
-const kununuTransport = require('./kununuTransport');
+const FingersCrossed = require('./fingersCrossed');
 
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
@@ -55,7 +55,7 @@ export const logger = createLogger({
     customFormat,
   ),
   transports: [
-    new (kununuTransport)({ // eslint-disable-line new-cap
+    new (FingersCrossed)({
       name: 'kununu',
       triggerLevel: 'error',
     }),
