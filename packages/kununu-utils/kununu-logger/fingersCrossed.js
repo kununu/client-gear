@@ -46,20 +46,22 @@ module.exports = class FingersCrossed extends TransportStream {
   log (info, callback) {
     setImmediate(() => this.emit('logged', info));
 
-    const formatedLog = JSON.parse(formatNodeRequest(info));
+    if (info.req) {
+      const formatedLog = info.req && JSON.parse(formatNodeRequest(info));
 
-    // Store all response logs on state
-    this.pushState(formatedLog);
+      // Store all response logs on state
+      this.pushState(formatedLog);
 
-    // If has required minimum log level, then recover previous logs
-    if (this.hasRequiredMinimumLevel(info)) {
-      const recoverLogs = this.recoverLogs(formatedLog);
+      // If has required minimum log level, then recover previous logs
+      if (this.hasRequiredMinimumLevel(info)) {
+        const recoverLogs = this.recoverLogs(formatedLog);
 
-      // Remove recovered logs from state
-      this.removeState(formatedLog.trace_id);
+        // Remove recovered logs from state
+        this.removeState(formatedLog.trace_id);
 
-      // Output recovered logs with same trace id
-      console.log(recoverLogs); // eslint-disable-line no-console
+        // Output recovered logs with same trace id
+        console.log(recoverLogs); // eslint-disable-line no-console
+      }
     }
 
     callback();
