@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-utils",
-  "version": "1.8.2-beta.1",
+  "version": "1.8.2-beta.2",
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
@@ -37,7 +37,7 @@
     "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf ./dist",
-    "babel": "babel $(find ./ -name 'index.js' ! -ipath '*node_modules*') --out-dir ./dist",
+    "babel": "babel $(find ./ -name '*.js' ! -name '*.spec.js' ! -ipath '*node_modules*') --out-dir ./dist",
     "build": "npm run clean && cross-env NODE_ENV=production npm run babel"
   },
   "author": "kununu",
