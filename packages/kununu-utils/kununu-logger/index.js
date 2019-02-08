@@ -1,11 +1,11 @@
-import {createLogger, transports, format} from 'winston';
+import {createLogger, format} from 'winston';
 
-const FingersCrossed = require('./fingersCrossed');
+import FingersCrossed from './fingersCrossed';
 
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
 
-const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
+const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'error';
 
 /**
  * Format request and response data
@@ -57,7 +57,7 @@ export const logger = createLogger({
   transports: [
     new (FingersCrossed)({
       name: 'kununu',
-      triggerLevel: 'error',
+      triggerLevel: minimumLogLevel,
     }),
   ],
 });
