@@ -1,19 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom'
 
 import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/index';
-// import Footer from '../kununu-footer';
+import Footer from '../kununu-footer/index';
 import Overlay from '../kununu-overlay/index';
 import Logo from '../kununu-logo/index';
 import IconSearch from '../kununu-icons/Search';
 import IconUser from '../kununu-icons/User';
 
 // if you want to test the distribution, just uncomment the lines below
-/* import Header from '../kununu-header/dist/Header';
-import HeaderNav from '../kununu-header/dist/HeaderNav';
-import HeaderNavItem from '../kununu-header/dist/HeaderNavItem';
-import Footer from '../kununu-footer/dist';*/
+// import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/dist';
+// import Footer from '../kununu-footer/dist';
 
 const at = require('./img/at.gif');
 const ch = require('./img/ch.gif');
@@ -23,8 +21,11 @@ const us = require('./img/us.gif');
 import styles from './index.scss';
 
 const infoText = (
-  <span>Auf kununu wurden bereits <b className="text-green">1.475.000</b> authentische Erfahrungsberichte über Gehalt, Betriebsklima und Bewerbungsprozesse zu <b className="text-green">297.000</b> Unternehmen abgegeben</span>
+  <span>Auf kununu wurden bereits <b className="text-green">3,168,957</b> authentische Erfahrungsberichte über Gehalt, Betriebsklima und Bewerbungsprozesse zu <b className="text-green">854,882</b> Unternehmen abgegeben.</span>
 );
+
+const country = 'at';
+const menuItem = undefined;
 
 // const App = ({location: {pathname}, params: {country, menuItem}}) => (
 const App = ({location: {pathname}}) => (
@@ -37,22 +38,22 @@ const App = ({location: {pathname}}) => (
       <HeaderNav>
         <HeaderNavItem>
           <a href="">
-          <span className={styles.headerIcon}>
+            <span className={styles.headerIcon}>
               <IconSearch ariaHidden />
             </span>
             <span className="hidden-xs">
-              Search
+              Suchen
             </span>
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
           <a className="" href="/">
-          <span className="hidden-xs">
-            My kununu
-          </span>
-          <span className={`${styles.headerIcon} visible-xs`}>
-            <IconUser />
-          </span>
+            <span className="hidden-xs">
+              Mein kununu
+            </span>
+            <span className={`${styles.headerIcon} visible-xs`}>
+              <IconUser />
+            </span>
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
@@ -60,7 +61,7 @@ const App = ({location: {pathname}}) => (
           href=""
           className="btn btn-dd-sm btn-primary"
         >
-          Review
+          Arbeitgeber bewerten
         </a>
         </HeaderNavItem>
       </HeaderNav>
@@ -85,7 +86,7 @@ const App = ({location: {pathname}}) => (
         </div>
       </div>
     </main>
-    {/* <Footer
+    <Footer
       infoText={infoText}
       pathname={pathname}
       tuv
@@ -206,7 +207,7 @@ const App = ({location: {pathname}}) => (
           ],
         },
       }}
-    /> */}
+    />
 
   </div>
   );
