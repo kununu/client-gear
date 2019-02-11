@@ -5,6 +5,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
+  mode: 'development',
   context: __dirname,
   entry: 'index.jsx',
   output: {
@@ -25,28 +26,31 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        query: {
-          fix: true,
-        },
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        loader: 'sasslint-loader',
-        enforce: 'pre',
-        options: {
-          configFile: '../../.sass-lint.yml',
-        },
-      },
+      // {
+      //   test: /\.jsx?$/,
+      //   exclude: /node_modules/,
+      //   loader: 'eslint-loader',
+      //   enforce: 'pre',
+      //   query: {
+      //     fix: true,
+      //   },
+      // },
+      // {
+      //   test: /\.scss$/,
+      //   exclude: /node_modules/,
+      //   loader: 'sasslint-loader',
+      //   enforce: 'pre',
+      //   options: {
+      //     configFile: '../../.sass-lint.yml',
+      //   },
+      // },
       {
         test: /\.jsx?$/,
         exclude: /node_modules\/(?!nukleus)/,
         loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react']
+        }
       },
       {
         test: /\.scss$/,
@@ -76,7 +80,7 @@ module.exports = {
         ],
       },
       // if you want to test the distribution, just uncomment the lines below
-      /* {
+      {
         test: /kununu-footer\/dist\/index.css$/,
         use: [
           'style-loader',
@@ -103,7 +107,7 @@ module.exports = {
           'style-loader',
           'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
         ],
-      }, */
+      },
       {
         test: /\.css$/,
         include: /node_modules\/(?!nukleus\/dist)/,

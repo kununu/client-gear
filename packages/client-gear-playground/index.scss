@@ -1,0 +1,32 @@
+@import '~@kununu/kununu-theme-v2/scss/base/variables';
+
+.headerSearch {
+  display: flex;
+}
+
+.headerIcon {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  width: 13px;
+  height: 13px;
+  margin-right: 5px;
+
+  svg {
+    fill: $white;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    top: 0;
+    width: 21px;
+    height: 21px;
+    margin: 0;
+  }
+
+  @media (max-width: 450px) {
+    width: 18px;
+    height: 18px;
+  }
+}

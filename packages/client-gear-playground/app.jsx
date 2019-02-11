@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router';
 
-import {Header, HeaderNav, HeaderNavItem} from '../kununu-header';
-import Footer from '../kununu-footer';
-import Overlay from '../kununu-overlay';
-import Logo from '../kununu-logo';
+import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/index';
+// import Footer from '../kununu-footer';
+import Overlay from '../kununu-overlay/index';
+import Logo from '../kununu-logo/index';
+import IconSearch from '../kununu-icons/Search';
+import IconUser from '../kununu-icons/User';
 
 // if you want to test the distribution, just uncomment the lines below
 /* import Header from '../kununu-header/dist/Header';
@@ -18,38 +20,48 @@ const ch = require('./img/ch.gif');
 const de = require('./img/de.gif');
 const us = require('./img/us.gif');
 
+import styles from './index.scss';
+
 const infoText = (
   <span>Auf kununu wurden bereits <b className="text-green">1.475.000</b> authentische Erfahrungsberichte über Gehalt, Betriebsklima und Bewerbungsprozesse zu <b className="text-green">297.000</b> Unternehmen abgegeben</span>
 );
 
-const App = ({location: {pathname}, params: {country, menuItem}}) => (
+// const App = ({location: {pathname}, params: {country, menuItem}}) => (
+const App = ({location: {pathname}}) => (
   <div className="appContainer">
     <Header
-      isLoading
-      title="Volle Transparenz am Arbeitsmarkt"
       logoLink={<a href="">hi</a>}
       responsive={false}
+      title="Workplace insights that matter"
     >
       <HeaderNav>
         <HeaderNavItem>
           <a href="">
-            <span className="hidden-xs">
-              <i className="fa fa-search hidden-xs" aria-hidden="true" />
-              &nbsp; Suchen
+          <span className={styles.headerIcon}>
+              <IconSearch ariaHidden />
             </span>
-            <i className="fa fa-search visible-xs" aria-hidden="true" />
+            <span className="hidden-xs">
+              Search
+            </span>
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
           <a className="" href="/">
-            <span className="hidden-xs">Mein kununu </span>
-            <i className="fa fa-user visible-xs" />
+          <span className="hidden-xs">
+            My kununu
+          </span>
+          <span className={`${styles.headerIcon} visible-xs`}>
+            <IconUser />
+          </span>
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
-          <a href="/" className="btn btn-dd-sm btn-primary">
-            Firma bewerten
-          </a>
+        <a
+          href=""
+          className="btn btn-dd-sm btn-primary"
+        >
+          Review
+        </a>
         </HeaderNavItem>
       </HeaderNav>
     </Header>
@@ -61,7 +73,7 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
             Welcome to kununu component dev playground!
           </h2>
           <p>
-            jiasds
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis scelerisque.
           </p>
           <div style={{backgroundColor: '#000', width: '500px', height: '500px'}}>
             <Logo
@@ -73,7 +85,7 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
         </div>
       </div>
     </main>
-    <Footer
+    {/* <Footer
       infoText={infoText}
       pathname={pathname}
       tuv
@@ -194,7 +206,7 @@ const App = ({location: {pathname}, params: {country, menuItem}}) => (
           ],
         },
       }}
-    />
+    /> */}
 
   </div>
   );
