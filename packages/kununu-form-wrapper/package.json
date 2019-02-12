@@ -6,21 +6,16 @@
   "author": "kununu",
   "license": "ISC",
   "devDependencies": {
-    "@kununu/kununu-utils": "1.7.2",
-    "babel-cli": "6.26.0",
-    "cross-env": "5.2.0",
-    "enzyme-to-json": "3.3.4",
-    "react": "16.6.3",
-    "rimraf": "2.6.0"
+    "@kununu/kununu-utils": "1.7.2"
   },
-    "peerDependencies": {
+  "peerDependencies": {
     "@kununu/kununu-utils": "1.7.2",
-    "prop-types": "15.6.2",
-    "react": "16.6.3",
-    "react-dom": "16.6.3"
+    "prop-types": "15.7.1",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
   },
   "scripts": {
-    "prepublish": "yarn dist",
+    "prepare": "yarn dist",
     "babel": "babel ./index.jsx --out-dir ./dist",
     "clean": "rimraf ./dist",
     "dist": "npm run clean && cross-env NODE_ENV=production yarn babel"

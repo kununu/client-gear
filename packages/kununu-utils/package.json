@@ -4,7 +4,6 @@
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
-    "babel-cli": "6.26.0",
     "cookie": "0.3.1",
     "cookie-parser": "1.4.3",
     "cross-env": "5.2.0",
@@ -32,11 +31,11 @@
     "winston": "3.2.0"
   },
   "scripts": {
-    "prepublish": "npm run build",
+    "prepare": "npm run dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf ./dist",
     "babel": "babel $(find ./ -name 'index.js' ! -ipath '*node_modules*') --out-dir ./dist",
-    "build": "npm run clean && cross-env NODE_ENV=production npm run babel"
+    "dist": "npm run clean && cross-env NODE_ENV=production npm run babel"
   },
   "author": "kununu",
   "license": "ISC"

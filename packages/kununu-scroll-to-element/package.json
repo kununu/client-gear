@@ -7,23 +7,17 @@
   "license": "ISC",
   "devDependencies": {
     "@kununu/kununu-utils": "1.0.5",
-    "babel-cli": "6.23.0",
-    "cross-env": "5.2.0",
-    "node-sass": "4.9.0",
-    "node-sass-module-importer": "0.1.0",
-    "react": "16.4.1",
-    "react-scroll": "1.7.9",
-    "rimraf": "2.6.0"
+    "react-scroll": "1.7.9"
   },
   "peerDependencies": {
     "@kununu/kununu-utils": "1.0.5",
     "prop-types": "15.6.0",
-    "react": "16.4.1",
-    "react-dom": "16.4.1",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0",
     "react-scroll": "1.7.9"
   },
   "scripts": {
-    "prepublish": "yarn dist",
+    "prepare": "yarn dist",
     "babel": "babel ./index.jsx --out-dir ./dist",
     "clean": "rimraf ./dist",
     "dist": "npm run clean && cross-env NODE_ENV=production yarn babel"
