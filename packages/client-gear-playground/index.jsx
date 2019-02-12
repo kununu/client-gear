@@ -9,12 +9,7 @@ import App from './app';
 
 render(
   <BrowserRouter>
-    <div>
-      <Route exact path="/" component={App} />
-      <Route path="/icons" component={App} />
-      <Route path="/form" component={App} />
-      <Route path="/:country/:menuItem?" component={App} />
-    </div>
+    <Route path="/:country" component={App} />
   </BrowserRouter>,
   document.getElementById('client-gear-playground'),
 );

@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
+import {Route, Switch} from 'react-router';
 
 import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/index';
 import Footer from '../kununu-footer/index';
-import Overlay from '../kununu-overlay/index';
-import Logo from '../kununu-logo/index';
 import IconSearch from '../kununu-icons/Search';
 import IconUser from '../kununu-icons/User';
 
 // if you want to test the distribution, just uncomment the lines below
 // import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/dist';
 // import Footer from '../kununu-footer/dist';
-// import Overlay from '../kununu-overlay/dist';
-// import Logo from '../kununu-logo/dist';
 // import IconSearch from '../kununu-icons/dist/Search';
 // import IconUser from '../kununu-icons/dist/User';
 
@@ -23,6 +20,8 @@ const de = require('./img/de.gif');
 const us = require('./img/us.gif');
 
 import styles from './index.scss';
+import Home from './home';
+import Icons from './icons';
 
 const infoText = (
   <span>Auf kununu wurden bereits <b className="text-green">3,168,957</b> authentische Erfahrungsberichte über Gehalt, Betriebsklima und Bewerbungsprozesse zu <b className="text-green">854,882</b> Unternehmen abgegeben.</span>
@@ -67,24 +66,12 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
       </HeaderNav>
     </Header>
     <main role="main">
-      <Overlay />
-      <div className="container-fluid">
-        <div style={{backgroundColor: '#fff', padding: '10px 20px'}}>
-          <h2>
-            Welcome to kununu component dev playground!
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis scelerisque.
-          </p>
-          <div style={{backgroundColor: '#000', width: '500px', height: '500px'}}>
-            <Logo
-              shade="light"
-              title="kununu"
-              responsive
-            />
-          </div>
-        </div>
-      </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/:country/icons" component={Icons} />
+        <Route path="/form" component={App} />
+        <Route path="/:country/:menuItem?" component={Home} />
+      </Switch>
     </main>
     <Footer
       infoText={infoText}

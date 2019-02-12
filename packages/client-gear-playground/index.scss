@@ -30,3 +30,25 @@
     height: 18px;
   }
 }
+
+.icons {
+  display: grid;
+  grid-column-gap: 50px;
+  grid-row-gap: 10px;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+
+.iconContainer {
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  span {
+    display: inline-block;
+    position: relative;
+    margin-left: 5px;
+  }
+
+}
