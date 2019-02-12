@@ -28,11 +28,7 @@ const infoText = (
   <span>Auf kununu wurden bereits <b className="text-green">3,168,957</b> authentische Erfahrungsberichte über Gehalt, Betriebsklima und Bewerbungsprozesse zu <b className="text-green">854,882</b> Unternehmen abgegeben.</span>
 );
 
-const country = 'at';
-const menuItem = undefined;
-
-// const App = ({location: {pathname}, params: {country, menuItem}}) => (
-const App = ({location: {pathname}}) => (
+const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
   <div className="appContainer">
     <Header
       logoLink={<a href="">hi</a>}
