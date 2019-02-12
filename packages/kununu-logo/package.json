@@ -18,14 +18,12 @@
     "rimraf": "2.6.3"
   },
   "peerDependencies": {
-    "@kununu/kununu-theme-v2": "2.0.1",
-    "react": "16.8.1"
-  },
-  "dependencies": {
+    "@kununu/kununu-theme-v2": "2.0.2",
+    "react": "16.8.1",
     "prop-types": "15.7.1"
   },
   "scripts": {
-    "prepublish": "yarn dist",
+    "prepare": "yarn dist",
     "babel": "babel ./index.jsx --out-dir ./dist",
     "sass": "node-sass ./index.scss --output ./dist --importer node_modules/node-sass-module-importer",
     "clean": "rimraf ./dist",

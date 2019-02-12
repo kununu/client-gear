@@ -73,50 +73,82 @@ module.exports = {
         ],
       },
       {
-        test: /nukleus\/dist\/.+\.css$/,
-        include: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-        ],
-      },
-      // if you want to test the distribution, just uncomment the lines below
-      {
-        test: /kununu-footer\/dist\/index.css$/,
-        use: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-        ],
-      },
-      {
-        test: /kununu-header\/dist\/index.css$/,
-        use: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-        ],
-      },
-      {
-        test: /kununu-logo\/dist\/index.css$/,
-        use: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-        ],
-      },
-      {
-        test: /kununu-overlay\/dist\/index.css$/,
-        use: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-        ],
-      },
-      {
         test: /\.css$/,
-        include: /node_modules\/(?!nukleus\/dist)/,
         use: [
-          'style-loader',
-          'css-loader',
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            },
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              // Necessary for external CSS imports to work
+              // https://github.com/facebookincubator/create-react-app/issues/2677
+              ident: 'postcss',
+              plugins: () => [
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9', // React doesn't support IE8 anyway
+                  ],
+                }),
+              ],
+            },
+          },
         ],
       },
+      // {
+      //   test: /nukleus\/dist\/.+\.css$/,
+      //   include: /node_modules/,
+      //   use: [
+      //     'style-loader',
+      //     'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+      //   ],
+      // },
+      // if you want to test the distribution, just uncomment the lines below
+      // {
+      //   test: /kununu-footer\/dist\/index.css$/,
+      //   use: [
+      //     'style-loader',
+      //     'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+      //   ],
+      // },
+      // {
+      //   test: /kununu-header\/dist\/index.css$/,
+      //   use: [
+      //     'style-loader',
+      //     'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+      //   ],
+      // },
+      // {
+      //   test: /kununu-logo\/dist\/index.css$/,
+      //   use: [
+      //     'style-loader',
+      //     'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+      //   ],
+      // },
+      // {
+      //   test: /kununu-overlay\/dist\/index.css$/,
+      //   use: [
+      //     'style-loader',
+      //     'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+      //   ],
+      // },
+      // {
+      //   test: /\.css$/,
+      //   include: /node_modules\/(?!nukleus\/dist)/,
+      //   use: [
+      //     'style-loader',
+      //     'css-loader',
+      //   ],
+      // },
       {
         test: /main\.scss$/,
         exclude: /node_modules/,

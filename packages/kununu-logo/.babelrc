@@ -1,3 +1,10 @@
 {
-  "presets": ["@babel/preset-react", "@babel/preset-env"]
+  "presets": ["@babel/preset-react", "@babel/preset-env"],
+  "env": {
+    "production": {
+      "plugins": [
+        ["transform-rename-import", { "original": "./index.scss", "replacement": "./index.css" }]
+      ]
+    }
+  }
 }

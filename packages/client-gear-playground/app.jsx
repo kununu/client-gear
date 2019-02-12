@@ -12,6 +12,10 @@ import IconUser from '../kununu-icons/User';
 // if you want to test the distribution, just uncomment the lines below
 // import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/dist';
 // import Footer from '../kununu-footer/dist';
+// import Overlay from '../kununu-overlay/dist';
+// import Logo from '../kununu-logo/dist';
+// import IconSearch from '../kununu-icons/dist/Search';
+// import IconUser from '../kununu-icons/dist/User';
 
 const at = require('./img/at.gif');
 const ch = require('./img/ch.gif');

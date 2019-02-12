@@ -1,28 +1,28 @@
 {
-    "name": "@kununu/kununu-form-wrapper",
-    "version": "1.4.2",
-    "description": "kununu form wrapper HOC",
-    "main": "dist",
-    "author": "kununu",
-    "license": "ISC",
-    "devDependencies": {
-        "@kununu/kununu-utils": "1.7.2",
-        "babel-cli": "6.26.0",
-        "cross-env": "5.2.0",
-        "enzyme-to-json": "3.3.4",
-        "react": "16.6.3",
-        "rimraf": "2.6.0"
-    },
+  "name": "@kununu/kununu-form-wrapper",
+  "version": "1.4.2",
+  "description": "kununu form wrapper HOC",
+  "main": "dist",
+  "author": "kununu",
+  "license": "ISC",
+  "devDependencies": {
+    "@kununu/kununu-utils": "1.7.2",
+    "babel-cli": "6.26.0",
+    "cross-env": "5.2.0",
+    "enzyme-to-json": "3.3.4",
+    "react": "16.6.3",
+    "rimraf": "2.6.0"
+  },
     "peerDependencies": {
-        "prop-types": "15.6.2",
-        "react": "16.6.3",
-        "react-dom": "16.6.3",
-        "@kununu/kununu-utils": "1.7.2"
-    },
-    "scripts": {
-        "prepublish": "yarn dist",
-        "babel": "babel ./index.jsx --out-dir ./dist",
-        "clean": "rimraf ./dist",
-        "dist": "npm run clean && cross-env NODE_ENV=production yarn babel"
-    }
+    "@kununu/kununu-utils": "1.7.2",
+    "prop-types": "15.6.2",
+    "react": "16.6.3",
+    "react-dom": "16.6.3"
+  },
+  "scripts": {
+    "prepublish": "yarn dist",
+    "babel": "babel ./index.jsx --out-dir ./dist",
+    "clean": "rimraf ./dist",
+    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel"
+  }
 }
