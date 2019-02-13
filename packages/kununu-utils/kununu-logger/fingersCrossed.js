@@ -30,17 +30,17 @@ module.exports = class FingersCrossed extends TransportStream {
 
     if (info.req && info.req.headers['x-amzn-trace-id']) {
       // Logs should be JSON parsed in order to be searchable when on state
-      const formatedLog = JSON.parse(formatNodeRequest(info));
+      const formatedLog = this.formatRequest(info);
 
       // Store all response logs on state
-      this.pushLogToState(formatedLog);
+      this.pushToState(formatedLog);
 
       // If has reached activation log level, then recover previous logs
       if (this.hasReachedActivationLevel(info)) {
         const logs = this.recoverLogsFromState(formatedLog);
 
         // Remove recovered logs from state
-        this.removeLogsFromState(formatedLog.trace_id);
+        this.removeFromState(formatedLog.trace_id);
 
         // Output recovered logs with same trace ID
         this.outputLogs(logs); // eslint-disable-line no-console
@@ -54,7 +54,16 @@ module.exports = class FingersCrossed extends TransportStream {
 
     callback();
   }
-  
+
+  /**
+   * Format request before save to state.
+   * formatNodeRequest will stringify, so we need to parse it
+   *
+   * @param  {Object} info
+   * @return {Object}
+   */
+  formatRequest = (info) => JSON.parse(formatNodeRequest(info));
+
   /**
    * Receives Winston logging level and
    * return its correspondent specified by RFC5424
@@ -77,18 +86,14 @@ module.exports = class FingersCrossed extends TransportStream {
    *
    * @param {Object} log
    */
-  pushLogToState (log) {
-    this.state.push(log);
-  }
+  pushToState = (log) => this.state.push(log);
 
   /**
    * Remove logs with a given trace ID from state
    *
    * @param {String} traceId
    */
-  removeLogsFromState (traceId) {
-    this.state = this.state.filter(log => traceId !== log.trace_id);
-  }
+  removeFromState = (traceId) => this.state = this.state.filter(log => traceId !== log.trace_id);
 
   /**
    * Recover logs with same trace ID as the error
