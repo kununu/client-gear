@@ -48,7 +48,7 @@ module.exports = class FingersCrossed extends TransportStream {
     } else {
       // Output log without trace ID immediately if it has reached activation log level
       if (this.hasReachedActivationLevel(info)) {
-        console.log(customFormat(info)); // eslint-disable-line no-console
+        console.log(formatNodeRequest(info)); // eslint-disable-line no-console
       }
     }
 
