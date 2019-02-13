@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
+import IconPlus from '@kununu/kununu-icons/dist/Plus';
 
 import styles from './index.scss';
-import IconPlus from '@kununu/kununu-icons/dist/Plus';
 
 export default class FooterNav extends Component {
   state = {

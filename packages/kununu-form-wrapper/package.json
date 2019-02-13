@@ -11,8 +11,7 @@
   "peerDependencies": {
     "@kununu/kununu-utils": "1.7.2",
     "prop-types": "15.7.1",
-    "react": ">=16.0.0",
-    "react-dom": ">=16.0.0"
+    "react": ">=16.0.0"
   },
   "scripts": {
     "prepare": "npm run dist",

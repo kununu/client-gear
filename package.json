@@ -51,6 +51,7 @@
     "test:watch": "jest --watch --verbose",
     "coverage": "jest --coverage",
     "postinstall": "lerna bootstrap",
-    "clean": "rimraf /node_modules && lerna clean"
+    "start": "lerna exec npm run start --scope client-gear-playground",
+    "clean": "rimraf /node_modules && lerna clean --yes"
   }
 }

@@ -8,26 +8,22 @@ import Logo from '../kununu-logo/index';
 // import Logo from '../kununu-logo/dist';
 
 const Home = () => (
-  <>
+  <div style={{backgroundColor: '#fff', padding: '10px 20px', position: 'relative'}}>
     <Overlay />
-    <div className="container-fluid">
-      <div style={{backgroundColor: '#fff', padding: '10px 20px'}}>
-        <h2>
-          Welcome to kununu component dev playground!
-        </h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis scelerisque.
-        </p>
-        <div style={{backgroundColor: '#000', width: '500px', height: '500px'}}>
-          <Logo
-            shade="light"
-            title="kununu"
-            responsive
-          />
-        </div>
-      </div>
+    <h2>
+      Welcome to kununu component dev playground!
+    </h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis scelerisque.
+    </p>
+    <div style={{backgroundColor: '#000', width: '500px', height: '500px'}}>
+      <Logo
+        shade="light"
+        title="kununu"
+        responsive
+      />
     </div>
-  </>
+  </div>
 );
 
 

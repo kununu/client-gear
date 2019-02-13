@@ -66,12 +66,18 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
       </HeaderNav>
     </Header>
     <main role="main">
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/:country/icons" component={Icons} />
-        <Route path="/form" component={App} />
-        <Route path="/:country/:menuItem?" component={Home} />
-      </Switch>
+      <div className={`container-fluid ${styles.menu}`}>
+        <Link to={{pathname: `/${country}`}}>Home</Link>
+        <Link to={{pathname: `/${country}/icons`}}>Icons</Link>
+      </div>
+      <div className="container-fluid">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/:country/icons" component={Icons} />
+          <Route path="/:country/form" component={App} />
+          <Route path="/:country/:menuItem?" component={Home} />
+        </Switch>
+      </div>
     </main>
     <Footer
       infoText={infoText}

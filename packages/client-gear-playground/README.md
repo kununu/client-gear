@@ -2,7 +2,6 @@ The playground can be installed and run this way
 
 ```
 npm i # Install all dependencies in all packages
-cd packages/client-gear-playground
 npm start
 ```
 

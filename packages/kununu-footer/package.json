@@ -13,9 +13,11 @@
     "nukleus": "14.1.8"
   },
   "peerDependencies": {
+    "@kununu/kununu-icons": "1.4.0",
+    "@kununu/kununu-logo": "1.1.0",
     "nukleus": "14.1.8",
-    "react": ">=16.0.0",
-    "react-dom": ">=16.0.0"
+    "prop-types": "15.7.1",
+    "react": ">=16.0.0"
   },
   "scripts": {
     "prepare": "npm run dist",
