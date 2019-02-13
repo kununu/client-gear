@@ -60,8 +60,8 @@ export const logger = createLogger({
   transports: [
     new (FingersCrossed)({
       name: 'kununu',
-      level: minimumLogLevel,
-      activationLevel: activationLogLevel,
+      minimumLogLevel: minimumLogLevel,
+      activationLogLevel: activationLogLevel,
     }),
   ],
 });

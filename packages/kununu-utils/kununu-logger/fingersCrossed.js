@@ -1,7 +1,7 @@
-import {formatNodeRequest, customFormat} from './index';
+import {formatNodeRequest} from './index';
 
 const TransportStream = require('winston-transport'); // eslint-disable-line import/no-extraneous-dependencies
-const {LEVEL} = require('triple-beam'); // eslint-disable-line import/no-extraneous-dependencies
+const {LEVEL, MESSAGE} = require('triple-beam'); // eslint-disable-line import/no-extraneous-dependencies
 
 const levels = {
   emerg: 0,
@@ -19,8 +19,8 @@ module.exports = class FingersCrossed extends TransportStream {
     super(options);
 
     this.name = options.name || 'fingers-crossed';
-    this.level = options.level;
-    this.activationLevel = options.activationLevel || 'error';
+    this.minimumLogLevel = options.minimumLogLevel || 'info';
+    this.activationLogLevel = options.activationLogLevel || 'error';
 
     this.state = [];
   }
@@ -28,28 +28,28 @@ module.exports = class FingersCrossed extends TransportStream {
   log (info, callback) {
     setImmediate(() => this.emit('logged', info));
 
-    if (info.req && info.req.headers['x-amzn-trace-id']) {
-      // Logs should be JSON parsed in order to be searchable when on state
-      const formatedLog = this.formatRequest(info);
+    if (info.req) {
+      const log = this.formatRequest(info);
+      const amznTraceId = info.req.headers['x-amzn-trace-id'];
 
-      // Store all response logs on state
-      this.pushToState(formatedLog);
+      if(amznTraceId) {
+        this.pushToState(log);
 
-      // If has reached activation log level, then recover previous logs
-      if (this.hasReachedActivationLevel(info)) {
-        const logs = this.recoverLogsFromState(formatedLog);
+        if (this.hasActivationLogLevel(info)) {
+          const logs = this.recoverLogsFromState(log);
 
-        // Remove recovered logs from state
-        this.removeFromState(formatedLog.trace_id);
-
-        // Output recovered logs with same trace ID
-        this.outputLogs(logs); // eslint-disable-line no-console
+          this.removeFromState(log.trace_id);
+          this.outputLogs(logs); // eslint-disable-line no-console
+        }
       }
-    } else {
-      // Output log without trace ID immediately if it has reached activation log level
-      if (this.hasReachedActivationLevel(info)) {
-        console.log(formatNodeRequest(info)); // eslint-disable-line no-console
+
+      if(!amznTraceId && this.hasMinimumLogLevel(info)) {
+        console.log(JSON.stringify(log)); // eslint-disable-line no-console
       }
+    }
+
+    if(!info.req && this.hasMinimumLogLevel(info)) {
+      console.log(info[MESSAGE]); // eslint-disable-line no-console
     }
 
     callback();
@@ -71,7 +71,7 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param  {String} level
    * @return {Integer}
    */
-  getLogLevel = (level = this.level) => levels[level.toLowerCase()];
+  getLogLevel = (level = this.minimumLogLevel) => levels[level.toLowerCase()];
 
   /**
    * Check whether request has reached activation log level
@@ -79,7 +79,15 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param  {Object} info
    * @return {Boolean}
    */
-  hasReachedActivationLevel = (info) => this.getLogLevel(info[LEVEL]) <= this.getLogLevel(this.activationLevel);
+  hasActivationLogLevel = (info) => this.getLogLevel(info[LEVEL]) <= this.getLogLevel(this.activationLogLevel);
+
+  /**
+   * Check whether request has reached minimum log level
+   *
+   * @param  {Object} info
+   * @return {Boolean}
+   */
+  hasMinimumLogLevel = (info) => this.getLogLevel(info[LEVEL]) <= this.getLogLevel(this.minimumLogLevel);
 
   /**
    * Push a given log to state

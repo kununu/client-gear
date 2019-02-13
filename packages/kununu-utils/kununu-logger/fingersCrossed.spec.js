@@ -20,7 +20,7 @@ describe('Fingers Crossed transport for kununu-logger', () => {
     res.status(500).send();
   });
 
-  it('logs requests and return errors and previous requests that share same trace id', async () => {
+  it('logs requests that share same trace id as the error', async () => {
     const spyFunc = jest.fn();
 
     global.console = {
@@ -37,6 +37,19 @@ describe('Fingers Crossed transport for kununu-logger', () => {
     expect(JSON.parse(spyFunc.mock.calls[0]).trace_id).toBe('trace-id-3');
     expect(JSON.parse(spyFunc.mock.calls[1]).trace_id).toBe('trace-id-3');
     expect(JSON.parse(spyFunc.mock.calls[2]).trace_id).toBe('trace-id-3');
+  });
+
+  it('logs requests that has minimum log level when there is no trace id', async () => {
+    const spyFunc = jest.fn();
+
+    global.console = {
+      log: spyFunc,
+    };
+
+    await request(app).post('/');
+    await request(app).get('/');
+
+    expect(spyFunc.mock.calls.length).toBe(2);
   });
 
   it('logs requests and return nothing because there are no errors', async () => {
