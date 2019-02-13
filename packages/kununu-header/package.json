@@ -5,13 +5,10 @@
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
-  "devDependencies": {
-    "@kununu/kununu-theme-v2": "2.0.2",
-    "node-sass": "4.11.0",
-    "node-sass-module-importer": "0.1.0"
-  },
   "dependencies": {
-    "@kununu/kununu-logo": "1.1.0"
+    "@kununu/kununu-logo": "1.1.0",
+    "@kununu/kununu-theme-v2": "2.0.2",
+    "node-sass-module-importer": "0.1.0"
   },
   "peerDependencies": {
     "@kununu/kununu-theme-v2": "2.0.2",

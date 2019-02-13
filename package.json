@@ -51,7 +51,6 @@
     "test:watch": "jest --watch --verbose",
     "coverage": "jest --coverage",
     "postinstall": "lerna bootstrap",
-    "clean": "lerna clean",
-    "prune": "lerna exec npm prune"
+    "clean": "rimraf /node_modules && lerna clean"
   }
 }

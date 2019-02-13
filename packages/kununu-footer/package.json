@@ -5,16 +5,12 @@
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
-  "devDependencies": {
-    "@kununu/kununu-theme-v2": "2.0.2",
-    "node-sass": "4.11.0",
-    "node-sass-module-importer": "0.1.0",
-    "nukleus": "14.1.8"
-  },
   "dependencies": {
     "@kununu/kununu-icons": "1.4.0",
     "@kununu/kununu-logo": "1.1.0",
-    "@kununu/kununu-theme-v2": "2.0.2"
+    "@kununu/kununu-theme-v2": "2.0.2",
+    "node-sass-module-importer": "0.1.0",
+    "nukleus": "14.1.8"
   },
   "peerDependencies": {
     "nukleus": "14.1.8",

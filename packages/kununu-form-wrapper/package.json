@@ -5,7 +5,7 @@
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@kununu/kununu-utils": "1.7.2"
   },
   "peerDependencies": {

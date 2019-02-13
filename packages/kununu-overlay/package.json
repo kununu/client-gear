@@ -5,9 +5,8 @@
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@kununu/kununu-theme-v2": "2.0.2",
-    "node-sass": "4.11.0",
     "node-sass-module-importer": "0.1.0"
   },
   "peerDependencies": {
