@@ -5,7 +5,10 @@ import FingersCrossed from './fingersCrossed';
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
 
-const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'error';
+// It won't be logged when below this level
+const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
+// Logs below this level won't be immediately outputted, but when this is reached
+const activationLogLevel = process.env.ACTIVATION_LOG_LEVEL || 'error';
 
 /**
  * Format request and response data
@@ -57,7 +60,8 @@ export const logger = createLogger({
   transports: [
     new (FingersCrossed)({
       name: 'kununu',
-      triggerLevel: minimumLogLevel,
+      level: minimumLogLevel,
+      activationLevel: activationLogLevel,
     }),
   ],
 });
