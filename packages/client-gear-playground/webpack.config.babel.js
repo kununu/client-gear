@@ -14,7 +14,9 @@ module.exports = {
     publicPath: '/build/',
   },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    openPage: 'at',
+    port: 3000,
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx'],
@@ -73,12 +75,10 @@ module.exports = {
           {
             loader: require.resolve('postcss-loader'),
             options: {
-              options: {
-                plugins () {
-                  return [
-                    autoprefixer,
-                  ];
-                },
+              plugins () {
+                return [
+                  autoprefixer,
+                ];
               },
             },
           },

@@ -4,6 +4,5 @@ Layout and theming utilities, shared molecular components.
 ## Setup
 
 ```sh
-yarn
-lerna bootstrap # Install all dependencies in all packages
+npm i # Install all dependencies in all packages
 ```

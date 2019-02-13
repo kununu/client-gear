@@ -9,9 +9,9 @@
     "react": ">=16.0.0"
   },
   "scripts": {
-    "prepare": "yarn dist",
+    "prepare": "npm run dist",
     "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist",
     "clean": "rimraf ./dist",
-    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel"
+    "dist": "npm run clean && cross-env NODE_ENV=production npm run babel"
   }
 }
