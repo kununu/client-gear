@@ -1,8 +1,5 @@
 const {logger} = require('./');
 
-const express = require('express');
-const request = require('supertest');
-
 describe('Fingers Crossed transport for kununu-logger', () => {
   const label = 'app';
   const message = 'An error has ocurred';
@@ -43,7 +40,7 @@ describe('Fingers Crossed transport for kununu-logger', () => {
     // 4. Should output immediately because it's a custom error without request
     await logger.log('info', {label, message, custom: true, timeTakenMicros: 4});
     expect(spy.mock.calls.length).toBe(1);
-    expect(spy.mock.calls[0][0]).toContain(`"timeTakenMicros":4`);
+    expect(spy.mock.calls[0][0]).toContain('"timeTakenMicros":4');
     spy.mockClear();
 
     // 5. Should save on state because it's a request with trace ID
@@ -72,7 +69,7 @@ describe('Fingers Crossed transport for kununu-logger', () => {
     // 9. Should output immediately because it's a custom error without request
     await logger.log('error', {label, message, custom: true, timeTakenMicros: 9});
     expect(spy.mock.calls.length).toBe(1);
-    expect(spy.mock.calls[0][0]).toContain(`"timeTakenMicros":9`);
+    expect(spy.mock.calls[0][0]).toContain('"timeTakenMicros":9');
     spy.mockClear();
 
     // 10. Should output with logs (7, 10) because it reached activation log level

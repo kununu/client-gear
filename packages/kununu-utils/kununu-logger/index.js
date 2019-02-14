@@ -73,8 +73,8 @@ export const logger = createLogger({
   transports: [
     new (FingersCrossed)({
       level: 'debug',
-      minimumLogLevel: minimumLogLevel,
-      activationLogLevel: activationLogLevel,
+      minimumLogLevel,
+      activationLogLevel,
     }),
   ],
 });
