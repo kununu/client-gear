@@ -63,7 +63,7 @@
   },
   "scripts": {
     "lint": "eslint packages --max-warnings 0 --ext jsx --ext js",
-    "test": "jest --verbose --no-cache",
+    "test": "MINIMUM_LOG_LEVEL=debug ACTIVATION_LOG_LEVEL=error jest --verbose --no-cache",
     "test:watch": "jest --watch --verbose",
     "coverage": "jest --coverage"
   },

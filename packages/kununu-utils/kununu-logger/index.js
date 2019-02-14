@@ -10,6 +10,18 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
 // Logs below this level won't be immediately outputted, but when this is reached
 const activationLogLevel = process.env.ACTIVATION_LOG_LEVEL || 'error';
 
+// Custom logging levels
+export const loggingLevels = {
+  emerg: 0,
+  alert: 1,
+  crit: 2,
+  error: 3,
+  warning: 4,
+  notice: 5,
+  info: 6,
+  debug: 7,
+};
+
 /**
  * Format request and response data
  * @param  object containing res and req
@@ -53,13 +65,14 @@ export const customFormat = printf((info) => {
 });
 
 export const logger = createLogger({
+  levels: loggingLevels,
   format: format.combine(
     timestamp(),
     customFormat,
   ),
   transports: [
     new (FingersCrossed)({
-      name: 'kununu',
+      level: 'debug',
       minimumLogLevel: minimumLogLevel,
       activationLogLevel: activationLogLevel,
     }),

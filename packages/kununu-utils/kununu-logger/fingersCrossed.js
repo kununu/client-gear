@@ -1,18 +1,7 @@
-import {formatNodeRequest} from './index';
+import {formatNodeRequest, loggingLevels} from './index';
 
 const TransportStream = require('winston-transport'); // eslint-disable-line import/no-extraneous-dependencies
 const {LEVEL, MESSAGE} = require('triple-beam'); // eslint-disable-line import/no-extraneous-dependencies
-
-const levels = {
-  emerg: 0,
-  alert: 1,
-  crit: 2,
-  error: 3,
-  warning: 4,
-  notice: 5,
-  info: 6,
-  debug: 7,
-};
 
 module.exports = class FingersCrossed extends TransportStream {
   constructor (options = {}) {
@@ -71,7 +60,7 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param  {String} level
    * @return {Integer}
    */
-  getLogLevel = (level = this.minimumLogLevel) => levels[level.toLowerCase()];
+  getLogLevel = (level = this.minimumLogLevel) => loggingLevels[level.toLowerCase()];
 
   /**
    * Check whether request has reached activation log level

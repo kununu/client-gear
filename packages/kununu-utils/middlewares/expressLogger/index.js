@@ -27,11 +27,11 @@ const expressLogger = label => (req, res, next) => {
   }
 
   // logs any successfully finished pipeline
-  res.on('finish', log.bind({status: 'info'}));
+  res.on('finish', log.bind());
   // logs any aborted pipeline
-  res.on('close', log.bind({status: 'error'}));
+  res.on('close', log.bind());
   // logs any internal errors
-  res.on('error', log.bind({status: 'error'}));
+  res.on('error', log.bind());
 
   next();
 };

@@ -1,68 +1,85 @@
-import expressLogger from '../middlewares/expressLogger';
+const {logger} = require('./');
 
 const express = require('express');
 const request = require('supertest');
 
 describe('Fingers Crossed transport for kununu-logger', () => {
-  const app = express();
-
-  app.use(expressLogger('app'));
-
-  app.get('/', (req, res) => {
-    res.send();
+  const label = 'app';
+  const message = 'An error has ocurred';
+  const res = {statusCode: 200};
+  const req = (traceId = '') => ({
+    req: {
+      method: 'GET',
+      originalUrl: '/',
+      connection: {
+        remoteAddress: '127.0.0.1',
+      },
+      headers: {
+        referer: '',
+        'x-amzn-trace-id': traceId,
+        'x-forwarded-for': '',
+        'user-agent': '',
+      },
+    },
   });
 
-  app.post('/post', (req, res) => {
-    res.send();
-  });
+  it('logs requests by the rules', async () => {
+    const spy = jest.spyOn(global.console, 'log');
 
-  app.get('/error', (req, res) => {
-    res.status(500).send();
-  });
+    // 1. Should save on state because it's a request with trace ID
+    await logger.log('info', {...req('trace-id-1'), res, label, timeTakenMicros: 1});
+    expect(spy.mock.calls.length).toBe(0);
 
-  it('logs requests that share same trace id as the error', async () => {
-    const spyFunc = jest.fn();
+    // 2. Should save on state because it's a request with trace ID
+    await logger.log('debug', {...req('trace-id-1'), res, label, timeTakenMicros: 2});
+    expect(spy.mock.calls.length).toBe(0);
 
-    global.console = {
-      log: spyFunc,
-    };
+    // 3. Should output immediately because it's a request without trace ID
+    await logger.log('debug', {...req(), res, label, timeTakenMicros: 3});
+    expect(spy.mock.calls.length).toBe(1);
+    expect(JSON.parse(spy.mock.calls[0]).time_taken_micros).toBe(3);
+    spy.mockClear();
 
-    await request(app).post('/post').set('x-amzn-trace-id', 'trace-id-1');
-    await request(app).get('/').set('x-amzn-trace-id', 'trace-id-2');
-    await request(app).get('/').set('x-amzn-trace-id', 'trace-id-3');
-    await request(app).get('/').set('x-amzn-trace-id', 'trace-id-3');
-    await request(app).get('/error').set('x-amzn-trace-id', 'trace-id-3');
+    // 4. Should output immediately because it's a custom error without request
+    await logger.log('info', {label, message, custom: true, timeTakenMicros: 4});
+    expect(spy.mock.calls.length).toBe(1);
+    expect(spy.mock.calls[0][0]).toContain(`"timeTakenMicros":4`);
+    spy.mockClear();
 
-    expect(spyFunc.mock.calls.length).toBe(3);
-    expect(JSON.parse(spyFunc.mock.calls[0]).trace_id).toBe('trace-id-3');
-    expect(JSON.parse(spyFunc.mock.calls[1]).trace_id).toBe('trace-id-3');
-    expect(JSON.parse(spyFunc.mock.calls[2]).trace_id).toBe('trace-id-3');
-  });
+    // 5. Should save on state because it's a request with trace ID
+    await logger.log('warning', {...req('trace-id-1'), res, label, timeTakenMicros: 5});
+    expect(spy.mock.calls.length).toBe(0);
 
-  it('logs requests that has minimum log level when there is no trace id', async () => {
-    const spyFunc = jest.fn();
+    // 6. Should output with logs (1, 2, 5, 6) because it reached activation log level
+    await logger.log('error', {...req('trace-id-1'), res, label, timeTakenMicros: 6});
+    expect(spy.mock.calls.length).toBe(4);
+    expect(JSON.parse(spy.mock.calls[0]).time_taken_micros).toBe(1);
+    expect(JSON.parse(spy.mock.calls[1]).time_taken_micros).toBe(2);
+    expect(JSON.parse(spy.mock.calls[2]).time_taken_micros).toBe(5);
+    expect(JSON.parse(spy.mock.calls[3]).time_taken_micros).toBe(6);
+    spy.mockClear();
 
-    global.console = {
-      log: spyFunc,
-    };
+    // 7. Should save on state because it's a request with trace ID
+    await logger.log('info', {...req('trace-id-2'), res, label, timeTakenMicros: 7});
+    expect(spy.mock.calls.length).toBe(0);
 
-    await request(app).post('/');
-    await request(app).get('/');
+    // 8. Should output immediately because it's a request without trace ID
+    await logger.log('debug', {...req(), res, label, timeTakenMicros: 8});
+    expect(spy.mock.calls.length).toBe(1);
+    expect(JSON.parse(spy.mock.calls[0]).time_taken_micros).toBe(8);
+    spy.mockClear();
 
-    expect(spyFunc.mock.calls.length).toBe(2);
-  });
+    // 9. Should output immediately because it's a custom error without request
+    await logger.log('error', {label, message, custom: true, timeTakenMicros: 9});
+    expect(spy.mock.calls.length).toBe(1);
+    expect(spy.mock.calls[0][0]).toContain(`"timeTakenMicros":9`);
+    spy.mockClear();
 
-  it('logs requests and return nothing because there are no errors', async () => {
-    const spyFunc = jest.fn();
-
-    global.console = {
-      log: spyFunc,
-    };
-
-    await request(app).post('/post').set('x-amzn-trace-id', 'trace-id-1');
-    await request(app).get('/').set('x-amzn-trace-id', 'trace-id-2');
-    await request(app).get('/').set('x-amzn-trace-id', 'trace-id-3');
-
-    expect(spyFunc.mock.calls.length).toBe(0);
+    // 10. Should output with logs (7, 10) because it reached activation log level
+    await logger.log('error', {...req('trace-id-2'), res, label, timeTakenMicros: 10});
+    expect(spy.mock.calls.length).toBe(2);
+    expect(JSON.parse(spy.mock.calls[0]).time_taken_micros).toBe(7);
+    expect(JSON.parse(spy.mock.calls[1]).time_taken_micros).toBe(10);
+    spy.mockClear();
   });
 });
