@@ -10,7 +10,7 @@
   },
   "scripts": {
     "prepare": "npm run dist",
-    "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist",
+    "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist --root-mode upward",
     "clean": "rimraf ./dist",
     "dist": "npm run clean && cross-env NODE_ENV=production npm run babel"
   }
