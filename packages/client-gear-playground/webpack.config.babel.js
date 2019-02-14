@@ -15,7 +15,7 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    openPage: 'at',
+    open: true,
     port: 3000,
   },
   resolve: {
