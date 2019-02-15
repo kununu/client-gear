@@ -2,90 +2,90 @@
 
 exports[`Renders Logo without crashing 1`] = `
 <header
-  className="header fixed"
+  class="header fixed"
   role="banner"
 >
   <div
-    className="container-fluid"
+    class="container-fluid"
   >
     <div
-      className="flex"
+      class="flex"
     >
       <div
-        className="pullLeft"
+        class="pullLeft"
       >
         <a
           href=""
         >
           <img
             alt="Volle Transparenz am Arbeitsmarkt"
-            className="logoDesktop"
+            class="logoDesktop"
             src="https://assets.kununu.com/images/footer/logo-desktop.svg"
           />
           <img
             alt="Volle Transparenz am Arbeitsmarkt"
             aria-hidden="true"
-            className="logoMobile"
+            class="logoMobile"
             rel="presentation"
             src="https://assets.kununu.com/images/footer/logo-mobile.svg"
           />
         </a>
         <span
-          className="title"
+          class="title"
         >
           Volle Transparenz am Arbeitsmarkt
         </span>
       </div>
       <div
-        className="pullRight"
+        class="pullRight"
       >
         <nav
-          className="headerNav"
+          class="headerNav"
         >
           <ul>
             <li
-              className="headerNavItem"
+              class="headerNavItem"
             >
               <a
                 href=""
               >
                 <span
-                  className="hidden-xs"
+                  class="hidden-xs"
                 >
                   <i
                     aria-hidden="true"
-                    className="fa fa-search hidden-xs"
+                    class="fa fa-search hidden-xs"
                   />
                     Suchen
                 </span>
                 <i
                   aria-hidden="true"
-                  className="fa fa-search visible-xs"
+                  class="fa fa-search visible-xs"
                 />
               </a>
             </li>
             <li
-              className="headerNavItem"
+              class="headerNavItem"
             >
               <a
-                className=""
+                class=""
                 href="/"
               >
                 <span
-                  className="hidden-xs"
+                  class="hidden-xs"
                 >
                   Mein kununu 
                 </span>
                 <i
-                  className="fa fa-user visible-xs"
+                  class="fa fa-user visible-xs"
                 />
               </a>
             </li>
             <li
-              className="headerNavItem"
+              class="headerNavItem"
             >
               <a
-                className="btn btn-dd-sm btn-primary"
+                class="btn btn-dd-sm btn-primary"
                 href="/"
               >
                 Firma bewerten

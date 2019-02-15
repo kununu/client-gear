@@ -36,8 +36,6 @@
     "webpack-dev-server": "3.1.14"
   },
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --hot",
-    "test": "jest",
-    "coverage": "jest --coverage"
+    "start": "NODE_ENV=development webpack-dev-server --hot"
   }
 }

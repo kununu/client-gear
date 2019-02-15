@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {shallow, mount} from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
-import toJson from 'enzyme-to-json';
 import {validationTypes} from '@kununu/kununu-utils/dist/kununu-helpers/formValidation';
 
 import FormWrapper from './index';
@@ -29,7 +28,7 @@ describe('Returns current domain from a request object', () => {
     });
 
     const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('renders async initial fields without crashing', () => {
@@ -58,7 +57,7 @@ describe('Returns current domain from a request object', () => {
     }, 1000);
 
     const wrapper = shallow(<WrapperComponent getInitialFields={() => initialFields()} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 });
 

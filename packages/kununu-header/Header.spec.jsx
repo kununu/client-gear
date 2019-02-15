@@ -1,10 +1,11 @@
 import React from 'react';
-import renderer from 'react-test-renderer'; // eslint-disable-line import/no-extraneous-dependencies
+import {render} from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 
-import {Header, HeaderNav, HeaderNavItem} from '.';
+import {Header, HeaderNav, HeaderNavItem} from './index';
+
 
 test('Renders Logo without crashing', () => {
-  const component = renderer.create(
+  const component = render(
     <Header
       title="Volle Transparenz am Arbeitsmarkt"
       logoLink={<a href="">test</a>}
@@ -26,10 +27,9 @@ test('Renders Logo without crashing', () => {
           <a href="/" className="btn btn-dd-sm btn-primary">Firma bewerten</a>
         </HeaderNavItem>
       </HeaderNav>
-    </Header>,
+    </Header>
   );
 
-  const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(component).toMatchSnapshot();
 });
 
