@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import {Route, Switch} from 'react-router';
 
 import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/index';
 import Footer from '../kununu-footer/index';
 import IconSearch from '../kununu-icons/Search';
 import IconUser from '../kununu-icons/User';
+
+import styles from './index.scss';
+import Home from './home';
+import Icons from './icons';
 
 // if you want to test the distribution, just uncomment the lines below
 // import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/dist';
@@ -19,24 +23,28 @@ const ch = require('./img/ch.gif');
 const de = require('./img/de.gif');
 const us = require('./img/us.gif');
 
-import styles from './index.scss';
-import Home from './home';
-import Icons from './icons';
-
 const infoText = (
-  <span>Auf kununu wurden bereits <b className="text-green">3,168,957</b> authentische Erfahrungsberichte über Gehalt, Betriebsklima und Bewerbungsprozesse zu <b className="text-green">854,882</b> Unternehmen abgegeben.</span>
+  <span>
+    Auf kununu wurden bereits
+    <b className="text-green">3,168,957</b>
+    {' '}
+    authentische Erfahrungsberichte über Gehalt, Betriebsklima und Bewerbungsprozesse zu
+    <b className="text-green">854,882</b>
+    {' '}
+    Unternehmen abgegeben.
+  </span>
 );
 
 const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
   <div className="appContainer">
     <Header
-      logoLink={<a href="">hi</a>}
+      logoLink={<a href="/">hi</a>}
       responsive={false}
       title="Workplace insights that matter"
     >
       <HeaderNav>
         <HeaderNavItem>
-          <a href="">
+          <a href="/">
             <span className={styles.headerIcon}>
               <IconSearch ariaHidden />
             </span>
@@ -46,7 +54,10 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
-          <a className="" href="/">
+          <a
+            className=""
+            href="/"
+          >
             <span className="hidden-xs">
               Mein kununu
             </span>
@@ -56,12 +67,12 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
-        <a
-          href=""
-          className="btn btn-dd-sm btn-primary"
-        >
+          <a
+            href="/"
+            className="btn btn-dd-sm btn-primary"
+          >
           Arbeitgeber bewerten
-        </a>
+          </a>
         </HeaderNavItem>
       </HeaderNav>
     </Header>
@@ -72,10 +83,23 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
       </div>
       <div className="container-fluid">
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/:country/icons" component={Icons} />
-          <Route path="/:country/form" component={App} />
-          <Route path="/:country/:menuItem?" component={Home} />
+          <Route
+            exact
+            path="/"
+            component={Home}
+          />
+          <Route
+            path="/:country/icons"
+            component={Icons}
+          />
+          <Route
+            path="/:country/form"
+            component={App}
+          />
+          <Route
+            path="/:country/:menuItem?"
+            component={Home}
+          />
         </Switch>
       </div>
     </main>
@@ -88,25 +112,41 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
         countrySwitcher: [
           {
             active: country === 'at',
-            icon: <img title="Austrian Flag" alt="Austrian Flag" src={at} />,
+            icon: <img
+              title="Austrian Flag"
+              alt="Austrian Flag"
+              src={at}
+            />,
             link: <Link to={{pathname: `/at${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'Austria',
           },
           {
             active: country === 'de',
-            icon: <img title="German Flag" alt="German Flag" src={de} />,
+            icon: <img
+              title="German Flag"
+              alt="German Flag"
+              src={de}
+            />,
             link: <Link to={{pathname: `/de${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'German',
           },
           {
             active: country === 'ch',
-            icon: <img title="Swiss Flag" alt="Swiss Flag" src={ch} />,
+            icon: <img
+              title="Swiss Flag"
+              alt="Swiss Flag"
+              src={ch}
+            />,
             link: <Link to={{pathname: `/ch${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'Switzerland',
           },
           {
             active: country === 'us',
-            icon: <img title="American Flag" alt="American Flag" src={us} />,
+            icon: <img
+              title="American Flag"
+              alt="American Flag"
+              src={us}
+            />,
             link: <Link to={{pathname: `/us${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
             value: 'United States',
           },
@@ -203,13 +243,11 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
     />
 
   </div>
-  );
+);
 
 App.propTypes = {
-  location: PropTypes.object.isRequired, // eslint-disable-line
-  params: PropTypes.shape({
-    country: PropTypes.string,
-    menuItem: PropTypes.string,
-  }),
+  location: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
+
 export default App;

@@ -8,28 +8,44 @@ test('Renders Logo without crashing', () => {
   const component = render(
     <Header
       title="Volle Transparenz am Arbeitsmarkt"
-      logoLink={<a href="">test</a>}
+      logoLink={<a href="/test">test</a>}
     >
       <HeaderNav>
         <HeaderNavItem>
-          <a href="">
-            <span className="hidden-xs"><i className="fa fa-search hidden-xs" aria-hidden="true" />&nbsp; Suchen</span>
-            <i className="fa fa-search visible-xs" aria-hidden="true" />
+          <a href="/test">
+            <span className="hidden-xs">
+              <i
+                className="fa fa-search hidden-xs"
+                aria-hidden="true"
+              />
+              &nbsp; Suchen
+            </span>
+            <i
+              className="fa fa-search visible-xs"
+              aria-hidden="true"
+            />
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
-          <a className="" href="/">
+          <a
+            className=""
+            href="/"
+          >
             <span className="hidden-xs">Mein kununu </span>
             <i className="fa fa-user visible-xs" />
           </a>
         </HeaderNavItem>
         <HeaderNavItem>
-          <a href="/" className="btn btn-dd-sm btn-primary">Firma bewerten</a>
+          <a
+            href="/"
+            className="btn btn-dd-sm btn-primary"
+          >
+            Firma bewerten
+          </a>
         </HeaderNavItem>
       </HeaderNav>
-    </Header>
+    </Header>,
   );
 
   expect(component).toMatchSnapshot();
 });
-

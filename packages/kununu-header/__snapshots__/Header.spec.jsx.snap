@@ -15,7 +15,7 @@ exports[`Renders Logo without crashing 1`] = `
         class="pullLeft"
       >
         <a
-          href=""
+          href="/test"
         >
           <img
             alt="Volle Transparenz am Arbeitsmarkt"
@@ -47,7 +47,7 @@ exports[`Renders Logo without crashing 1`] = `
               class="headerNavItem"
             >
               <a
-                href=""
+                href="/test"
               >
                 <span
                   class="hidden-xs"

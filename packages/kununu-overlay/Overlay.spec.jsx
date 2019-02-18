@@ -5,7 +5,7 @@ import KununuOverlay from './index';
 
 test('Renders overlay without crashing', () => {
   const component = render(
-    <KununuOverlay />
+    <KununuOverlay />,
   );
 
   expect(component).toMatchSnapshot();

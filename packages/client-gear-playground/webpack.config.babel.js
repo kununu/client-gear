@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-
 const path = require('path');
 
 const autoprefixer = require('autoprefixer');
@@ -31,31 +29,19 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.jsx?$/,
-      //   exclude: /node_modules/,
-      //   loader: 'eslint-loader',
-      //   enforce: 'pre',
-      //   query: {
-      //     fix: true,
-      //   },
-      // },
-      // {
-      //   test: /\.scss$/,
-      //   exclude: /node_modules/,
-      //   loader: 'sasslint-loader',
-      //   enforce: 'pre',
-      //   options: {
-      //     configFile: '../../.sass-lint.yml',
-      //   },
-      // },
+      {
+        test: /\.jsx?$/,
+        exclude: [/dist/, /node_modules/],
+        loader: 'eslint-loader',
+        enforce: 'pre',
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules\/(?!nukleus)/,
         loader: 'babel-loader',
         options: {
           rootMode: 'upward',
-        }
+        },
       },
       {
         test: /\.scss$/,

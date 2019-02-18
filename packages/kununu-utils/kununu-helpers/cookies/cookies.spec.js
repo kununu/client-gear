@@ -21,6 +21,7 @@ describe('cookies', () => {
   it('can sucessfully save a cookie when its given value is an unparsed object', () => {
     const cookieName = 'kununu_cookie_name';
     const cookieValue = {valueA: 1, valueB: 2};
+
     cookies.set(cookieName, cookieValue, {});
 
     expect(cookies.get(cookieName)).toEqual(cookieValue);
