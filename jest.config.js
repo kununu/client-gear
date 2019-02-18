@@ -9,10 +9,5 @@ module.exports = {
   snapshotSerializers: [
     'enzyme-to-json/serializer',
   ],
-  testURL: 'http://www.kununu.com',
-  globals: {
-    'babel-jest': {
-      'babelrcFile': '<rootDir>/babel.config.js'
-    }
-  },
+  testURL: 'http://www.kununu.com'
 };
