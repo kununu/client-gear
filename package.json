@@ -54,6 +54,6 @@
     "postinstall": "lerna bootstrap",
     "start": "lerna exec npm run start --scope client-gear-playground",
     "dist": "lerna exec npm run dist --ignore client-gear-playground",
-    "clean": "lerna exec npm run clean && rimraf node_modules && lerna clean --yes"
+    "clean": "lerna exec npm run clean --ignore client-gear-playground && lerna clean --yes && rimraf node_modules"
   }
 }
