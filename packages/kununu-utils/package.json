@@ -10,6 +10,7 @@
     "supertest": "3.4.2"
   },
   "dependencies": {
+    "@babel/cli": "^7.2.3",
     "cookie": "0.3.1",
     "cookie-parser": "1.4.4",
     "http-status-codes": "1.3.0",
@@ -30,7 +31,7 @@
   },
   "scripts": {
     "prepare": "npm run dist",
-    "babel": "babel $(find ./ -name 'index.js' ! -ipath '*node_modules*') --out-dir ./dist",
+    "babel": "babel . --out-dir ./dist --ignore '**/*.spec.js','node_modules','**/__mocks__'",
     "clean": "rimraf ./dist",
     "dist": "npm run clean && cross-env NODE_ENV=production npm run babel"
   },

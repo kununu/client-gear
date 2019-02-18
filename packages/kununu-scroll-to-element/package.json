@@ -6,14 +6,14 @@
   "author": "kununu",
   "license": "ISC",
   "dependencies": {
-    "@kununu/kununu-utils": "1.0.5",
-    "react-scroll": "1.7.9"
+    "@kununu/kununu-utils": "1.8.1",
+    "react-scroll": "1.7.11"
   },
   "peerDependencies": {
-    "@kununu/kununu-utils": "1.0.5",
+    "@kununu/kununu-utils": "1.8.1",
     "prop-types": "15.6.0",
     "react": ">=16.0.0",
-    "react-scroll": "1.7.9"
+    "react-scroll": "1.7.11"
   },
   "scripts": {
     "prepare": "npm run dist",
