@@ -1,5 +1,7 @@
 import {createLogger, transports, format} from 'winston';
 
+const {LEVEL} = require('triple-beam');
+
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
 
@@ -7,24 +9,35 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
 
 /**
  * Format request and response data
- * @param  object containing res and req
- * @return string stringified object
+ * @param object info
+ * @returns string stringified object
  */
-export const formatNodeRequest = ({req, res, label, timeTakenMicros}) => JSON.stringify({
-  label,
-  time: new Date().toISOString(),
-  method: req.method,
-  request: req.originalUrl,
-  status: res.statusCode,
-  remote_ip: req.connection.remoteAddress || '-',
-  referer: req.headers.referer || '-',
-  forwarded_for: req.headers['x-forwarded-for'] || '-',
-  trace_id: req.headers['x-amzn-trace-id'] || '-',
-  logType: 'middleware_logger',
-  user_agent: req.headers['user-agent'] || '-',
-  time_taken_micros: timeTakenMicros,
-  build: process.env.BUILD_NAME || '-',
-});
+export const formatNodeRequest = (info) => {
+  const {req, res, label, timeTakenMicros} = info;
+
+  return (
+    JSON.stringify({
+      level_name: info[LEVEL],
+      time: new Date().toISOString(),
+      trace_id: req.headers['x-amzn-trace-id'] || '-',
+      build: process.env.BUILD_NAME || '-',
+      application: label,
+      http: {
+        status: res.statusCode,
+        http_method: req.method,
+        url: req.originalUrl,
+        referer: req.headers.referer || '-',
+        ip: req.connection.remoteAddress || '-',
+        user_agent: req.headers['user-agent'] || '-',
+        forwarded_for: req.headers['x-forwarded-for'] || '-',
+      },
+      channel: label,
+      metrics: {
+        time_taken_micros: timeTakenMicros,
+      },
+    })
+  );
+};
 
 /**
  * Check if it's a custom log or the
@@ -57,7 +70,7 @@ export const logger = createLogger({
       name: 'console',
       colorize: true,
       showLevel: true,
-      level: minimumLogLevel
+      level: minimumLogLevel,
     }),
   ],
 });

@@ -1,9 +1,11 @@
-process.env.MINIMUM_LOG_LEVEL = 'build-123';
+import {advanceTo, clear} from 'jest-date-mock';
+
 import {formatNodeRequest, logger, customFormat} from './index';
 
 const express = require('express');
 const request = require('supertest');
 
+process.env.MINIMUM_LOG_LEVEL = 'build-123';
 let generatedLog = '';
 
 const spyFunc = jest.fn((val) => {
@@ -20,33 +22,45 @@ afterEach(() => {
 describe('Returns correct log format with text format', () => {
   const app = express();
 
+  beforeAll(() => {
+    advanceTo(new Date(2019, 2, 19, 0, 0, 0));
+  });
+
+  afterAll(() => {
+    clear();
+  });
+
   it('returns correct format for express request logs', async () => {
     const label = 'test1';
 
-    app.get('/', (req, res) => {
-      const expectedRequest = {
-        label,
-        time: new Date().toISOString(),
-        method: req.method,
-        request: req.originalUrl,
-        status: res.statusCode,
-        remote_ip: '::ffff:127.0.0.1',
+    const expectedRequest = {
+      time: new Date().toISOString(),
+      trace_id: '-',
+      build: '-',
+      application: label,
+      http: {
+        status: 200,
+        http_method: 'GET',
+        url: '/',
         referer: '-',
+        ip: '::ffff:127.0.0.1',
+        user_agent: 'node-superagent/3.8.2',
         forwarded_for: '-',
-        trace_id: '-',
-        logType: 'middleware_logger',
-        timeTakenMicros: 1000,
-        build: 'build-123',
-      };
+      },
+      channel: label,
+      metrics: {
+        time_taken_micros: 1000,
+      },
+    };
 
+    app.get('/', (req, res) => {
       res.send({
         formatedRequest: formatNodeRequest({req, res, label, timeTakenMicros: 1000}),
-        expectedRequest,
       });
     });
 
     const response = await request(app).get('/');
-    expect(response.formatedRequest).toEqual(JSON.stringify(response.expectedRequest));
+    expect(response.body.formatedRequest).toEqual(JSON.stringify(expectedRequest));
   });
 
   it('returns expected format for custom request logs', async () => {
