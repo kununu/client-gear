@@ -31,7 +31,7 @@
   },
   "scripts": {
     "prepare": "npm run dist",
-    "babel": "babel . --out-dir ./dist --ignore '**/*.spec.js','node_modules','**/__mocks__'",
+    "babel": "babel . --out-dir ./dist --ignore '**/*.spec.js','node_modules','**/__mocks__'  --root-mode upward",
     "clean": "rimraf ./dist",
     "dist": "npm run clean && cross-env NODE_ENV=production npm run babel"
   },
