@@ -246,8 +246,15 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
 );
 
 App.propTypes = {
-  location: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      country: PropTypes.string,
+      menuItem: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 export default App;
