@@ -10,32 +10,26 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
  * @param {object} info
  * @returns string stringified object
  */
-export const formatNodeRequest = (info) => {
-  const {req, res, label, timeTakenMicros, level} = info;
-
-  return (
-    JSON.stringify({
-      level_name: typeof level === 'string' ? level.toUpperCase() : level,
-      time: new Date().toISOString(),
-      trace_id: req.headers['x-amzn-trace-id'] || '-',
-      build: process.env.BUILD_NAME || '-',
-      application: label,
-      http: {
-        method: req.method,
-        uri: req.originalUrl,
-        status: res.statusCode,
-        remote_ip: req.connection.remoteAddress || '-',
-        referer: req.headers.referer || '-',
-        user_agent: req.headers['user-agent'] || '-',
-        forwarded_for: req.headers['x-forwarded-for'] || '-',
-      },
-      channel: label,
-      metrics: {
-        time_taken_micros: timeTakenMicros,
-      },
-    })
-  );
-};
+export const formatNodeRequest = ({req, res, label, timeTakenMicros, level}) => JSON.stringify({
+  level_name: typeof level === 'string' ? level.toUpperCase() : level,
+  time: new Date().toISOString(),
+  trace_id: req.headers['x-amzn-trace-id'] || '-',
+  build: process.env.BUILD_NAME || '-',
+  application: label,
+  http: {
+    method: req.method,
+    uri: req.originalUrl,
+    status: res.statusCode,
+    remote_ip: req.connection.remoteAddress || '-',
+    local_ip: req.headers['x-forwarded-for'] || '-',
+    referer: req.headers.referer || '-',
+    user_agent: req.headers['user-agent'] || '-',
+  },
+  channel: label,
+  metrics: {
+    time_taken_micros: timeTakenMicros,
+  },
+});
 
 /**
  * Check if it's a custom log or the
