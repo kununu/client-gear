@@ -6,6 +6,7 @@
   "author": "kununu",
   "license": "ISC",
   "peerDependencies": {
+    "prop-types": ">=15.6.0",
     "react": ">=16.0.0"
   },
   "scripts": {

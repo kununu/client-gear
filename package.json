@@ -18,12 +18,21 @@
     "@babel/plugin-proposal-class-properties": "7.3.3",
     "@babel/preset-env": "7.3.1",
     "@babel/preset-react": "7.0.0",
+    "@kununu/eslint-config": "1.0.5",
+    "babel-eslint": "10.0.1",
     "babel-jest": "24.1.0",
     "babel-plugin-transform-rename-import": "2.3.0",
     "cross-env": "5.2.0",
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.9.1",
     "enzyme-to-json": "3.3.5",
+    "eslint": "5.10.0",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-babel": "5.3.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-react": "7.11.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "24.1.0",
     "jest-cli": "24.1.0",
@@ -32,16 +41,19 @@
     "node-sass": "4.11.0",
     "react": "16.8.2",
     "react-dom": "16.8.2",
-    "rimraf": "2.6.3"
+    "rimraf": "2.6.3",
+    "sass-lint": "1.12.1"
   },
   "scripts": {
-    "lint": "eslint packages --max-warnings 0 --ext jsx --ext js",
+    "eslint": "eslint packages --max-warnings 0 --ext jsx --ext js",
+    "sasslint": "sass-lint --verbose",
+    "lint": "npm run eslint && npm run sasslint",
     "test": "jest --verbose --no-cache",
     "test:watch": "jest --watch --verbose",
     "coverage": "jest --coverage",
     "postinstall": "lerna bootstrap",
     "start": "lerna exec npm run start --scope client-gear-playground",
     "dist": "lerna exec npm run dist --ignore client-gear-playground",
-    "clean": "rimraf node_modules && lerna clean --yes"
+    "clean": "lerna exec npm run clean --ignore client-gear-playground && lerna clean --yes && rimraf node_modules"
   }
 }

@@ -7,7 +7,7 @@ test('Renders Logo without crashing', () => {
   const component = render(
     <KununuLogo
       title="test"
-    />
+    />,
   );
 
   expect(component).toMatchSnapshot();

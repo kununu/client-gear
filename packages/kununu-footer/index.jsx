@@ -9,12 +9,18 @@ import FooterNav from './FooterNav';
 import styles from './index.scss';
 import TuvIcon from './Tuv';
 
-export default class Footer extends Component { // eslint-disable-line
+export default class Footer extends Component {
   activeCountry = () => {
     const {items: {countrySwitcher}} = this.props;
     const active = countrySwitcher.filter(item => item.active);
 
-    return (<span>{active[0].value} {active[0].icon}</span>);
+    return (
+      <span>
+        {active[0].value}
+        {' '}
+        {active[0].icon}
+      </span>
+    );
   }
 
   render () {
@@ -48,7 +54,10 @@ export default class Footer extends Component { // eslint-disable-line
               />
             </div>
             {navs.cols.map((item, index) => (
-              <div className={styles.menuColumns} key={index}>
+              <div
+                className={styles.menuColumns}
+                key={index} // eslint-disable-line react/no-array-index-key
+              >
                 <FooterNav
                   items={item.items}
                   pathname={pathname}
@@ -56,8 +65,7 @@ export default class Footer extends Component { // eslint-disable-line
                   type="col"
                 />
               </div>
-            ),
-            )}
+            ))}
             {tuv ? (
               <div
                 className={`
@@ -66,10 +74,12 @@ export default class Footer extends Component { // eslint-disable-line
                 `}
               >
                 <ToolTip
-                  icon={<TuvIcon
-                    className={styles.tuvIcon}
-                    assetsPath={assetsPath}
-                  />}
+                  icon={(
+                    <TuvIcon
+                      className={styles.tuvIcon}
+                      assetsPath={assetsPath}
+                    />
+                  )}
                   label="TUV"
                   content={(
                     <ul className={styles.tooltipContent}>
@@ -92,7 +102,11 @@ export default class Footer extends Component { // eslint-disable-line
               </p>
 
               <p className={styles.infoText}>
-                made with <HeartIcon className={`${styles.heart} ${styles.icon}`} /> in Vienna, Boston, Porto, Berlin
+                made with
+                {' '}
+                <HeartIcon className={`${styles.heart} ${styles.icon}`} />
+                {' '}
+                in Vienna, Boston, Porto, Berlin
               </p>
             </div>
           </div>
@@ -100,13 +114,12 @@ export default class Footer extends Component { // eslint-disable-line
             <div>
               {navs.rows.map((item, index) => (
                 <FooterNav
-                  key={index}
+                  key={index} // eslint-disable-line react/no-array-index-key
                   pathname={pathname}
                   items={item.items}
                   type="row"
                 />
-              ),
-              )}
+              ))}
             </div>
             <div className={`${styles.dropdown} ${styles.hiddenXs}`}>
               <DropDown
@@ -118,7 +131,7 @@ export default class Footer extends Component { // eslint-disable-line
               >
                 {countrySwitcher.map((item, index) => (
                   <DropDownItem
-                    key={index}
+                    key={index} // eslint-disable-line react/no-array-index-key
                     icon={item.icon}
                   >
                     {item.link}
@@ -134,9 +147,9 @@ export default class Footer extends Component { // eslint-disable-line
 }
 
 Footer.propTypes = {
+  assetsPath: PropTypes.string,
   container: PropTypes.string,
   infoText: PropTypes.element.isRequired,
-  assetsPath: PropTypes.string,
   items: PropTypes.shape({
     countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
       active: PropTypes.bool,
@@ -167,7 +180,9 @@ Footer.propTypes = {
 };
 
 Footer.defaultProps = {
-  simpleMobile: false,
-  container: 'container-fluid',
   assetsPath: 'https://assets.kununu.com/images/footer',
+  container: 'container-fluid',
+  items: {},
+  simpleMobile: false,
+  tuv: false,
 };

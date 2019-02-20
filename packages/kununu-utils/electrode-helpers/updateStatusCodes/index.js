@@ -38,6 +38,7 @@ export function updateStatusCode (result) {
 
   // Check the status code reducer for current http code
   const {statusCodes} = prefetchedState;
+
   switch (statusCodes.code) {
     case HttpStatus.NOT_FOUND:
     case HttpStatus.SERVICE_UNAVAILABLE:
@@ -52,4 +53,3 @@ export function updateStatusCode (result) {
       return result;
   }
 }
-

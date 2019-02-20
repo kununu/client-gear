@@ -16,7 +16,7 @@
     "@kununu/kununu-icons": "1.4.0",
     "@kununu/kununu-logo": "1.1.0",
     "nukleus": "14.1.8",
-    "prop-types": "15.7.2",
+    "prop-types": ">=15.6.0",
     "react": ">=16.0.0"
   },
   "scripts": {

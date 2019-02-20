@@ -11,7 +11,7 @@
   },
   "peerDependencies": {
     "@kununu/kununu-utils": "1.8.1",
-    "prop-types": "15.6.0",
+    "prop-types": ">=15.6.0",
     "react": ">=16.0.0",
     "react-scroll": "1.7.11"
   },

@@ -1,11 +1,11 @@
 import React from 'react';
-import renderer from 'react-test-renderer'; // eslint-disable-line import/no-extraneous-dependencies
+import {render} from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 
 import elementPosition from './index';
 
 describe('Returns the correct element Y position of an element', () => {
   it('Returns the correct value', () => {
-    const element = renderer.create(
+    const element = render(
       <div>Test</div>,
     );
 

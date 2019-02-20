@@ -10,7 +10,7 @@
   },
   "peerDependencies": {
     "@kununu/kununu-utils": "1.8.1",
-    "prop-types": "15.7.2",
+    "prop-types": ">=15.6.0",
     "react": ">=16.0.0"
   },
   "scripts": {

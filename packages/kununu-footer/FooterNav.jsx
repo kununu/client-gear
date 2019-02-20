@@ -10,19 +10,21 @@ export default class FooterNav extends Component {
   }
 
   onClickButton = () => {
+    const {open} = this.state;
+
     this.setState({
-      open: !this.state.open,
+      open: !open,
     });
   }
 
   getMenuTitle = item => (
     <span>
       {item.value}
-      {item.icon ?
+      {item.icon ? (
         <span className={styles.titleIcon}>
           {item.icon}
         </span>
-        : ''}
+      ) : ''}
     </span>
   )
 
@@ -30,8 +32,8 @@ export default class FooterNav extends Component {
     <span>
       {item.value}
       {item.icon ?
-        <span className={styles.itemIcon}>{item.icon}</span>
-        : ''}
+        <span className={styles.itemIcon}>{item.icon}</span> :
+        ''}
     </span>
   )
 
@@ -51,17 +53,21 @@ export default class FooterNav extends Component {
       title,
       type,
     } = this.props;
+    const {
+      open,
+    } = this.state;
 
     return (
       <Fragment>
-        {title || dynamicNav ?
+        {title || dynamicNav ? (
           <Fragment>
             <span className={styles.title}>
               {title}
             </span>
             <button
-              className={`${styles.accordionTitle} ${this.state.open && styles.open}`}
+              className={`${styles.accordionTitle} ${open && styles.open}`}
               onClick={this.onClickButton}
+              type="button"
             >
               <span>
                 {dynamicNav ? this.getActiveItem() : title}
@@ -69,18 +75,18 @@ export default class FooterNav extends Component {
               <IconPlus className={`${styles.plus} ${styles.icon}`} />
             </button>
           </Fragment>
-          : ''
+        ) : ''
         }
         <ul
           role="navigation"
           className={`
             ${styles.footerNav}
             ${styles[type]}
-            ${this.state.open && styles.open}`}
+            ${open && styles.open}`}
         >
           {items.map((item, index) => (
             <li
-              key={index}
+              key={index} // eslint-disable-line react/no-array-index-key
               className={`${styles.footerNavItem} ${this.isActive(item) && styles.active}`}
             >
               {React.cloneElement(item.link, {}, this.getItem(item))}
@@ -94,11 +100,13 @@ export default class FooterNav extends Component {
 
 FooterNav.propTypes = {
   dynamicNav: PropTypes.bool,
-  items: PropTypes.arrayOf(PropTypes.object),
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string,
   type: PropTypes.oneOf(['row', 'col']),
 };
 
 FooterNav.defaultProps = {
+  dynamicNav: false,
+  title: '',
   type: 'col',
 };

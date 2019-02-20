@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 const Tuv = ({className, assetsPath}) => (
   <div className={className}>
-    <img src={`${assetsPath}/tuv.svg`} alt="TUV Logo" />
+    <img
+      src={`${assetsPath}/tuv.svg`}
+      alt="TUV Logo"
+    />
   </div>
 );
 

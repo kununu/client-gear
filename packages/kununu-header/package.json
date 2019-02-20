@@ -13,7 +13,8 @@
   "peerDependencies": {
     "@kununu/kununu-logo": "1.1.0",
     "@kununu/kununu-theme-v2": "2.0.2",
-    "react": ">16.0.0"
+    "prop-types": ">=15.6.0",
+    "react": ">=16.0.0"
   },
   "scripts": {
     "prepare": "npm run dist",

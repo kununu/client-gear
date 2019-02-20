@@ -15,6 +15,7 @@
   "homepage": "https://github.com/kununu/client-gear#readme",
   "dependencies": {
     "@kununu/kununu-theme-v2": "2.0.2",
+    "autoprefixer": "9.4.7",
     "babel-loader": "8.0.5",
     "bootstrap": "4.3.1",
     "bootstrap-sass": "3.4.1",
