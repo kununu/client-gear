@@ -1,7 +1,5 @@
 import {createLogger, transports, format} from 'winston';
 
-const {LEVEL} = require('triple-beam');
-
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
 
@@ -9,25 +7,25 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
 
 /**
  * Format request and response data
- * @param object info
+ * @param {object} info
  * @returns string stringified object
  */
 export const formatNodeRequest = (info) => {
-  const {req, res, label, timeTakenMicros} = info;
+  const {req, res, label, timeTakenMicros, level} = info;
 
   return (
     JSON.stringify({
-      level_name: info[LEVEL],
+      level_name: typeof level === 'string' ? level.toUpperCase() : level,
       time: new Date().toISOString(),
       trace_id: req.headers['x-amzn-trace-id'] || '-',
       build: process.env.BUILD_NAME || '-',
       application: label,
       http: {
+        method: req.method,
+        uri: req.originalUrl,
         status: res.statusCode,
-        http_method: req.method,
-        url: req.originalUrl,
+        remote_ip: req.connection.remoteAddress || '-',
         referer: req.headers.referer || '-',
-        ip: req.connection.remoteAddress || '-',
         user_agent: req.headers['user-agent'] || '-',
         forwarded_for: req.headers['x-forwarded-for'] || '-',
       },

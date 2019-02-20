@@ -34,16 +34,17 @@ describe('Returns correct log format with text format', () => {
     const label = 'test1';
 
     const expectedRequest = {
+      level_name: 'INFO',
       time: new Date().toISOString(),
       trace_id: '-',
       build: '-',
       application: label,
       http: {
+        method: 'GET',
+        uri: '/',
         status: 200,
-        http_method: 'GET',
-        url: '/',
+        remote_ip: '::ffff:127.0.0.1',
         referer: '-',
-        ip: '::ffff:127.0.0.1',
         user_agent: 'node-superagent/3.8.2',
         forwarded_for: '-',
       },
@@ -55,7 +56,7 @@ describe('Returns correct log format with text format', () => {
 
     app.get('/', (req, res) => {
       res.send({
-        formatedRequest: formatNodeRequest({req, res, label, timeTakenMicros: 1000}),
+        formatedRequest: formatNodeRequest({req, res, label, timeTakenMicros: 1000, level: 'info'}),
       });
     });
 
