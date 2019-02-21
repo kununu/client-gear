@@ -18,19 +18,26 @@ npm i # Install all dependencies in all packages via lerna
 npm start
 ```
 
-## Build all packages
+## Useful commands
+### Build all packages
 ```sh
 npm run dist
 ```
 
-## Run tests for specific package
+### Run tests for specific package
 Run tests for kununu-utils
 ```sh
 npm run test -- packages/kununu-utils
 ```
 
-## Run script for specific package
+### Run script for specific package
 Run `npm run sass` for kununu-footer
 ```sh
 lerna exec npm run sass --scope @kununu/kununu-footer
+```
+
+### Check outdated npm packages in all packages
+Run `npm outdated` in all packages ignoring non-zero (error) exit codes
+```sh
+lerna exec npm outdated --no-bail
 ```
