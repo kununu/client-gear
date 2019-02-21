@@ -27,7 +27,7 @@ export const formatNodeRequest = ({req, res, label, timeTakenMicros, level, mess
     user_agent: (req.headers && req.headers['user-agent']) || '-',
     remote_address: (req.connection && req.connection.remoteAddress) || '-',
   },
-  channel: 'middleware logger',
+  channel: 'middleware_logger',
   metrics: {
     time_taken_micros: timeTakenMicros,
   },
@@ -49,7 +49,7 @@ export const customFormat = printf((info) => {
     return `${prefix}${JSON.stringify(
       {
         message: info.message,
-        level_name: info.level,
+        level_name: typeof info.level === 'string' ? info.level.toUpperCase() : info.level,
         time: new Date().toISOString(),
         build: process.env.BUILD_NAME || '-',
         application: info.label,
