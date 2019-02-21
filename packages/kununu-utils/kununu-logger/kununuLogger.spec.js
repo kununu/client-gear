@@ -124,14 +124,9 @@ describe('Returns correct log format with json format', () => {
 });
 
 describe('Logs according to defined level', () => {
-  let originalEnv = process.env.MINIMUM_LOG_LEVEL;
   jest.resetModules();
   process.env.MINIMUM_LOG_LEVEL = 'debug';
-  const {logger: loggerLevelTest} = require('./index');
-
-  afterAll(() => {
-    process.env.MINIMUM_LOG_LEVEL = originalEnv;
-  });
+  const {logger: loggerLevelTest} = require('./index'); // eslint-disable-line global-require
 
   it('tries to log silly level', () => {
     loggerLevelTest.silly({
@@ -198,7 +193,7 @@ describe('Logs according to defined level', () => {
     loggerLevelTest.log('error', {
       custom: true,
       message: 'error - Message will be logged',
-      exception: 'error - Exception will be logged'
+      exception: 'error - Exception will be logged',
     });
 
     expect(spyFunc).toBeCalled();
