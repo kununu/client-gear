@@ -11,12 +11,18 @@ render(
   <BrowserRouter>
     <Switch>
       <Route
-        path="/:country/:something?"
+        path="/:country"
         component={App}
       />
-      <Redirect
-        from="/"
-        to="/at"
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <Redirect
+            from="/"
+            to="/at"
+          />
+        )}
       />
     </Switch>
   </BrowserRouter>,

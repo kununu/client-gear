@@ -173,10 +173,13 @@ const FormWrapper = (WrappedComponent) => {
      * @param {object} event
      */
     handleUserBlur = (event) => {
+      console.log('handleUserBlur', event, event.target, event.relatedTarget);
       const {name, value} = event.target;
+      console.log(name, value);
 
       // When the form is submit, setting state in blur stops event propagation
-      if (event.relatedTarget && event.relatedTarget.type !== 'submit') {
+      if ((event.relatedTarget && event.relatedTarget.type !== 'submit') || !event.relatedTarget) {
+        console.log('dentro');
         const fields = {
           fields: {
             ...this.getStateFields(),
@@ -185,6 +188,7 @@ const FormWrapper = (WrappedComponent) => {
         };
 
         return new Promise((resolve) => {
+          console.log('fields', fields);
           this.setState(fields, resolve);
         });
       }
@@ -227,7 +231,7 @@ const FormWrapper = (WrappedComponent) => {
      * Trigger form field validation
      * for each field
      */
-    touchForm = (isTouched) => {
+    touchForm = (isTouched = true) => {
       const fieldsObj = this.getStateFields();
       const touchedFields = Object.keys(fieldsObj).reduce((obj, key) => ({...obj, [key]: {...fieldsObj[key], touched: isTouched}}), {});
 
@@ -291,7 +295,11 @@ const FormWrapper = (WrappedComponent) => {
   }
 
   HOC.propTypes = {
-    getInitialFields: PropTypes.func.isRequired,
+    getInitialFields: PropTypes.func,
+  };
+
+  HOC.defaultProps = {
+    getInitialFields: () => ({}),
   };
 
   return HOC;
