@@ -10,7 +10,8 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
  * @param {object} info
  * @returns string stringified object
  */
-export const formatNodeRequest = ({req, res, label, timeTakenMicros, level}) => JSON.stringify({
+export const formatNodeRequest = ({req, res, label, timeTakenMicros, level, message}) => JSON.stringify({
+  message,
   level_name: typeof level === 'string' ? level.toUpperCase() : level,
   time: new Date().toISOString(),
   trace_id: req.headers['x-amzn-trace-id'] || '-',
@@ -20,10 +21,11 @@ export const formatNodeRequest = ({req, res, label, timeTakenMicros, level}) => 
     method: req.method,
     uri: req.originalUrl,
     status: res.statusCode,
-    remote_ip: req.connection.remoteAddress || '-',
-    local_ip: req.headers['x-forwarded-for'] || '-',
-    referer: req.headers.referer || '-',
-    user_agent: req.headers['user-agent'] || '-',
+    remote_ip: (req.headers && req.headers['x-forwarded-for']) || (req.connection && req.connection.remoteAddress) || '-',
+    local_ip: (req.connection && req.connection.localAddress) || '-',
+    referer: (req.headers && req.headers.referer) || '-',
+    user_agent: (req.headers && req.headers['user-agent']) || '-',
+    remote_address: (req.connection && req.connection.remoteAddress) || '-',
   },
   channel: label,
   metrics: {
