@@ -27,7 +27,7 @@ export const formatNodeRequest = ({req, res, label, timeTakenMicros, level, mess
     user_agent: (req.headers && req.headers['user-agent']) || '-',
     remote_address: (req.connection && req.connection.remoteAddress) || '-',
   },
-  channel: label,
+  channel: 'middleware logger',
   metrics: {
     time_taken_micros: timeTakenMicros,
   },
@@ -41,14 +41,24 @@ export const formatNodeRequest = ({req, res, label, timeTakenMicros, level, mess
 export const customFormat = printf((info) => {
   const colorizedMessage = getColorizedMessage(`[${info.label}][${info.timestamp}][${info.level}]`);
   const loggerType = info.custom ? '– custom logger -' : ' – middleware logger - ';
-  const kibanaFormatting = process.env.NODE_ENV === 'production';
 
-  // Kibana only supports JSON and not text so the prefix only added
-  // on non kibana formatting
-  const prefix = kibanaFormatting ? '' : `${colorizedMessage}${loggerType}`;
+  // Logs in production should be outputted in JSON and not text
+  const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}${loggerType}`;
 
   if (info.custom) {
-    return `${prefix}${JSON.stringify({...info, logType: 'custom_logger', build: process.env.BUILD_NAME || '-'})}`;
+    return `${prefix}${JSON.stringify(
+      {
+        message: info.message,
+        level_name: info.level,
+        time: new Date().toISOString(),
+        build: process.env.BUILD_NAME || '-',
+        application: info.label,
+        channel: loggerType,
+        context: {
+          exception: info.exception,
+        },
+      },
+    )}`;
   }
 
   return `${prefix}${formatNodeRequest(info)}`;

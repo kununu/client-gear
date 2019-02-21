@@ -45,9 +45,10 @@ describe('Returns correct log format with text format', () => {
         uri: '/',
         status: 200,
         remote_ip: '::ffff:127.0.0.1',
-        local_ip: '-',
+        local_ip: '::ffff:127.0.0.1',
         referer: '-',
         user_agent: 'node-superagent/3.8.2',
+        remote_address: '::ffff:127.0.0.1',
       },
       channel: label,
       metrics: {
