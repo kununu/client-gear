@@ -14,18 +14,17 @@ export const formatNodeRequest = ({req, res, label, timeTakenMicros, level, mess
   message,
   level_name: typeof level === 'string' ? level.toUpperCase() : level,
   time: new Date().toISOString(),
-  trace_id: req.headers['x-amzn-trace-id'] || '-',
+  trace_id: (req.headers && req.headers['x-amzn-trace-id']) || '-',
   build: process.env.BUILD_NAME || '-',
   application: label,
   http: {
     method: req.method,
     uri: req.originalUrl,
     status: res.statusCode,
-    remote_ip: (req.headers && req.headers['x-forwarded-for']) || (req.connection && req.connection.remoteAddress) || '-',
+    remote_ip: (req.headers && req.headers['x-forwarded-for']) || '-',
     local_ip: (req.connection && req.connection.localAddress) || '-',
     referer: (req.headers && req.headers.referer) || '-',
     user_agent: (req.headers && req.headers['user-agent']) || '-',
-    remote_address: (req.connection && req.connection.remoteAddress) || '-',
   },
   channel: 'middleware_logger',
   metrics: {
@@ -39,11 +38,11 @@ export const formatNodeRequest = ({req, res, label, timeTakenMicros, level, mess
  * on the custom param.
  */
 export const customFormat = printf((info) => {
-  const colorizedMessage = getColorizedMessage(`[${info.label}][${info.timestamp}][${info.level}]`);
-  const loggerType = info.custom ? '– custom logger -' : ' – middleware logger - ';
+  const loggerType = info.custom ? 'custom_logger' : 'middleware_logger';
+  const colorizedMessage = getColorizedMessage(`[${info.label}][${info.timestamp}][${info.level}][${loggerType}]`);
 
   // Logs in production should be outputted in JSON and not text
-  const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}${loggerType}`;
+  const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}`;
 
   if (info.custom) {
     return `${prefix}${JSON.stringify(
