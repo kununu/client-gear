@@ -7,10 +7,12 @@ import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/index';
 import Footer from '../kununu-footer/index';
 import IconSearch from '../kununu-icons/Search';
 import IconUser from '../kununu-icons/User';
+import FormWrapper from '../kununu-form-wrapper/index';
 
 import styles from './index.scss';
 import Home from './home';
 import Icons from './icons';
+import Form from './form';
 
 // if you want to test the distribution, just uncomment the lines below
 // import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/dist';
@@ -34,6 +36,8 @@ const infoText = (
     Unternehmen abgegeben.
   </span>
 );
+
+const FormWrapperComponent = FormWrapper(Form);
 
 const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
   <div className="appContainer">
@@ -80,12 +84,13 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
       <div className={`container-fluid ${styles.menu}`}>
         <Link to={{pathname: `/${country}`}}>Home</Link>
         <Link to={{pathname: `/${country}/icons`}}>Icons</Link>
+        <Link to={{pathname: `/${country}/form-wrapper`}}>Form Wrapper</Link>
       </div>
       <div className="container-fluid">
         <Switch>
           <Route
             exact
-            path="/"
+            path="/:country"
             component={Home}
           />
           <Route
@@ -93,12 +98,8 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
             component={Icons}
           />
           <Route
-            path="/:country/form"
-            component={App}
-          />
-          <Route
-            path="/:country/:menuItem?"
-            component={Home}
+            path="/:country/form-wrapper"
+            component={() => <FormWrapperComponent getInitialFields={() => ({})} />}
           />
         </Switch>
       </div>
