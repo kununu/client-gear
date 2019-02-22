@@ -1,29 +1,18 @@
 {
   "name": "@kununu/kununu-icons",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "kununu icons",
   "main": "index.js",
   "author": "kununu",
   "license": "ISC",
-  "devDependencies": {
-    "@babel/cli": "7.2.3",
-    "@babel/core": "7.2.2",
-    "@babel/preset-react": "7.0.0",
-    "cross-env": "5.2.0",
-    "react": "16.7.0",
-    "rimraf": "2.6.3"
-  },
-  "dependencies": {
-    "@babel/preset-env": "7.2.3",
-    "prop-types": "15.6.2"
-  },
   "peerDependencies": {
+    "prop-types": ">=15.6.0",
     "react": ">=16.0.0"
   },
   "scripts": {
-    "prepublish": "yarn dist",
-    "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist",
+    "prepare": "npm run dist",
+    "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist --root-mode upward",
     "clean": "rimraf ./dist",
-    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel"
+    "dist": "npm run clean && cross-env NODE_ENV=production npm run babel"
   }
 }

@@ -1,37 +1,29 @@
 {
   "name": "@kununu/kununu-footer",
-  "version": "2.4.2",
+  "version": "2.5.0",
   "description": "kununu Footer",
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
-  "devDependencies": {
-    "@kununu/kununu-theme-v2": "2.0.2",
-    "babel-cli": "6.26.0",
-    "cross-env": "5.2.0",
-    "node-sass": "4.11.0",
-    "node-sass-module-importer": "0.1.0",
-    "nukleus": "14.1.2",
-    "react": "16.7.0",
-    "react-dom": "16.7.0",
-    "rimraf": "2.6.3"
-  },
   "dependencies": {
-    "@kununu/kununu-theme-v2": "2.0.2",
     "@kununu/kununu-icons": "1.4.0",
     "@kununu/kununu-logo": "1.1.0",
-    "prop-types": "15.6.2"
+    "@kununu/kununu-theme-v2": "2.0.2",
+    "node-sass-module-importer": "0.1.0",
+    "nukleus": "14.1.8"
   },
   "peerDependencies": {
-    "nukleus": "14.1.2",
-    "react": "16.7.0",
-    "react-dom": "16.7.0"
+    "@kununu/kununu-icons": "1.4.0",
+    "@kununu/kununu-logo": "1.1.0",
+    "nukleus": "14.1.8",
+    "prop-types": ">=15.6.0",
+    "react": ">=16.0.0"
   },
   "scripts": {
-    "prepublish": "yarn dist",
-    "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist",
+    "prepare": "npm run dist",
+    "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist --root-mode upward",
     "sass": "node-sass ./index.scss --output ./dist --importer node_modules/node-sass-module-importer",
     "clean": "rimraf ./dist",
-    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel && yarn sass"
+    "dist": "npm run clean && cross-env NODE_ENV=production npm run babel && npm run sass"
   }
 }

@@ -1,16 +1,20 @@
-/* eslint-disable import/no-extraneous-dependencies */
-
 const path = require('path');
 
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
+  mode: 'development',
   context: __dirname,
   entry: 'index.jsx',
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
     publicPath: '/build/',
+  },
+  devServer: {
+    historyApiFallback: true,
+    open: true,
+    port: 3000,
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx'],
@@ -27,35 +31,34 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: [/dist/, /node_modules/],
         loader: 'eslint-loader',
         enforce: 'pre',
-        query: {
-          fix: true,
-        },
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        loader: 'sasslint-loader',
-        enforce: 'pre',
-        options: {
-          configFile: '../../.sass-lint.yml',
-        },
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules\/(?!nukleus)/,
         loader: 'babel-loader',
+        options: {
+          rootMode: 'upward',
+        },
       },
       {
         test: /\.scss$/,
         exclude: /node_modules|main\.scss/,
         use: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+          require.resolve('style-loader'),
           {
-            loader: 'postcss-loader',
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+              modules: true,
+              context: path.resolve(__dirname, 'context'),
+              localIdentName: '[path][name]__[local]___[hash:base64:5]',
+            },
+          },
+          {
+            loader: require.resolve('postcss-loader'),
             options: {
               plugins () {
                 return [
@@ -64,62 +67,42 @@ module.exports = {
               },
             },
           },
-          'sass-loader',
+          require.resolve('sass-loader'),
         ],
       },
-      {
-        test: /nukleus\/dist\/.+\.css$/,
-        include: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-        ],
-      },
-      // if you want to test the distribution, just uncomment the lines below
-      /* {
-        test: /kununu-footer\/dist\/index.css$/,
-        use: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-        ],
-      },
-      {
-        test: /kununu-header\/dist\/index.css$/,
-        use: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-        ],
-      },
-      {
-        test: /kununu-logo\/dist\/index.css$/,
-        use: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-        ],
-      },
-      {
-        test: /kununu-overlay\/dist\/index.css$/,
-        use: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-        ],
-      }, */
       {
         test: /\.css$/,
-        include: /node_modules\/(?!nukleus\/dist)/,
         use: [
-          'style-loader',
-          'css-loader',
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+              modules: true,
+              context: path.resolve(__dirname, 'context'),
+              localIdentName: '[path][name]__[local]___[hash:base64:5]',
+            },
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              plugins () {
+                return [
+                  autoprefixer,
+                ];
+              },
+            },
+          },
         ],
       },
       {
         test: /main\.scss$/,
         exclude: /node_modules/,
         use: [
-          'style-loader',
-          'css-loader',
+          require.resolve('style-loader'),
+          require.resolve('css-loader'),
           {
-            loader: 'postcss-loader',
+            loader: require.resolve('postcss-loader'),
             options: {
               plugins () {
                 return [
@@ -128,12 +111,8 @@ module.exports = {
               },
             },
           },
-          'sass-loader',
+          require.resolve('sass-loader'),
         ],
-      },
-      {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
       },
       {
         test: /\.(ttf|eot|svg|gif|png)(\?v=[0-9]\.[0-9]\.[0-9])?$/,

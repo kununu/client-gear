@@ -1,24 +1,30 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {Route, Router, hashHistory} from 'react-router';
-import 'font-awesome-webpack';
+import {Redirect, Route, Switch} from 'react-router';
+import {BrowserRouter} from 'react-router-dom';
 
 import './main.scss';
 
 import App from './app';
 
-const getRoutes = () => (
-  <Route path="/" component={App}>
-    <Route path="/us/test" component={App} />
-    <Route path="/:country(/:menuItem)" component={App} />
-  </Route>
-);
-
-
 render(
-  <Router
-    routes={getRoutes()}
-    history={hashHistory}
-  />,
+  <BrowserRouter>
+    <Switch>
+      <Route
+        path="/:country"
+        component={App}
+      />
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <Redirect
+            from="/"
+            to="/at"
+          />
+        )}
+      />
+    </Switch>
+  </BrowserRouter>,
   document.getElementById('client-gear-playground'),
 );

@@ -5,6 +5,7 @@ const cookies = {
     const parts = v.split('=');
     const cookie = parts[0] === name ? decodeURIComponent(parts[1]) : r;
     const shouldBeParsed = cookie[0] === '{' || cookie[0] === '[';
+
     return shouldBeParsed ? JSON.parse(cookie) : cookie;
   }, ''),
   set: (name, value, options) => {

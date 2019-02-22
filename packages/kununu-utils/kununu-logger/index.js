@@ -10,7 +10,12 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
  * @param  object containing res and req
  * @return string stringified object
  */
-export const formatNodeRequest = ({req, res, label, timeTakenMicros}) => JSON.stringify({
+export const formatNodeRequest = ({
+  req,
+  res,
+  label,
+  timeTakenMicros,
+}) => JSON.stringify({
   label,
   time: new Date().toISOString(),
   method: req.method,
@@ -57,7 +62,7 @@ export const logger = createLogger({
       name: 'console',
       colorize: true,
       showLevel: true,
-      level: minimumLogLevel
+      level: minimumLogLevel,
     }),
   ],
 });

@@ -13,7 +13,10 @@ export default function Header ({
   logoLink,
 }) {
   return (
-    <header role="banner" className={`${styles.header} ${fixed && styles.fixed}`}>
+    <header
+      role="banner"
+      className={`${styles.header} ${fixed && styles.fixed}`}
+    >
       <div className={container}>
         <div className={styles.flex}>
           <div className={styles.pullLeft}>
@@ -34,19 +37,17 @@ export default function Header ({
 }
 
 Header.propTypes = {
-  children: PropTypes.element,
+  assetsPath: PropTypes.string,
+  children: PropTypes.element.isRequired,
   container: PropTypes.string,
   fixed: PropTypes.bool,
   logoLink: PropTypes.element.isRequired,
   title: PropTypes.string,
-  assetsPath: PropTypes.string,
 };
 
 Header.defaultProps = {
+  assetsPath: 'https://assets.kununu.com/images/footer',
   container: 'container-fluid',
   fixed: true,
-  isLoading: false,
-  responsive: true,
   title: '',
-  assetsPath: 'https://assets.kununu.com/images/footer',
 };
