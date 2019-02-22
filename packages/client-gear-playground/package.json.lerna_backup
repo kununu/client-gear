@@ -1,0 +1,43 @@
+{
+  "name": "client-gear-playground",
+  "private": true,
+  "version": "1.0.1",
+  "description": "A place to test and development kununu client-gear",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kununu/client-gear.git"
+  },
+  "author": "kununu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kununu/client-gear/issues"
+  },
+  "homepage": "https://github.com/kununu/client-gear#readme",
+  "dependencies": {
+    "@kununu/kununu-theme-v2": "2.0.2",
+    "@kununu/kununu-utils": "1.8.1",
+    "autoprefixer": "9.4.8",
+    "babel-loader": "8.0.5",
+    "bootstrap": "4.3.1",
+    "bootstrap-sass": "3.4.1",
+    "css-loader": "2.1.0",
+    "file-loader": "3.0.1",
+    "node-sass": "4.11.0",
+    "nukleus": "14.1.8",
+    "postcss-loader": "3.0.0",
+    "prop-types": "15.7.2",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
+    "sass-loader": "7.1.0",
+    "sasslint-loader": "0.0.1",
+    "style-loader": "0.23.1",
+    "webpack": "4.29.5",
+    "webpack-cli": "3.2.3",
+    "webpack-dev-server": "3.2.0"
+  },
+  "scripts": {
+    "start": "NODE_ENV=development webpack-dev-server --hot"
+  }
+}
