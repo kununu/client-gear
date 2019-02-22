@@ -76,7 +76,7 @@ import Verified from '../kununu-icons/Verified';
 import styles from './index.scss';
 
 const Icon = () => (
-  <div style={{backgroundColor: '#fff', padding: '10px 20px'}}>
+  <div>
     <h2>
       Welcome to kununu ICON playground!
     </h2>

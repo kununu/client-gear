@@ -40,7 +40,7 @@ class FormComponent extends React.Component {
     } = this.state;
 
     return (
-      <div style={{backgroundColor: '#fff', padding: '10px 20px', position: 'relative'}}>
+      <div>
         <h2>
           Welcome to kununu form wrapper playground!
         </h2>

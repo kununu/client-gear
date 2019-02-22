@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {Route, Switch} from 'react-router';
+import Tabs from 'nukleus/dist/components/Tabs';
 
 import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/index';
 import Footer from '../kununu-footer/index';
@@ -13,6 +14,7 @@ import styles from './index.scss';
 import Home from './home';
 import Icons from './icons';
 import Form from './form';
+
 
 // if you want to test the distribution, just uncomment the lines below
 // import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/dist';
@@ -88,27 +90,32 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
       </HeaderNav>
     </Header>
     <main role="main">
-      <div className={`container-fluid ${styles.menu}`}>
-        <Link to={{pathname: `/${country}`}}>Home</Link>
-        <Link to={{pathname: `/${country}/icons`}}>Icons</Link>
-        <Link to={{pathname: `/${country}/form-wrapper`}}>Form Wrapper</Link>
-      </div>
       <div className="container-fluid">
-        <Switch>
-          <Route
-            exact
-            path="/:country"
-            component={Home}
+        <div className={styles.menu}>
+          <Tabs
+            items={[
+              <Link to={{pathname: `/${country}`}}>Home</Link>,
+              <Link to={{pathname: `/${country}/icons`}}>Icons</Link>,
+              <Link to={{pathname: `/${country}/form-wrapper`}}>Form Wrapper</Link>,
+            ]}
+            pathname={`/${country}`}
           />
-          <Route
-            path="/:country/icons"
-            component={Icons}
-          />
-          <Route
-            path="/:country/form-wrapper"
-            component={() => <FormWrapperComponent getInitialFields={() => ({text_name: defaultField, select_name: {...defaultField, value: 'b'}})} />}
-          />
-        </Switch>
+          <Switch>
+            <Route
+              exact
+              path="/:country"
+              component={Home}
+            />
+            <Route
+              path="/:country/icons"
+              component={Icons}
+            />
+            <Route
+              path="/:country/form-wrapper"
+              component={() => <FormWrapperComponent getInitialFields={() => ({text_name: defaultField, select_name: {...defaultField, value: 'b'}})} />}
+            />
+          </Switch>
+        </div>
       </div>
     </main>
     <Footer

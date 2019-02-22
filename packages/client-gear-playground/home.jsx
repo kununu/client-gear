@@ -8,7 +8,7 @@ import Logo from '../kununu-logo/index';
 // import Logo from '../kununu-logo/dist';
 
 const Home = () => (
-  <div style={{backgroundColor: '#fff', padding: '10px 20px', position: 'relative'}}>
+  <div style={{position: 'relative'}}>
     <Overlay />
     <h2>
       Welcome to kununu component dev playground!
