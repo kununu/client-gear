@@ -5,7 +5,8 @@ import {formatNodeRequest, logger, customFormat} from './index';
 const express = require('express');
 const request = require('supertest');
 
-process.env.MINIMUM_LOG_LEVEL = 'build-123';
+process.env.NODE_ENV = 'production';
+
 let generatedLog = '';
 
 const spyFunc = jest.fn((val) => {
@@ -121,6 +122,14 @@ describe('Returns correct log format with json format', () => {
       application: 'test',
       channel: 'custom_logger',
       context: {},
+      http: {
+        local_ip: '-',
+        referer: '-',
+        remote_ip: '-',
+        user_agent: '-',
+      },
+      metrics: {},
+      trace_id: '-',
     });
   });
 });

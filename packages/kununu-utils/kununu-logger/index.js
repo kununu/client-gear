@@ -11,24 +11,34 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
  * @returns string stringified object
  */
 export const formatNodeRequest = (info) => {
-  const {req, res, label, timeTakenMicros, level, message, exception, custom} = info;
+  const {
+    req,
+    res,
+    label,
+    timeTakenMicros,
+    level,
+    message,
+    exception,
+    custom,
+  } = info;
 
+  const date = new Date().toISOString();
   const channel = custom ? 'custom_logger' : 'middleware_logger';
-  const colorizedMessage = getColorizedMessage(`[${label}][${timestamp}][${level}][${channel}]`);
+  const colorizedMessage = getColorizedMessage(`[${label}][${date}][${level}][${channel}]`);
 
   const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}`;
 
   return `${prefix}${JSON.stringify({
     message,
     level_name: typeof level === 'string' ? level.toUpperCase() : level,
-    time: new Date().toISOString(),
-    trace_id: (req.headers && req.headers['x-amzn-trace-id']) || '-',
+    time: date,
+    trace_id: (req && req.headers && req.headers['x-amzn-trace-id']) || '-',
     build: process.env.BUILD_NAME || '-',
     application: label,
     http: {
       method: req && req.method,
       uri: req && req.originalUrl,
-      status: req && res.statusCode,
+      status: res && res.statusCode,
       remote_ip: (req && req.headers && req.headers['x-forwarded-for']) || '-',
       local_ip: (req && req.connection && req.connection.localAddress) || '-',
       referer: (req && req.headers && req.headers.referer) || '-',
@@ -44,10 +54,12 @@ export const formatNodeRequest = (info) => {
   })}`;
 };
 
+export const customFormat = printf((info) => formatNodeRequest(info));
+
 export const logger = createLogger({
   format: format.combine(
     timestamp(),
-    formatNodeRequest,
+    customFormat,
   ),
   transports: [
     new (transports.Console)({
