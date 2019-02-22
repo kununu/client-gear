@@ -6,10 +6,10 @@
   "author": "kununu",
   "license": "ISC",
   "dependencies": {
-    "@kununu/kununu-utils": "1.8.1"
+    "@kununu/kununu-utils": "1.9.0"
   },
   "peerDependencies": {
-    "@kununu/kununu-utils": "1.8.1",
+    "@kununu/kununu-utils": "1.9.0",
     "prop-types": ">=15.6.0",
     "react": ">=16.0.0"
   },
