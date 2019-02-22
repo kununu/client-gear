@@ -55,5 +55,11 @@
     "start": "lerna exec npm run start --scope client-gear-playground",
     "dist": "lerna exec npm run dist --ignore client-gear-playground",
     "clean": "lerna exec npm run clean --ignore client-gear-playground && lerna clean --yes && rimraf node_modules"
+  },
+  "jest-junit": {
+    "output": "./coverage/junit.xml"
+  },
+  "dependencies": {
+    "jest-junit": "^6.3.0"
   }
 }

@@ -5,6 +5,7 @@
 @import '~@kununu/kununu-theme-v2/scss/base/mixins';
 
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/buttons';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/grid';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/normalize';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/type';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/utilities';
@@ -33,4 +34,15 @@ body {
 main {
   min-height: 100%;
   position: relative;
+}
+
+code {
+  display: block;
+  background-color: $gray-light;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+br {
+  height: 10px;
 }

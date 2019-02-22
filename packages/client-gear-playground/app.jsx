@@ -39,6 +39,13 @@ const infoText = (
 
 const FormWrapperComponent = FormWrapper(Form);
 
+const defaultField = {
+  value: '',
+  error: false,
+  touched: false,
+  validations: [],
+};
+
 const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
   <div className="appContainer">
     <Header
@@ -99,7 +106,7 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
           />
           <Route
             path="/:country/form-wrapper"
-            component={() => <FormWrapperComponent getInitialFields={() => ({})} />}
+            component={() => <FormWrapperComponent getInitialFields={() => ({text_name: defaultField, select_name: {...defaultField, value: 'b'}})} />}
           />
         </Switch>
       </div>
