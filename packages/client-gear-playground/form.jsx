@@ -130,7 +130,7 @@ class FormComponent extends React.Component {
               <Button
                 text="Touch Form"
                 htmlType="button"
-                onClick={touchForm}
+                onClick={() => touchForm(true)}
               />
             </div>
           </div>

@@ -176,7 +176,7 @@ const FormWrapper = (WrappedComponent) => {
       const {name, value} = event.target;
 
       // When the form is submit, setting state in blur stops event propagation
-      if ((event.relatedTarget && event.relatedTarget.type !== 'submit') || !event.relatedTarget) {
+      if (event.relatedTarget && event.relatedTarget.type !== 'submit') {
         const fields = {
           fields: {
             ...this.getStateFields(),
@@ -227,7 +227,7 @@ const FormWrapper = (WrappedComponent) => {
      * Trigger form field validation
      * for each field
      */
-    touchForm = (isTouched = true) => {
+    touchForm = (isTouched) => {
       const fieldsObj = this.getStateFields();
       const touchedFields = Object.keys(fieldsObj).reduce((obj, key) => ({...obj, [key]: {...fieldsObj[key], touched: isTouched}}), {});
 

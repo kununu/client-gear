@@ -29,12 +29,12 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.jsx?$/,
-      //   exclude: [/dist/, /node_modules/],
-      //   loader: 'eslint-loader',
-      //   enforce: 'pre',
-      // },
+      {
+        test: /\.jsx?$/,
+        exclude: [/dist/, /node_modules/],
+        loader: 'eslint-loader',
+        enforce: 'pre',
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules\/(?!nukleus)/,
