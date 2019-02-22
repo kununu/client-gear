@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {Route, Switch} from 'react-router';
 import Tabs from 'nukleus/dist/components/Tabs';
 
 import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/index';
@@ -48,7 +47,7 @@ const defaultField = {
   validations: [],
 };
 
-const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
+const App = ({location: {pathname, hash}, match: {params: {country, menuItem}}}) => (
   <div className="appContainer">
     <Header
       logoLink={<a href="/">hi</a>}
@@ -95,26 +94,15 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
           <Tabs
             items={[
               <Link to={{pathname: `/${country}`}}>Home</Link>,
-              <Link to={{pathname: `/${country}/icons`}}>Icons</Link>,
-              <Link to={{pathname: `/${country}/form-wrapper`}}>Form Wrapper</Link>,
+              <Link to={{pathname: `/${country}`, hash: '#icons'}}>Icons</Link>,
+              <Link to={{pathname: `/${country}`, hash: '#form-wrapper'}}>Form Wrapper</Link>,
             ]}
             pathname={`/${country}`}
+            hash={hash}
           />
-          <Switch>
-            <Route
-              exact
-              path="/:country"
-              component={Home}
-            />
-            <Route
-              path="/:country/icons"
-              component={Icons}
-            />
-            <Route
-              path="/:country/form-wrapper"
-              component={() => <FormWrapperComponent getInitialFields={() => ({text_name: defaultField, select_name: {...defaultField, value: 'b'}})} />}
-            />
-          </Switch>
+          {!hash && <Home />}
+          {hash === '#icons' && <Icons />}
+          {hash === '#form-wrapper' && <FormWrapperComponent getInitialFields={() => ({text_name: defaultField, select_name: {...defaultField, value: 'b'}})} />}
         </div>
       </div>
     </main>
@@ -263,6 +251,7 @@ const App = ({location: {pathname}, match: {params: {country, menuItem}}}) => (
 App.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
+    hash: PropTypes.string,
   }).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
