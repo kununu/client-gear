@@ -58,5 +58,8 @@
   },
   "jest-junit": {
     "output": "./coverage/junit.xml"
+  },
+  "dependencies": {
+    "jest-junit": "^6.3.0"
   }
 }

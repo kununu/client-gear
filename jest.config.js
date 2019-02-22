@@ -9,5 +9,8 @@ module.exports = {
   snapshotSerializers: [
     'enzyme-to-json/serializer',
   ],
-  testURL: 'http://www.kununu.com'
+  testURL: 'http://www.kununu.com',
+  reporters: [
+    'jest-junit',
+  ],
 };
