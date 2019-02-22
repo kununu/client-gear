@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from 'nukleus/dist/components/Button';
 import Select from 'nukleus/dist/components/Select';
 import TextField from 'nukleus/dist/components/TextField';
@@ -33,6 +34,11 @@ class FormComponent extends React.Component {
       updateStateFromLocalStorage,
     } = this.props;
 
+    const {
+      formFieldsProps,
+      submitFields,
+    } = this.state;
+
     return (
       <div style={{backgroundColor: '#fff', padding: '10px 20px', position: 'relative'}}>
         <h2>
@@ -65,11 +71,11 @@ class FormComponent extends React.Component {
                 text="Get Text Field Props"
                 htmlType="button"
                 type="info"
-                onClick={() => this.setState({formFieldsProps: {...this.state.formFieldsProps, text_name: getFormFieldProps('text_name')}})}
+                onClick={() => this.setState({formFieldsProps: {...formFieldsProps, text_name: getFormFieldProps('text_name')}})}
               />
             </div>
             <div className="col-sm-6">
-              {this.state.formFieldsProps.text_name && <code>{JSON.stringify(this.state.formFieldsProps.text_name, null, 2)}</code>}
+              {formFieldsProps.text_name && <code>{JSON.stringify(formFieldsProps.text_name, null, 2)}</code>}
             </div>
           </div>
           <br />
@@ -97,17 +103,17 @@ class FormComponent extends React.Component {
                 text="Get Select Props"
                 htmlType="button"
                 type="info"
-                onClick={() => this.setState({formFieldsProps: {...this.state.formFieldsProps, select_name: getFormFieldProps('select_name')}})}
+                onClick={() => this.setState({formFieldsProps: {...formFieldsProps, select_name: getFormFieldProps('select_name')}})}
               />
             </div>
             <div className="col-sm-6">
-              {this.state.formFieldsProps.select_name && <code>{JSON.stringify(this.state.formFieldsProps.select_name, null, 2)}</code>}
+              {formFieldsProps.select_name && <code>{JSON.stringify(formFieldsProps.select_name, null, 2)}</code>}
             </div>
           </div>
 
           <br />
           <h3>Form Values (to submit):</h3>
-          <code>{JSON.stringify(this.state.submitFields)}</code>
+          <code>{JSON.stringify(submitFields)}</code>
           <h3>Form is Empty:</h3>
           <code>{JSON.stringify(formIsEmpty())}</code>
           <br />
@@ -159,5 +165,21 @@ class FormComponent extends React.Component {
     );
   }
 }
+
+FormComponent.propTypes = {
+  fields: PropTypes.shape({
+    text_name: PropTypes.object.isRequired,
+    select_name: PropTypes.object.isRequired,
+  }).isRequired,
+  formIsEmpty: PropTypes.func.isRequired,
+  getFormFieldProps: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleUserBlur: PropTypes.func.isRequired,
+  handleUserInput: PropTypes.func.isRequired,
+  resetFormFields: PropTypes.func.isRequired,
+  touchForm: PropTypes.func.isRequired,
+  updateLocalStorageFromState: PropTypes.func.isRequired,
+  updateStateFromLocalStorage: PropTypes.func.isRequired,
+};
 
 export default FormComponent;
