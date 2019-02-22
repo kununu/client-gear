@@ -35,7 +35,7 @@ describe('Returns correct log format with text format', () => {
 
     const expectedRequest = {
       message: 'this is a log message',
-      level_name: 'INFO',
+      level_name: 'ERROR',
       time: new Date().toISOString(),
       trace_id: '-',
       build: '-',
@@ -53,11 +53,14 @@ describe('Returns correct log format with text format', () => {
       metrics: {
         time_taken_micros: 1000,
       },
+      context: {
+        exception: 'this is a exception',
+      },
     };
 
     app.get('/', (req, res) => {
       res.send({
-        formatedRequest: formatNodeRequest({req, res, label, timeTakenMicros: 1000, level: 'info', message: 'this is a log message'}),
+        formatedRequest: formatNodeRequest({req, res, label, timeTakenMicros: 1000, level: 'error', message: 'this is a log message', exception: 'this is a exception'}),
       });
     });
 

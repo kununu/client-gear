@@ -10,7 +10,7 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
  * @param {object} info
  * @returns string stringified object
  */
-export const formatNodeRequest = ({req, res, label, timeTakenMicros, level, message}) => JSON.stringify({
+export const formatNodeRequest = ({req, res, label, timeTakenMicros, level, message, exception}) => JSON.stringify({
   message,
   level_name: typeof level === 'string' ? level.toUpperCase() : level,
   time: new Date().toISOString(),
@@ -29,6 +29,9 @@ export const formatNodeRequest = ({req, res, label, timeTakenMicros, level, mess
   channel: 'middleware_logger',
   metrics: {
     time_taken_micros: timeTakenMicros,
+  },
+  context: {
+    exception,
   },
 });
 
