@@ -42,7 +42,10 @@ describe('Returns correct log format with text format', () => {
 
       res.send({
         formatedRequest: formatNodeRequest({
-          req, res, label, timeTakenMicros: 1000,
+          req,
+          res,
+          label,
+          timeTakenMicros: 1000,
         }),
         expectedRequest,
       });

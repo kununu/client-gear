@@ -11,7 +11,10 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
  * @return string stringified object
  */
 export const formatNodeRequest = ({
-  req, res, label, timeTakenMicros,
+  req,
+  res,
+  label,
+  timeTakenMicros,
 }) => JSON.stringify({
   label,
   time: new Date().toISOString(),
