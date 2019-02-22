@@ -10,66 +10,44 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
  * @param {object} info
  * @returns string stringified object
  */
-export const formatNodeRequest = ({req, res, label, timeTakenMicros, level, message, exception}) => JSON.stringify({
-  message,
-  level_name: typeof level === 'string' ? level.toUpperCase() : level,
-  time: new Date().toISOString(),
-  trace_id: (req.headers && req.headers['x-amzn-trace-id']) || '-',
-  build: process.env.BUILD_NAME || '-',
-  application: label,
-  http: {
-    method: req.method,
-    uri: req.originalUrl,
-    status: res.statusCode,
-    remote_ip: (req.headers && req.headers['x-forwarded-for']) || '-',
-    local_ip: (req.connection && req.connection.localAddress) || '-',
-    referer: (req.headers && req.headers.referer) || '-',
-    user_agent: (req.headers && req.headers['user-agent']) || '-',
-  },
-  channel: 'middleware_logger',
-  metrics: {
-    time_taken_micros: timeTakenMicros,
-  },
-  context: {
-    exception,
-  },
-});
+export const formatNodeRequest = (info) => {
+  const {req, res, label, timeTakenMicros, level, message, exception, custom} = info;
 
-/**
- * Check if it's a custom log or the
- * standard request log. This is set based
- * on the custom param.
- */
-export const customFormat = printf((info) => {
-  const loggerType = info.custom ? 'custom_logger' : 'middleware_logger';
-  const colorizedMessage = getColorizedMessage(`[${info.label}][${info.timestamp}][${info.level}][${loggerType}]`);
+  const channel = custom ? 'custom_logger' : 'middleware_logger';
+  const colorizedMessage = getColorizedMessage(`[${label}][${timestamp}][${level}][${channel}]`);
 
-  // Logs in production should be outputted in JSON and not text
   const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}`;
 
-  if (info.custom) {
-    return `${prefix}${JSON.stringify(
-      {
-        message: info.message,
-        level_name: typeof info.level === 'string' ? info.level.toUpperCase() : info.level,
-        time: new Date().toISOString(),
-        build: process.env.BUILD_NAME || '-',
-        application: info.label,
-        channel: loggerType,
-        context: {
-          exception: info.exception,
-        },
-      },
-    )}`;
-  }
-
-  return `${prefix}${formatNodeRequest(info)}`;
-});
+  return `${prefix}${JSON.stringify({
+    message,
+    level_name: typeof level === 'string' ? level.toUpperCase() : level,
+    time: new Date().toISOString(),
+    trace_id: (req.headers && req.headers['x-amzn-trace-id']) || '-',
+    build: process.env.BUILD_NAME || '-',
+    application: label,
+    http: {
+      method: req && req.method,
+      uri: req && req.originalUrl,
+      status: req && res.statusCode,
+      remote_ip: (req && req.headers && req.headers['x-forwarded-for']) || '-',
+      local_ip: (req && req.connection && req.connection.localAddress) || '-',
+      referer: (req && req.headers && req.headers.referer) || '-',
+      user_agent: (req && req.headers && req.headers['user-agent']) || '-',
+    },
+    channel,
+    metrics: {
+      time_taken_micros: timeTakenMicros,
+    },
+    context: {
+      exception,
+    },
+  })}`;
+};
 
 export const logger = createLogger({
   format: format.combine(
     timestamp(),
-    customFormat,
+    formatNodeRequest,
   ),
   transports: [
     new (transports.Console)({

@@ -85,11 +85,11 @@ describe('Returns correct log format with text format', () => {
 
     expect(generatedLog.message).toEqual('test');
     expect(generatedLog.level_name).toEqual('INFO');
-    expect(generatedLog.time).toBeDefined();
-    expect(generatedLog.build).toBeDefined();
+    expect(generatedLog.time).toEqual(new Date().toISOString());
+    expect(generatedLog.build).toEqual('-');
     expect(generatedLog.application).toEqual('test2');
-    expect(generatedLog.channel).toBeDefined();
-    expect(generatedLog.context).toBeDefined();
+    expect(generatedLog.channel).toEqual('custom_logger');
+    expect(generatedLog.context).toEqual({});
   });
 });
 
@@ -141,23 +141,22 @@ describe('Logs according to defined level', () => {
   });
 
   it('tries to log debug level with log and level', () => {
-    loggerLevelTest.log({
+    loggerLevelTest.debug({
       custom: true,
       message: 'debug - Message will be logged with log and level',
-      level: 'debug',
     });
 
     expect(spyFunc).toBeCalled();
     expect(generatedLog.level_name).toEqual('DEBUG');
     expect(generatedLog.message).toEqual('debug - Message will be logged with log and level');
-    expect(generatedLog.time).toBeDefined();
-    expect(generatedLog.build).toBeDefined();
-    expect(generatedLog.channel).toBeDefined();
-    expect(generatedLog.context).toBeDefined();
+    expect(generatedLog.time).toEqual(new Date().toISOString());
+    expect(generatedLog.build).toEqual('-');
+    expect(generatedLog.channel).toEqual('custom_logger');
+    expect(generatedLog.context).toEqual({});
   });
 
   it('tries to log debug level with debug', () => {
-    loggerLevelTest.log('debug', {
+    loggerLevelTest.debug({
       custom: true,
       message: 'debug - Message will be logged with debug',
     });
@@ -165,14 +164,14 @@ describe('Logs according to defined level', () => {
     expect(spyFunc).toBeCalled();
     expect(generatedLog.level_name).toEqual('DEBUG');
     expect(generatedLog.message).toEqual('debug - Message will be logged with debug');
-    expect(generatedLog.time).toBeDefined();
-    expect(generatedLog.build).toBeDefined();
-    expect(generatedLog.channel).toBeDefined();
-    expect(generatedLog.context).toBeDefined();
+    expect(generatedLog.time).toEqual(new Date().toISOString());
+    expect(generatedLog.build).toEqual('-');
+    expect(generatedLog.channel).toEqual('custom_logger');
+    expect(generatedLog.context).toEqual({});
   });
 
   it('tries to log verbose level', () => {
-    loggerLevelTest.log('verbose', {
+    loggerLevelTest.verbose({
       custom: true,
       message: 'verbose - Message will be logged',
     });
@@ -180,14 +179,14 @@ describe('Logs according to defined level', () => {
     expect(spyFunc).toBeCalled();
     expect(generatedLog.level_name).toEqual('VERBOSE');
     expect(generatedLog.message).toEqual('verbose - Message will be logged');
-    expect(generatedLog.time).toBeDefined();
-    expect(generatedLog.build).toBeDefined();
-    expect(generatedLog.channel).toBeDefined();
-    expect(generatedLog.context).toBeDefined();
+    expect(generatedLog.time).toEqual(new Date().toISOString());
+    expect(generatedLog.build).toEqual('-');
+    expect(generatedLog.channel).toEqual('custom_logger');
+    expect(generatedLog.context).toEqual({});
   });
 
   it('tries to log info level', () => {
-    loggerLevelTest.log('info', {
+    loggerLevelTest.info({
       custom: true,
       message: 'info - Message will be logged',
     });
@@ -195,14 +194,14 @@ describe('Logs according to defined level', () => {
     expect(spyFunc).toBeCalled();
     expect(generatedLog.level_name).toEqual('INFO');
     expect(generatedLog.message).toEqual('info - Message will be logged');
-    expect(generatedLog.time).toBeDefined();
-    expect(generatedLog.build).toBeDefined();
-    expect(generatedLog.channel).toBeDefined();
-    expect(generatedLog.context).toBeDefined();
+    expect(generatedLog.time).toEqual(new Date().toISOString());
+    expect(generatedLog.build).toEqual('-');
+    expect(generatedLog.channel).toEqual('custom_logger');
+    expect(generatedLog.context).toEqual({});
   });
 
   it('tries to log warn level', () => {
-    loggerLevelTest.log('warn', {
+    loggerLevelTest.warn({
       custom: true,
       message: 'warn - Message will be logged',
     });
@@ -210,14 +209,14 @@ describe('Logs according to defined level', () => {
     expect(spyFunc).toBeCalled();
     expect(generatedLog.level_name).toEqual('WARN');
     expect(generatedLog.message).toEqual('warn - Message will be logged');
-    expect(generatedLog.time).toBeDefined();
-    expect(generatedLog.build).toBeDefined();
-    expect(generatedLog.channel).toBeDefined();
-    expect(generatedLog.context).toBeDefined();
+    expect(generatedLog.time).toEqual(new Date().toISOString());
+    expect(generatedLog.build).toEqual('-');
+    expect(generatedLog.channel).toEqual('custom_logger');
+    expect(generatedLog.context).toEqual({});
   });
 
   it('tries to log error level', () => {
-    loggerLevelTest.log('error', {
+    loggerLevelTest.error({
       custom: true,
       message: 'error - Message will be logged',
       exception: 'error - Exception will be logged',
