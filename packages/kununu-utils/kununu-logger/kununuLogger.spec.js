@@ -48,7 +48,7 @@ describe('Returns correct log format with text format', () => {
         remote_ip: '-',
         local_ip: '::ffff:127.0.0.1',
         referer: '-',
-        user_agent: 'node-superagent/3.8.2',
+        user_agent: 'node-superagent/3.8.3',
       },
       channel: 'middleware_logger',
       metrics: {
