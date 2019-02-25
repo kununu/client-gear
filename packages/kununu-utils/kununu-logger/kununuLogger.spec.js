@@ -1,6 +1,7 @@
 import {formatNodeRequest, logger, customFormat} from './index';
 
-process.env.MINIMUM_LOG_LEVEL = 'build-123';
+process.env.MINIMUM_LOG_LEVEL = 'debug';
+process.env.ACTIVATION_LOG_LEVEL = 'error';
 
 const express = require('express');
 const request = require('supertest');
@@ -60,7 +61,7 @@ describe('Returns correct log format with text format', () => {
     const label = 'test2';
 
     app.get('/2', (req, res) => {
-      logger.log('info', {
+      logger.info({
         custom: true,
         message: 'Test',
         label,
@@ -120,27 +121,6 @@ describe('Logs according to defined level', () => {
     process.env.MINIMUM_LOG_LEVEL = originalEnv;
   });
 
-  it('tries to log silly level', () => {
-    loggerLevelTest.silly({
-      custom: true,
-      message: 'silly - Will not be logged',
-    });
-
-    expect(spyFunc).not.toBeCalled();
-    expect(generatedLog.level).toEqual(undefined);
-  });
-
-  it('tries to log debug level with log and level', () => {
-    loggerLevelTest.log({
-      custom: true,
-      message: 'debug - Will be logged with log and level',
-      level: 'debug',
-    });
-
-    expect(spyFunc).toBeCalled();
-    expect(generatedLog.level).toEqual('debug');
-  });
-
   it('tries to log debug level with debug', () => {
     loggerLevelTest.debug({
       custom: true,
@@ -149,16 +129,6 @@ describe('Logs according to defined level', () => {
 
     expect(spyFunc).toBeCalled();
     expect(generatedLog.level).toEqual('debug');
-  });
-
-  it('tries to log verbose level', () => {
-    loggerLevelTest.verbose({
-      custom: true,
-      message: 'verbose - Will be logged',
-    });
-
-    expect(spyFunc).toBeCalled();
-    expect(generatedLog.level).toEqual('verbose');
   });
 
   it('tries to log info level', () => {
@@ -170,15 +140,25 @@ describe('Logs according to defined level', () => {
     expect(spyFunc).toBeCalled();
     expect(generatedLog.level).toEqual('info');
   });
-
-  it('tries to log warn level', () => {
-    loggerLevelTest.warn({
+  
+  it('tries to log notice level', () => {
+    loggerLevelTest.notice({
       custom: true,
-      message: 'warn - Will be logged',
+      message: 'notice - Will be logged',
     });
 
     expect(spyFunc).toBeCalled();
-    expect(generatedLog.level).toEqual('warn');
+    expect(generatedLog.level).toEqual('notice');
+  });
+
+  it('tries to log warning level', () => {
+    loggerLevelTest.warning({
+      custom: true,
+      message: 'warning - Will be logged',
+    });
+
+    expect(spyFunc).toBeCalled();
+    expect(generatedLog.level).toEqual('warning');
   });
 
   it('tries to log error level', () => {
@@ -189,5 +169,35 @@ describe('Logs according to defined level', () => {
 
     expect(spyFunc).toBeCalled();
     expect(generatedLog.level).toEqual('error');
+  });
+  
+  it('tries to log crit level', () => {
+    loggerLevelTest.crit({
+      custom: true,
+      message: 'crit - Will be logged',
+    });
+
+    expect(spyFunc).toBeCalled();
+    expect(generatedLog.level).toEqual('crit');
+  });
+  
+  it('tries to log alert level', () => {
+    loggerLevelTest.alert({
+      custom: true,
+      message: 'alert - Will be logged',
+    });
+
+    expect(spyFunc).toBeCalled();
+    expect(generatedLog.level).toEqual('alert');
+  });
+  
+  it('tries to log emerg level', () => {
+    loggerLevelTest.emerg({
+      custom: true,
+      message: 'emerg - Will be logged',
+    });
+
+    expect(spyFunc).toBeCalled();
+    expect(generatedLog.level).toEqual('emerg');
   });
 });
