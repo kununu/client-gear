@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Scroll from 'react-scroll';
-import getElementPositionY from '@kununu/kununu-utils/dist/kununu-helpers/elementPosition'; // eslint-disable-line
+import getElementPositionY from '@kununu/kununu-utils/dist/kununu-helpers/elementPosition';
 
 // Think about using matchMedia here and move it to utils
 const isMobile = () => (typeof window !== 'undefined' ? window.innerWidth < 550 : false);
@@ -13,7 +13,9 @@ export default class ScrollToElement extends Component {
    * value
    */
   getAdditionalProps () {
-    const propsToPass = [{key: 'className', value: this.props.className}];
+    const {className} = this.props;
+    const propsToPass = [{key: 'className', value: className}];
+
     return propsToPass.reduce((acc, prop) => {
       if (prop.value) return {...acc, [prop.key]: prop.value};
       return acc;
@@ -21,7 +23,12 @@ export default class ScrollToElement extends Component {
   }
 
   scrollTo = (offSet = 0) => {
-    if (this.props.mobileOnly && !isMobile()) return false;
+    const {
+      duration,
+      mobileOnly,
+    } = this.props;
+
+    if (mobileOnly && !isMobile()) return false;
 
     // When the component is rerendering, the ref might not exist, when this happens
     if (this.node === null) {
@@ -34,35 +41,36 @@ export default class ScrollToElement extends Component {
 
     const elementPos = getElementPositionY(this.node, offSet);
     const scroll = Scroll.animateScroll;
+
     return scroll.scrollTo(elementPos, {
-      duration: this.props.duration,
+      duration,
     });
   }
 
   render () {
     const {
       children,
+      tagName,
     } = this.props;
 
-    const CustomTag = this.props.tagName;
 
     return (
-      <CustomTag
+      <tagName
         {...this.getAdditionalProps()}
         ref={(node) => { this.node = node; }}
       >
         {children.length ?
           children.map((child, index) => React.cloneElement(child, {
-            key: index,
+            key: index, // eslint-disable-line react/no-array-index-key
             scrollTo: this.scrollTo,
             container: () => this.node,
-          }))
-          : React.cloneElement(children, {
+          })) :
+          React.cloneElement(children, {
             scrollTo: this.scrollTo,
             container: () => this.node,
           })
         }
-      </CustomTag>
+      </tagName>
     );
   }
 }

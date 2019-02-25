@@ -11,6 +11,7 @@ const scroll = Scroll.animateScroll;
  */
 export function getHeaderOffset (add = 0) {
   const header = document.querySelector('[role=banner]');
+
   return header.offsetHeight + add;
 }
 
@@ -24,6 +25,7 @@ export function getWindowWidth () {
 
 export function alreadyInView (node) {
   const rect = node.getBoundingClientRect();
+
   return (
     rect.top >= 0 &&
     rect.left >= 0 &&
@@ -46,6 +48,7 @@ export function scrollToTop (timeout = 0, duration = 1500) {
  */
 const findParentFormGroup = (element) => {
   const parent = element.parentNode;
+
   if (!parent.className) return null; // Reached highest parentNode
   if (parent.className.includes('formGroup')) {
     return parent;
@@ -59,8 +62,7 @@ const findParentFormGroup = (element) => {
  * @param  {DOMElement}          element
  * @return {DOMElement || null}
  */
-const findControlLabel = element =>
-  element.querySelector('[class*="index__controlLabel__"]:not([class*="index__hidden"])') ||
+const findControlLabel = element => element.querySelector('[class*="index__controlLabel__"]:not([class*="index__hidden"])') ||
   element.querySelector('[class*="index__labelContainer__"]:not([class*="index__hidden"])') || element;
 
 /**

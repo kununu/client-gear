@@ -1,6 +1,7 @@
 files:
   ignore:
     - 'node_modules/**/*.*'
+    - 'packages/**/node_modules/**/*.*'
     - 'packages/client-gear-playground/main.scss'
 options:
   formatter: stylish

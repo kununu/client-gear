@@ -73,6 +73,7 @@ function refreshAuthCookie (label) {
   function isTokenExpired (expiration) {
     const refreshOffset = 300;
     const currentDate = new Date().getTime() / 1000;
+
     return currentDate > (expiration - refreshOffset);
   }
 
@@ -86,6 +87,7 @@ function refreshAuthCookie (label) {
   function getDecodedToken (cookie) {
     const cookieParts = cookie.split(';');
     const tokenCookieParts = cookieParts[0].split('=');
+
     return decodeURIComponent(tokenCookieParts[1]);
   }
 

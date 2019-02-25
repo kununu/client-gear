@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {shallow, mount} from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
-import toJson from 'enzyme-to-json';
 import {validationTypes} from '@kununu/kununu-utils/dist/kununu-helpers/formValidation';
 
 import FormWrapper from './index';
@@ -9,7 +8,10 @@ import FormWrapper from './index';
 describe('Returns current domain from a request object', () => {
   it('renders without crashing', () => {
     const MockComponent = () => (
-      <input type="text" name="mock_input" />
+      <input
+        type="text"
+        name="mock_input"
+      />
     );
 
     const WrapperComponent = FormWrapper(MockComponent);
@@ -29,12 +31,16 @@ describe('Returns current domain from a request object', () => {
     });
 
     const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('renders async initial fields without crashing', () => {
     const MockComponent = () => (
-      <input type="text" name="mock_input" />
+      <input
+        type="text"
+        name="mock_input"
+      />
     );
 
     const WrapperComponent = FormWrapper(MockComponent);
@@ -58,7 +64,8 @@ describe('Returns current domain from a request object', () => {
     }, 1000);
 
     const wrapper = shallow(<WrapperComponent getInitialFields={() => initialFields()} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+
+    expect(wrapper).toMatchSnapshot();
   });
 });
 
@@ -68,6 +75,8 @@ describe('possible interactions', () => {
 
   beforeEach(() => {
     localStorage.clear();
+
+    /* eslint-disable react/require-default-props, react/destructuring-assignment */
     class MockComponent extends Component {
       static propTypes = {
         updateStateFromLocalStorage: PropTypes.func,
@@ -77,7 +86,8 @@ describe('possible interactions', () => {
         touchForm: PropTypes.func,
         resetFormFields: PropTypes.func,
         testProp: PropTypes.string,
-      }
+      };
+
       componentDidMount () {
         this.props.updateStateFromLocalStorage('some_key');
       }
@@ -98,11 +108,15 @@ describe('possible interactions', () => {
               name={this.props.testProp}
               onChange={this.props.handleUserInput}
             />
-            <button onClick={() => this.props.touchForm(true)} />
+            <button
+              onClick={() => this.props.touchForm(true)}
+              type="button"
+            />
           </form>
         );
       }
     }
+    /* eslint-enable react/require-default-props, react/destructuring-assignment */
 
     WrapperComponent = FormWrapper(MockComponent);
 
@@ -173,11 +187,13 @@ describe('possible interactions', () => {
 
   it('will load field value from localstorage on mount', () => {
     const expectedInputValue = 'will be stored in localstorage';
+
     localStorage.setItem('some_key', JSON.stringify({fields: {answer: {value: expectedInputValue}}}));
 
     const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
+
     // still mount form, in order to trigger componentDidMount
-    const form = mount(wrapper.get(0)); // eslint-disable-line no-unused-vars
+    mount(wrapper.get(0));
 
     expect(wrapper.state().fields.answer.value).toEqual(expectedInputValue);
   });
@@ -219,7 +235,7 @@ describe('possible interactions', () => {
 
   it('will give you back props based on provided ID', () => {
     const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
-    const form = mount(wrapper.get(0)); // eslint-disable-line
+    const form = mount(wrapper.get(0));
     const input = form.find('input');
     const expectedOutput = 'some input text';
 
@@ -231,15 +247,16 @@ describe('possible interactions', () => {
     });
 
     const propsFromWrapper = wrapper.props().getFormFieldProps('answer');
+
     expect(propsFromWrapper.id).toEqual('answer');
     expect(propsFromWrapper.input.value).toEqual('some input text');
   });
 
   it('will check if form is empty', () => {
     const wrapper = shallow(<WrapperComponent getInitialFields={() => getInitialFieldsForUser()} />);
-    const form = mount(wrapper.get(0)); // eslint-disable-line
-
+    const form = mount(wrapper.get(0));
     const propsFromWrapperBefore = wrapper.props().formIsEmpty();
+
     expect(propsFromWrapperBefore).toEqual(true);
 
     const input = form.find('input');
@@ -252,6 +269,7 @@ describe('possible interactions', () => {
     });
 
     const propsFromWrapperAfter = wrapper.props().formIsEmpty();
+
     expect(propsFromWrapperAfter).toEqual(false);
   });
 

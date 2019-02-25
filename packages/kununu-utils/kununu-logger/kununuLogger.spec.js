@@ -1,5 +1,7 @@
 import {formatNodeRequest, logger, customFormat} from './index';
 
+process.env.MINIMUM_LOG_LEVEL = 'build-123';
+
 const express = require('express');
 const request = require('supertest');
 
@@ -39,12 +41,18 @@ describe('Returns correct log format with text format', () => {
       };
 
       res.send({
-        formatedRequest: formatNodeRequest({req, res, label, timeTakenMicros: 1000}),
+        formatedRequest: formatNodeRequest({
+          req,
+          res,
+          label,
+          timeTakenMicros: 1000,
+        }),
         expectedRequest,
       });
     });
 
     const response = await request(app).get('/');
+
     expect(response.formatedRequest).toEqual(JSON.stringify(response.expectedRequest));
   });
 
@@ -90,6 +98,7 @@ describe('Returns correct log format with json format', () => {
 
     const printf = customFormat;
     const value = printf.template(info);
+
     expect(JSON.parse(value)).toEqual({
       build: '-',
       label: 'test',
@@ -102,6 +111,7 @@ describe('Returns correct log format with json format', () => {
 
 describe('Logs according to defined level', () => {
   const originalEnv = process.env.MINIMUM_LOG_LEVEL;
+
   jest.resetModules();
   process.env.MINIMUM_LOG_LEVEL = 'debug';
   const {logger: loggerLevelTest} = require('./index'); // eslint-disable-line global-require

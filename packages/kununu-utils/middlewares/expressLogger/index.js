@@ -21,9 +21,11 @@ const expressLogger = label => (req, res, next) => {
     res.removeListener('close', log);
     res.removeListener('error', log);
 
-    const status = res.statusCode < 400 ? 'info' : 'error';
+    const status = res.statusCode < 500 ? 'info' : 'error';
 
-    logger.log(status, {req, res, label, timeTakenMicros: (new Date() - startDate) * 1000});
+    logger.log(status, {
+      req, res, label, timeTakenMicros: (new Date() - startDate) * 1000
+    });
   }
 
   // logs any successfully finished pipeline

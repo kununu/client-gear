@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './index.scss';
 
-const Overlay = props => (
+const Overlay = ({iconSize}) => (
   <div className={styles.overlay}>
     <div className={styles.container}>
       <svg
@@ -11,8 +11,8 @@ const Overlay = props => (
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        height={props.iconSize}
-        width={props.iconSize}
+        height={iconSize}
+        width={iconSize}
         x="0px"
         y="0px"
         viewBox="-143 144.1 223.3 225.9"

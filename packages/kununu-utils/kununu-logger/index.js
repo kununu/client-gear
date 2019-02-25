@@ -27,7 +27,12 @@ export const loggingLevels = {
  * @param  object containing res and req
  * @return string stringified object
  */
-export const formatNodeRequest = ({req, res, label, timeTakenMicros}) => JSON.stringify({
+export const formatNodeRequest = ({
+  req,
+  res,
+  label,
+  timeTakenMicros,
+}) => JSON.stringify({
   label,
   time: new Date().toISOString(),
   method: req.method,
