@@ -1,5 +1,7 @@
 import {createLogger, transports, format} from 'winston';
 
+const stringify = require('json-stringify-safe');
+
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
 
@@ -28,7 +30,7 @@ export const formatNodeRequest = (info) => {
 
   const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}`;
 
-  return `${prefix}${JSON.stringify({
+  return `${prefix}${stringify({
     message,
     level_name: typeof level === 'string' ? level.toUpperCase() : level,
     time: date,
