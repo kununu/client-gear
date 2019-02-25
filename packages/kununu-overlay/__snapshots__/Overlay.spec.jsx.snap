@@ -2,21 +2,21 @@
 
 exports[`Renders overlay without crashing 1`] = `
 <div
-  className="overlay"
+  class="overlay"
 >
   <div
-    className="container"
+    class="container"
   >
     <svg
-      className="spinner"
-      height={25}
+      class="spinner"
+      height="25"
+      space="preserve"
       version="1.1"
       viewBox="-143 144.1 223.3 225.9"
-      width={25}
+      width="25"
       x="0px"
-      xmlSpace="preserve"
+      xlink="http://www.w3.org/1999/xlink"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
       y="0px"
     >
       <path

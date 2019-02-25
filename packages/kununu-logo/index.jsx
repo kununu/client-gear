@@ -28,8 +28,8 @@ const Logo = ({
   );
 
   return link ?
-    React.cloneElement(link, link.props, logoContent)
-  : logoContent;
+    React.cloneElement(link, link.props, logoContent) :
+    logoContent;
 };
 
 Logo.propTypes = {

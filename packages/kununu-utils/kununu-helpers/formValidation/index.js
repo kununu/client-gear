@@ -38,6 +38,7 @@ export const minLength10 = value => minLength(value, 10);
 
 // Regex from https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript
 const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 export function isEmail (value) {
   if (!emailPattern.test(value)) {
     return NOT_VALID;

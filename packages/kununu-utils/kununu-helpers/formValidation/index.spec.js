@@ -1,10 +1,10 @@
 import {
-    notEmpty,
-    minLength10,
-    isEmail,
-    isRegexMatch,
-    validateField,
-    validationTypes,
+  notEmpty,
+  minLength10,
+  isEmail,
+  isRegexMatch,
+  validateField,
+  validationTypes,
 } from './index';
 
 describe('formValidation methods', () => {
@@ -44,6 +44,7 @@ describe('validates fields', () => {
       type: validationTypes.isEmpty,
       message: 'error',
     }];
+
     expect(validateField('abc', validations)).toEqual(false);
   });
 
@@ -52,6 +53,7 @@ describe('validates fields', () => {
       type: validationTypes.minLength,
       message: 'error',
     }];
+
     expect(validateField('long text', validations)).toEqual(false);
   });
 
@@ -60,6 +62,7 @@ describe('validates fields', () => {
       type: validationTypes.isEmail,
       message: 'error',
     }];
+
     expect(validateField('long text', validations)).toEqual('error');
   });
 
@@ -70,6 +73,7 @@ describe('validates fields', () => {
       allowEmpty: true,
       message: 'error',
     }];
+
     expect(validateField('not a xing company url', validations)).toEqual('error');
   });
 
@@ -80,6 +84,7 @@ describe('validates fields', () => {
       allowEmpty: true,
       message: 'error',
     }];
+
     expect(validateField('https://xing.com/profile/kununu', validations)).toEqual(false);
   });
 });

@@ -1,26 +1,5 @@
 {
   "name": "client-gear",
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(css|scss)$": "identity-obj-proxy"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "transformIgnorePatterns": [
-      "client-gear/node_modules"
-    ],
-    "moduleDirectories": [
-      "packages",
-      "node_modules"
-    ],
-    "setupTestFrameworkScriptFile": "./config/jest/setupTests.js",
-    "setupFiles": [
-      "jest-localstorage-mock"
-    ],
-    "testURL": "https://www.kununu.com"
-  },
   "version": "1.0.0",
   "description": "Layout and theming utilities, shared molecular components for kununu.",
   "repository": {
@@ -34,40 +13,51 @@
   },
   "homepage": "https://github.com/kununu/client-gear#readme",
   "devDependencies": {
-    "@karlhorky/react-scripts": "0.8.3-alpha.2",
-    "babel-eslint": "7.2.3",
-    "babel-jest": "20.0.3",
-    "babel-plugin-transform-rename-import": "2.1.0",
-    "babel-polyfill": "6.23.0",
-    "enzyme": "3.3.0",
-    "enzyme-adapter-react-16": "1.1.1",
-    "eslint": "3.19.0",
-    "eslint-config-kununu": "3.0.0",
-    "eslint-plugin-babel": "4.1.1",
-    "eslint-plugin-flowtype": "2.35.0",
-    "eslint-plugin-import": "2.7.0",
-    "eslint-plugin-jsx-a11y": "2.2.3",
-    "eslint-plugin-react": "7.1.0",
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.3.3",
+    "@babel/plugin-proposal-class-properties": "7.3.3",
+    "@babel/preset-env": "7.3.1",
+    "@babel/preset-react": "7.0.0",
+    "@kununu/eslint-config": "1.0.5",
+    "babel-eslint": "10.0.1",
+    "babel-jest": "24.1.0",
+    "babel-plugin-transform-rename-import": "2.3.0",
+    "cross-env": "5.2.0",
+    "enzyme": "3.9.0",
+    "enzyme-adapter-react-16": "1.9.1",
+    "enzyme-to-json": "3.3.5",
+    "eslint": "5.10.0",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-loader": "2.1.2",
+    "eslint-plugin-babel": "5.3.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-react": "7.11.1",
     "identity-obj-proxy": "3.0.0",
-    "jest": "19.0.2",
-    "jest-cli": "19.0.2",
-    "jest-localstorage-mock": "2.2.0",
-    "lerna": "2.11.0",
-    "node-sass": "4.9.0",
-    "react": "16.4.1",
-    "react-dom": "16.4.1",
-    "react-test-renderer": "16.4.1",
-    "sass-loader": "7.0.3",
-    "sasslint-loader": "0.0.1",
-    "webpack": "3.3.0"
+    "jest": "24.1.0",
+    "jest-cli": "24.1.0",
+    "jest-localstorage-mock": "2.4.0",
+    "jest-junit": "6.3.0",
+    "lerna": "3.13.0",
+    "node-sass": "4.11.0",
+    "react": "16.8.2",
+    "react-dom": "16.8.2",
+    "rimraf": "2.6.3",
+    "sass-lint": "1.12.1"
   },
   "scripts": {
-    "lint": "eslint packages --max-warnings 0 --ext jsx --ext js",
+    "eslint": "eslint packages --max-warnings 0 --ext jsx --ext js",
+    "sasslint": "sass-lint --verbose",
+    "lint": "npm run eslint && npm run sasslint",
     "test": "jest --verbose --no-cache",
     "test:watch": "jest --watch --verbose",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "postinstall": "lerna bootstrap",
+    "start": "lerna exec npm run start --scope client-gear-playground",
+    "dist": "lerna exec npm run dist --ignore client-gear-playground",
+    "clean": "lerna exec npm run clean --ignore client-gear-playground && lerna clean --yes && rimraf node_modules"
   },
-  "dependencies": {
-    "@kununu/kununu-theme-v2": "2.0.2"
+  "jest-junit": {
+    "output": "./coverage/junit.xml"
   }
 }

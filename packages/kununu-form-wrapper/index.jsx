@@ -23,43 +23,52 @@ const FormWrapper = (WrappedComponent) => {
 
     constructor (props) {
       super(props);
+      const {getInitialFields} = this.props;
+
       this.state = {
-        fields: this.props.getInitialFields(),
+        fields: getInitialFields(),
       };
+    }
+
+    getStateFields = () => {
+      const {fields} = this.state;
+
+      return fields;
     }
 
     getFormFieldProps = id => ({
       id,
       input: {
         name: id,
-        value: this.state.fields[id].value,
+        value: this.getStateFields()[id].value,
         onChange: this.handleUserInput,
         onBlur: this.handleUserBlur,
       },
       meta: {
-        touched: this.state.fields[id].touched,
-        error: this.state.fields[id].error,
+        touched: this.getStateFields()[id].touched,
+        error: this.getStateFields()[id].error,
       },
     });
 
     /**
      * Returns an object with all state field keys and values
      */
-    getFormValues = () => Object.keys(this.state.fields).reduce((acc, key) => ({
+    getFormValues = () => Object.keys(this.getStateFields()).reduce((acc, key) => ({
       ...acc,
-      [key]: this.state.fields[key].value,
+      [key]: this.getStateFields()[key].value,
     }), {});
 
     updateStateFromLocalStorage = (storageKey) => {
       if (localStorage) {
         const fieldValues = JSON.parse(localStorage.getItem(storageKey));
+
         // Field values need to be merged with the ^ial state values, to still have their validations
         if (fieldValues) {
           this.setState({
-            fields: Object.keys(this.state.fields).reduce((acc, key) => ({
+            fields: Object.keys(this.getStateFields()).reduce((acc, key) => ({
               ...acc,
               [key]: {
-                ...this.state.fields[key],
+                ...this.getStateFields()[key],
                 value: fieldValues.fields[key] ? fieldValues.fields[key].value : '',
               },
             }), {}),
@@ -72,15 +81,15 @@ const FormWrapper = (WrappedComponent) => {
      * Checks if all fields that are to be sent are valid
      * @returns {bool}
      */
-    isFormValid = () => Object.keys(this.state.fields).reduce((acc, field) => acc && !this.state.fields[field].error, true);
+    isFormValid = () => Object.keys(this.getStateFields()).reduce((acc, field) => acc && !this.getStateFields()[field].error, true);
 
     /**
      * Checks if all the fields do not contain
      * a value
      * @returns {bool}
      */
-    formIsEmpty = () => Object.keys(this.state.fields)
-      .every(key => !this.state.fields[key].value)
+    formIsEmpty = () => Object.keys(this.getStateFields())
+      .every(key => !this.getStateFields()[key].value)
 
     /**
      * Handles different form values types
@@ -109,10 +118,10 @@ const FormWrapper = (WrappedComponent) => {
      */
     updateField = (value, key, touched = false) => ({
       [key]: {
-        ...this.state.fields[key],
-        value: this.handleFieldTypes(this.state.fields[key].value, value),
-        touched: this.state.fields[key].touched || touched, // touched is unset when field is loaded from local storage
-        error: validateField(value, this.state.fields[key].validations),
+        ...this.getStateFields()[key],
+        value: this.handleFieldTypes(this.getStateFields()[key].value, value),
+        touched: this.getStateFields()[key].touched || touched, // touched is unset when field is loaded from local storage
+        error: validateField(value, this.getStateFields()[key].validations),
       },
     });
 
@@ -127,9 +136,9 @@ const FormWrapper = (WrappedComponent) => {
     handleCustomError = (key, error) => {
       const fields = {
         fields: {
-          ...this.state.fields,
+          ...this.getStateFields(),
           [key]: {
-            ...this.state.fields[key],
+            ...this.getStateFields()[key],
             error,
           },
         },
@@ -149,7 +158,7 @@ const FormWrapper = (WrappedComponent) => {
 
       const fields = {
         fields: {
-          ...this.state.fields,
+          ...this.getStateFields(),
           ...this.updateField(value, name),
         },
       };
@@ -170,7 +179,7 @@ const FormWrapper = (WrappedComponent) => {
       if (event.relatedTarget && event.relatedTarget.type !== 'submit') {
         const fields = {
           fields: {
-            ...this.state.fields,
+            ...this.getStateFields(),
             ...this.updateField(value, name, true),
           },
         };
@@ -192,13 +201,12 @@ const FormWrapper = (WrappedComponent) => {
      */
     updateLocalStorageFromState = (storageKey) => {
       // get field values and check if at least one of this values is not empty
-      const hasFieldsWithValues = Object.keys(this.state.fields)
-        .filter(out => this.state.fields[out].value.length > 0).length > 0;
+      const hasFieldsWithValues = Object.keys(this.getStateFields())
+        .filter(out => this.getStateFields()[out].value.length > 0).length > 0;
 
       if (hasFieldsWithValues) {
         // get values from this state.fields
-        const fieldValues = Object.keys(this.state.fields).reduce((obj, key) =>
-          ({...obj, [key]: {value: this.state.fields[key].value}}), {});
+        const fieldValues = Object.keys(this.getStateFields()).reduce((obj, key) => ({...obj, [key]: {value: this.getStateFields()[key].value}}), {});
 
         // persist this values into localstorage
         localStorage.setItem(storageKey, JSON.stringify({
@@ -207,27 +215,6 @@ const FormWrapper = (WrappedComponent) => {
           },
         }));
       }
-    }
-
-    /**
-     * Validate all form fields
-     */
-    validateForm (callback) {
-      this.setState({
-        fields: Object.keys(this.state.fields).reduce((acc, key) => ({
-          ...acc,
-          ...this.updateField(this.state.fields[key].value, key, true),
-        }), {}),
-      }, () => {
-        const isFormValid = this.isFormValid();
-
-        if (isFormValid) {
-          // this will be submit function in the child component
-          callback(this.getFormValues());
-        } else {
-          this.touchForm(true);
-        }
-      });
     }
 
     handleSubmit = (e, callback) => {
@@ -241,9 +228,8 @@ const FormWrapper = (WrappedComponent) => {
      * for each field
      */
     touchForm = (isTouched) => {
-      const fieldsObj = this.state.fields;
-      const touchedFields = Object.keys(fieldsObj).reduce((obj, key) =>
-        ({...obj, [key]: {...fieldsObj[key], touched: isTouched}}), {});
+      const fieldsObj = this.getStateFields();
+      const touchedFields = Object.keys(fieldsObj).reduce((obj, key) => ({...obj, [key]: {...fieldsObj[key], touched: isTouched}}), {});
 
       this.setState({
         fields: touchedFields,
@@ -254,19 +240,44 @@ const FormWrapper = (WrappedComponent) => {
      * Resets values of the form fields
      */
     resetFormFields = () => {
+      const {getInitialFields} = this.props;
+
       this.setState({
-        fields: this.props.getInitialFields(),
+        fields: getInitialFields(),
+      });
+    }
+
+    /**
+     * Validate all form fields
+     */
+    validateForm (callback) {
+      this.setState({
+        fields: Object.keys(this.getStateFields()).reduce((acc, key) => ({
+          ...acc,
+          ...this.updateField(this.getStateFields()[key].value, key, true),
+        }), {}),
+      }, () => {
+        const isFormValid = this.isFormValid();
+
+        if (isFormValid) {
+          // this will be submit function in the child component
+          callback(this.getFormValues());
+        } else {
+          this.touchForm(true);
+        }
       });
     }
 
     render () {
+      const {fields} = this.state;
+
       return (
         <WrappedComponent
           formIsEmpty={this.formIsEmpty}
           handleUserInput={this.handleUserInput}
           handleUserBlur={this.handleUserBlur}
           handleCustomError={this.handleCustomError}
-          fields={this.state.fields}
+          fields={fields}
           handleSubmit={this.handleSubmit}
           touchForm={this.touchForm}
           updateStateFromLocalStorage={this.updateStateFromLocalStorage}

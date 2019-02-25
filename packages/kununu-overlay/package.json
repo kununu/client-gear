@@ -1,29 +1,23 @@
 {
   "name": "@kununu/kununu-overlay",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "kununu page loading spinner",
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
-  "devDependencies": {
-    "@kununu/kununu-theme-v2": "2.0.1",
-    "babel-cli": "6.23.0",
-    "cross-env": "5.2.0",
-    "node-sass": "4.9.0",
-    "node-sass-module-importer": "0.1.0",
-    "react": "16.4.1",
-    "rimraf": "2.6.0"
+  "dependencies": {
+    "@kununu/kununu-theme-v2": "2.0.2",
+    "node-sass-module-importer": "0.1.0"
   },
   "peerDependencies": {
-    "@kununu/kununu-theme-v2": "2.0.1",
-    "react": "16.4.1",
-    "prop-types": "15.6.0"
+    "prop-types": ">=15.6.0",
+    "react": ">=16.0.0"
   },
   "scripts": {
-    "prepublish": "yarn dist",
-    "babel": "babel ./index.jsx --out-dir ./dist",
+    "prepare": "npm run dist",
+    "babel": "babel ./index.jsx --out-dir ./dist --root-mode upward",
     "sass": "node-sass ./index.scss --output ./dist --importer node_modules/node-sass-module-importer",
     "clean": "rimraf ./dist",
-    "dist": "npm run clean && cross-env NODE_ENV=production yarn babel && yarn sass"
+    "dist": "npm run clean && cross-env NODE_ENV=production npm run babel && npm run sass"
   }
 }

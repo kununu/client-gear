@@ -6,6 +6,7 @@ const checkReferrer = require('./index').default;
 
 describe('Middleware checkReferrer', () => {
   const app = express();
+
   app.use(cookieParser());
   app.use(checkReferrer());
   app.get('/', (req, res) => {

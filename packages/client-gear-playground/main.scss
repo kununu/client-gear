@@ -1,14 +1,24 @@
-@import '~bootstrap-sass/assets/stylesheets/bootstrap/normalize';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/variables';
 
 @import '~@kununu/kununu-theme-v2/scss/base/variables';
 @import '~@kununu/kununu-theme-v2/scss/base/mixins';
+
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/buttons';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/grid';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/normalize';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/type';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/utilities';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities';
+
+@import '~@kununu/kununu-theme-v2/scss/base/buttons';
 @import '~@kununu/kununu-theme-v2/scss/base/grid';
 @import '~@kununu/kununu-theme-v2/scss/base/core';
 @import '~@kununu/kununu-theme-v2/scss/effects/core';
 @import '~@kununu/kununu-theme-v2/scss/base/panels';
 @import '~@kununu/kununu-theme-v2/scss/base/type';
-@import '~@kununu/kununu-theme-v2/scss/base/buttons';
 @import '~@kununu/kununu-theme-v2/scss/base/colors';
+
 
 html,
 body {
@@ -16,13 +26,23 @@ body {
   font-size: 14px;
 }
 
-.clientGearPlayground, // eslint-disable-line
+.clientGearPlayground,
 .appContainer {
   height: 100%;
 }
 
 main {
   min-height: 100%;
+  position: relative;
 }
 
+code {
+  display: block;
+  background-color: $gray-light;
+  padding: 15px;
+  border-radius: 4px;
+}
 
+br {
+  height: 10px;
+}

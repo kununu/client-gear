@@ -3,7 +3,7 @@ import express from 'express';
 import fetchMock from 'fetch-mock';
 import jwt from 'jsonwebtoken';
 
-import refreshAuthCookie from '../refreshAuthCookie';
+import refreshAuthCookie from '.';
 
 const cookieParser = require('cookie-parser');
 
@@ -22,6 +22,7 @@ jest.mock('../../kununu-logger');
  */
 function getJWTToken (data, exp) {
   const secretKey = 'somesecret';
+
   return jwt.sign({
     ...data,
     exp,
@@ -61,6 +62,7 @@ const cookieLongLiving = getAuthCookie({
 
 describe('middlewares', () => {
   const app = express();
+
   app.use(cookieParser());
   app.use(refreshAuthCookie('app-mykununu'));
   app.get('/someroute', (req, res) => res.send());
