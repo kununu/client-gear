@@ -24,7 +24,7 @@ const expressLogger = label => (req, res, next) => {
     const status = res.statusCode < 500 ? 'info' : 'error';
 
     logger.log(status, {
-      req, res, label, timeTakenMicros: (new Date() - startDate) * 1000
+      req, res, label, timeTakenMicros: (new Date() - startDate) * 1000,
     });
   }
 

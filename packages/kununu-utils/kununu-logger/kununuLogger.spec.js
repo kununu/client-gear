@@ -140,7 +140,7 @@ describe('Logs according to defined level', () => {
     expect(spyFunc).toBeCalled();
     expect(generatedLog.level).toEqual('info');
   });
-  
+
   it('tries to log notice level', () => {
     loggerLevelTest.notice({
       custom: true,
@@ -170,7 +170,7 @@ describe('Logs according to defined level', () => {
     expect(spyFunc).toBeCalled();
     expect(generatedLog.level).toEqual('error');
   });
-  
+
   it('tries to log crit level', () => {
     loggerLevelTest.crit({
       custom: true,
@@ -180,7 +180,7 @@ describe('Logs according to defined level', () => {
     expect(spyFunc).toBeCalled();
     expect(generatedLog.level).toEqual('crit');
   });
-  
+
   it('tries to log alert level', () => {
     loggerLevelTest.alert({
       custom: true,
@@ -190,7 +190,7 @@ describe('Logs according to defined level', () => {
     expect(spyFunc).toBeCalled();
     expect(generatedLog.level).toEqual('alert');
   });
-  
+
   it('tries to log emerg level', () => {
     loggerLevelTest.emerg({
       custom: true,

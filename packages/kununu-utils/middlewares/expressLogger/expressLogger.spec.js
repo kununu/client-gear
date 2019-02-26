@@ -32,6 +32,7 @@ describe('Express logger', () => {
     await request(app).get('/');
     expect(spyFunc.mock.calls.length).toEqual(1);
     const logObjectRequest = JSON.parse(spyFunc.mock.calls);
+
     expect(Object.keys(logObjectRequest).sort()).toEqual(['label', 'logType', 'time', 'method', 'request', 'status', 'remote_ip', 'referer', 'forwarded_for', 'trace_id', 'user_agent', 'time_taken_micros', 'build'].sort());
   });
 });
