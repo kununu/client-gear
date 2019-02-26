@@ -6,11 +6,12 @@ const express = require('express');
 const request = require('supertest');
 
 process.env.NODE_ENV = 'production';
+process.env.MINIMUM_LOG_LEVEL = 'debug';
 
 let generatedLog = '';
 
 const spyFunc = jest.fn((val) => {
-  generatedLog = JSON.parse(val.slice(val.indexOf('{')));
+  generatedLog = val;
 });
 
 global.console = {log: spyFunc};
@@ -61,12 +62,15 @@ describe('Returns correct log format with text format', () => {
 
     app.get('/', (req, res) => {
       res.send({
-        formatedRequest: formatNodeRequest({req, res, label, timeTakenMicros: 1000, level: 'error', message: 'this is a log message', exception: 'this is a exception'}),
+        formatedRequest: formatNodeRequest({
+          req, res, label, timeTakenMicros: 1000, level: 'error', message: 'this is a log message', exception: 'this is a exception',
+        }),
       });
     });
 
     const response = await request(app).get('/');
-    expect(response.body.formatedRequest).toEqual(JSON.stringify(expectedRequest));
+
+    expect(response.body.formatedRequest).toEqual(expectedRequest);
   });
 
   it('returns expected format for custom request logs', async () => {
@@ -115,7 +119,8 @@ describe('Returns correct log format with json format', () => {
 
     const printf = customFormat;
     const value = printf.template(info);
-    expect(JSON.parse(value)).toEqual({
+
+    expect(value).toEqual({
       level_name: 'INFO',
       time: new Date().toISOString(),
       build: '-',
@@ -136,7 +141,6 @@ describe('Returns correct log format with json format', () => {
 
 describe('Logs according to defined level', () => {
   jest.resetModules();
-  process.env.MINIMUM_LOG_LEVEL = 'debug';
   const {logger: loggerLevelTest} = require('./index'); // eslint-disable-line global-require
 
   it('tries to log silly level', () => {
