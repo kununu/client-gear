@@ -14,8 +14,8 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
  */
 export const formatNodeRequest = (info) => {
   const {
-    req,
-    res,
+    req = {},
+    res = {},
     label,
     timeTakenMicros,
     level,
@@ -34,17 +34,17 @@ export const formatNodeRequest = (info) => {
     message,
     level_name: typeof level === 'string' ? level.toUpperCase() : level,
     time: date,
-    trace_id: (req && req.headers && req.headers['x-amzn-trace-id']) || '-',
+    trace_id: (req.headers && req.headers['x-amzn-trace-id']) || '-',
     build: process.env.BUILD_NAME || '-',
     application: label,
     http: {
-      method: req && req.method,
-      uri: req && req.originalUrl,
-      status: res && res.statusCode,
-      remote_ip: (req && req.headers && req.headers['x-forwarded-for']) || '-',
-      local_ip: (req && req.connection && req.connection.localAddress) || '-',
-      referer: (req && req.headers && req.headers.referer) || '-',
-      user_agent: (req && req.headers && req.headers['user-agent']) || '-',
+      method: req.method,
+      uri: req.originalUrl,
+      status: res.statusCode,
+      remote_ip: (req.headers && req.headers['x-forwarded-for']) || '-',
+      local_ip: (req.connection && req.connection.localAddress) || '-',
+      referer: (req.headers && req.headers.referer) || '-',
+      user_agent: (req.headers && req.headers['user-agent']) || '-',
     },
     channel,
     metrics: {
