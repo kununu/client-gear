@@ -61,11 +61,14 @@ describe('Returns correct log format with text format', () => {
 
     app.get('/', (req, res) => {
       res.send({
-        formatedRequest: formatNodeRequest({req, res, label, timeTakenMicros: 1000, level: 'error', message: 'this is a log message', exception: 'this is a exception'}),
+        formatedRequest: formatNodeRequest({
+          req, res, label, timeTakenMicros: 1000, level: 'error', message: 'this is a log message', exception: 'this is a exception',
+        }),
       });
     });
 
     const response = await request(app).get('/');
+
     expect(response.body.formatedRequest).toEqual(JSON.stringify(expectedRequest));
   });
 
@@ -73,7 +76,7 @@ describe('Returns correct log format with text format', () => {
     const label = 'test2';
 
     app.get('/2', (req, res) => {
-      logger.log('info', {
+      logger.info({
         custom: true,
         message: 'test',
         label,
@@ -115,6 +118,7 @@ describe('Returns correct log format with json format', () => {
 
     const printf = customFormat;
     const value = printf.template(info);
+
     expect(JSON.parse(value)).toEqual({
       level_name: 'INFO',
       time: new Date().toISOString(),

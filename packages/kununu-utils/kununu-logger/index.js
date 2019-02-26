@@ -56,7 +56,7 @@ export const formatNodeRequest = (info) => {
   })}`;
 };
 
-export const customFormat = printf((info) => formatNodeRequest(info));
+export const customFormat = printf(info => formatNodeRequest(info));
 
 export const logger = createLogger({
   format: format.combine(
