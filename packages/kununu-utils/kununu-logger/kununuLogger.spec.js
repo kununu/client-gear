@@ -1,10 +1,13 @@
-import {formatNodeRequest, logger, customFormat} from './index';
+import {advanceTo, clear} from 'jest-date-mock';
 
-process.env.MINIMUM_LOG_LEVEL = 'debug';
-process.env.ACTIVATION_LOG_LEVEL = 'error';
+import {formatNodeRequest, logger, customFormat} from './index';
 
 const express = require('express');
 const request = require('supertest');
+
+process.env.NODE_ENV = 'production';
+process.env.MINIMUM_LOG_LEVEL = 'debug';
+process.env.ACTIVATION_LOG_LEVEL = 'error';
 
 let generatedLog = '';
 
@@ -19,42 +22,56 @@ afterEach(() => {
   generatedLog = '';
 });
 
+beforeAll(() => {
+  advanceTo(new Date(2019, 2, 19, 0, 0, 0));
+});
+
+afterAll(() => {
+  clear();
+});
+
 describe('Returns correct log format with text format', () => {
   const app = express();
 
   it('returns correct format for express request logs', async () => {
     const label = 'test1';
 
-    app.get('/', (req, res) => {
-      const expectedRequest = {
-        label,
-        time: new Date().toISOString(),
-        method: req.method,
-        request: req.originalUrl,
-        status: res.statusCode,
-        remote_ip: '::ffff:127.0.0.1',
+    const expectedRequest = {
+      message: 'this is a log message',
+      level_name: 'ERROR',
+      time: new Date().toISOString(),
+      trace_id: '-',
+      build: '-',
+      application: label,
+      http: {
+        method: 'GET',
+        uri: '/',
+        status: 200,
+        remote_ip: '-',
+        local_ip: '::ffff:127.0.0.1',
         referer: '-',
-        forwarded_for: '-',
-        trace_id: '-',
-        logType: 'middleware_logger',
-        timeTakenMicros: 1000,
-        build: 'build-123',
-      };
+        user_agent: 'node-superagent/3.8.3',
+      },
+      channel: 'middleware_logger',
+      metrics: {
+        time_taken_micros: 1000,
+      },
+      context: {
+        exception: 'this is a exception',
+      },
+    };
 
+    app.get('/', (req, res) => {
       res.send({
         formatedRequest: formatNodeRequest({
-          req,
-          res,
-          label,
-          timeTakenMicros: 1000,
+          req, res, label, timeTakenMicros: 1000, level: 'error', message: 'this is a log message', exception: 'this is a exception',
         }),
-        expectedRequest,
       });
     });
 
     const response = await request(app).get('/');
 
-    expect(response.formatedRequest).toEqual(JSON.stringify(response.expectedRequest));
+    expect(response.body.formatedRequest).toEqual(JSON.stringify(expectedRequest));
   });
 
   it('returns expected format for custom request logs', async () => {
@@ -63,7 +80,7 @@ describe('Returns correct log format with text format', () => {
     app.get('/2', (req, res) => {
       logger.info({
         custom: true,
-        message: 'Test',
+        message: 'test',
         label,
       });
 
@@ -71,10 +88,14 @@ describe('Returns correct log format with text format', () => {
     });
 
     await request(app).get('/2');
-    expect(generatedLog.custom).toEqual(true);
-    expect(generatedLog.message).toEqual('Test');
-    expect(generatedLog.level).toEqual('info');
-    expect(generatedLog.label).toEqual(label);
+
+    expect(generatedLog.message).toEqual('test');
+    expect(generatedLog.level_name).toEqual('INFO');
+    expect(generatedLog.time).toEqual(new Date().toISOString());
+    expect(generatedLog.build).toEqual('-');
+    expect(generatedLog.application).toEqual('test2');
+    expect(generatedLog.channel).toEqual('custom_logger');
+    expect(generatedLog.context).toEqual({});
   });
 });
 
@@ -101,103 +122,124 @@ describe('Returns correct log format with json format', () => {
     const value = printf.template(info);
 
     expect(JSON.parse(value)).toEqual({
+      level_name: 'INFO',
+      time: new Date().toISOString(),
       build: '-',
-      label: 'test',
-      level: 'info',
-      custom: true,
-      logType: 'custom_logger',
+      application: 'test',
+      channel: 'custom_logger',
+      context: {},
+      http: {
+        local_ip: '-',
+        referer: '-',
+        remote_ip: '-',
+        user_agent: '-',
+      },
+      metrics: {},
+      trace_id: '-',
     });
   });
 });
 
 describe('Logs according to defined level', () => {
-  const originalEnv = process.env.MINIMUM_LOG_LEVEL;
-
   jest.resetModules();
   process.env.MINIMUM_LOG_LEVEL = 'debug';
   const {logger: loggerLevelTest} = require('./index'); // eslint-disable-line global-require
 
-  afterAll(() => {
-    process.env.MINIMUM_LOG_LEVEL = originalEnv;
+  it('tries to log silly level', () => {
+    loggerLevelTest.silly({
+      custom: true,
+      message: 'silly - Message will not be logged',
+    });
+
+    expect(spyFunc).not.toBeCalled();
+    expect(generatedLog.level_name).toEqual(undefined);
   });
 
-  it('tries to log debug level with debug', () => {
+  it('tries to log debug level with log and level', () => {
     loggerLevelTest.debug({
       custom: true,
-      message: 'debug - Will be logged with debug',
+      message: 'debug - Message will be logged with log and level',
     });
 
     expect(spyFunc).toBeCalled();
-    expect(generatedLog.level).toEqual('debug');
-  });
-
-  it('tries to log info level', () => {
-    loggerLevelTest.info({
-      custom: true,
-      message: 'info - Will be logged',
-    });
-
-    expect(spyFunc).toBeCalled();
-    expect(generatedLog.level).toEqual('info');
+    expect(generatedLog.level_name).toEqual('DEBUG');
+    expect(generatedLog.message).toEqual('debug - Message will be logged with log and level');
+    expect(generatedLog.time).toEqual(new Date().toISOString());
+    expect(generatedLog.build).toEqual('-');
+    expect(generatedLog.channel).toEqual('custom_logger');
+    expect(generatedLog.context).toEqual({});
   });
 
   it('tries to log notice level', () => {
     loggerLevelTest.notice({
       custom: true,
-      message: 'notice - Will be logged',
+      message: 'debug - Message will be logged with debug',
     });
 
     expect(spyFunc).toBeCalled();
-    expect(generatedLog.level).toEqual('notice');
+    expect(generatedLog.level_name).toEqual('DEBUG');
+    expect(generatedLog.message).toEqual('debug - Message will be logged with debug');
+    expect(generatedLog.time).toEqual(new Date().toISOString());
+    expect(generatedLog.build).toEqual('-');
+    expect(generatedLog.channel).toEqual('custom_logger');
+    expect(generatedLog.context).toEqual({});
   });
 
   it('tries to log warning level', () => {
     loggerLevelTest.warning({
       custom: true,
-      message: 'warning - Will be logged',
+      message: 'verbose - Message will be logged',
     });
 
     expect(spyFunc).toBeCalled();
-    expect(generatedLog.level).toEqual('warning');
+    expect(generatedLog.level_name).toEqual('VERBOSE');
+    expect(generatedLog.message).toEqual('verbose - Message will be logged');
+    expect(generatedLog.time).toEqual(new Date().toISOString());
+    expect(generatedLog.build).toEqual('-');
+    expect(generatedLog.channel).toEqual('custom_logger');
+    expect(generatedLog.context).toEqual({});
   });
 
   it('tries to log error level', () => {
     loggerLevelTest.error({
       custom: true,
-      message: 'error - Will be logged',
+      message: 'info - Message will be logged',
     });
 
     expect(spyFunc).toBeCalled();
-    expect(generatedLog.level).toEqual('error');
+    expect(generatedLog.level_name).toEqual('INFO');
+    expect(generatedLog.message).toEqual('info - Message will be logged');
+    expect(generatedLog.time).toEqual(new Date().toISOString());
+    expect(generatedLog.build).toEqual('-');
+    expect(generatedLog.channel).toEqual('custom_logger');
+    expect(generatedLog.context).toEqual({});
   });
 
   it('tries to log crit level', () => {
     loggerLevelTest.crit({
       custom: true,
-      message: 'crit - Will be logged',
+      message: 'warn - Message will be logged',
     });
 
     expect(spyFunc).toBeCalled();
-    expect(generatedLog.level).toEqual('crit');
+    expect(generatedLog.level_name).toEqual('WARN');
+    expect(generatedLog.message).toEqual('warn - Message will be logged');
+    expect(generatedLog.time).toEqual(new Date().toISOString());
+    expect(generatedLog.build).toEqual('-');
+    expect(generatedLog.channel).toEqual('custom_logger');
+    expect(generatedLog.context).toEqual({});
   });
 
   it('tries to log alert level', () => {
     loggerLevelTest.alert({
       custom: true,
-      message: 'alert - Will be logged',
+      message: 'error - Message will be logged',
+      exception: 'error - Exception will be logged',
     });
 
     expect(spyFunc).toBeCalled();
-    expect(generatedLog.level).toEqual('alert');
-  });
-
-  it('tries to log emerg level', () => {
-    loggerLevelTest.emerg({
-      custom: true,
-      message: 'emerg - Will be logged',
-    });
-
-    expect(spyFunc).toBeCalled();
-    expect(generatedLog.level).toEqual('emerg');
+    expect(generatedLog.level_name).toEqual('ERROR');
+    expect(generatedLog.message).toEqual('error - Message will be logged');
+    expect(generatedLog.context.exception).toEqual('error - Exception will be logged');
   });
 });
