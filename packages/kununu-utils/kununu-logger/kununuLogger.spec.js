@@ -76,7 +76,7 @@ describe('Returns correct log format with text format', () => {
     const label = 'test2';
 
     app.get('/2', (req, res) => {
-      logger.log('info', {
+      logger.info({
         custom: true,
         message: 'test',
         label,
