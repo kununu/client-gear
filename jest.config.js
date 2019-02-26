@@ -10,6 +10,10 @@ module.exports = {
     'enzyme-to-json/serializer',
   ],
   testURL: 'http://www.kununu.com',
+  reporters: [
+    'default',
+    'jest-junit',
+  ],
   collectCoverageFrom: [
     'packages/**/*.{js,jsx}',
     '!packages/client-gear-playground/**',
