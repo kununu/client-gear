@@ -6,7 +6,6 @@
   "devDependencies": {
     "express": "4.16.4",
     "fetch-mock": "7.3.0",
-    "jest-date-mock": "1.0.7",
     "jsonwebtoken": "8.5.0",
     "supertest": "3.4.2"
   },
@@ -30,9 +29,6 @@
     "react": ">=16.0.0",
     "react-scroll": "1.7.11",
     "winston": "3.2.1"
-  },
-  "jest": {
-    "setupFiles": ["jest-date-mock"]
   },
   "scripts": {
     "prepare": "npm run dist",

@@ -12,18 +12,16 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
  * @param {object} info
  * @returns string stringified object
  */
-export const formatNodeRequest = (info) => {
-  const {
-    req = {},
-    res = {},
-    label,
-    timeTakenMicros,
-    level,
-    message,
-    exception,
-    custom,
-  } = info;
-
+export const formatNodeRequest = ({
+  req = {},
+  res = {},
+  label,
+  timeTakenMicros,
+  level,
+  message,
+  exception,
+  custom,
+}) => {
   const date = new Date().toISOString();
   const channel = custom ? 'custom_logger' : 'middleware_logger';
   const colorizedMessage = getColorizedMessage(`[${label}][${date}][${level}][${channel}]`);
