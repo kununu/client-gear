@@ -28,15 +28,9 @@ export const formatNodeRequest = (info) => {
   const channel = custom ? 'custom_logger' : 'middleware_logger';
   const colorizedMessage = getColorizedMessage(`[${label}][${date}][${level}][${channel}]`);
 
-  const formatLog = (log) => {
-    if (process.env.NODE_ENV === 'production') {
-      return log;
-    }
+  const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}`;
 
-    return `${colorizedMessage}${stringify(log)}`;
-  };
-
-  return formatLog({
+  return `${prefix}${stringify({
     message,
     level_name: typeof level === 'string' ? level.toUpperCase() : level,
     time: date,
@@ -59,10 +53,10 @@ export const formatNodeRequest = (info) => {
     context: {
       exception,
     },
-  });
+  })}`;
 };
 
-export const customFormat = printf(info => formatNodeRequest(info));
+export const customFormat = printf((info) => formatNodeRequest(info));
 
 export const logger = createLogger({
   format: format.combine(
