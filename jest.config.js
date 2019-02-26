@@ -11,7 +11,6 @@ module.exports = {
   ],
   testURL: 'http://www.kununu.com',
   reporters: [
-    'default',
     'jest-junit',
   ],
   collectCoverageFrom: [
