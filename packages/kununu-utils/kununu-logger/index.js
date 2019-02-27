@@ -41,14 +41,14 @@ export const formatNodeRequest = ({
   metrics,
   level,
   message,
-  context = {},
+  context,
   channel = 'app',
 }) => {
   const datetime = new Date().toISOString();
   const colorizedMessage = getColorizedMessage(`[${application}][${datetime}][${level}][${channel}]`);
   const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}`;
 
-  return `${prefix}${stringify({
+  const nodeRequest = {
     message,
     level: logLevelNum[level.toLowerCase()],
     level_name: typeof level === 'string' ? level.toUpperCase() : level,
@@ -68,7 +68,14 @@ export const formatNodeRequest = ({
     channel,
     metrics,
     context,
-  })}`;
+  };
+
+  // Remove http object from output when req and res are empty
+  if (Object.entries(req).length === 0 && Object.entries(res).length === 0) {
+    delete nodeRequest.http;
+  }
+
+  return `${prefix}${stringify(nodeRequest)}`;
 };
 
 export const customFormat = printf(info => formatNodeRequest(info));

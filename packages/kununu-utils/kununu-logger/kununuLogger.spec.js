@@ -94,7 +94,6 @@ describe('Returns correct log format with text format', () => {
     expect(generatedLog.datetime).toEqual(new Date().toISOString());
     expect(generatedLog.application).toEqual('test2');
     expect(generatedLog.channel).toEqual('app');
-    expect(generatedLog.context).toEqual({});
   });
 });
 
@@ -124,9 +123,7 @@ describe('Returns correct log format with json format', () => {
       level_name: 'INFO',
       datetime: new Date().toISOString(),
       application: 'test',
-      http: {},
       channel: 'app',
-      context: {},
     });
   });
 });
