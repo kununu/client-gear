@@ -4,7 +4,7 @@ import {render} from 'enzyme'; // eslint-disable-line import/no-extraneous-depen
 import {Header, HeaderNav, HeaderNavItem} from './index';
 
 
-test('Renders Logo without crashing', () => {
+test('Renders Header without crashing', () => {
   const component = render(
     <Header
       title="Volle Transparenz am Arbeitsmarkt"

@@ -52,10 +52,10 @@ export default class ScrollToElement extends Component {
       children,
       tagName,
     } = this.props;
-
+    const CustomTag = tagName;
 
     return (
-      <tagName
+      <CustomTag
         {...this.getAdditionalProps()}
         ref={(node) => { this.node = node; }}
       >
@@ -70,7 +70,7 @@ export default class ScrollToElement extends Component {
             container: () => this.node,
           })
         }
-      </tagName>
+      </CustomTag>
     );
   }
 }
