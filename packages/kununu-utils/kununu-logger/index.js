@@ -7,55 +7,74 @@ const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
 
 const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
 
+export const logLevelName = {
+  DEBUG: 'debug',
+  INFO: 'info',
+  NOTICE: 'notice',
+  WARNING: 'warning',
+  ERROR: 'error',
+  CRITICAL: 'critical',
+  ALERT: 'alert',
+  EMERGENCY: 'emergency',
+};
+
+export const logLevelNum = {
+  emergency: 0,
+  alert: 1,
+  critical: 2,
+  error: 3,
+  warning: 4,
+  notice: 5,
+  info: 6,
+  debug: 7,
+};
+
 /**
- * Format request and response data
- * @param {object} info
- * @returns string stringified object
+ * Returns a formatted request and response ready to be logged
+ * @param {Object} info
+ * @returns {string} Stringified object
  */
 export const formatNodeRequest = ({
   req = {},
   res = {},
-  label: application,
-  timeTakenMicros,
+  application,
+  metrics,
   level,
   message,
-  exception,
-  middleware,
+  context = {},
+  channel = 'app',
 }) => {
   const datetime = new Date().toISOString();
-  const channel = middleware ? 'middleware_logger' : 'app_logger';
   const colorizedMessage = getColorizedMessage(`[${application}][${datetime}][${level}][${channel}]`);
   const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}`;
 
   return `${prefix}${stringify({
     message,
+    level: logLevelNum[level.toLowerCase()],
     level_name: typeof level === 'string' ? level.toUpperCase() : level,
     datetime,
-    trace_id: (req.headers && req.headers['x-amzn-trace-id']) || '-',
-    build: process.env.BUILD_NAME || '-',
+    trace_id: (req.headers && req.headers['x-amzn-trace-id']),
+    build: process.env.BUILD_NAME,
     application,
     http: {
       method: req.method,
       uri: req.originalUrl,
       status: res.statusCode,
-      remote_ip: (req.headers && req.headers['x-forwarded-for']) || '-',
-      local_ip: (req.connection && req.connection.localAddress) || '-',
-      referer: (req.headers && req.headers.referer) || '-',
-      user_agent: (req.headers && req.headers['user-agent']) || '-',
+      remote_ip: (req.headers && req.headers['x-forwarded-for']),
+      local_ip: (req.connection && req.connection.localAddress),
+      referer: (req.headers && req.headers.referer),
+      user_agent: (req.headers && req.headers['user-agent']),
     },
     channel,
-    metrics: {
-      time_taken_micros: timeTakenMicros,
-    },
-    context: {
-      exception,
-    },
+    metrics,
+    context,
   })}`;
 };
 
 export const customFormat = printf(info => formatNodeRequest(info));
 
 export const logger = createLogger({
+  levels: logLevelNum,
   format: format.combine(
     timestamp(),
     customFormat,
