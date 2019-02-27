@@ -15,26 +15,25 @@ const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
 export const formatNodeRequest = ({
   req = {},
   res = {},
-  label,
+  label: application,
   timeTakenMicros,
   level,
   message,
   exception,
   custom,
 }) => {
-  const date = new Date().toISOString();
-  const channel = custom ? 'custom_logger' : 'middleware_logger';
-  const colorizedMessage = getColorizedMessage(`[${label}][${date}][${level}][${channel}]`);
-
+  const datetime = new Date().toISOString();
+  const channel = custom === false ? 'middleware_logger' : 'custom_logger';
+  const colorizedMessage = getColorizedMessage(`[${application}][${datetime}][${level}][${channel}]`);
   const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}`;
 
   return `${prefix}${stringify({
     message,
     level_name: typeof level === 'string' ? level.toUpperCase() : level,
-    time: date,
+    datetime,
     trace_id: (req.headers && req.headers['x-amzn-trace-id']) || '-',
     build: process.env.BUILD_NAME || '-',
-    application: label,
+    application,
     http: {
       method: req.method,
       uri: req.originalUrl,

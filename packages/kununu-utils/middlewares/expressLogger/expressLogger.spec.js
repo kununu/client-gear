@@ -31,6 +31,6 @@ describe('Express logger', () => {
     expect(spyFunc.mock.calls.length).toEqual(1);
     const logObjectRequest = JSON.parse(spyFunc.mock.calls[0][0]);
 
-    expect(Object.keys(logObjectRequest).sort()).toEqual(['level_name', 'time', 'trace_id', 'build', 'application', 'http', 'channel', 'metrics', 'context'].sort());
+    expect(Object.keys(logObjectRequest).sort()).toEqual(['level_name', 'datetime', 'trace_id', 'build', 'application', 'http', 'channel', 'metrics', 'context'].sort());
   });
 });
