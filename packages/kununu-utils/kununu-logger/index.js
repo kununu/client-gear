@@ -7,17 +7,6 @@ const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
 
 const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
 
-export const logLevelName = {
-  DEBUG: 'debug',
-  INFO: 'info',
-  NOTICE: 'notice',
-  WARNING: 'warning',
-  ERROR: 'error',
-  CRITICAL: 'critical',
-  ALERT: 'alert',
-  EMERGENCY: 'emergency',
-};
-
 export const logLevelNum = {
   emergency: 0,
   alert: 1,

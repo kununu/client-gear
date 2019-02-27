@@ -1,4 +1,8 @@
-import {logger, logLevelName} from '../../kununu-logger';
+import {logger} from '../../kununu-logger';
+
+const CRITICAL = 'critical';
+const ERROR = 'error';
+const INFO = 'info';
 
 /**
  * Middleware for Express that logs request pipeline
@@ -26,7 +30,7 @@ const expressLogger = application => (req, res, next) => {
     res.removeListener('error', log);
 
     // Define log level on
-    const level = res.statusCode >= 400 ? (res.statusCode >= 500 ? logLevelName.CRITICAL : logLevelName.ERROR) : logLevelName.INFO;
+    const level = res.statusCode >= 400 ? (res.statusCode >= 500 ? CRITICAL : ERROR) : INFO;
 
     // Logs a request out using kununu-logger
     logger.log(this.level ? this.level : level, {
