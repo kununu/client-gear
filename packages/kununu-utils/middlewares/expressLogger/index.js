@@ -22,7 +22,7 @@ const expressLogger = label => (req, res, next) => {
     res.removeListener('error', log);
 
     logger.log(this.status, {
-      req, res, label, timeTakenMicros: (new Date() - startDate) * 1000, custom: false,
+      req, res, label, timeTakenMicros: (new Date() - startDate) * 1000, middleware: true,
     });
   }
 

@@ -20,10 +20,10 @@ export const formatNodeRequest = ({
   level,
   message,
   exception,
-  custom,
+  middleware,
 }) => {
   const datetime = new Date().toISOString();
-  const channel = custom === false ? 'middleware_logger' : 'custom_logger';
+  const channel = middleware ? 'middleware_logger' : 'app_logger';
   const colorizedMessage = getColorizedMessage(`[${application}][${datetime}][${level}][${channel}]`);
   const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}`;
 
