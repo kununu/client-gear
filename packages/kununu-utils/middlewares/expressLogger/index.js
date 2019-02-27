@@ -11,7 +11,7 @@ import {logger, logLevelName} from '../../kununu-logger';
 const expressLogger = application => (req, res, next) => {
   const startDate = new Date();
 
- // Logs a request in with kununu-logger
+  // Logs a request in with kununu-logger
   logger.info({
     req,
     application,
@@ -25,7 +25,7 @@ const expressLogger = application => (req, res, next) => {
     res.removeListener('close', log);
     res.removeListener('error', log);
 
-    // Define log level on 
+    // Define log level on
     const level = res.statusCode >= 400 ? (res.statusCode >= 500 ? logLevelName.CRITICAL : logLevelName.ERROR) : logLevelName.INFO;
 
     // Logs a request out using kununu-logger

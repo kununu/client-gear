@@ -65,7 +65,7 @@ describe('Returns correct log format with text format', () => {
           level: 'error',
           metrics: {time_taken_micros: 1000},
           message: 'this is a log message',
-          context:{exception: 'this is a exception'},
+          context: {exception: 'this is a exception'},
         }),
       });
     });

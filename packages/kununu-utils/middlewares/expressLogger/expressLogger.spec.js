@@ -17,7 +17,7 @@ describe('Express logger', () => {
   const spyFunc = jest.fn();
 
   global.console = {log: spyFunc};
-  
+
   beforeAll(() => {
     advanceTo(new Date(2019, 1, 1, 0, 0, 0));
   });
@@ -25,7 +25,7 @@ describe('Express logger', () => {
   afterAll(() => {
     clear();
   });
-  
+
   afterEach(() => {
     spyFunc.mockClear();
   });
@@ -50,7 +50,7 @@ describe('Express logger', () => {
 
     expect(spyFunc.mock.calls.length).toBe(2);
     expect(JSON.parse(spyFunc.mock.calls[0][0])).toMatchObject(expectedRequestIn);
-});
+  });
 
   it('logs a request out', async () => {
     const expectedRequestOut = {
