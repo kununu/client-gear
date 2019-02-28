@@ -33,7 +33,7 @@ describe('expressLogger middleware', () => {
     clear();
   });
 
-  it('should log a request in', async () => {
+  it('formats log correctly on request in', async () => {
     await request(app).get('/');
 
     expect(spyFunc.mock.calls.length).toBe(2);
@@ -53,7 +53,7 @@ describe('expressLogger middleware', () => {
     });
   });
 
-  it('should log a request out', async () => {
+  it('formats log correctly on request out', async () => {
     await request(app).get('/');
 
     expect(spyFunc.mock.calls.length).toBe(2);

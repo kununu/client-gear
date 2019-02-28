@@ -32,7 +32,7 @@ afterAll(() => {
   clear();
 });
 
-describe('logging from a express pipeline', () => {
+describe('returns correct log format inside a express pipeline', () => {
   const app = express();
 
   app.get('/', (req, res) => {
@@ -59,7 +59,7 @@ describe('logging from a express pipeline', () => {
     res.send();
   });
 
-  it('format log correctly when it has req and res', async () => {
+  it('formats log correctly when it has req and res', async () => {
     const response = await request(app).get('/');
 
     expect(response.body.formatedRequest).toEqual(JSON.stringify({
@@ -81,7 +81,7 @@ describe('logging from a express pipeline', () => {
     }));
   });
 
-  it('format log correctly without req and res', async () => {
+  it('formats log correctly without req and res', async () => {
     await request(app).get('/noreq');
 
     expect(log.message).toEqual('this is another log message');
@@ -92,8 +92,8 @@ describe('logging from a express pipeline', () => {
   });
 });
 
-describe('when receives log with minimal information', () => {
-  it('should parse correctly', () => {
+describe('returns correct log format with minimal information', () => {
+  it('formats log correctly ', () => {
     const printf = customFormat;
     const value = printf.template({
       message: 'something happened',
@@ -124,8 +124,8 @@ describe('when receives log with minimal information', () => {
   });
 });
 
-describe('when receives log missing critical information', () => {
-  it('should parse anyway', () => {
+describe('returns correct log format with missing critical information', () => {
+  it('parses and format correctly', () => {
     const printf = customFormat;
     const value = printf.template({
       message: 'something happened',
@@ -148,7 +148,7 @@ describe('according to defined a level', () => {
     process.env.MINIMUM_LOG_LEVEL = minimumLogLevelEnv;
   });
 
-  it('should log a debug', () => {
+  it('tries to log a debug', () => {
     loggerLevelTest.debug({
       message: 'debug message',
     });
@@ -161,7 +161,7 @@ describe('according to defined a level', () => {
     expect(log.datetime).toBe(new Date().toISOString());
   });
 
-  it('should log an info', () => {
+  it('tries to log an info', () => {
     loggerLevelTest.info({
       message: 'info message',
     });
@@ -174,7 +174,7 @@ describe('according to defined a level', () => {
     expect(log.datetime).toBe(new Date().toISOString());
   });
 
-  it('should log a notice', () => {
+  it('tries to log a notice', () => {
     loggerLevelTest.notice({
       message: 'notice message',
     });
@@ -187,7 +187,7 @@ describe('according to defined a level', () => {
     expect(log.datetime).toBe(new Date().toISOString());
   });
 
-  it('should log a warning', () => {
+  it('tries to log a warning', () => {
     loggerLevelTest.warning({
       message: 'warning message',
     });
@@ -200,7 +200,7 @@ describe('according to defined a level', () => {
     expect(log.datetime).toBe(new Date().toISOString());
   });
 
-  it('should log an error', () => {
+  it('tries to log an error', () => {
     loggerLevelTest.error({
       message: 'error message',
     });
@@ -213,7 +213,7 @@ describe('according to defined a level', () => {
     expect(log.datetime).toBe(new Date().toISOString());
   });
 
-  it('should log a critical', () => {
+  it('tries to log a critical', () => {
     loggerLevelTest.critical({
       message: 'critical message',
     });
@@ -226,7 +226,7 @@ describe('according to defined a level', () => {
     expect(log.datetime).toBe(new Date().toISOString());
   });
 
-  it('should log an alert', () => {
+  it('tries to log an alert', () => {
     loggerLevelTest.alert({
       message: 'alert message',
     });
@@ -239,7 +239,7 @@ describe('according to defined a level', () => {
     expect(log.datetime).toBe(new Date().toISOString());
   });
 
-  it('should log an emergency', () => {
+  it('tries to log an emergency', () => {
     loggerLevelTest.emergency({
       message: 'emergency message',
     });
