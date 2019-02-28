@@ -14,6 +14,7 @@ const spyFunc = jest.fn((val) => {
 global.console = {log: spyFunc};
 
 const nodeEnv = process.env.NODE_ENV;
+
 process.env.NODE_ENV = 'production';
 
 afterEach(() => {

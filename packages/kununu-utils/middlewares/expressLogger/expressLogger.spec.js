@@ -17,6 +17,7 @@ describe('Express logger', () => {
   global.console = {log: spyFunc};
 
   const nodeEnv = process.env.NODE_ENV;
+
   process.env.NODE_ENV = 'production';
 
   beforeAll(() => {
