@@ -5,23 +5,27 @@ import expressLogger from './index';
 const express = require('express');
 const request = require('supertest');
 
-describe('Express logger', () => {
+describe('expressLogger middleware', () => {
   const app = express();
 
   app.get('/', expressLogger('app-example'), (req, res) => {
     res.send();
   });
 
+  let nodeEnv;
   const spyFunc = jest.fn();
-
-  global.console = {log: spyFunc};
-
-  const nodeEnv = process.env.NODE_ENV;
-
-  process.env.NODE_ENV = 'production';
 
   beforeAll(() => {
     advanceTo(new Date(2019, 1, 1, 0, 0, 0));
+
+    global.console = {log: spyFunc};
+
+    nodeEnv = process.env.NODE_ENV;
+    process.env.NODE_ENV = 'production';
+  });
+
+  afterEach(() => {
+    spyFunc.mockClear();
   });
 
   afterAll(() => {
@@ -29,12 +33,11 @@ describe('Express logger', () => {
     clear();
   });
 
-  afterEach(() => {
-    spyFunc.mockClear();
-  });
+  it('should log a request in', async () => {
+    await request(app).get('/');
 
-  it('logs a request in', async () => {
-    const expectedRequestIn = {
+    expect(spyFunc.mock.calls.length).toBe(2);
+    expect(JSON.parse(spyFunc.mock.calls[0][0])).toMatchObject({
       message: 'Request In: GET /',
       level: 6,
       level_name: 'INFO',
@@ -47,16 +50,14 @@ describe('Express logger', () => {
         user_agent: 'node-superagent/3.8.3',
       },
       channel: 'middleware',
-    };
+    });
+  });
 
+  it('should log a request out', async () => {
     await request(app).get('/');
 
     expect(spyFunc.mock.calls.length).toBe(2);
-    expect(JSON.parse(spyFunc.mock.calls[0][0])).toMatchObject(expectedRequestIn);
-  });
-
-  it('logs a request out', async () => {
-    const expectedRequestOut = {
+    expect(JSON.parse(spyFunc.mock.calls[1][0])).toMatchObject({
       message: 'Request Out: 200 OK - GET /',
       level: 6,
       level_name: 'INFO',
@@ -73,11 +74,6 @@ describe('Express logger', () => {
       metrics: {
         time_taken_micros: 0,
       },
-    };
-
-    await request(app).get('/');
-
-    expect(spyFunc.mock.calls.length).toBe(2);
-    expect(JSON.parse(spyFunc.mock.calls[1][0])).toMatchObject(expectedRequestOut);
+    });
   });
 });
