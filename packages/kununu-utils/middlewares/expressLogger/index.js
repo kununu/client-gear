@@ -30,7 +30,7 @@ const expressLogger = application => (req, res, next) => {
     res.removeListener('error', log);
 
     // Define log level on
-    const level = res.statusCode >= 400 ? (res.statusCode >= 500 ? CRITICAL : ERROR) : INFO;
+    const level = res.statusCode >= 400 ? (res.statusCode >= 500 ? CRITICAL : ERROR) : INFO; // eslint-disable-line no-nested-ternary
 
     // Logs a request out using kununu-logger
     logger.log(this.level ? this.level : level, {
