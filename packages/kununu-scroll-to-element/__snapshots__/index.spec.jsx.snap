@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders ScrollToElement without crashing 1`] = `
+<article
+  class="class"
+>
+  <span>
+    test
+  </span>
+</article>
+`;
