@@ -57,6 +57,16 @@ describe('validates fields', () => {
     expect(validateField('long text', validations)).toEqual(false);
   });
 
+  it('Returns false when no value is provided with min length validation', () => {
+    const validations = [{
+      type: validationTypes.minLength,
+      minLength: 2,
+      message: 'error',
+    }];
+
+    expect(validateField('', validations)).toEqual(false);
+  });
+
   it('Returns error message when isEmail input is not valid', () => {
     const validations = [{
       type: validationTypes.isEmail,

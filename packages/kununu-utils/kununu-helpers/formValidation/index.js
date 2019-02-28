@@ -22,7 +22,7 @@ export function notEmpty (value) {
  * @param {number} length
  */
 function minLength (value, length) {
-  if (value.trim().length < length) {
+  if (value && value.trim().length < length) {
     return TOO_SHORT;
   }
 

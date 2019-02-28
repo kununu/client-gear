@@ -8,6 +8,8 @@ import Footer from '../kununu-footer/index';
 import IconSearch from '../kununu-icons/Search';
 import IconUser from '../kununu-icons/User';
 import FormWrapper from '../kununu-form-wrapper/index';
+import {validationTypes} from '../kununu-utils/kununu-helpers/formValidation';
+
 
 import styles from './index.scss';
 import Home from './home';
@@ -258,7 +260,26 @@ const App = ({location: {pathname, hash}, match: {params: {country, menuItem}}})
           />
           {!hash && <Home />}
           {hash === '#icons' && <Icons />}
-          {hash === '#form-wrapper' && <FormWrapperComponent getInitialFields={() => ({text_name: defaultField, select_name: {...defaultField, value: 'b'}})} />}
+          {hash === '#form-wrapper' && (
+            <FormWrapperComponent getInitialFields={() => ({
+              text_name: defaultField,
+              select_name: {
+                ...defaultField,
+                value: 'b',
+              },
+              minLengthValidation: {
+                ...defaultField,
+                validations: [
+                  {
+                    type: validationTypes.minLength,
+                    minLength: 2,
+                    message: 'min length',
+                  },
+                ],
+              },
+            })}
+            />
+          )}
         </div>
       </div>
     </main>
