@@ -5,8 +5,6 @@ import {formatNodeRequest, logger, customFormat} from './index';
 const express = require('express');
 const request = require('supertest');
 
-process.env.NODE_ENV = 'production';
-
 let generatedLog = '';
 
 const spyFunc = jest.fn((val) => {
@@ -14,6 +12,9 @@ const spyFunc = jest.fn((val) => {
 });
 
 global.console = {log: spyFunc};
+
+const nodeEnv = process.env.NODE_ENV;
+process.env.NODE_ENV = 'production';
 
 afterEach(() => {
   spyFunc.mockClear();
@@ -25,6 +26,7 @@ beforeAll(() => {
 });
 
 afterAll(() => {
+  process.env.NODE_ENV = nodeEnv;
   clear();
 });
 
@@ -40,19 +42,19 @@ describe('Returns correct log format with text format', () => {
       level_name: 'ERROR',
       datetime: new Date().toISOString(),
       application,
-      http: {
-        method: 'GET',
-        uri: '/',
-        status: 200,
-        local_ip: '::ffff:127.0.0.1',
-        user_agent: 'node-superagent/3.8.3',
-      },
       channel: 'app',
       metrics: {
         time_taken_micros: 1000,
       },
       context: {
         exception: 'this is a exception',
+      },
+      http: {
+        method: 'GET',
+        uri: '/',
+        status: 200,
+        local_ip: '::ffff:127.0.0.1',
+        user_agent: 'node-superagent/3.8.3',
       },
     };
 
@@ -98,17 +100,6 @@ describe('Returns correct log format with text format', () => {
 });
 
 describe('Returns correct log format with json format', () => {
-  let originalEnv;
-
-  beforeEach(() => {
-    originalEnv = process.env.NODE_ENV;
-    process.env.NODE_ENV = 'production';
-  });
-
-  afterEach(() => {
-    process.env.NODE_ENV = originalEnv;
-  });
-
   it('returns correct log', () => {
     const info = {
       application: 'test',
@@ -129,9 +120,16 @@ describe('Returns correct log format with json format', () => {
 });
 
 describe('According to defined a level', () => {
+  const minimumLogLevelEnv = process.env.MINIMUM_LOG_LEVEL;
+
   jest.resetModules();
   process.env.MINIMUM_LOG_LEVEL = 'debug';
+
   const {logger: loggerLevelTest} = require('./index'); // eslint-disable-line global-require
+
+  afterAll(() => {
+    process.env.MINIMUM_LOG_LEVEL = minimumLogLevelEnv;
+  });
 
   it('logs a debug', () => {
     loggerLevelTest.debug({

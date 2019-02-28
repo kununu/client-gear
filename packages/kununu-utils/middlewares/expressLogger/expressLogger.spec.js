@@ -5,8 +5,6 @@ import expressLogger from './index';
 const express = require('express');
 const request = require('supertest');
 
-process.env.NODE_ENV = 'production';
-
 describe('Express logger', () => {
   const app = express();
 
@@ -18,11 +16,15 @@ describe('Express logger', () => {
 
   global.console = {log: spyFunc};
 
+  const nodeEnv = process.env.NODE_ENV;
+  process.env.NODE_ENV = 'production';
+
   beforeAll(() => {
     advanceTo(new Date(2019, 1, 1, 0, 0, 0));
   });
 
   afterAll(() => {
+    process.env.NODE_ENV = nodeEnv;
     clear();
   });
 

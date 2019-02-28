@@ -39,13 +39,20 @@ export const formatNodeRequest = ({
 
   const nodeRequest = {
     message,
-    level: logLevelNum[level.toLowerCase()],
+    level: typeof level === 'string' && logLevelNum[level.toLowerCase()],
     level_name: typeof level === 'string' ? level.toUpperCase() : level,
     datetime,
     trace_id: (req.headers && req.headers['x-amzn-trace-id']),
     build: process.env.BUILD_NAME,
     application,
-    http: {
+    channel,
+    metrics,
+    context,
+  };
+
+  // Add http object when req or res have entries
+  if (Object.entries(req).length > 0 || Object.entries(res).length > 0) {
+    nodeRequest.http = {
       method: req.method,
       uri: req.originalUrl,
       status: res.statusCode,
@@ -53,15 +60,7 @@ export const formatNodeRequest = ({
       local_ip: (req.connection && req.connection.localAddress),
       referer: (req.headers && req.headers.referer),
       user_agent: (req.headers && req.headers['user-agent']),
-    },
-    channel,
-    metrics,
-    context,
-  };
-
-  // Remove http object from output when req and res are empty
-  if (Object.entries(req).length === 0 && Object.entries(res).length === 0) {
-    delete nodeRequest.http;
+    };
   }
 
   return `${prefix}${stringify(nodeRequest)}`;
