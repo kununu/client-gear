@@ -82,6 +82,37 @@ class FormComponent extends React.Component {
 
           <div className="row">
             <div className="col-sm-6">
+              <TextField
+                label="Text Field with min length 2 characters"
+                name="minLengthValidation"
+                id="minLengthValidation"
+                value={fields.minLengthValidation.value}
+                onChange={handleUserInput}
+                onBlur={handleUserBlur}
+                inputStyle="block"
+              />
+            </div>
+            <div className="col-sm-6">
+              <code>{JSON.stringify(fields.minLengthValidation, null, 2)}</code>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm-6">
+              <Button
+                text="Get Text Field Props"
+                htmlType="button"
+                type="info"
+                onClick={() => this.setState({formFieldsProps: {...formFieldsProps, minLengthValidation: getFormFieldProps('minLengthValidation')}})}
+              />
+            </div>
+            <div className="col-sm-6">
+              {formFieldsProps.minLengthValidation && <code>{JSON.stringify(formFieldsProps.minLengthValidation, null, 2)}</code>}
+            </div>
+          </div>
+          <br />
+
+          <div className="row">
+            <div className="col-sm-6">
               <Select
                 label="Select"
                 name="select_name"

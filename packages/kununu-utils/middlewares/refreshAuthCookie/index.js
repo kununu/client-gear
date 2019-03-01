@@ -40,11 +40,10 @@ function refreshAuthCookie (label) {
   function getDecodedCookieAccessToken (cookie) {
     try {
       return jwtDecode(cookie.access_token);
-    } catch (err) {
-      logger.err({
-        custom: true,
+    } catch (exception) {
+      logger.error({
         message: 'Error parsing auth cookie',
-        error: err,
+        exception,
         label,
       });
       return false;
