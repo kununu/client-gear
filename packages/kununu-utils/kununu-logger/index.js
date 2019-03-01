@@ -1,58 +1,75 @@
 import {createLogger, transports, format} from 'winston';
 
+const stringify = require('json-stringify-safe');
+
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
 
 const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
 
+export const logLevelNum = {
+  emergency: 0,
+  alert: 1,
+  critical: 2,
+  error: 3,
+  warning: 4,
+  notice: 5,
+  info: 6,
+  debug: 7,
+};
+
 /**
- * Format request and response data
- * @param  object containing res and req
- * @return string stringified object
+ * Returns a formatted request and response ready to be logged
+ * @param {Object} info
+ * @returns {string} Stringified object
  */
 export const formatNodeRequest = ({
-  req,
-  res,
-  label,
-  timeTakenMicros,
-}) => JSON.stringify({
-  label,
-  time: new Date().toISOString(),
-  method: req.method,
-  request: req.originalUrl,
-  status: res.statusCode,
-  remote_ip: req.connection.remoteAddress || '-',
-  referer: req.headers.referer || '-',
-  forwarded_for: req.headers['x-forwarded-for'] || '-',
-  trace_id: req.headers['x-amzn-trace-id'] || '-',
-  logType: 'middleware_logger',
-  user_agent: req.headers['user-agent'] || '-',
-  time_taken_micros: timeTakenMicros,
-  build: process.env.BUILD_NAME || '-',
-});
+  req = {},
+  res = {},
+  application,
+  metrics,
+  level,
+  message,
+  context,
+  channel = 'app',
+}) => {
+  const datetime = new Date().toISOString();
+  const colorizedMessage = getColorizedMessage(`[${application}][${datetime}][${level}][${channel}]`);
+  const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}`;
 
-/**
- * Check if it's a custom log or the
- * standard request log. This is set based
- * on the custom param.
- */
-export const customFormat = printf((info) => {
-  const colorizedMessage = getColorizedMessage(`[${info.label}][${info.timestamp}][${info.level}]`);
-  const loggerType = info.custom ? '– custom logger -' : ' – middleware logger - ';
-  const kibanaFormatting = process.env.NODE_ENV === 'production';
+  const nodeRequest = {
+    message,
+    level: typeof level === 'string' && logLevelNum[level.toLowerCase()],
+    level_name: typeof level === 'string' ? level.toUpperCase() : level,
+    datetime,
+    trace_id: (req.headers && req.headers['x-amzn-trace-id']),
+    build: process.env.BUILD_NAME,
+    application,
+    channel,
+    metrics,
+    context,
+  };
 
-  // Kibana only supports JSON and not text so the prefix only added
-  // on non kibana formatting
-  const prefix = kibanaFormatting ? '' : `${colorizedMessage}${loggerType}`;
-
-  if (info.custom) {
-    return `${prefix}${JSON.stringify({...info, logType: 'custom_logger', build: process.env.BUILD_NAME || '-'})}`;
+  // Add http object when req or res have entries
+  if (Object.entries(req).length > 0 || Object.entries(res).length > 0) {
+    nodeRequest.http = {
+      method: req.method,
+      uri: req.originalUrl,
+      status: res.statusCode,
+      remote_ip: (req.headers && req.headers['x-forwarded-for']),
+      local_ip: (req.connection && req.connection.localAddress),
+      referer: (req.headers && req.headers.referer),
+      user_agent: (req.headers && req.headers['user-agent']),
+    };
   }
 
-  return `${prefix}${formatNodeRequest(info)}`;
-});
+  return `${prefix}${stringify(nodeRequest)}`;
+};
+
+export const customFormat = printf(info => formatNodeRequest(info));
 
 export const logger = createLogger({
+  levels: logLevelNum,
   format: format.combine(
     timestamp(),
     customFormat,
