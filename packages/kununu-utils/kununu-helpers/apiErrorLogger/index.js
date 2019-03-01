@@ -1,13 +1,12 @@
 import {logger} from '../../kununu-logger';
 import isClientRender from '../isClientRender';
 
-export default function (error, label) {
+export default function (exception, label) {
   if (!isClientRender()) {
-    const {status, url} = error.response;
+    const {status, url} = exception.response;
 
-    logger.log('error', {
-      custom: true,
-      error: {
+    logger.error({
+      exception: {
         status,
         url,
       },

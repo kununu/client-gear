@@ -1,38 +1,56 @@
 import {logger} from '../../kununu-logger';
 
+const CRITICAL = 'critical';
+const ERROR = 'error';
+const INFO = 'info';
+
 /**
- * This middleware will log
- * the entire request pipeline from
- * the initial request to after it
- * has finished and also log any aborts
- * or internal errors.
+ * Middleware for Express that logs request pipeline
+ * from when it comes until finished. It also logs
+ * any aborts or internal errors.
+ * @param {Object} req
+ * @param {Object} res
+ * @param {requestCallback} next
  */
-const expressLogger = label => (req, res, next) => {
-  // log initial incoming request
+const expressLogger = application => (req, res, next) => {
   const startDate = new Date();
 
-  // Log request using kununu-logger
+  // Logs a request in with kununu-logger
+  logger.info({
+    req,
+    application,
+    channel: 'middleware',
+    message: `Request In: ${req.method} ${req.originalUrl}`,
+  });
+
   function log () {
-    // ensure that no hanging listeners exist
-    // regardless of which path is taken
-    // to prevent, nothing will prevent garbage
-    // collection
+    // Remove listeners to ensure that no hanging listeners exists
     res.removeListener('finish', log);
     res.removeListener('close', log);
     res.removeListener('error', log);
 
-    logger.log(this.status, {
-      req, res, label, timeTakenMicros: (new Date() - startDate) * 1000,
+    // Define log level on
+    const level = res.statusCode >= 400 ? (res.statusCode >= 500 ? CRITICAL : ERROR) : INFO; // eslint-disable-line no-nested-ternary
+
+    // Logs a request out using kununu-logger
+    logger.log(this.level ? this.level : level, {
+      req,
+      res,
+      application,
+      metrics: {time_taken_micros: (new Date() - startDate) * 1000},
+      channel: 'middleware',
+      message: `Request Out: ${res.statusCode} ${res.statusMessage} - ${req.method} ${req.originalUrl}`,
     });
   }
 
-  // logs any successfully finished pipeline
-  res.on('finish', log.bind({status: 'info'}));
-  // logs any aborted pipeline
-  res.on('close', log.bind({status: 'error'}));
-  // logs any internal errors
-  res.on('error', log.bind({status: 'error'}));
+  // Logs successfully finished pipeline
+  res.on('finish', log.bind({}));
 
+  // Logs any aborted pipeline
+  res.on('close', log.bind({level: 'error'}));
+
+  // Logs any internal errors
+  res.on('error', log.bind({level: 'error'}));
 
   next();
 };
