@@ -10,12 +10,12 @@
     "@kununu/kununu-logo": "1.2.1",
     "@kununu/kununu-theme-v2": "2.0.2",
     "node-sass-module-importer": "0.1.0",
-    "nukleus": "14.1.8"
+    "nukleus": "14.1.9"
   },
   "peerDependencies": {
     "@kununu/kununu-icons": "1.5.1",
     "@kununu/kununu-logo": "1.2.1",
-    "nukleus": "14.1.8",
+    "nukleus": "14.1.9",
     "prop-types": ">=15.6.0",
     "react": ">=16.0.0"
   },
