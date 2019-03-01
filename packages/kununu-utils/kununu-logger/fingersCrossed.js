@@ -38,7 +38,7 @@ module.exports = class FingersCrossed extends TransportStream {
     }
 
     if (!info.req && this.hasMinimumLogLevel(info)) {
-      console.log(info[MESSAGE]); // eslint-disable-line no-console
+      console.log(info.message); // eslint-disable-line no-console
     }
 
     callback();
@@ -68,7 +68,7 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param  {Object} info
    * @return {Boolean}
    */
-  hasActivationLogLevel = info => this.getLogLevel(info[LEVEL]) <= this.getLogLevel(this.activationLogLevel);
+  hasActivationLogLevel = info => this.getLogLevel(info.level) <= this.getLogLevel(this.activationLogLevel);
 
   /**
    * Check whether request has reached minimum log level
@@ -76,7 +76,7 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param  {Object} info
    * @return {Boolean}
    */
-  hasMinimumLogLevel = info => this.getLogLevel(info[LEVEL]) <= this.getLogLevel(this.minimumLogLevel);
+  hasMinimumLogLevel = info => this.getLogLevel(info.level) <= this.getLogLevel(this.minimumLogLevel);
 
   /**
    * Push a given log to state
