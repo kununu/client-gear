@@ -1,4 +1,4 @@
-import {advanceTo, clear} from 'jest-date-mock';
+import {advanceTo, clear} from 'jest-date-mock'; // eslint-disable-line import/no-extraneous-dependencies
 
 import expressLogger from './index';
 
