@@ -79,10 +79,7 @@ export default class FooterNav extends Component {
         }
         <ul
           role="navigation"
-          className={`
-            ${styles.footerNav}
-            ${styles[type]}
-            ${open && styles.open}`}
+          className={`${styles.footerNav} ${styles[type]} ${open && styles.open}`}
         >
           {items.map((item, index) => (
             <li

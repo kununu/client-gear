@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders Logo without crashing 1`] = `
+exports[`Renders Header without crashing 1`] = `
 <header
   class="header fixed"
   role="banner"

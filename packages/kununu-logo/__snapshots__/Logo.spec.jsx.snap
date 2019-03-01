@@ -4,34 +4,42 @@ exports[`Renders Logo with link 1`] = `
 <a
   href="/"
 >
-  <img
-    alt="test"
-    class="logoDesktop"
-    src="https://assets.kununu.com/images/footer/logo-desktop.svg"
-  />
-  <img
-    alt="test"
-    aria-hidden="true"
-    class="logoMobile"
-    rel="presentation"
-    src="https://assets.kununu.com/images/footer/logo-mobile.svg"
-  />
+  <picture>
+    <source
+      media="(max-width: 829px)"
+      srcset="https://assets.kununu.com/images/footer/logo-mobile.svg"
+    />
+    <source
+      media="(min-width: 830px)"
+      srcset="https://assets.kununu.com/images/footer/logo-desktop.svg"
+    />
+    <img
+      alt="test"
+      aria-hidden="true"
+      class="logo"
+      rel="presentation"
+      src="https://assets.kununu.com/images/footer/logo-desktop.svg"
+    />
+  </picture>
 </a>
 `;
 
 exports[`Renders Logo without crashing 1`] = `
-Array [
-  <img
-    alt="test"
-    class="logoDesktop"
-    src="https://assets.kununu.com/images/footer/logo-desktop.svg"
-  />,
+<picture>
+  <source
+    media="(max-width: 829px)"
+    srcset="https://assets.kununu.com/images/footer/logo-mobile.svg"
+  />
+  <source
+    media="(min-width: 830px)"
+    srcset="https://assets.kununu.com/images/footer/logo-desktop.svg"
+  />
   <img
     alt="test"
     aria-hidden="true"
-    class="logoMobile"
+    class="logo"
     rel="presentation"
-    src="https://assets.kununu.com/images/footer/logo-mobile.svg"
-  />,
-]
+    src="https://assets.kununu.com/images/footer/logo-desktop.svg"
+  />
+</picture>
 `;
