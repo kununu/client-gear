@@ -1,17 +1,17 @@
 {
   "name": "@kununu/kununu-header",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "kununu Header",
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
   "dependencies": {
-    "@kununu/kununu-logo": "1.2.0",
+    "@kununu/kununu-logo": "1.2.1",
     "@kununu/kununu-theme-v2": "2.0.2",
     "node-sass-module-importer": "0.1.0"
   },
   "peerDependencies": {
-    "@kununu/kununu-logo": "1.2.0",
+    "@kununu/kununu-logo": "1.2.1",
     "@kununu/kununu-theme-v2": "2.0.2",
     "prop-types": ">=15.6.0",
     "react": ">=16.0.0"
