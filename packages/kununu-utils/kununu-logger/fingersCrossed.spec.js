@@ -1,10 +1,23 @@
 const {logger} = require('./');
 
-process.env.MINIMUM_LOG_LEVEL = 'debug';
-process.env.ACTIVATION_LOG_LEVEL = 'error';
+const nodeEnv = process.env.NODE_ENV;
+const minimumLogLevelEnv = process.env.MINIMUM_LOG_LEVEL;
+const activationLogLevel = process.env.ACTIVATION_LOG_LEVEL;
+
+beforeAll(() => {
+  process.env.NODE_ENV = 'production';
+  process.env.MINIMUM_LOG_LEVEL = 'debug';
+  process.env.ACTIVATION_LOG_LEVEL = 'error';
+});
+
+afterAll(() => {
+  process.env.NODE_ENV = nodeEnv;
+  process.env.MINIMUM_LOG_LEVEL = minimumLogLevelEnv;
+  process.env.ACTIVATION_LOG_LEVEL = activationLogLevel;
+});
 
 describe('Fingers Crossed transport for kununu-logger', () => {
-  const label = 'app';
+  const application = 'app';
   const message = 'An error has ocurred';
   const res = {statusCode: 200};
   const req = (traceId = '') => ({
@@ -28,19 +41,19 @@ describe('Fingers Crossed transport for kununu-logger', () => {
 
     // 1. Should save on state because it's a request with trace ID
     await logger.info({
-      ...req('trace-id-1'), res, label, timeTakenMicros: 1,
+      ...req('trace-id-1'), res, application, timeTakenMicros: 1,
     });
     expect(spy.mock.calls.length).toBe(0);
 
     // 2. Should save on state because it's a request with trace ID
     await logger.debug({
-      ...req('trace-id-1'), res, label, timeTakenMicros: 2,
+      ...req('trace-id-1'), res, application, timeTakenMicros: 2,
     });
     expect(spy.mock.calls.length).toBe(0);
 
     // 3. Should output immediately because it's a request without trace ID
     await logger.debug({
-      ...req(), res, label, timeTakenMicros: 3,
+      ...req(), res, application, timeTakenMicros: 3,
     });
     expect(spy.mock.calls.length).toBe(1);
     expect(JSON.parse(spy.mock.calls[0]).time_taken_micros).toBe(3);
@@ -48,7 +61,7 @@ describe('Fingers Crossed transport for kununu-logger', () => {
 
     // 4. Should output immediately because it's a custom error without request
     await logger.info({
-      label, message, custom: true, timeTakenMicros: 4,
+      application, message, custom: true, timeTakenMicros: 4,
     });
     expect(spy.mock.calls.length).toBe(1);
     expect(spy.mock.calls[0][0]).toContain('"timeTakenMicros":4');
@@ -56,13 +69,13 @@ describe('Fingers Crossed transport for kununu-logger', () => {
 
     // 5. Should save on state because it's a request with trace ID
     await logger.warn({
-      ...req('trace-id-1'), res, label, timeTakenMicros: 5,
+      ...req('trace-id-1'), res, application, timeTakenMicros: 5,
     });
     expect(spy.mock.calls.length).toBe(0);
 
     // 6. Should output with logs (1, 2, 5, 6) because it reached activation log level
     await logger.error({
-      ...req('trace-id-1'), res, label, timeTakenMicros: 6,
+      ...req('trace-id-1'), res, application, timeTakenMicros: 6,
     });
     expect(spy.mock.calls.length).toBe(4);
     expect(JSON.parse(spy.mock.calls[0]).time_taken_micros).toBe(1);
@@ -73,13 +86,13 @@ describe('Fingers Crossed transport for kununu-logger', () => {
 
     // 7. Should save on state because it's a request with trace ID
     await logger.info({
-      ...req('trace-id-2'), res, label, timeTakenMicros: 7,
+      ...req('trace-id-2'), res, application, timeTakenMicros: 7,
     });
     expect(spy.mock.calls.length).toBe(0);
 
     // 8. Should output immediately because it's a request without trace ID
     await logger.debug({
-      ...req(), res, label, timeTakenMicros: 8,
+      ...req(), res, application, timeTakenMicros: 8,
     });
     expect(spy.mock.calls.length).toBe(1);
     expect(JSON.parse(spy.mock.calls[0]).time_taken_micros).toBe(8);
@@ -87,7 +100,7 @@ describe('Fingers Crossed transport for kununu-logger', () => {
 
     // 9. Should output immediately because it's a custom error without request
     await logger.error({
-      label, message, custom: true, timeTakenMicros: 9,
+      application, message, custom: true, timeTakenMicros: 9,
     });
     expect(spy.mock.calls.length).toBe(1);
     expect(spy.mock.calls[0][0]).toContain('"timeTakenMicros":9');
@@ -95,7 +108,7 @@ describe('Fingers Crossed transport for kununu-logger', () => {
 
     // 10. Should output with logs (7, 10) because it reached activation log level
     await logger.error({
-      ...req('trace-id-2'), res, label, timeTakenMicros: 10,
+      ...req('trace-id-2'), res, application, timeTakenMicros: 10,
     });
     expect(spy.mock.calls.length).toBe(2);
     expect(JSON.parse(spy.mock.calls[0]).time_taken_micros).toBe(7);

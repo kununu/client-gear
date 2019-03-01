@@ -4,8 +4,6 @@ import FingersCrossed from './fingersCrossed';
 
 const stringify = require('json-stringify-safe');
 
-const stringify = require('json-stringify-safe');
-
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
 
@@ -16,17 +14,6 @@ const activationLogLevel = process.env.ACTIVATION_LOG_LEVEL || 'error';
 
 // Custom logging levels
 export const loggingLevels = {
-  emerg: 0,
-  alert: 1,
-  crit: 2,
-  error: 3,
-  warning: 4,
-  notice: 5,
-  info: 6,
-  debug: 7,
-};
-
-export const logLevelNum = {
   emergency: 0,
   alert: 1,
   critical: 2,
@@ -58,7 +45,7 @@ export const formatNodeRequest = ({
 
   const nodeRequest = {
     message,
-    level: typeof level === 'string' && logLevelNum[level.toLowerCase()],
+    level: typeof level === 'string' && loggingLevels[level.toLowerCase()],
     level_name: typeof level === 'string' ? level.toUpperCase() : level,
     datetime,
     trace_id: (req.headers && req.headers['x-amzn-trace-id']),
@@ -88,7 +75,7 @@ export const formatNodeRequest = ({
 export const customFormat = printf(info => formatNodeRequest(info));
 
 export const logger = createLogger({
-  levels: logLevelNum,
+  levels: loggingLevels,
   format: format.combine(
     timestamp(),
     customFormat,
