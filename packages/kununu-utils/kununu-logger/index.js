@@ -1,4 +1,4 @@
-import {createLogger, format} from 'winston';
+import {createLogger, format, transports as winston} from 'winston';
 
 import FingersCrossed from './fingersCrossed';
 
@@ -74,17 +74,28 @@ export const formatNodeRequest = ({
 
 export const customFormat = printf(info => formatNodeRequest(info));
 
+const transports = [];
+
+if (process.env.NODE_ENV === 'production') {
+  transports.push(new FingersCrossed({
+    level: 'debug',
+    minimumLogLevel,
+    activationLogLevel,
+  }));
+} else {
+  transports.push(new winston.Console({
+    name: 'console',
+    colorize: true,
+    showLevel: true,
+    level: minimumLogLevel,
+  }));
+}
+
 export const logger = createLogger({
   levels: loggingLevels,
   format: format.combine(
     timestamp(),
     customFormat,
   ),
-  transports: [
-    new (FingersCrossed)({
-      level: 'debug',
-      minimumLogLevel,
-      activationLogLevel,
-    }),
-  ],
+  transports,
 });

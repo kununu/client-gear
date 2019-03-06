@@ -16,7 +16,7 @@ afterAll(() => {
   process.env.ACTIVATION_LOG_LEVEL = activationLogLevel;
 });
 
-describe('Fingers Crossed transport for kununu-logger', () => {
+describe.skip('Fingers Crossed transport for kununu-logger', () => {
   const application = 'app';
   const message = 'An error has ocurred';
   const res = {statusCode: 200};

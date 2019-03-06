@@ -1,7 +1,6 @@
 import {formatNodeRequest, loggingLevels} from './index';
 
 const TransportStream = require('winston-transport'); // eslint-disable-line import/no-extraneous-dependencies
-const {LEVEL, MESSAGE} = require('triple-beam'); // eslint-disable-line import/no-extraneous-dependencies
 
 module.exports = class FingersCrossed extends TransportStream {
   constructor (options = {}) {
