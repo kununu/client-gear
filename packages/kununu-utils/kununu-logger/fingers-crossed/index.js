@@ -16,28 +16,30 @@ module.exports = class FingersCrossed extends TransportStream {
   log (info, callback) {
     setImmediate(() => this.emit('logged', info));
 
+    const log = this.formatRequest(info);
+    const logLevel = info.level;
+
     if (info.req) {
-      const log = this.formatRequest(info);
       const amznTraceId = info.req.headers['x-amzn-trace-id'];
 
       if (amznTraceId) {
         this.pushToState(log);
 
-        if (this.hasActivationLogLevel(info)) {
+        if (this.hasActivationLogLevel(logLevel)) {
           const logs = this.recoverLogsFromState(log);
 
           this.removeFromState(log.trace_id);
-          this.outputLogs(logs);
+          this.outputLog(logs);
         }
       }
 
-      if (!amznTraceId && this.hasMinimumLogLevel(info)) {
-        console.log(JSON.stringify(log)); // eslint-disable-line no-console
+      if (!amznTraceId && this.hasMinimumLogLevel(logLevel)) {
+        this.outputLog(log);
       }
     }
 
-    if (!info.req && this.hasMinimumLogLevel(info)) {
-      console.log(JSON.stringify(info)); // eslint-disable-line no-console
+    if (!info.req && this.hasMinimumLogLevel(logLevel)) {
+      this.outputLog(log);
     }
 
     callback();
@@ -64,18 +66,18 @@ module.exports = class FingersCrossed extends TransportStream {
   /**
    * Check whether request has reached activation log level
    *
-   * @param  {Object} info
+   * @param  {level} String
    * @return {Boolean}
    */
-  hasActivationLogLevel = info => this.getLogLevel(info.level) <= this.getLogLevel(this.activationLogLevel);
+  hasActivationLogLevel = level => this.getLogLevel(level) <= this.getLogLevel(this.activationLogLevel);
 
   /**
    * Check whether request has reached minimum log level
    *
-   * @param  {Object} info
+   * @param  {level} String
    * @return {Boolean}
    */
-  hasMinimumLogLevel = info => this.getLogLevel(info.level) <= this.getLogLevel(this.minimumLogLevel);
+  hasMinimumLogLevel = level => this.getLogLevel(level) <= this.getLogLevel(this.minimumLogLevel);
 
   /**
    * Push a given log to state
@@ -102,9 +104,15 @@ module.exports = class FingersCrossed extends TransportStream {
   recoverLogsFromState = info => this.state.filter(log => info.trace_id === log.trace_id);
 
   /**
-   * Output logs individually
+   * Output a given Array of logs individually or just one if it's an Object
    *
-   * @param {Array} logs
+   * @param {(Array|Object)} logs
    */
-  outputLogs = logs => logs.forEach(log => console.log(JSON.stringify(log))); // eslint-disable-line no-console
+  outputLog = (logs) => {
+    if (Array.isArray(logs)) {
+      logs.forEach(log => console.log(JSON.stringify(log))); // eslint-disable-line no-console
+    } else {
+      console.log(JSON.stringify(logs)); // eslint-disable-line no-console
+    }
+  };
 };

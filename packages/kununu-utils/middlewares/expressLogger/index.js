@@ -21,6 +21,7 @@ const expressLogger = application => (req, res, next) => {
     application,
     channel: 'middleware',
     message: `Request In: ${req.method} ${req.originalUrl}`,
+    bypass: true, // Bypass Fingers Crossed rules and is output immediately
   });
 
   function log () {
@@ -40,6 +41,7 @@ const expressLogger = application => (req, res, next) => {
       metrics: {time_taken_micros: (new Date() - startDate) * 1000},
       channel: 'middleware',
       message: `Request Out: ${res.statusCode} ${res.statusMessage} - ${req.method} ${req.originalUrl}`,
+      bypass: true, // Bypass Fingers Crossed rules and is output immediately
     });
   }
 

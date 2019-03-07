@@ -37,7 +37,7 @@ describe('returns correct log format inside a express pipeline', () => {
 
   app.get('/', (req, res) => {
     res.send({
-      formatedRequest: formatNodeRequest({
+      formattedRequest: formatNodeRequest({
         req,
         res,
         message: 'this is a log message',
@@ -62,7 +62,7 @@ describe('returns correct log format inside a express pipeline', () => {
   it('formats log correctly when it has req and res', async () => {
     const response = await request(app).get('/');
 
-    expect(response.body.formatedRequest).toEqual(JSON.stringify({
+    expect(response.body.formattedRequest).toEqual(JSON.stringify({
       message: 'this is a log message',
       level: 3,
       level_name: 'ERROR',

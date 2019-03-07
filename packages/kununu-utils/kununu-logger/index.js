@@ -30,14 +30,14 @@ export const loggingLevels = {
  * @returns {string} Stringified object
  */
 export const formatNodeRequest = ({
-  req = {},
-  res = {},
   application,
-  metrics,
+  channel = 'app',
+  context,
   level,
   message,
-  context,
-  channel = 'app',
+  metrics,
+  req = {},
+  res = {},
 }) => {
   const datetime = new Date().toISOString();
   const colorizedMessage = getColorizedMessage(`[${application}][${datetime}][${level}][${channel}]`);
@@ -81,6 +81,7 @@ if (process.env.NODE_ENV === 'production') {
     level: 'debug',
     minimumLogLevel,
     activationLogLevel,
+    channelsBypass: ['middleware'],
   }));
 } else {
   transports.push(new winston.Console({
