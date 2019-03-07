@@ -17,7 +17,7 @@ module.exports = class FingersCrossed extends TransportStream {
     setImmediate(() => this.emit('logged', info));
 
     if (info.req) {
-      const log = formatNodeRequest(info);
+      const log = this.formatRequest(info);
       const amznTraceId = info.req.headers['x-amzn-trace-id'];
 
       if (amznTraceId) {

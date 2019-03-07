@@ -36,7 +36,7 @@ describe('Fingers Crossed transport for kununu-logger', () => {
   const spy = jest.spyOn(global.console, 'log');
   const application = 'app-fingerscrossed';
   const channel = 'middleware';
-  const message = Symbol('any message');
+  const message = 'any message';
 
   it('saves on state because is request with trace ID', async () => {
     const res = new Response();
@@ -88,7 +88,8 @@ describe('Fingers Crossed transport for kununu-logger', () => {
     });
 
     expect(spy.mock.calls.length).toBe(1);
-    expect(JSON.parse(JSON.parse(spy.mock.calls)).metrics.time_taken_micros).toBe(3);
+
+    expect(JSON.parse(spy.mock.calls).metrics.time_taken_micros).toBe(3);
 
     spy.mockClear();
   });
@@ -96,7 +97,7 @@ describe('Fingers Crossed transport for kununu-logger', () => {
   it('outputs immediately because is a custom error without request', async () => {
     await logger.info({
       application,
-      message: 'any message',
+      message,
       metrics: {time_taken_micros: 4},
     });
 
@@ -139,10 +140,10 @@ describe('Fingers Crossed transport for kununu-logger', () => {
     });
 
     expect(spy.mock.calls.length).toBe(4);
-    expect(JSON.parse(JSON.parse(spy.mock.calls[0])).metrics.time_taken_micros).toBe(1);
-    expect(JSON.parse(JSON.parse(spy.mock.calls[1])).metrics.time_taken_micros).toBe(2);
-    expect(JSON.parse(JSON.parse(spy.mock.calls[2])).metrics.time_taken_micros).toBe(5);
-    expect(JSON.parse(JSON.parse(spy.mock.calls[3])).metrics.time_taken_micros).toBe(6);
+    expect(JSON.parse(spy.mock.calls[0]).metrics.time_taken_micros).toBe(1);
+    expect(JSON.parse(spy.mock.calls[1]).metrics.time_taken_micros).toBe(2);
+    expect(JSON.parse(spy.mock.calls[2]).metrics.time_taken_micros).toBe(5);
+    expect(JSON.parse(spy.mock.calls[3]).metrics.time_taken_micros).toBe(6);
 
     spy.mockClear();
   });
@@ -177,7 +178,7 @@ describe('Fingers Crossed transport for kununu-logger', () => {
     });
 
     expect(spy.mock.calls.length).toBe(1);
-    expect(JSON.parse(JSON.parse(spy.mock.calls[0])).metrics.time_taken_micros).toBe(8);
+    expect(JSON.parse(spy.mock.calls[0]).metrics.time_taken_micros).toBe(8);
     spy.mockClear();
   });
 
@@ -208,8 +209,8 @@ describe('Fingers Crossed transport for kununu-logger', () => {
     });
 
     expect(spy.mock.calls.length).toBe(2);
-    expect(JSON.parse(JSON.parse(spy.mock.calls[0])).metrics.time_taken_micros).toBe(7);
-    expect(JSON.parse(JSON.parse(spy.mock.calls[1])).metrics.time_taken_micros).toBe(10);
+    expect(JSON.parse(spy.mock.calls[0]).metrics.time_taken_micros).toBe(7);
+    expect(JSON.parse(spy.mock.calls[1]).metrics.time_taken_micros).toBe(10);
 
     spy.mockClear();
   });
