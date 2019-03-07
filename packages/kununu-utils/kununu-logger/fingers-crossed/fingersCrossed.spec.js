@@ -12,24 +12,26 @@ const {timestamp} = format;
 let nodeEnv;
 let req;
 let res;
-
-const spy = jest.spyOn(global.console, 'log');
-const logger = createLogger({
-  levels: loggingLevels,
-  format: format.combine(
-    timestamp(),
-    customFormat,
-  ),
-  transports: new FingersCrossed({
-    level: 'debug',
-    minimumLogLevel: 'debug',
-    activationLogLevel: 'error',
-  }),
-});
+let spy;
+let logger;
 
 beforeAll(() => {
   nodeEnv = process.env.NODE_ENV;
   process.env.NODE_ENV = 'production';
+
+  spy = jest.spyOn(global.console, 'log');
+  logger = createLogger({
+    levels: loggingLevels,
+    format: format.combine(
+      timestamp(),
+      customFormat,
+    ),
+    transports: new FingersCrossed({
+      level: 'debug',
+      minimumLogLevel: 'debug',
+      activationLogLevel: 'error',
+    }),
+  });;
 });
 
 beforeEach(() => {
