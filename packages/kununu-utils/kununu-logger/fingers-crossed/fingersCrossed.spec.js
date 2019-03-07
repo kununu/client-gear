@@ -31,7 +31,7 @@ beforeAll(() => {
       minimumLogLevel: 'debug',
       activationLogLevel: 'error',
     }),
-  });;
+  });
 });
 
 beforeEach(() => {
