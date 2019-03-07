@@ -1,15 +1,15 @@
 {
   "name": "@kununu/kununu-form-wrapper",
-  "version": "1.5.0",
+  "version": "1.5.2",
   "description": "kununu form wrapper HOC",
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
   "dependencies": {
-    "@kununu/kununu-utils": "1.9.0"
+    "@kununu/kununu-utils": "1.10.2"
   },
   "peerDependencies": {
-    "@kununu/kununu-utils": "1.9.0",
+    "@kununu/kununu-utils": "1.10.2",
     "prop-types": ">=15.6.0",
     "react": ">=16.0.0"
   },

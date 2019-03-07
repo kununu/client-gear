@@ -5,12 +5,14 @@ module.exports = {
   setupFiles: [
     './jest.setup.js',
     'jest-localstorage-mock',
+    'jest-date-mock',
   ],
   snapshotSerializers: [
     'enzyme-to-json/serializer',
   ],
   testURL: 'http://www.kununu.com',
   reporters: [
+    'default',
     'jest-junit',
   ],
   collectCoverageFrom: [
