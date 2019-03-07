@@ -78,10 +78,9 @@ const transports = [];
 
 if (process.env.NODE_ENV === 'production') {
   transports.push(new FingersCrossed({
-    level: 'debug', // Without it, winston won't send anything below INFO to this custom transport
-    minimumLogLevel,
+    level: minimumLogLevel,
     activationLogLevel,
-    channelsBypass: ['middleware'],
+    levels: loggingLevels,
   }));
 } else {
   transports.push(new winston.Console({

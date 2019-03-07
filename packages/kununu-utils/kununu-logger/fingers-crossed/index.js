@@ -1,4 +1,4 @@
-import {formatNodeRequest, loggingLevels} from '../index';
+import {formatNodeRequest} from '../index';
 
 const TransportStream = require('winston-transport'); // eslint-disable-line import/no-extraneous-dependencies
 
@@ -7,8 +7,9 @@ module.exports = class FingersCrossed extends TransportStream {
     super(options);
 
     this.name = options.name || 'fingers-crossed';
-    this.minimumLogLevel = options.minimumLogLevel || 'info';
+    this.level = options.level || 'info';
     this.activationLogLevel = options.activationLogLevel || 'error';
+    this.levels = options.levels;
 
     this.state = [];
   }
@@ -16,24 +17,24 @@ module.exports = class FingersCrossed extends TransportStream {
   log (info, callback) {
     setImmediate(() => this.emit('logged', info));
 
-    const log = this.formatRequest(info);
+    const log = formatNodeRequest(info);
     const logLevel = info.level;
 
     if (info.req) {
-      const amznTraceId = info.req.headers['x-amzn-trace-id'];
+      const traceId = info.req.headers['x-amzn-trace-id'];
 
-      if (amznTraceId) {
-        this.pushToState(log);
+      if (traceId) {
+        this.statePush(traceId, log);
 
         if (this.hasActivationLogLevel(logLevel)) {
-          const logs = this.recoverLogsFromState(log);
+          const logs = this.recoverLogs(traceId);
 
-          this.removeFromState(log.trace_id);
+          this.stateRemove(traceId);
           this.outputLog(logs);
         }
       }
 
-      if (!amznTraceId && this.hasMinimumLogLevel(logLevel)) {
+      if (!traceId && this.hasMinimumLogLevel(logLevel)) {
         this.outputLog(log);
       }
     }
@@ -46,22 +47,13 @@ module.exports = class FingersCrossed extends TransportStream {
   }
 
   /**
-   * Format request before save to state.
-   * formatNodeRequest will stringify, so we need to parse it
-   *
-   * @param  {Object} info
-   * @return {Object}
-   */
-  formatRequest = info => JSON.parse(formatNodeRequest(info));
-
-  /**
    * Receives Winston logging level and
    * return its correspondent specified by RFC5424
    *
    * @param  {String} level
    * @return {Integer}
    */
-  getLogLevel = (level = this.minimumLogLevel) => loggingLevels[level.toLowerCase()];
+  getLogLevel = (level = this.level) => this.levels[level.toLowerCase()];
 
   /**
    * Check whether request has reached activation log level
@@ -77,42 +69,51 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param  {level} String
    * @return {Boolean}
    */
-  hasMinimumLogLevel = level => this.getLogLevel(level) <= this.getLogLevel(this.minimumLogLevel);
+  hasMinimumLogLevel = level => this.getLogLevel(level) <= this.getLogLevel(this.level);
 
   /**
-   * Push a given log to state
+   * Push log to state
    *
+   * @param {String} traceId
    * @param {Object} log
    */
-  pushToState = log => this.state.push(log);
+  statePush = (traceId, log) => this.state.push({trace_id: traceId, formatted_log: log});
 
   /**
-   * Remove logs with a given trace ID from state
+   * Remove logs with a certain trace ID from state
    *
    * @param {String} traceId
    */
-  removeFromState = (traceId) => {
+  stateRemove = (traceId) => {
     this.state = this.state.filter(log => traceId !== log.trace_id);
   }
 
   /**
    * Recover logs with same trace ID as the error
    *
-   * @param  {Object} info
+   * @param  {String} traceId
    * @return {Array}
    */
-  recoverLogsFromState = info => this.state.filter(log => info.trace_id === log.trace_id);
+  recoverLogs = traceId => {
+    return this.state.reduce((acc, curr) => {
+      if (curr.trace_id === traceId) {
+        acc.push(curr.formatted_log);
+      }
+
+      return acc;
+    }, []);
+  }
 
   /**
-   * Output a given Array of logs individually or just one if it's an Object
+   * Output an array of logs individually or just one if it's an Object
    *
    * @param {(Array|Object)} logs
    */
   outputLog = (logs) => {
     if (Array.isArray(logs)) {
-      logs.forEach(log => console.log(JSON.stringify(log))); // eslint-disable-line no-console
+      logs.forEach(log => console.log(log)); // eslint-disable-line no-console
     } else {
-      console.log(JSON.stringify(logs)); // eslint-disable-line no-console
+      console.log(logs); // eslint-disable-line no-console
     }
   };
 };
