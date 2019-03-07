@@ -14,6 +14,12 @@
   },
   "homepage": "https://github.com/kununu/client-gear#readme",
   "dependencies": {
+    "@kununu/kununu-footer": "2.5.4",
+    "@kununu/kununu-form-wrapper": "1.5.2",
+    "@kununu/kununu-header": "1.2.3",
+    "@kununu/kununu-icons": "1.5.2",
+    "@kununu/kununu-logo": "1.2.2",
+    "@kununu/kununu-overlay": "1.2.1",
     "@kununu/kununu-theme-v2": "2.0.2",
     "@kununu/kununu-utils": "1.10.2",
     "autoprefixer": "9.4.10",
