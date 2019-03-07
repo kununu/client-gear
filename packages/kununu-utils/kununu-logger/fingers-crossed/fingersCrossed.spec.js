@@ -2,10 +2,11 @@ import {createLogger, format} from 'winston';
 import {Request} from 'jest-express/lib/request';
 import {Response} from 'jest-express/lib/response';
 
-import FingersCrossed from './index';
 import {loggingLevels, customFormat} from '../index';
 
-const {timestamp, printf} = format;
+import FingersCrossed from './index';
+
+const {timestamp} = format;
 
 describe('Fingers Crossed transport for kununu-logger', () => {
   let nodeEnv;
