@@ -1,4 +1,4 @@
-import {formatNodeRequest, loggingLevels} from './index';
+import {formatNodeRequest, loggingLevels} from '../index';
 
 const TransportStream = require('winston-transport'); // eslint-disable-line import/no-extraneous-dependencies
 
@@ -17,7 +17,7 @@ module.exports = class FingersCrossed extends TransportStream {
     setImmediate(() => this.emit('logged', info));
 
     if (info.req) {
-      const log = this.formatRequest(info);
+      const log = formatNodeRequest(info);
       const amznTraceId = info.req.headers['x-amzn-trace-id'];
 
       if (amznTraceId) {
@@ -37,7 +37,7 @@ module.exports = class FingersCrossed extends TransportStream {
     }
 
     if (!info.req && this.hasMinimumLogLevel(info)) {
-      console.log(info.message); // eslint-disable-line no-console
+      console.log(JSON.stringify(info)); // eslint-disable-line no-console
     }
 
     callback();

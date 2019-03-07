@@ -1,6 +1,6 @@
 import {createLogger, format, transports as winston} from 'winston';
 
-import FingersCrossed from './fingersCrossed';
+import FingersCrossed from './fingers-crossed';
 
 const stringify = require('json-stringify-safe');
 
