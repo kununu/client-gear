@@ -1,7 +1,7 @@
 import {logger} from '../../kununu-logger';
 import isClientRender from '../isClientRender';
 
-export default function (exception, label) {
+export default function (exception, application) {
   if (!isClientRender()) {
     const {status, url} = exception.response;
 
@@ -10,7 +10,8 @@ export default function (exception, label) {
         status,
         url,
       },
-      label,
+      message: 'API has reached an error',
+      application,
     });
   }
 }
