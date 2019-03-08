@@ -94,15 +94,13 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param  {String} traceId
    * @return {Array}
    */
-  recoverLogs = traceId => {
-    return this.state.reduce((acc, curr) => {
-      if (curr.trace_id === traceId) {
-        acc.push(curr.formatted_log);
-      }
+  recoverLogs = traceId => this.state.reduce((acc, curr) => {
+    if (curr.trace_id === traceId) {
+      acc.push(curr.formatted_log);
+    }
 
-      return acc;
-    }, []);
-  }
+    return acc;
+  }, [])
 
   /**
    * Output an array of logs individually or just one if it's an Object
