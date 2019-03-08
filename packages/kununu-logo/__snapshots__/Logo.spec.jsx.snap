@@ -13,6 +13,7 @@ exports[`Renders Logo with link 1`] = `
       media="(min-width: 830px)"
       srcset="https://assets.kununu.com/images/footer/logo-desktop.svg"
     />
+    
     <img
       alt="test"
       aria-hidden="true"
@@ -20,7 +21,6 @@ exports[`Renders Logo with link 1`] = `
       rel="presentation"
       src="https://assets.kununu.com/images/footer/logo-desktop.svg"
     />
-    test
   </picture>
 </a>
 `;
