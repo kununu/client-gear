@@ -13,7 +13,6 @@ exports[`Renders Logo with link 1`] = `
       media="(min-width: 830px)"
       srcset="https://assets.kununu.com/images/footer/logo-desktop.svg"
     />
-    
     <img
       alt="test"
       aria-hidden="true"
