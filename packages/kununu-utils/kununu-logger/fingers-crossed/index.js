@@ -1,6 +1,6 @@
-import {formatNodeRequest} from '../index';
+import formatNodeRequest from '../format-node-request';
 
-const TransportStream = require('winston-transport'); // eslint-disable-line import/no-extraneous-dependencies
+const TransportStream = require('winston-transport');
 
 module.exports = class FingersCrossed extends TransportStream {
   constructor (options = {}) {
@@ -29,7 +29,7 @@ module.exports = class FingersCrossed extends TransportStream {
         if (this.hasActivationLogLevel(logLevel)) {
           const logs = this.recoverLogs(traceId);
 
-          this.stateRemove(traceId);
+          this.cleanState(traceId);
           this.outputLog(logs);
         }
       }
@@ -84,7 +84,7 @@ module.exports = class FingersCrossed extends TransportStream {
    *
    * @param {String} traceId
    */
-  stateRemove = (traceId) => {
+  cleanState = (traceId) => {
     this.state = this.state.filter(log => traceId !== log.trace_id);
   }
 
@@ -94,13 +94,7 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param  {String} traceId
    * @return {Array}
    */
-  recoverLogs = traceId => this.state.reduce((acc, curr) => {
-    if (curr.trace_id === traceId) {
-      acc.push(curr.formatted_log);
-    }
-
-    return acc;
-  }, [])
+  recoverLogs = traceId => this.state.filter(log => traceId === log.trace_id);
 
   /**
    * Output an array of logs individually or just one if it's an Object

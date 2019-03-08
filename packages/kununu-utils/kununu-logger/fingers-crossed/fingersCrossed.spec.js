@@ -2,7 +2,7 @@ import {createLogger} from 'winston';
 import {Request} from 'jest-express/lib/request';
 import {Response} from 'jest-express/lib/response';
 
-import {loggingLevels} from '../index';
+import {loggingLevels} from '../config';
 
 import FingersCrossed from './index';
 
@@ -19,8 +19,8 @@ describe('fingersCrossed transport', () => {
   });
 
   beforeEach(() => {
-    req = new Request();
-    res = new Response('/');
+    req = new Request('/');
+    res = new Response();
 
     logger = createLogger({
       levels: loggingLevels,
