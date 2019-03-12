@@ -17,117 +17,23 @@ exports[`Renders Header without crashing 1`] = `
         <a
           href="/test"
         >
-          <img
-            alt="Volle Transparenz am Arbeitsmarkt"
-            class="logoDesktop"
-            src="https://assets.kununu.com/images/footer/logo-desktop.svg"
-          />
-          <img
-            alt="Volle Transparenz am Arbeitsmarkt"
-            aria-hidden="true"
-            class="logoMobile"
-            rel="presentation"
-            src="https://assets.kununu.com/images/footer/logo-mobile.svg"
-          />
-        </a>
-        <span
-          class="title"
-        >
-          Volle Transparenz am Arbeitsmarkt
-        </span>
-      </div>
-      <div
-        class="pullRight"
-      >
-        <nav
-          class="headerNav"
-        >
-          <ul>
-            <li
-              class="headerNavItem"
-            >
-              <a
-                href="/test"
-              >
-                <span
-                  class="hidden-xs"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="fa fa-search hidden-xs"
-                  />
-                    Suchen
-                </span>
-                <i
-                  aria-hidden="true"
-                  class="fa fa-search visible-xs"
-                />
-              </a>
-            </li>
-            <li
-              class="headerNavItem"
-            >
-              <a
-                class=""
-                href="/"
-              >
-                <span
-                  class="hidden-xs"
-                >
-                  Mein kununu 
-                </span>
-                <i
-                  class="fa fa-user visible-xs"
-                />
-              </a>
-            </li>
-            <li
-              class="headerNavItem"
-            >
-              <a
-                class="btn btn-dd-sm btn-primary"
-                href="/"
-              >
-                Firma bewerten
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
-</header>
-`;
-
-exports[`Renders Logo without crashing 1`] = `
-<header
-  class="header fixed"
-  role="banner"
->
-  <div
-    class="container-fluid"
-  >
-    <div
-      class="flex"
-    >
-      <div
-        class="pullLeft"
-      >
-        <a
-          href="/test"
-        >
-          <img
-            alt="Volle Transparenz am Arbeitsmarkt"
-            class="logoDesktop"
-            src="https://assets.kununu.com/images/footer/logo-desktop.svg"
-          />
-          <img
-            alt="Volle Transparenz am Arbeitsmarkt"
-            aria-hidden="true"
-            class="logoMobile"
-            rel="presentation"
-            src="https://assets.kununu.com/images/footer/logo-mobile.svg"
-          />
+          <picture>
+            <source
+              media="(max-width: 829px)"
+              srcset="https://assets.kununu.com/images/footer/logo-mobile.svg"
+            />
+            <source
+              media="(min-width: 830px)"
+              srcset="https://assets.kununu.com/images/footer/logo-desktop.svg"
+            />
+            <img
+              alt="Volle Transparenz am Arbeitsmarkt"
+              aria-hidden="true"
+              class="logo"
+              rel="presentation"
+              src="https://assets.kununu.com/images/footer/logo-desktop.svg"
+            />
+          </picture>
         </a>
         <span
           class="title"

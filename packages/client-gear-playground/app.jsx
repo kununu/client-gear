@@ -2,26 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import Tabs from 'nukleus/dist/components/Tabs';
+// if you want to test the distribution, just uncomment the lines below
+// import Footer from '@kununu/kununu-footer';
+// import FormWrapper from '@kununu/kununu-form-wrapper';
+// import IconSearch from '@kununu/kununu-icons/dist/Search';
+// import IconUser from '@kununu/kununu-icons/dist/User';
+// import {Header, HeaderNav, HeaderNavItem} from '@kununu/kununu-header';
+// import {validationTypes} from '@kununu/kununu-utils/kununu-helpers/formValidation';
 
-import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/index';
 import Footer from '../kununu-footer/index';
+import FormWrapper from '../kununu-form-wrapper/index';
 import IconSearch from '../kununu-icons/Search';
 import IconUser from '../kununu-icons/User';
-import FormWrapper from '../kununu-form-wrapper/index';
+import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/index';
 import {validationTypes} from '../kununu-utils/kununu-helpers/formValidation';
-
 
 import styles from './index.scss';
 import Home from './home';
 import Icons from './icons';
 import Form from './form';
-
-
-// if you want to test the distribution, just uncomment the lines below
-// import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/dist';
-// import Footer from '../kununu-footer/dist';
-// import IconSearch from '../kununu-icons/dist/Search';
-// import IconUser from '../kununu-icons/dist/User';
 
 const at = require('./img/at.gif');
 const ch = require('./img/ch.gif');
