@@ -62,7 +62,7 @@ export default function Footer ({
               />
             </div>
           ))}
-          {tuv ? (
+          {tuv && (
             <div className={`${styles.tuvColumn} ${styles.hiddenSm}`}>
               <ToolTip
                 icon={(
@@ -81,8 +81,7 @@ export default function Footer ({
                 )}
               />
             </div>
-          ) : null
-          }
+          )}
           <div className={styles.infoTextColumn}>
             <div className={styles.logoContainer}>
               <Logo assetsPath={assetsPath} />
