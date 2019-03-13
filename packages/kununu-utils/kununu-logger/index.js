@@ -1,6 +1,6 @@
 import {createLogger, transports, format} from 'winston';
 
-const stringify = require('json-stringify-safe');
+const stringify = require('fast-safe-stringify');
 
 const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
