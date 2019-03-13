@@ -1,10 +1,10 @@
-import React, {Component, Fragment} from 'react';
+import React, {PureComponent, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import IconPlus from '@kununu/kununu-icons/dist/Plus';
 
 import styles from './index.scss';
 
-export default class FooterNav extends Component {
+export default class FooterNav extends PureComponent {
   state = {
     open: false,
   }
@@ -79,10 +79,7 @@ export default class FooterNav extends Component {
         }
         <ul
           role="navigation"
-          className={`
-            ${styles.footerNav}
-            ${styles[type]}
-            ${open && styles.open}`}
+          className={`${styles.footerNav} ${styles[type]} ${open && styles.open}`}
         >
           {items.map((item, index) => (
             <li
