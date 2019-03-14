@@ -1,0 +1,25 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const Icon = ({className, ariaHidden}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+    className={className}
+    aria-hidden={ariaHidden}
+  >
+    <path d="M255.872252,259.726545 L95.0074968,98.8617899 C87.1964218,91.0507149 74.5311086,91.0498317 66.7199255,98.8610148 L10.8610148,154.719926 C3.04222093,162.538719 3.05017873,175.195886 10.8617899,183.007497 L241.374525,413.520232 C245.347847,417.493554 250.577219,419.445963 255.784805,419.377213 C261.049945,419.492385 266.351201,417.53901 270.369979,413.520232 L500.882714,183.007497 C508.693789,175.196422 508.694672,162.531109 500.883489,154.719926 L445.024578,98.8610148 C437.205785,91.0422209 424.548618,91.0501787 416.737007,98.8617899 L255.872252,259.726545 L255.872252,259.726545 Z" />
+  </svg>
+);
+
+Icon.propTypes = {
+  ariaHidden: PropTypes.bool,
+  className: PropTypes.string,
+};
+
+Icon.defaultProps = {
+  ariaHidden: undefined,
+  className: undefined,
+};
+
+export default Icon;
