@@ -5,7 +5,7 @@
   "main": "dist",
   "devDependencies": {
     "express": "4.16.4",
-    "fetch-mock": "7.3.0",
+    "fetch-mock": "7.3.1",
     "jsonwebtoken": "8.5.0",
     "supertest": "3.4.2"
   },
