@@ -58,7 +58,14 @@
     "postinstall": "lerna bootstrap",
     "start": "lerna exec npm run start --scope client-gear-playground",
     "dist": "lerna exec npm run dist --ignore client-gear-playground",
-    "clean": "lerna exec npm run clean --ignore client-gear-playground && lerna clean --yes && rimraf node_modules"
+    "clean": "lerna exec npm run clean --ignore client-gear-playground && lerna clean --yes && rimraf node_modules",
+    "publish:footer": "lerna exec npm publish --scope @kununu/kununu-footer",
+    "publish:header": "lerna exec npm publish --scope @kununu/kununu-header",
+    "publish:form-wrapper": "lerna exec npm publish --scope @kununu/kununu-form-wrapper",
+    "publish:logo": "lerna exec npm publish --scope @kununu/kununu-logo",
+    "publish:overlay": "lerna exec npm publish --scope @kununu/kununu-overlay",
+    "publish:scroll-to-element": "lerna exec npm publish --scope @kununu/kununu-scroll-to-element",
+    "publish:utils": "lerna exec npm publish --scope @kununu/kununu-utils"
   },
   "jest-junit": {
     "output": "./coverage/junit.xml"
