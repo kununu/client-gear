@@ -38,7 +38,7 @@ export default function Header ({
 
 Header.propTypes = {
   assetsPath: PropTypes.string,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
   container: PropTypes.string,
   fixed: PropTypes.bool,
   logoLink: PropTypes.element.isRequired,
@@ -46,6 +46,7 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
+  children: null,
   assetsPath: 'https://assets.kununu.com/images/footer',
   container: 'container-fluid',
   fixed: true,
