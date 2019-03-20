@@ -12,7 +12,9 @@ import Tabs from 'nukleus/dist/components/Tabs';
 
 import Footer from '../kununu-footer/index';
 import FormWrapper from '../kununu-form-wrapper/index';
-import {Header} from '../kununu-header/index';
+import IconSearch from '../kununu-icons/Search';
+import IconUser from '../kununu-icons/User';
+import {Header, HeaderNav, HeaderNavItem} from '../kununu-header/index';
 import {validationTypes} from '../kununu-utils/kununu-helpers/formValidation';
 
 import styles from './index.scss';
@@ -51,7 +53,41 @@ const getHeader = () => (
     logoLink={<a href="/">hi</a>}
     responsive={false}
     title="Workplace insights that matter"
-  />
+  >
+    <HeaderNav>
+      <HeaderNavItem>
+        <a href="/">
+          <span className={styles.headerIcon}>
+            <IconSearch ariaHidden />
+          </span>
+          <span className="hidden-xs">
+            Suchen
+          </span>
+        </a>
+      </HeaderNavItem>
+      <HeaderNavItem>
+        <a
+          className=""
+          href="/"
+        >
+          <span className="hidden-xs">
+            Mein kununu
+          </span>
+          <span className={`${styles.headerIcon} visible-xs`}>
+            <IconUser />
+          </span>
+        </a>
+      </HeaderNavItem>
+      <HeaderNavItem>
+        <a
+          href="/"
+          className="btn btn-dd-sm btn-primary"
+        >
+        Arbeitgeber bewerten
+        </a>
+      </HeaderNavItem>
+    </HeaderNav>
+  </Header>
 );
 
 const getFooterCountrySwitcher = (country, menuItem) => (
