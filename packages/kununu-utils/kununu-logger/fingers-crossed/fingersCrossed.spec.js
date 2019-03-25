@@ -40,6 +40,12 @@ describe('fingersCrossed transport', () => {
   it('does not output log if trace id is boolean', () => {
     req.setHeaders('x-amzn-trace-id', true);
 
+    logger.info({
+      req,
+      res,
+      message,
+    });
+
     logger.error({
       req,
       res,

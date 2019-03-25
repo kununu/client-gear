@@ -11,10 +11,10 @@ module.exports = class FingersCrossed extends TransportStream {
     this.level = options.level || 'info';
     this.activationLogLevel = options.activationLogLevel || 'error';
     this.levels = options.levels;
-    this.validTypes = ['string', 'number'];
 
     // Logs expiration is set to 10 minutes
     this.cache = new NodeCache({stdTTL: 600, checkperiod: 600});
+    this.validKeyTypes = this.cache.validKeyTypes;
   }
 
   log (info, callback) {
@@ -26,7 +26,7 @@ module.exports = class FingersCrossed extends TransportStream {
     if (info.req) {
       const traceId = info.req.headers['x-amzn-trace-id'];
 
-      if (traceId) {
+      if (traceId && this.validKeyTypes.includes(typeof traceId)) {
         this.saveOnState(traceId, log);
 
         // Outputs when it has a request, trace ID and reaches activation log level
@@ -84,11 +84,15 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param {Object} raw
    */
   saveOnState = (traceId, raw) => {
-    if (Array.from(this.validTypes).includes(typeof traceId)) {
-      const log = this.cache.get(traceId) || [];
+    let log = [];
 
+    try {
+      log = this.cache.get(traceId, true);
+    } catch {} // eslint-disable-line no-empty
+
+    try {
       this.cache.set(traceId, [...log, raw]);
-    }
+    } catch {} // eslint-disable-line no-empty
   }
 
   /**
@@ -97,9 +101,9 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param {String} traceId
    */
   removeFromState = (traceId) => {
-    if (Array.from(this.validTypes).includes(typeof traceId)) {
+    try {
       this.cache.del(traceId);
-    }
+    } catch {} // eslint-disable-line no-empty
   };
 
   /**
@@ -109,9 +113,9 @@ module.exports = class FingersCrossed extends TransportStream {
    * @return {Array}
    */
   recoverLogs = (traceId) => {
-    if (Array.from(this.validTypes).includes(typeof traceId)) {
-      return this.cache.get(traceId, (err, logs) => !err && Array.isArray(logs) ? logs : []);
-    }
+    try {
+      return this.cache.get(traceId);
+    } catch {} // eslint-disable-line no-empty
 
     return [];
   };
