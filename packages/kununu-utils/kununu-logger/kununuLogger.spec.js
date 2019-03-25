@@ -1,6 +1,11 @@
 import {advanceTo, clear} from 'jest-date-mock'; // eslint-disable-line import/no-extraneous-dependencies
 
-import {formatNodeRequest, logger, requestLogger, customFormat} from './index';
+import {
+  formatNodeRequest,
+  logger,
+  requestLogger,
+  customFormat,
+} from './index';
 
 const express = require('express');
 const request = require('supertest');
