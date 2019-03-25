@@ -37,6 +37,18 @@ describe('fingersCrossed transport', () => {
     res.resetMocked();
   });
 
+  it('does not output log if trace id is boolean', () => {
+    req.setHeaders('x-amzn-trace-id', true);
+
+    logger.error({
+      req,
+      res,
+      message,
+    });
+
+    expect(spy.mock.calls.length).toBe(0);
+  });
+
   it('does not output log if minimum level is not reached', () => {
     req.setHeaders('x-amzn-trace-id', 'trace-id-1');
 

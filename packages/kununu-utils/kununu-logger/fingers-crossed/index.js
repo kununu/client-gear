@@ -11,6 +11,7 @@ module.exports = class FingersCrossed extends TransportStream {
     this.level = options.level || 'info';
     this.activationLogLevel = options.activationLogLevel || 'error';
     this.levels = options.levels;
+    this.validTypes = ['string', 'number'];
 
     // Logs expiration is set to 10 minutes
     this.cache = new NodeCache({stdTTL: 600, checkperiod: 600});
@@ -83,9 +84,11 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param {Object} raw
    */
   saveOnState = (traceId, raw) => {
-    const log = this.cache.get(traceId) || [];
+    if (Array.from(this.validTypes).includes(typeof traceId)) {
+      const log = this.cache.get(traceId) || [];
 
-    this.cache.set(traceId, [...log, raw]);
+      this.cache.set(traceId, [...log, raw]);
+    }
   }
 
   /**
@@ -93,7 +96,11 @@ module.exports = class FingersCrossed extends TransportStream {
    *
    * @param {String} traceId
    */
-  removeFromState = traceId => this.cache.del(traceId);
+  removeFromState = traceId => {
+    if(Array.from(this.validTypes).includes(typeof traceId)) {
+      this.cache.del(traceId);
+    }
+  };
 
   /**
    * Recover logs with same trace ID as the error
@@ -101,7 +108,13 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param  {String} traceId
    * @return {Array}
    */
-  recoverLogs = traceId => this.cache.get(traceId, (err, logs) => !err && Array.isArray(logs) ? logs : []);
+  recoverLogs = traceId => {
+    if(Array.from(this.validTypes).includes(typeof traceId)) {
+      return this.cache.get(traceId, (err, logs) => !err && Array.isArray(logs) ? logs : []);
+    }
+
+    return [];
+  };
 
   /**
    * Output an array of logs individually or just one if it's an Object
