@@ -1,6 +1,6 @@
 import {advanceTo, clear} from 'jest-date-mock'; // eslint-disable-line import/no-extraneous-dependencies
 
-import {formatNodeRequest, logger, customFormat} from './index';
+import {formatNodeRequest, logger, requestLogger, customFormat} from './index';
 
 const express = require('express');
 const request = require('supertest');
@@ -32,7 +32,7 @@ afterAll(() => {
   clear();
 });
 
-describe('returns correct log format inside a express pipeline', () => {
+describe('returns correct log format inside an express pipeline with default logger', () => {
   const app = express();
 
   app.get('/', (req, res) => {
@@ -51,6 +51,66 @@ describe('returns correct log format inside a express pipeline', () => {
 
   app.get('/noreq', (req, res) => {
     logger.info({
+      message: 'this is another log message',
+      application: 'app-test-2',
+      channel: 'app-test-2-channel',
+    });
+
+    res.send();
+  });
+
+  it('formats log correctly when it has req and res', async () => {
+    const response = await request(app).get('/');
+
+    expect(response.body.formatedRequest).toEqual(JSON.stringify({
+      message: 'this is a log message',
+      level: 3,
+      level_name: 'ERROR',
+      datetime: new Date().toISOString(),
+      application: 'app-test',
+      channel: 'app',
+      metrics: {time_taken_micros: 1000},
+      context: {exception: 'this is a exception'},
+      http: {
+        method: 'GET',
+        uri: '/',
+        status: 200,
+        local_ip: '::ffff:127.0.0.1',
+        user_agent: 'node-superagent/3.8.3',
+      },
+    }));
+  });
+
+  it('formats log correctly without req and res', async () => {
+    await request(app).get('/noreq');
+
+    expect(log.message).toEqual('this is another log message');
+    expect(log.level_name).toEqual('INFO');
+    expect(log.datetime).toEqual(new Date().toISOString());
+    expect(log.application).toEqual('app-test-2');
+    expect(log.channel).toEqual('app-test-2-channel');
+  });
+});
+
+describe('returns correct log format inside an express pipeline with request logger', () => {
+  const app = express();
+
+  app.get('/', (req, res) => {
+    res.send({
+      formatedRequest: formatNodeRequest({
+        req,
+        res,
+        message: 'this is a log message',
+        level: 'error',
+        application: 'app-test',
+        metrics: {time_taken_micros: 1000},
+        context: {exception: 'this is a exception'},
+      }),
+    });
+  });
+
+  app.get('/noreq', (req, res) => {
+    requestLogger.info({
       message: 'this is another log message',
       application: 'app-test-2',
       channel: 'app-test-2-channel',
