@@ -1,4 +1,4 @@
-import {createLogger, transports, format} from 'winston';
+import {loggers, transports, format} from 'winston';
 
 const stringify = require('json-stringify-safe');
 
@@ -68,10 +68,7 @@ export const formatNodeRequest = ({
 
 export const customFormat = printf(info => formatNodeRequest(info));
 
-/**
- * Default logger that is used by all logger calls
- */
-export const logger = createLogger({
+const options = {
   levels: logLevelNum,
   format: format.combine(
     timestamp(),
@@ -85,24 +82,18 @@ export const logger = createLogger({
       level: minimumLogLevel,
     }),
   ],
-});
+};
+
+/**
+ * Default logger that is used by all logger calls
+ */
+loggers.add('default', options);
 
 /**
  * Separated logger that is used by request in and out logger calls only
  * Uses only Console transport in production or development environment
  */
-export const requestsLogger = createLogger({
-  levels: logLevelNum,
-  format: format.combine(
-    timestamp(),
-    customFormat,
-  ),
-  transports: [
-    new (transports.Console)({
-      name: 'console',
-      colorize: true,
-      showLevel: true,
-      level: minimumLogLevel,
-    }),
-  ],
-});
+loggers.add('request', options);
+
+export const logger = loggers.get('default');
+export const requestLogger = loggers.get('request');
