@@ -68,7 +68,30 @@ export const formatNodeRequest = ({
 
 export const customFormat = printf(info => formatNodeRequest(info));
 
+/**
+ * Default logger that is used by all logger calls
+ */
 export const logger = createLogger({
+  levels: logLevelNum,
+  format: format.combine(
+    timestamp(),
+    customFormat,
+  ),
+  transports: [
+    new (transports.Console)({
+      name: 'console',
+      colorize: true,
+      showLevel: true,
+      level: minimumLogLevel,
+    }),
+  ],
+});
+
+/**
+ * Separated logger that is used by request in and out logger calls only
+ * Uses only Console transport in production or development environment
+ */
+export const requestsLogger = createLogger({
   levels: logLevelNum,
   format: format.combine(
     timestamp(),
