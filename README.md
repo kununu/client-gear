@@ -41,3 +41,8 @@ Run `npm outdated` in all packages ignoring non-zero (error) exit codes
 ```sh
 lerna exec npm outdated --no-bail
 ```
+
+### Publish a specific package
+```sh
+npm run publish:footer
+```
