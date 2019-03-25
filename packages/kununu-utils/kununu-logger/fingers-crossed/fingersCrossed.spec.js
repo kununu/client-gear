@@ -1,6 +1,6 @@
 import {createLogger} from 'winston';
-import {Request} from 'jest-express/lib/request';
-import {Response} from 'jest-express/lib/response';
+import {Request} from 'jest-express/lib/request'; // eslint-disable-line import/no-extraneous-dependencies
+import {Response} from 'jest-express/lib/response'; // eslint-disable-line import/no-extraneous-dependencies
 
 import {loggingLevels} from '../config';
 
