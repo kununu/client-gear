@@ -83,7 +83,8 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param {Object} raw
    */
   saveOnState = (traceId, raw) => {
-    let log = this.cache.get(traceId) || [];
+    const log = this.cache.get(traceId) || [];
+
     this.cache.set(traceId, [...log, raw]);
   }
 
