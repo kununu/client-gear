@@ -96,8 +96,8 @@ module.exports = class FingersCrossed extends TransportStream {
    *
    * @param {String} traceId
    */
-  removeFromState = traceId => {
-    if(Array.from(this.validTypes).includes(typeof traceId)) {
+  removeFromState = (traceId) => {
+    if (Array.from(this.validTypes).includes(typeof traceId)) {
       this.cache.del(traceId);
     }
   };
@@ -108,8 +108,8 @@ module.exports = class FingersCrossed extends TransportStream {
    * @param  {String} traceId
    * @return {Array}
    */
-  recoverLogs = traceId => {
-    if(Array.from(this.validTypes).includes(typeof traceId)) {
+  recoverLogs = (traceId) => {
+    if (Array.from(this.validTypes).includes(typeof traceId)) {
       return this.cache.get(traceId, (err, logs) => !err && Array.isArray(logs) ? logs : []);
     }
 
