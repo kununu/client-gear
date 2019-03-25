@@ -28,8 +28,8 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
-  ariaHidden: false,
-  className: '',
+  ariaHidden: undefined,
+  className: undefined,
 };
 
 export default Icon;
