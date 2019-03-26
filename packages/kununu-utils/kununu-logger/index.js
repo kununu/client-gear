@@ -75,6 +75,13 @@ const options = {
     timestamp(),
     customFormat,
   ),
+};
+
+/**
+ * Default logger that is used by all logger calls
+ */
+loggers.add('default', {
+  ...options,
   transports: [
     new (transports.Console)({
       name: 'console',
@@ -83,12 +90,7 @@ const options = {
       level: minimumLogLevel,
     }),
   ],
-};
-
-/**
- * Default logger that is used by all logger calls
- */
-loggers.add('default', options);
+});
 
 /**
  * Separated logger that is used by request in and out logger calls only
