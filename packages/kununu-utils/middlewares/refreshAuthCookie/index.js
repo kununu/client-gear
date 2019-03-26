@@ -7,7 +7,7 @@ const {logger} = require('../../kununu-logger');
 /**
  * Middleware to refresh cookie, before following requests are happening
  */
-function refreshAuthCookie (label) {
+function refreshAuthCookie (application) {
   const accessTokenCookieKey = 'kununu_access_token_v1';
   const allowedHeaders = [
     'x-amzn-trace-id',
@@ -42,9 +42,9 @@ function refreshAuthCookie (label) {
       return jwtDecode(cookie.access_token);
     } catch (exception) {
       logger.error({
-        message: 'Error parsing auth cookie',
         exception,
-        label,
+        message: 'Error parsing auth cookie',
+        application,
       });
       return false;
     }
