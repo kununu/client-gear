@@ -6,6 +6,10 @@
  */
 export const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
 
+/**
+ * Request minimum level is defined separately because is only used by
+ * request logger, which receives log calls from Express middleware only
+ */
 export const requestMinimumLogLevel = process.env.REQUEST_MINIMUM_LOG_LEVEL || 'info';
 
 /**

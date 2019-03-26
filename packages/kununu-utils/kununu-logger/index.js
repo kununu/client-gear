@@ -1,14 +1,19 @@
-import {loggers, format, transports as winston} from 'winston';
+import {loggers, format, transports} from 'winston';
 
-import {minimumLogLevel, requestMinimumLogLevel, activationLogLevel, loggingLevels} from './config';
 import formatNodeRequest from './format-node-request';
 import FingersCrossed from './fingers-crossed';
+import {
+  minimumLogLevel,
+  requestMinimumLogLevel,
+  activationLogLevel,
+  loggingLevels,
+} from './config';
 
 const {timestamp, printf} = format;
 
 export const customFormat = printf(info => formatNodeRequest(info));
 
-const getTransport = () => {
+const getTransportByEnv = () => {
   if (process.env.NODE_ENV === 'production') {
     return {
       transports: [
@@ -18,52 +23,36 @@ const getTransport = () => {
           levels: loggingLevels,
         }),
       ],
-    }
+    };
   }
 
   return {
     transports: [
-      new winston.Console({
+      new transports.Console({
         name: 'console',
         colorize: true,
         showLevel: true,
         level: minimumLogLevel,
       }),
     ],
-  }
+  };
 };
 
 const options = {
-  levels: logLevelNum,
+  levels: loggingLevels,
   format: format.combine(
     timestamp(),
     customFormat,
   ),
 };
 
-const transports = [];
-
-if (process.env.NODE_ENV === 'production') {
-  transports.push(new FingersCrossed({
-    level: minimumLogLevel,
-    activationLogLevel,
-    levels: loggingLevels,
-  }));
-} else {
-  transports.push(new winston.Console({
-    name: 'console',
-    colorize: true,
-    showLevel: true,
-    level: minimumLogLevel,
-  }));
-}
-
 /**
  * Default logger that is used by all logger calls
+ * It uses Fingers Crossed when on production environment and Console on development
  */
 loggers.add('default', {
   ...options,
-  transports,
+  ...getTransportByEnv(),
 });
 
 /**
@@ -73,7 +62,7 @@ loggers.add('default', {
 loggers.add('request', {
   ...options,
   transports: [
-    new (transports.Console)({
+    new transports.Console({
       name: 'console',
       colorize: true,
       showLevel: true,
