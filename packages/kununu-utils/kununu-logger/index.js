@@ -6,6 +6,7 @@ const {timestamp, printf} = format;
 const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
 
 const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
+const requestMinimumLogLevel = process.env.REQUEST_MINIMUM_LOG_LEVEL || 'info';
 
 export const logLevelNum = {
   emergency: 0,
@@ -93,7 +94,17 @@ loggers.add('default', options);
  * Separated logger that is used by request in and out logger calls only
  * Uses only Console transport in production or development environment
  */
-loggers.add('request', options);
+loggers.add('request', {
+  ...options,
+  transports: [
+    new (transports.Console)({
+      name: 'console',
+      colorize: true,
+      showLevel: true,
+      level: requestMinimumLogLevel,
+    }),
+  ],
+});
 
 export const logger = loggers.get('default');
 export const requestLogger = loggers.get('request');
