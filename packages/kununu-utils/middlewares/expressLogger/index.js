@@ -1,4 +1,4 @@
-import {logger} from '../../kununu-logger';
+import {requestLogger} from '../../kununu-logger';
 
 const CRITICAL = 'critical';
 const ERROR = 'error';
@@ -16,7 +16,7 @@ const expressLogger = application => (req, res, next) => {
   const startDate = new Date();
 
   // Logs a request in with kununu-logger
-  logger.info({
+  requestLogger.info({
     req,
     application,
     channel: 'middleware',
@@ -33,7 +33,7 @@ const expressLogger = application => (req, res, next) => {
     const level = res.statusCode >= 400 ? (res.statusCode >= 500 ? CRITICAL : ERROR) : INFO; // eslint-disable-line no-nested-ternary
 
     // Logs a request out using kununu-logger
-    logger.log(this.level ? this.level : level, {
+    requestLogger.log(this.level ? this.level : level, {
       req,
       res,
       application,

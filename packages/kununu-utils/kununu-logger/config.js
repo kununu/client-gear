@@ -7,6 +7,12 @@
 export const minimumLogLevel = process.env.MINIMUM_LOG_LEVEL || 'info';
 
 /**
+ * Request minimum level is defined separately because is only used by
+ * request logger, which receives log calls from Express middleware only
+ */
+export const requestMinimumLogLevel = process.env.REQUEST_MINIMUM_LOG_LEVEL || 'info';
+
+/**
  * Activation level is used by Fingers Crossed transport
  * When activation log level is set, any log that has
  * equal or superior level will be outputed
