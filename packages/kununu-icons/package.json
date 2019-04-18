@@ -1,12 +1,12 @@
 {
   "name": "@kununu/kununu-icons",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "kununu icons",
   "main": "index.js",
   "author": "kununu",
   "license": "ISC",
   "peerDependencies": {
-    "prop-types": ">=15.6.0",
+    "prop-types": ">=15.7.0",
     "react": ">=16.0.0"
   },
   "scripts": {
