@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "kununu",
   "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "7.2.3"
+  },
   "peerDependencies": {
     "prop-types": ">=15.7.0",
     "react": ">=16.0.0"
