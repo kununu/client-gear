@@ -4,13 +4,13 @@
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
+    "@babel/cli": "7.2.3",
     "express": "4.16.4",
     "fetch-mock": "7.3.1",
     "jsonwebtoken": "8.5.0",
     "supertest": "3.4.2"
   },
   "dependencies": {
-    "@babel/cli": "7.2.3",
     "cookie": "0.3.1",
     "cookie-parser": "1.4.4",
     "fast-safe-stringify": "2.0.6",
