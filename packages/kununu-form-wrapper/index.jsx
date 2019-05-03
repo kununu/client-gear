@@ -177,6 +177,9 @@ const FormWrapper = (WrappedComponent) => {
 
       // When the form is submit, setting state in blur stops event propagation
       if (event.relatedTarget && event.relatedTarget.type !== 'submit') {
+        // For radio and selectboxes, make sure they are selected, otherwise don't update state
+        if (['radio', 'checkbox'].includes(event.target.type) && !event.target.checked) return null;
+
         const fields = {
           fields: {
             ...this.getStateFields(),
