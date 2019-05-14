@@ -6,7 +6,6 @@ import formatNodeRequest from './index';
 
 let nodeEnv;
 
-const application = 'app-formatnoderequest';
 const channel = 'custom_channel';
 const context = {any_context: 'any_context_result'};
 const level = 'info';
@@ -57,15 +56,15 @@ describe('formatNodeRequest custom format', () => {
   it.skip('formats to development correctly', () => {
     process.env.NODE_ENV = 'development';
     const output = formatNodeRequest({
-      req, res, application, channel, context, level, message, metrics,
+      req, res, channel, context, level, message, metrics,
     });
 
-    expect(output).toEqual('[app-formatnoderequest][2019-02-01T00:00:00.000Z][info][custom_channel]{"message":"test","level":6,"level_name":"INFO","datetime":"2019-02-01T00:00:00.000Z","trace_id":"trace-id-1","application":"app-formatnoderequest","channel":"custom_channel","metrics":{"any_metric":"any_metric_result"},"context":{"any_context":"any_context_result"},"http":{"method":"GET","uri":"/url","remote_ip":"0.0.0.0","referer":"/referer","user_agent":"format-node-request 1.0"}}');
+    expect(output).toEqual('[2019-02-01T00:00:00.000Z][info][custom_channel]{"message":"test","level":6,"level_name":"INFO","datetime":"2019-02-01T00:00:00.000Z","trace_id":"trace-id-1","channel":"custom_channel","metrics":{"any_metric":"any_metric_result"},"context":{"any_context":"any_context_result"},"http":{"method":"GET","uri":"/url","remote_ip":"0.0.0.0","referer":"/referer","user_agent":"format-node-request 1.0"}}');
   });
 
   it('formats to production correctly', () => {
     const output = formatNodeRequest({
-      req, res, application, channel, context, level, message, metrics,
+      req, res, channel, context, level, message, metrics,
     });
 
     expect(output).toEqual(JSON.stringify({
@@ -74,7 +73,6 @@ describe('formatNodeRequest custom format', () => {
       level_name: 'INFO',
       datetime: '2019-02-01T00:00:00.000Z',
       trace_id: 'trace-id-1',
-      application: 'app-formatnoderequest',
       channel: 'custom_channel',
       metrics: {
         any_metric: 'any_metric_result',
@@ -94,7 +92,7 @@ describe('formatNodeRequest custom format', () => {
 
   it('formats log correctly without req and res', () => {
     const output = formatNodeRequest({
-      application, channel, context, level, message, metrics,
+      channel, context, level, message, metrics,
     });
 
     expect(output).toEqual(JSON.stringify({
@@ -102,7 +100,6 @@ describe('formatNodeRequest custom format', () => {
       level: 6,
       level_name: 'INFO',
       datetime: '2019-02-01T00:00:00.000Z',
-      application: 'app-formatnoderequest',
       channel: 'custom_channel',
       metrics: {
         any_metric: 'any_metric_result',
@@ -115,7 +112,7 @@ describe('formatNodeRequest custom format', () => {
 
   it('returns correct log format with minimal information', () => {
     const output = formatNodeRequest({
-      message, application, level: 'inFO', metrics, context,
+      message, level: 'inFO', metrics, context,
     });
 
     expect(output).toEqual(JSON.stringify({
@@ -123,7 +120,6 @@ describe('formatNodeRequest custom format', () => {
       level: 6,
       level_name: 'INFO',
       datetime: '2019-02-01T00:00:00.000Z',
-      application: 'app-formatnoderequest',
       channel: 'app',
       metrics: {
         any_metric: 'any_metric_result',

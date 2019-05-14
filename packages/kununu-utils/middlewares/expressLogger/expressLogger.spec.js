@@ -33,26 +33,6 @@ describe('expressLogger middleware', () => {
     clear();
   });
 
-  it('formats log correctly on request in', async () => {
-    await request(app).get('/');
-
-    expect(spyFunc.mock.calls.length).toBe(2);
-    expect(JSON.parse(spyFunc.mock.calls[0][0])).toMatchObject({
-      message: 'Request In: GET /',
-      level: 6,
-      level_name: 'INFO',
-      datetime: new Date().toISOString(),
-      application: 'app-example',
-      http: {
-        method: 'GET',
-        uri: '/',
-        local_ip: '::ffff:127.0.0.1',
-        user_agent: 'node-superagent/3.8.3',
-      },
-      channel: 'middleware',
-    });
-  });
-
   it('formats log correctly on request out', async () => {
     await request(app).get('/');
 

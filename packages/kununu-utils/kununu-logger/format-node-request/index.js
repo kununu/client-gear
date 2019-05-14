@@ -11,7 +11,6 @@ const getColorizedMessage = message => `\x1b[32m${message}\x1b[0m`;
  * @returns {string} Stringified object
  */
 const formatNodeRequest = ({
-  application,
   channel = 'app',
   context,
   level,
@@ -21,7 +20,7 @@ const formatNodeRequest = ({
   res = {},
 }) => {
   const datetime = new Date().toISOString();
-  const colorizedMessage = getColorizedMessage(`[${application}][${datetime}][${level}][${channel}]`);
+  const colorizedMessage = getColorizedMessage(`[${datetime}][${level}][${channel}]`);
   const prefix = (process.env.NODE_ENV === 'production') ? '' : `${colorizedMessage}`;
 
   const nodeRequest = {
@@ -30,8 +29,6 @@ const formatNodeRequest = ({
     level_name: typeof level === 'string' ? level.toUpperCase() : level,
     datetime,
     trace_id: (req.headers && req.headers['x-amzn-trace-id']),
-    build: process.env.BUILD_NAME,
-    application,
     channel,
     metrics,
     context,
