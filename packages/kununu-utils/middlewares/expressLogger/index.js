@@ -12,7 +12,7 @@ const INFO = 'info';
  * @param {Object} res
  * @param {requestCallback} next
  */
-const expressLogger = application => (req, res, next) => {
+const expressLogger = () => (req, res, next) => {
   const startDate = new Date();
 
   function log () {
@@ -28,7 +28,6 @@ const expressLogger = application => (req, res, next) => {
     requestLogger.log(this.level ? this.level : level, {
       req,
       res,
-      application,
       metrics: {time_taken_micros: (new Date() - startDate) * 1000},
       channel: 'middleware',
       message: `Request Out: ${res.statusCode} ${res.statusMessage} - ${req.method} ${req.originalUrl}`,

@@ -8,7 +8,7 @@ const request = require('supertest');
 describe('expressLogger middleware', () => {
   const app = express();
 
-  app.get('/', expressLogger('app-example'), (req, res) => {
+  app.get('/', expressLogger(), (req, res) => {
     res.send();
   });
 
@@ -36,7 +36,7 @@ describe('expressLogger middleware', () => {
   it('formats log correctly on request out', async () => {
     await request(app).get('/');
 
-    expect(spyFunc.mock.calls.length).toBe(2);
+    expect(spyFunc.mock.calls.length).toBe(1);
     expect(JSON.parse(spyFunc.mock.calls[1][0])).toMatchObject({
       message: 'Request Out: 200 OK - GET /',
       level: 6,
