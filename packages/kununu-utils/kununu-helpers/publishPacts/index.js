@@ -6,14 +6,32 @@ const Git = require('nodegit');
 
 const packageJson = require(path.join(process.cwd(), 'package.json')); // eslint-disable-line import/no-dynamic-require
 
+/**
+ * Checks if current branch is master branch
+ *
+ * @param {string} currentBranchName
+ */
 function isMaster (currentBranchName) {
   return currentBranchName === 'master';
 }
 
+/**
+ * Returns release candidate label if branch is not master
+ *
+ * @param {string} currentBranchName
+ * @param {string} hash
+ */
 function getReleaseCandidate (currentBranchName, hash) {
   return isMaster(currentBranchName) ? '' : `-rc.${hash.substr(0, 7)}`;
 }
 
+/**
+ * Returns the version number via package json and also adds a
+ * release candidate label, if the branch is not master
+ *
+ * @param {string} currentBranchName
+ * @param {string} hash
+ */
 function getConsumerVersionByPackageJson (currentBranchName, hash) {
   return `${packageJson.version}${getReleaseCandidate(currentBranchName, hash)}`;
 }
