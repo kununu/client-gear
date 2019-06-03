@@ -29,7 +29,7 @@ jest.mock('../../../../package.json', () => ({
   version: '3.0.0',
 }));
 
-fdescribe('Publish Pacts', () => {
+describe('Publish Pacts', () => {
   beforeEach(() => {
     pacts.publishPacts.mockClear();
     branchName.get.mockClear();
