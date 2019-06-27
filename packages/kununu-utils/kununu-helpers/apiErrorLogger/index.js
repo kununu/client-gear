@@ -6,12 +6,12 @@ export default function (exception, application) {
     const {status, url} = exception.response;
 
     logger.error({
-      exception: {
+      application,
+      context: {
         status,
         url,
       },
       message: 'API has reached an error',
-      application,
     });
   }
 }
