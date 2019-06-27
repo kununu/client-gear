@@ -1,8 +1,0 @@
-.logo {
-  width: 27px; }
-  @media (min-width: 480px) {
-    .logo {
-      width: 38px; } }
-  @media (min-width: 830px) {
-    .logo {
-      width: 138px; } }
