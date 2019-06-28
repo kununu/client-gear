@@ -42,7 +42,7 @@ function refreshAuthCookie (application) {
       return jwtDecode(cookie.access_token);
     } catch (exception) {
       logger.error({
-        exception,
+        context: {exception},
         message: 'Error parsing auth cookie',
         application,
       });

@@ -39,18 +39,18 @@ const expressLogger = application => (req, res, next) => {
       application,
       metrics: {time_taken_micros: (new Date() - startDate) * 1000},
       channel: 'middleware',
-      message: `Request Out: ${res.statusCode} ${res.statusMessage} - ${req.method} ${req.originalUrl}`,
+      message: `Request Out: ${res.statusCode} ${res.statusMessage} - ${req.method} ${req.originalUrl} - origin ${this.origin}`,
     });
   }
 
   // Logs successfully finished pipeline
-  res.on('finish', log.bind({}));
+  res.on('finish', log.bind({origin: 'finish'}));
 
   // Logs any aborted pipeline
-  res.on('close', log.bind({level: 'error'}));
+  res.on('close', log.bind({level: 'error', origin: 'close'}));
 
   // Logs any internal errors
-  res.on('error', log.bind({level: 'error'}));
+  res.on('error', log.bind({level: 'error', origin: 'error'}));
 
   next();
 };
