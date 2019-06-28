@@ -14,6 +14,26 @@
   }
 }
 
+.header.simple {
+  .pullLeft {    
+    @media (max-width: $screen-xs-max) {
+      display: inline-block;
+      flex: none;
+      margin: 0 auto;
+    }
+  }
+
+  .title {
+    @media (min-width: $screen-sm-min) {
+      display: block;
+    }
+  }
+}
+
+.simpleLogo {
+  width: 138px;
+}
+
 .title {
   color: $gray-light;
   font-size: 12px;
@@ -31,11 +51,20 @@
 .flex {
   display: flex;
   align-items: center;
-  flex-grow: 1;
+}
+
+.flex.simple {
+  flex-grow: unset;
+
+  .pullLeft {
+    float: none;
+    margin: 0 auto;
+  }
 }
 
 .pullLeft {
   float: left;
+  flex: 1;
 
   a {
     height: 60px;

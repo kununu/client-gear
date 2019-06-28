@@ -2,7 +2,7 @@
 
 exports[`Renders Header without crashing 1`] = `
 <header
-  class="header fixed"
+  class="header fixed false"
   role="banner"
 >
   <div
@@ -98,6 +98,47 @@ exports[`Renders Header without crashing 1`] = `
             </li>
           </ul>
         </nav>
+      </div>
+    </div>
+  </div>
+</header>
+`;
+
+exports[`Renders simple Header without crashing 1`] = `
+<header
+  class="header fixed simple"
+  role="banner"
+>
+  <div
+    class="container-fluid"
+  >
+    <div
+      class="flex"
+    >
+      <div
+        class="pullLeft"
+      >
+        <a
+          href="/test"
+        >
+          <picture>
+            <source
+              srcset="https://assets.kununu.com/images/footer/logo-desktop.svg"
+            />
+            <img
+              alt="Volle Transparenz am Arbeitsmarkt"
+              aria-hidden="true"
+              class="simpleLogo"
+              rel="presentation"
+              src="https://assets.kununu.com/images/footer/logo-desktop.svg"
+            />
+          </picture>
+        </a>
+        <span
+          class="title"
+        >
+          Volle Transparenz am Arbeitsmarkt
+        </span>
       </div>
     </div>
   </div>
