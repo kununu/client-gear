@@ -58,7 +58,7 @@ describe('expressLogger middleware', () => {
 
     expect(spyFunc.mock.calls.length).toBe(2);
     expect(JSON.parse(spyFunc.mock.calls[1][0])).toMatchObject({
-      message: 'Request Out: 200 OK - GET /',
+      message: 'Request Out: 200 OK - GET / - origin finish',
       level: 6,
       level_name: 'INFO',
       datetime: new Date().toISOString(),
