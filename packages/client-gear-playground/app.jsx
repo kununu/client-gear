@@ -53,7 +53,6 @@ const getHeader = () => (
     logoLink={<a href="/">hi</a>}
     responsive={false}
     title="Workplace insights that matter"
-    simple
   >
     <HeaderNav>
       <HeaderNavItem>
