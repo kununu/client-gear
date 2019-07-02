@@ -55,7 +55,7 @@ test('Renders simple Header without crashing', () => {
     <Header
       title="Volle Transparenz am Arbeitsmarkt"
       logoLink={<a href="/test">test</a>}
-      simple={true}
+      simple
     >
       <HeaderNav>
         <HeaderNavItem>
