@@ -15,23 +15,16 @@ export default function Header ({
 }) {
   const simpleLogo = () => {
     const content = (
-      <picture>
-        <source
-          srcSet={`${assetsPath}/logo-desktop.svg`}
-        />
-        <img
-          alt={title}
-          aria-hidden="true"
-          className={styles.simpleLogo}
-          rel="presentation"
-          src={`${assetsPath}/logo-desktop.svg`}
-        />
-      </picture>
+      <img
+        alt={title}
+        aria-hidden="true"
+        className={styles.simpleLogo}
+        rel="presentation"
+        src={`${assetsPath}/logo-desktop.svg`}
+      />
     );
 
-    return logoLink ?
-      React.cloneElement(logoLink, logoLink.props, content) :
-      content;
+    return React.cloneElement(logoLink, logoLink.props, content);
   };
 
   return (
@@ -41,23 +34,15 @@ export default function Header ({
     >
       <div className={container}>
         <div className={styles.flex}>
-          <div className={styles.pullLeft}>
-            {simple ? simpleLogo() : (
-              <Logo
-                link={logoLink}
-                assetsPath={assetsPath}
-                title={title}
-              />
-            )}
-
-            <span className={styles.title}>{title}</span>
-          </div>
-          {!simple ? (
-            <div className={styles.pullRight}>
-              {children}
-            </div>
-          ) : null
-          }
+          {simple ? simpleLogo() : (
+            <Logo
+              link={logoLink}
+              assetsPath={assetsPath}
+              title={title}
+            />
+          )}
+          <span className={styles.title}>{title}</span>
+          {!simple && children}
         </div>
       </div>
     </header>
