@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-utils",
-  "version": "1.12.3",
+  "version": "1.13.0",
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
@@ -26,8 +26,7 @@
     "winston-transport": "4.3.0"
   },
   "peerDependencies": {
-    "react": ">=16.0.0",
-    "config": ">5.0.0"
+    "react": ">=16.0.0"
   },
   "scripts": {
     "prepare": "npm run dist",
