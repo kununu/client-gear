@@ -11,25 +11,38 @@ export default function Header ({
   assetsPath,
   title,
   logoLink,
+  simple,
 }) {
+  const simpleLogo = () => {
+    const content = (
+      <img
+        alt={title}
+        aria-hidden="true"
+        className={styles.simpleLogo}
+        rel="presentation"
+        src={`${assetsPath}/logo-desktop.svg`}
+      />
+    );
+
+    return React.cloneElement(logoLink, logoLink.props, content);
+  };
+
   return (
     <header
       role="banner"
-      className={`${styles.header} ${fixed && styles.fixed}`}
+      className={`${styles.header} ${fixed && styles.fixed} ${simple && styles.simple}`}
     >
       <div className={container}>
         <div className={styles.flex}>
-          <div className={styles.pullLeft}>
+          {simple ? simpleLogo() : (
             <Logo
               link={logoLink}
               assetsPath={assetsPath}
               title={title}
             />
-            <span className={styles.title}>{title}</span>
-          </div>
-          <div className={styles.pullRight}>
-            {children}
-          </div>
+          )}
+          <span className={styles.title}>{title}</span>
+          {!simple && children}
         </div>
       </div>
     </header>
@@ -43,6 +56,7 @@ Header.propTypes = {
   fixed: PropTypes.bool,
   logoLink: PropTypes.element.isRequired,
   title: PropTypes.string,
+  simple: PropTypes.bool,
 };
 
 Header.defaultProps = {
@@ -51,4 +65,5 @@ Header.defaultProps = {
   container: 'container-fluid',
   fixed: true,
   title: '',
+  simple: false,
 };
