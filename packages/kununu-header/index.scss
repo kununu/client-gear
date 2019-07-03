@@ -18,8 +18,12 @@
     justify-content: center;
   }
 
-  .title {
-    @media (min-width: $screen-sm-min) {
+  @media (min-width: $screen-sm-min) {
+    .flex {
+      justify-content: space-between;
+    }
+
+    .title {
       display: block;
     }
   }
@@ -47,10 +51,6 @@
   height: 60px;
   align-items: center;
   justify-content: space-between;
-}
-
-.flex.simple {
-  flex-grow: unset;
 }
 
 .headerNav {
