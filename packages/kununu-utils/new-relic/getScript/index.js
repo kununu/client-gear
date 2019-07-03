@@ -4,13 +4,11 @@ const isDisabled = require('../isDisabled');
 /**
  * returns the html script of new relic as needed in html responses
  *
- * @param {string} licenseKey
- * @param {string} applicationId
  * @return {string}
  */
-module.exports = (licenseKey, applicationId) => {
-  const newRelicLicenseKey = isDisabled() ? '0000000000' : licenseKey;
-  const newRelicApplicationId = isDisabled() ? '00000000' : applicationId;
+module.exports = () => {
+  const newRelicLicenseKey = isDisabled() ? '0000000000' : process.env.NR_BROWSER_KEY;
+  const newRelicApplicationId = isDisabled() ? '00000000' : process.env.NR_BROSER_APP_ID;
 
   return `
     <script>

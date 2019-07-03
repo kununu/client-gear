@@ -6,20 +6,18 @@ const isDisabled = require('../isDisabled');
  * See lib/config/default.js in the agent distribution for a more complete
  * description of configuration variables and their potential values.
  *
- * @param {string} serviceName,
- * @param {string} licenseKey
  * @return {Object}
  */
-module.exports = (serviceName, licenseKey) => ({
+module.exports = () => ({
   /**
    * Array of application names.
    */
-  app_name: [serviceName],
+  app_name: [process.env.SERVICE_NAME],
   /**
    * Your New Relic license key.
    * IF NR_AGENT_DISABLE is set to true, disable new relic passing an invalid license key: '0000000000000000'
    */
-  license_key: isDisabled() ? '0000000000000000' : licenseKey,
+  license_key: isDisabled() ? '0000000000000000' : process.env.NR_INSTALL_KEY,
   logging: {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing
