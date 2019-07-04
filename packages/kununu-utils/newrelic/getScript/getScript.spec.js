@@ -10,14 +10,14 @@ describe('newRelic getScript', () => {
 
   beforeAll(() => {
     installKey = process.env.NR_BROWSER_KEY;
-    serviceName = process.env.NR_BROSER_APP_ID;
+    serviceName = process.env.NR_BROWSER_APP_ID;
     process.env.NR_BROWSER_KEY = 'licensekey';
-    process.env.NR_BROSER_APP_ID = 'applicationid';
+    process.env.NR_BROWSER_APP_ID = 'applicationid';
   });
 
   afterAll(() => {
     process.env.NR_BROWSER_KEY = installKey;
-    process.env.NR_BROSER_APP_ID = serviceName;
+    process.env.NR_BROWSER_APP_ID = serviceName;
   });
 
   beforeEach(() => {

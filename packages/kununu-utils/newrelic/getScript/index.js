@@ -8,7 +8,7 @@ const isDisabled = require('../isDisabled');
  */
 module.exports = () => {
   const newRelicLicenseKey = isDisabled() ? '0000000000' : process.env.NR_BROWSER_KEY;
-  const newRelicApplicationId = isDisabled() ? '00000000' : process.env.NR_BROSER_APP_ID;
+  const newRelicApplicationId = isDisabled() ? '00000000' : process.env.NR_BROWSER_APP_ID;
 
   return `
     // NewRelic
