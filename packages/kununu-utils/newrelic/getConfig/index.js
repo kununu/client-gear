@@ -1,4 +1,4 @@
-const isDisabled = require('../isDisabled');
+const isEnabled = require('../isEnabled');
 
 /**
  * New Relic agent configuration.
@@ -17,7 +17,7 @@ module.exports = () => ({
    * Your New Relic license key.
    * IF NR_AGENT_DISABLE is set to true, disable new relic passing an invalid license key: '0000000000000000'
    */
-  license_key: isDisabled() ? '0000000000000000' : process.env.NR_INSTALL_KEY,
+  license_key: isEnabled() ? process.env.NR_INSTALL_KEY : '0000000000000000',
   logging: {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing

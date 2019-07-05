@@ -1,8 +1,8 @@
-const isDisabled = require('../isDisabled');
+const isEnabled = require('../isEnabled');
 
 const getScript = require('./index');
 
-jest.mock('../isDisabled', () => jest.fn());
+jest.mock('../isEnabled', () => jest.fn());
 
 describe('newRelic getScript', () => {
   let installKey;
@@ -21,16 +21,16 @@ describe('newRelic getScript', () => {
   });
 
   beforeEach(() => {
-    isDisabled.mockClear();
+    isEnabled.mockClear();
   });
 
   it('returns the script including the supplied licensekey and applicationID', () => {
-    isDisabled.mockImplementation(() => false);
+    isEnabled.mockImplementation(() => true);
     expect(getScript()).toMatchSnapshot();
   });
 
   it('returns the config without license id, if newRelic is disabled', () => {
-    isDisabled.mockImplementation(() => true);
+    isEnabled.mockImplementation(() => false);
     expect(getScript()).toMatchSnapshot();
   });
 });
