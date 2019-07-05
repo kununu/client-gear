@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-const isDisabled = require('../isDisabled');
+const isEnabled = require('../isEnabled');
 
 /**
  * returns the html script of new relic as needed in html responses
@@ -7,8 +7,8 @@ const isDisabled = require('../isDisabled');
  * @return {string}
  */
 module.exports = () => {
-  const newRelicLicenseKey = isDisabled() ? '0000000000' : process.env.NR_BROWSER_KEY;
-  const newRelicApplicationId = isDisabled() ? '00000000' : process.env.NR_BROWSER_APP_ID;
+  const newRelicLicenseKey = isEnabled() ? process.env.NR_BROWSER_KEY : '0000000000';
+  const newRelicApplicationId = isEnabled() ? process.env.NR_BROWSER_APP_ID : '00000000';
 
   return `
     // NewRelic
