@@ -18,12 +18,14 @@ describe('Middleware checkReferrer', () => {
     const domain = 'www.domain.test';
 
     const expectedCookie = `referrer=${rfr}; Domain=${domain}; Path=/; Secure`;
+    const expectedSourceCookie = `source=${rfr}; Domain=${domain}; Path=/; Secure`;
 
     const result = await request(app)
       .get(`/?rfr=${rfr}`)
       .set('x-forwarded-host', domain);
 
     expect(result.headers['set-cookie'][0]).toEqual(expectedCookie);
+    expect(result.headers['set-cookie'][1]).toEqual(expectedSourceCookie);
   });
 
   it('does not set a referrer cookie, when none is provided', async () => {
