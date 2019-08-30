@@ -22,7 +22,9 @@ function isMaster (currentBranchName) {
  * @param {string} hash
  */
 function getReleaseCandidate (currentBranchName, hash) {
-  return isMaster(currentBranchName) ? '' : `-rc.${hash.substr(0, 7)}`;
+  const gitHash = hash.substr(0, 7);
+
+  return isMaster(currentBranchName) ? `-${gitHash}` : `-rc.${gitHash}`;
 }
 
 /**

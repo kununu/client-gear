@@ -46,7 +46,7 @@ describe('Publish Pacts', () => {
     expect(pacts.publishPacts.mock.calls[0][0]).toEqual({
       pactFilesOrDirs: [myDir],
       pactBroker: myBrokerUrl,
-      consumerVersion: '3.0.0',
+      consumerVersion: `3.0.0-${myHash}`,
       tags: [currentBranchName],
     });
   });
