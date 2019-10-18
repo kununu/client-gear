@@ -2,7 +2,7 @@ import React from 'react';
 import {render, cleanup} from '@testing-library/react';
 import {act} from 'react-dom/test-utils';
 
-import useIntersection from './useIntersection';
+import useIntersection from './';
 
 const observeSpy = jest.fn();
 const unobserveSpy = jest.fn();
