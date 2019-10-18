@@ -23,7 +23,6 @@
     "node-cache": "4.2.0",
     "nodegit": "0.24.3",
     "prop-types": "15.7.2",
-    "react-dom": "16.10.2",
     "react-scroll": "1.7.12",
     "winston": "3.2.1",
     "winston-transport": "4.3.0"
