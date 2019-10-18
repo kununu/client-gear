@@ -1,8 +1,9 @@
 import React from 'react';
 import {render, cleanup} from '@testing-library/react';
 import {act} from 'react-dom/test-utils';
+import PropTypes from 'prop-types';
 
-import useIntersection from './';
+import useIntersection from '.';
 
 const observeSpy = jest.fn();
 const unobserveSpy = jest.fn();
@@ -25,8 +26,17 @@ const HookComponent = ({options}) => {
   );
 };
 
-describe('useIntersection custom hook', () => {
+HookComponent.propTypes = {
+  options: PropTypes.shape({
+    triggerOnce: PropTypes.bool,
+  }),
+};
 
+HookComponent.defaultProps = {
+  options: {},
+};
+
+describe('useIntersection custom hook', () => {
   beforeEach(() => {
     global.IntersectionObserver.mockClear();
     cleanup();
