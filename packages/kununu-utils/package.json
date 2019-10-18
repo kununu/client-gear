@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-utils",
-  "version": "1.17.0",
+  "version": "1.18.0",
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@pact-foundation/pact-node": "8.4.0",
+    "@testing-library/react": "9.3.0",
     "branch-name": "1.0.0",
     "cookie": "0.4.0",
     "cookie-parser": "1.4.4",
@@ -21,12 +22,14 @@
     "jwt-decode": "2.2.0",
     "node-cache": "4.2.0",
     "nodegit": "0.24.3",
+    "prop-types": "15.7.2",
     "react-scroll": "1.7.12",
     "winston": "3.2.1",
     "winston-transport": "4.3.0"
   },
   "peerDependencies": {
-    "react": ">=16.0.0"
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
   },
   "scripts": {
     "prepare": "npm run dist",
