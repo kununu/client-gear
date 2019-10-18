@@ -28,7 +28,8 @@
     "winston-transport": "4.3.0"
   },
   "peerDependencies": {
-    "react": ">=16.0.0"
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
   },
   "scripts": {
     "prepare": "npm run dist",
