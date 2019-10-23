@@ -30,7 +30,7 @@ const useIntersection = (options) => {
 
     observer.current = new IntersectionObserver(
       ([entry]) => {
-        setIntersecting(entry.isIntersecting);
+        requestAnimationFrame(() => setIntersecting(entry.isIntersecting)); 
         if (entry.isIntersecting && options.triggerOnce) {
           observer.current.unobserve(ref.current);
         }
