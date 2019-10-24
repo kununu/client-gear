@@ -69,7 +69,7 @@ async function getCurrentGitHash () {
     console.log('Probably not a git repo');
   }
 
-  return process.env.BUILD_NAME || 'NOBUILD';
+  return process.env.BUILD_NAME || 'NOBUILD'; // make sure fallback has only 7 characters, like git commit hash
 }
 
 /**
