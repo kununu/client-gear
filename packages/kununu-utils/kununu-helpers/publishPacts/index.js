@@ -48,7 +48,7 @@ async function getCurrentBranchName () {
 
     return branchname;
   } catch (err) {
-    console.log('Probably not a git repo');
+    console.log('Probably not a git repo'); // eslint-disable-line
   }
 
   return process.env.BRANCH_NAME || 'NO_BRANCH_AVAILABLE';
@@ -66,7 +66,7 @@ async function getCurrentGitHash () {
 
     return commit.sha();
   } catch (err) {
-    console.log('Probably not a git repo');
+    console.log('Probably not a git repo'); // eslint-disable-line
   }
 
   return process.env.BUILD_NAME || 'NOBUILD'; // make sure fallback has only 7 characters, like git commit hash
