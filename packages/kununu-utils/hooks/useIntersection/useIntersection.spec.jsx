@@ -13,6 +13,8 @@ global.IntersectionObserver = jest.fn(() => ({
   unobserve: unobserveSpy,
 }));
 
+jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
+
 const HookComponent = ({options}) => {
   const [ref, isIntersecting] = useIntersection(options);
 
