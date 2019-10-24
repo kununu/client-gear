@@ -39,6 +39,40 @@ function getConsumerVersionByPackageJson (currentBranchName, hash) {
 }
 
 /**
+ * Get current branchname of this git repo
+ * @return {string}
+ */
+async function getCurrentBranchName () {
+  try {
+    const branchname = await branchName.get();
+
+    return branchname;
+  } catch (err) {
+    console.log('Probably not a git repo'); // eslint-disable-line
+  }
+
+  return process.env.BRANCH_NAME || 'NO_BRANCH_AVAILABLE';
+}
+
+/**
+ * Get current hash of this git repo
+ * @return {string}
+ */
+async function getCurrentGitHash () {
+  try {
+    // get current hash of this git repo
+    const repo = await Git.Repository.open(process.cwd());
+    const commit = await repo.getHeadCommit();
+
+    return commit.sha();
+  } catch (err) {
+    console.log('Probably not a git repo'); // eslint-disable-line
+  }
+
+  return process.env.BUILD_NAME || 'NOBUILD'; // make sure fallback has only 7 characters, like git commit hash
+}
+
+/**
  * Publishes pacts from a directory to a pact broker.
  * For convenience, this also finds out which git branch and
  * commit hash is currently needed for tagging and publishing
@@ -48,12 +82,9 @@ function getConsumerVersionByPackageJson (currentBranchName, hash) {
  */
 async function publishPacts (pactDir, brokerUrl) {
   // get current branch name
-  const currentBranchName = await branchName.get();
+  const currentBranchName = await getCurrentBranchName();
 
-  // get current hash of this git repo
-  const repo = await Git.Repository.open(process.cwd());
-  const commit = await repo.getHeadCommit();
-  const hash = commit.sha();
+  const hash = await getCurrentGitHash();
 
   const consumerVersion = getConsumerVersionByPackageJson(currentBranchName, hash);
 
