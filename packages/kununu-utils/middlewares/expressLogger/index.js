@@ -12,16 +12,8 @@ const INFO = 'info';
  * @param {Object} res
  * @param {requestCallback} next
  */
-const expressLogger = application => (req, res, next) => {
+const expressLogger = () => (req, res, next) => {
   const startDate = new Date();
-
-  // Logs a request in with kununu-logger
-  requestLogger.info({
-    req,
-    application,
-    channel: 'middleware',
-    message: `Request In: ${req.method} ${req.originalUrl}`,
-  });
 
   function log () {
     // Remove listeners to ensure that no hanging listeners exists
@@ -36,7 +28,6 @@ const expressLogger = application => (req, res, next) => {
     requestLogger.log(this.level ? this.level : level, {
       req,
       res,
-      application,
       metrics: {time_taken_micros: (new Date() - startDate) * 1000},
       channel: 'middleware',
       message: `Request Out: ${res.statusCode} ${res.statusMessage} - ${req.method} ${req.originalUrl} - origin ${this.origin}`,
