@@ -13,19 +13,28 @@ const level = 'info';
 const message = 'test';
 const metrics = {any_metric: 'any_metric_result'};
 
+beforeAll(() => {
+  advanceTo(new Date(2019, 1, 1, 0, 0, 0));
+});
+
+beforeEach(() => {
+  nodeEnv = process.env.NODE_ENV;
+  process.env.NODE_ENV = 'production';
+});
+
+afterEach(() => {
+  process.env.NODE_ENV = nodeEnv;
+});
+
+afterAll(() => {
+  clear();
+});
 
 describe('formatNodeRequest custom format', () => {
   let req;
   let res;
 
-  beforeAll(() => {
-    advanceTo(new Date(2018, 5, 27, 0, 0, 0));
-  });
-
   beforeEach(() => {
-    nodeEnv = process.env.NODE_ENV;
-    process.env.NODE_ENV = 'production';
-
     req = new Request();
     res = new Response();
 
@@ -43,14 +52,7 @@ describe('formatNodeRequest custom format', () => {
   afterEach(() => {
     req.resetMocked();
     res.resetMocked();
-
-    process.env.NODE_ENV = nodeEnv;
   });
-
-  afterAll(() => {
-    clear();
-  });
-
 
   it.skip('formats to development correctly', () => {
     process.env.NODE_ENV = 'development';
@@ -58,7 +60,7 @@ describe('formatNodeRequest custom format', () => {
       req, res, application, channel, context, level, message, metrics,
     });
 
-    expect(output).toEqual('[app-formatnoderequest][2018-06-26T22:00:00.000Z][info][custom_channel]{"message":"test","level":6,"level_name":"INFO","datetime":"2018-06-26T22:00:00.000Z","trace_id":"trace-id-1","application":"app-formatnoderequest","channel":"custom_channel","metrics":{"any_metric":"any_metric_result"},"context":{"any_context":"any_context_result"},"http":{"method":"GET","uri":"/url","remote_ip":"0.0.0.0","referer":"/referer","user_agent":"format-node-request 1.0"}}');
+    expect(output).toEqual('[app-formatnoderequest][2019-02-01T00:00:00.000Z][info][custom_channel]{"message":"test","level":6,"level_name":"INFO","datetime":"2019-02-01T00:00:00.000Z","trace_id":"trace-id-1","application":"app-formatnoderequest","channel":"custom_channel","metrics":{"any_metric":"any_metric_result"},"context":{"any_context":"any_context_result"},"http":{"method":"GET","uri":"/url","remote_ip":"0.0.0.0","referer":"/referer","user_agent":"format-node-request 1.0"}}');
   });
 
   it('formats to production correctly', () => {
@@ -70,7 +72,7 @@ describe('formatNodeRequest custom format', () => {
       message: 'test',
       level: 6,
       level_name: 'INFO',
-      datetime: '2018-06-26T22:00:00.000Z',
+      datetime: '2019-02-01T00:00:00.000Z',
       trace_id: 'trace-id-1',
       channel: 'custom_channel',
       metrics: {
@@ -97,7 +99,7 @@ describe('formatNodeRequest custom format', () => {
       message: 'test',
       level: 6,
       level_name: 'INFO',
-      datetime: '2018-06-26T22:00:00.000Z',
+      datetime: '2019-02-01T00:00:00.000Z',
       channel: 'custom_channel',
       metrics: {
         any_metric: 'any_metric_result',
@@ -117,7 +119,7 @@ describe('formatNodeRequest custom format', () => {
       message: 'test',
       level: 6,
       level_name: 'INFO',
-      datetime: '2018-06-26T22:00:00.000Z',
+      datetime: '2019-02-01T00:00:00.000Z',
       channel: 'app',
       metrics: {
         any_metric: 'any_metric_result',
@@ -134,7 +136,7 @@ describe('formatNodeRequest custom format', () => {
     expect(output).toEqual(JSON.stringify({
       message: 'test',
       level: false,
-      datetime: '2018-06-26T22:00:00.000Z',
+      datetime: '2019-02-01T00:00:00.000Z',
       channel: 'app',
     }));
   });
