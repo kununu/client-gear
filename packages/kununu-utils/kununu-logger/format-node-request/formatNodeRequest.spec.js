@@ -74,7 +74,6 @@ describe('formatNodeRequest custom format', () => {
       level_name: 'INFO',
       datetime: '2019-02-01T00:00:00.000Z',
       trace_id: 'trace-id-1',
-      application: 'app-formatnoderequest',
       channel: 'custom_channel',
       metrics: {
         any_metric: 'any_metric_result',
@@ -84,9 +83,8 @@ describe('formatNodeRequest custom format', () => {
       },
       http: {
         method: 'GET',
-        uri: '/url',
-        remote_ip: '0.0.0.0',
         referer: '/referer',
+        request: '/url',
         user_agent: 'format-node-request 1.0',
       },
     }));
@@ -102,7 +100,6 @@ describe('formatNodeRequest custom format', () => {
       level: 6,
       level_name: 'INFO',
       datetime: '2019-02-01T00:00:00.000Z',
-      application: 'app-formatnoderequest',
       channel: 'custom_channel',
       metrics: {
         any_metric: 'any_metric_result',
@@ -123,7 +120,6 @@ describe('formatNodeRequest custom format', () => {
       level: 6,
       level_name: 'INFO',
       datetime: '2019-02-01T00:00:00.000Z',
-      application: 'app-formatnoderequest',
       channel: 'app',
       metrics: {
         any_metric: 'any_metric_result',
