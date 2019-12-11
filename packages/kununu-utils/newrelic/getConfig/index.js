@@ -33,7 +33,7 @@ module.exports = () => ({
    */
   allow_all_headers: false,
   distributed_tracing: {
-    enabled: 'true'
+    enabled: 'true',
   },
   attributes: {
     /**
