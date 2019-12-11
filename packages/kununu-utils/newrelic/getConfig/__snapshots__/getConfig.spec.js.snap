@@ -2,7 +2,7 @@
 
 exports[`newRelic getConfig returns the config including the supplied license id 1`] = `
 Object {
-  "allow_all_headers": true,
+  "allow_all_headers": false,
   "app_name": Array [
     "test_service",
   ],
@@ -19,6 +19,9 @@ Object {
       "response.headers.setCookie*",
       "response.headers.x*",
     ],
+  },
+  "distributed_tracing": Object {
+    "enabled": "true",
   },
   "license_key": "mylicensekey",
   "logging": Object {
@@ -29,7 +32,7 @@ Object {
 
 exports[`newRelic getConfig returns the config without license id, if newRelic is disabled 1`] = `
 Object {
-  "allow_all_headers": true,
+  "allow_all_headers": false,
   "app_name": Array [
     "test_service",
   ],
@@ -46,6 +49,9 @@ Object {
       "response.headers.setCookie*",
       "response.headers.x*",
     ],
+  },
+  "distributed_tracing": Object {
+    "enabled": "true",
   },
   "license_key": "0000000000000000",
   "logging": Object {

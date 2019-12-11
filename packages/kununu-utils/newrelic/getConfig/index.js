@@ -31,7 +31,10 @@ module.exports = () => ({
    * will be captured for all traces, unless otherwise specified in a destination's
    * attributes include/exclude lists.
    */
-  allow_all_headers: true,
+  allow_all_headers: false,
+  distributed_tracing: {
+    enabled: 'true',
+  },
   attributes: {
     /**
      * Prefix of attributes to exclude from all destinations. Allows * as wildcard
