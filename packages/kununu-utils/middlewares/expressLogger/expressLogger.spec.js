@@ -46,30 +46,11 @@ describe('expressLogger middleware', () => {
     clear();
   });
 
-  it('formats log correctly on request in', async () => {
-    await request(app).get('/');
-
-    expect(spyFunc.mock.calls.length).toBe(2);
-    expect(JSON.parse(spyFunc.mock.calls[0][0])).toMatchObject({
-      message: 'Request In: GET /',
-      level: 6,
-      level_name: 'INFO',
-      datetime: new Date().toISOString(),
-      http: {
-        method: 'GET',
-        request: '/',
-        local_ip: '::ffff:127.0.0.1',
-        user_agent: 'node-superagent/3.8.3',
-      },
-      channel: 'middleware',
-    });
-  });
-
   it('formats log correctly on request out', async () => {
     await request(app).get('/');
 
-    expect(spyFunc.mock.calls.length).toBe(2);
-    expect(JSON.parse(spyFunc.mock.calls[1][0])).toMatchObject({
+    expect(spyFunc.mock.calls.length).toBe(1);
+    expect(JSON.parse(spyFunc.mock.calls[0][0])).toMatchObject({
       message: 'Request Out: 200 OK - GET / - origin finish',
       level: 6,
       level_name: 'INFO',
@@ -101,7 +82,7 @@ describe('expressLogger middleware', () => {
       .set('x-real-ip', '127.0.0.1')
       .set('x-forwarded-host', 'www.test.dev')
       .set('x-amzn-trace-id', 'Root=1-67891233-abcdef012345678912345678');
-    const output = JSON.parse(spyFunc.mock.calls[1][0]);
+    const output = JSON.parse(spyFunc.mock.calls[0][0]);
 
     const validate = await ajv.compile(schema);
 

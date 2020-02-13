@@ -15,14 +15,6 @@ const INFO = 'info';
 const expressLogger = application => (req, res, next) => {
   const startDate = new Date();
 
-  // Logs a request in with kununu-logger
-  requestLogger.info({
-    req,
-    application,
-    channel: 'middleware',
-    message: `Request In: ${req.method} ${req.originalUrl}`,
-  });
-
   function log () {
     // Remove listeners to ensure that no hanging listeners exists
     res.removeListener('finish', log);
