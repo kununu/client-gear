@@ -5,7 +5,7 @@ Object {
   "allow_all_headers": false,
   "app_name": Array [
     "test_service",
-    "test_service_group"
+    "test_service_group",
   ],
   "attributes": Object {
     "exclude": Array [
@@ -36,7 +36,7 @@ Object {
   "allow_all_headers": false,
   "app_name": Array [
     "test_service",
-    "test_service_group"
+    "test_service_group",
   ],
   "attributes": Object {
     "exclude": Array [
