@@ -12,7 +12,7 @@ module.exports = () => ({
   /**
    * Array of application names.
    */
-  app_name: [process.env.SERVICE_NAME],
+  app_name: process.env.NR_APPLICATION_NAME.split(';'),
   /**
    * Your New Relic license key.
    * IF NR_AGENT_DISABLE is set to true, disable new relic passing an invalid license key: '0000000000000000'

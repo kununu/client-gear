@@ -6,18 +6,18 @@ jest.mock('../isEnabled', () => jest.fn());
 
 describe('newRelic getConfig', () => {
   let installKey;
-  let serviceName;
+  let applicationName;
 
   beforeAll(() => {
     installKey = process.env.NR_INSTALL_KEY;
-    serviceName = process.env.SERVICE_NAME;
+    applicationName = process.env.NR_APPLICATION_NAME;
     process.env.NR_INSTALL_KEY = 'mylicensekey';
-    process.env.SERVICE_NAME = 'test_service';
+    process.env.NR_APPLICATION_NAME = 'test_service;test_service_group';
   });
 
   afterAll(() => {
     process.env.NR_INSTALL_KEY = installKey;
-    process.env.SERVICE_NAME = serviceName;
+    process.env.NR_APPLICATION_NAME = applicationName;
   });
 
   beforeEach(() => {
