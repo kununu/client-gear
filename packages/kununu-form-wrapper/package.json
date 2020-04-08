@@ -9,10 +9,10 @@
     "@babel/cli": "7.2.3"
   },
   "dependencies": {
-    "@kununu/kununu-utils": "1.10.2"
+    "@kununu/kununu-utils": "1.22.1"
   },
   "peerDependencies": {
-    "@kununu/kununu-utils": "1.10.2",
+    "@kununu/kununu-utils": "1.22.1",
     "prop-types": ">=15.6.0",
     "react": ">=16.0.0"
   },
