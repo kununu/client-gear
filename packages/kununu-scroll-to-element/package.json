@@ -6,11 +6,11 @@
   "author": "kununu",
   "license": "ISC",
   "dependencies": {
-    "@kununu/kununu-utils": "1.10.2",
+    "@kununu/kununu-utils": "1.22.1",
     "react-scroll": "1.7.11"
   },
   "peerDependencies": {
-    "@kununu/kununu-utils": "1.10.2",
+    "@kununu/kununu-utils": "1.22.1",
     "prop-types": ">=15.6.0",
     "react": ">=16.0.0",
     "react-scroll": "1.7.11"
