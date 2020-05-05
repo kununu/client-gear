@@ -30,7 +30,7 @@
     "enzyme-to-json": "3.3.5",
     "eslint": "5.10.0",
     "eslint-import-resolver-alias": "1.1.2",
-    "eslint-import-resolver-node": "0.3.2",
+    "eslint-import-resolver-node": "0.3.3",
     "eslint-loader": "2.1.2",
     "eslint-plugin-babel": "5.3.0",
     "eslint-plugin-import": "2.14.0",
