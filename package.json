@@ -27,7 +27,7 @@
     "cross-env": "5.2.0",
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.11.2",
-    "enzyme-to-json": "3.3.5",
+    "enzyme-to-json": "3.4.4",
     "eslint": "5.10.0",
     "eslint-import-resolver-alias": "1.1.2",
     "eslint-import-resolver-node": "0.3.2",
