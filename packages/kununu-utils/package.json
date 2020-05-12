@@ -7,7 +7,7 @@
     "@babel/cli": "7.4.4",
     "ajv": "6.10.2",
     "express": "4.17.1",
-    "fetch-mock": "7.3.3",
+    "fetch-mock": "9.7.0",
     "jsonwebtoken": "8.5.1",
     "supertest": "4.0.2"
   },
