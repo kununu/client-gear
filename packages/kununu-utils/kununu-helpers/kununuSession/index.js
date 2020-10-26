@@ -10,10 +10,13 @@ const checkKununuSession = () => {
     const sessionCookie = cookies.get(KUNUNU_SESSION_ID_NAME);
     const expiryDate = new Date();
 
+    // sets the expiry date to midnight
+    // expires has priority over maxAge
     expiryDate.setHours(24, 0, 0, 0);
     const cookieProps = {
-      maxAge: 1800,
       expires: expiryDate,
+      maxAge: 1800,
+      path: '/',
     };
 
     if (sessionCookie) {
