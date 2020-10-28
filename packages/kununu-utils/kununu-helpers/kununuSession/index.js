@@ -8,14 +8,19 @@ const KUNUNU_SESSION_ID_NAME = 'kununu_session_id';
 const checkKununuSession = () => {
   if (isClientRender()) {
     const sessionCookie = cookies.get(KUNUNU_SESSION_ID_NAME);
-    const expiryDate = new Date();
+    let expires = new Date();
+    const midnight = new Date();
 
     // sets the expiry date to midnight
-    // expires has priority over maxAge
-    expiryDate.setHours(24, 0, 0, 0);
+    expires.setMinutes(expires.getMinutes() + 30);
+    midnight.setHours(24, 0, 0, 0);
+
+    if (expires > midnight) {
+      expires = midnight;
+    }
+
     const cookieProps = {
-      expires: expiryDate,
-      maxAge: 1800,
+      expires,
       path: '/',
     };
 
