@@ -9,7 +9,8 @@ const checkKununuSession = (config={}) => {
   const {
     cookieName=KUNUNU_SESSION_ID_NAME,
     cookieValueGenerator=uuidv4,
-    newCookieCallback=()=>{},
+    fetchApiFunc=()=>{},
+    shouldLogEvent=false,
   } = config;
   if (isClientRender()) {
     const sessionCookie = cookies.get(cookieName);
@@ -28,7 +29,9 @@ const checkKununuSession = (config={}) => {
       cookies.set(KUNUNU_SESSION_ID_NAME, sessionCookie, cookieProps);
     } else {
       cookies.set(KUNUNU_SESSION_ID_NAME, cookieValueGenerator(), cookieProps);
-      newCookieCallback();
+      if (shouldLogEvent){
+        publishLoggedInEvent(fetchApiFunc);
+      }
     }
   }
 };
@@ -47,7 +50,4 @@ const publishLoggedInEvent = (fetchApi) => {
   fetchApi('/kunubi/event/logged-in-entrance', {}, params, 10000, false, false)();
 };
 
-export {
-  checkKununuSession,
-  publishLoggedInEvent,
-};
+export default checkKununuSession;
