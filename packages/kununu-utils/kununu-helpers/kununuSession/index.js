@@ -17,11 +17,15 @@ const checkKununuSession = (config={}) => {
     const expiryDate = new Date();
 
     // sets the expiry date to midnight
-    // expires has priority over maxAge
-    expiryDate.setHours(24, 0, 0, 0);
+    expires.setMinutes(expires.getMinutes() + 30);
+    midnight.setHours(24, 0, 0, 0);
+
+    if (expires > midnight) {
+      expires = midnight;
+    }
+
     const cookieProps = {
-      expires: expiryDate,
-      maxAge: 1800,
+      expires,
       path: '/',
     };
 
