@@ -51,7 +51,7 @@ const publishLoggedInEvent = (fetchApi) => {
     method: 'POST',
   };
 
-  fetchApi('/kunubi/event/logged-in-entrance', {}, params, 10000, false, false)();
+  fetchApi('/kunubi/event/logged-in-entrance', {}, params, 10000, false)();
 };
 
 export default checkKununuSession;
