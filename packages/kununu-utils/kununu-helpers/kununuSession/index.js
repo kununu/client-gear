@@ -5,16 +5,32 @@ import isClientRender from '../isClientRender';
 
 const KUNUNU_SESSION_ID_NAME = 'kununu_session_id';
 
-const checkKununuSession = (config={}) => {
+const publishLoggedInEvent = (fetchApi) => {
+  const params = {
+    body: {
+      type: 'login',
+      source: 'logged_in_entrance',
+    },
+    credentials: 'same-origin',
+    headers: {},
+    method: 'POST',
+  };
+
+  fetchApi('/kunubi/event/logged-in-entrance', {}, params, 10000, false)();
+};
+
+const checkKununuSession = (config = {}) => {
   const {
-    cookieName=KUNUNU_SESSION_ID_NAME,
-    cookieValueGenerator=uuidv4,
-    fetchApiFunc=()=>{},
-    shouldLogEvent=false,
+    cookieName = KUNUNU_SESSION_ID_NAME,
+    cookieValueGenerator = uuidv4,
+    fetchApiFunc = () => {},
+    shouldPublishLoggedInEvent = false,
   } = config;
+
   if (isClientRender()) {
     const sessionCookie = cookies.get(cookieName);
-    const expiryDate = new Date();
+    const midnight = new Date();
+    let expires = new Date();
 
     // sets the expiry date to midnight
     expires.setMinutes(expires.getMinutes() + 30);
@@ -33,25 +49,11 @@ const checkKununuSession = (config={}) => {
       cookies.set(KUNUNU_SESSION_ID_NAME, sessionCookie, cookieProps);
     } else {
       cookies.set(KUNUNU_SESSION_ID_NAME, cookieValueGenerator(), cookieProps);
-      if (shouldLogEvent){
+      if (shouldPublishLoggedInEvent) {
         publishLoggedInEvent(fetchApiFunc);
       }
     }
   }
-};
-
-const publishLoggedInEvent = (fetchApi) => {
-  const params = {
-    body:     {
-      type: 'login',
-      source: 'logged_in_entrance',
-    },
-    credentials: 'same-origin',
-    headers: {},
-    method: 'POST',
-  };
-
-  fetchApi('/kunubi/event/logged-in-entrance', {}, params, 10000, false)();
 };
 
 export default checkKununuSession;
