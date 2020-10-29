@@ -49,7 +49,7 @@ const checkKununuSession = (config = {}) => {
       cookies.set(KUNUNU_SESSION_ID_NAME, sessionCookie, cookieProps);
     } else {
       cookies.set(KUNUNU_SESSION_ID_NAME, cookieValueGenerator(), cookieProps);
-      if (shouldPublishLoggedInEvent) {
+      if (shouldPublishLoggedInEvent && cookies.get('kununu_user_logged_info')) {
         publishLoggedInEvent(fetchApiFunc);
       }
     }
