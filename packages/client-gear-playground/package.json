@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/kununu/client-gear#readme",
   "dependencies": {
-    "@kununu/kununu-footer": "2.5.4",
+    "@kununu/kununu-footer": "2.5.5",
     "@kununu/kununu-form-wrapper": "1.5.2",
     "@kununu/kununu-header": "1.2.3",
     "@kununu/kununu-icons": "1.6.1",
