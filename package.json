@@ -48,7 +48,7 @@
     "react": "16.8.4",
     "react-dom": "16.8.4",
     "rimraf": "2.6.3",
-    "sass-lint": "1.12.1"
+    "sass-lint": "1.13.1"
   },
   "scripts": {
     "clean": "lerna exec npm run clean --ignore client-gear-playground && lerna clean --yes && rimraf node_modules",
