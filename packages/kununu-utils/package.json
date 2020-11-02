@@ -4,7 +4,7 @@
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
-    "@babel/cli": "7.4.4",
+    "@babel/cli": "7.12.1",
     "ajv": "6.10.2",
     "express": "4.17.1",
     "fetch-mock": "7.3.3",
