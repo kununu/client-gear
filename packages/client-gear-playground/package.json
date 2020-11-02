@@ -16,7 +16,7 @@
   "dependencies": {
     "@kununu/kununu-footer": "2.5.4",
     "@kununu/kununu-form-wrapper": "1.5.2",
-    "@kununu/kununu-header": "1.2.3",
+    "@kununu/kununu-header": "1.3.0",
     "@kununu/kununu-icons": "1.6.1",
     "@kununu/kununu-logo": "1.2.2",
     "@kununu/kununu-overlay": "1.2.1",
