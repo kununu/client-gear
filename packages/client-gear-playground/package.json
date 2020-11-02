@@ -32,7 +32,7 @@
     "nukleus": "14.1.12",
     "postcss-loader": "3.0.0",
     "prop-types": "15.7.2",
-    "react": "16.8.4",
+    "react": "16.14.0",
     "react-dom": "16.8.4",
     "react-router": "4.3.1",
     "react-router-dom": "4.3.1",
