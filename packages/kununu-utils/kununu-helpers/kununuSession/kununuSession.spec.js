@@ -12,6 +12,7 @@ describe('checkKununuSession', () => {
   it('keeps kununu session cookie if it exists', () => {
     checkKununuSession();
     const cookie = cookies.get('kununu_session_id');
+
     checkKununuSession();
     expect(cookies.get('kununu_session_id')).toBe(cookie);
   });
