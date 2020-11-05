@@ -46,9 +46,9 @@ const checkKununuSession = (config = {}) => {
     };
 
     if (sessionCookie) {
-      cookies.set(KUNUNU_SESSION_ID_NAME, sessionCookie, cookieProps);
+      cookies.set(cookieName, sessionCookie, cookieProps);
     } else {
-      cookies.set(KUNUNU_SESSION_ID_NAME, cookieValueGenerator(), cookieProps);
+      cookies.set(cookieName, cookieValueGenerator(), cookieProps);
       if (shouldPublishLoggedInEvent && cookies.get('kununu_user_logged_info')) {
         publishLoggedInEvent(fetchApiFunc);
       }
