@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@pact-foundation/pact-node": "8.4.0",
-    "@testing-library/react": "9.3.0",
+    "@testing-library/react": "11.1.2",
     "branch-name": "1.0.0",
     "cookie": "0.4.0",
     "cookie-parser": "1.4.4",
