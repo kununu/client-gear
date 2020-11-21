@@ -6,7 +6,7 @@
   "author": "kununu",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "7.2.3"
+    "@babel/cli": "7.12.7"
   },
   "dependencies": {
     "@kununu/kununu-utils": "1.10.2"
