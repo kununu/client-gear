@@ -22,7 +22,7 @@
     "@kununu/kununu-overlay": "1.2.1",
     "@kununu/kununu-theme-v2": "2.0.2",
     "@kununu/kununu-utils": "1.10.2",
-    "autoprefixer": "9.5.0",
+    "autoprefixer": "9.8.6",
     "babel-loader": "8.0.5",
     "bootstrap": "4.3.1",
     "bootstrap-sass": "3.4.1",
