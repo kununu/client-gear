@@ -45,3 +45,6 @@ build
 
 # package lock files
 /**/package-lock.json
+
+# vscode history files 
+.history/
