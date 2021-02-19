@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './index.scss';
+import styles from './index.module.scss';
 
 export default function HeaderNav ({
   children,

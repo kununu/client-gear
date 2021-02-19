@@ -16,7 +16,7 @@
   "scripts": {
     "prepare": "npm run dist",
     "babel": "babel ./index.jsx --out-dir ./dist --root-mode upward",
-    "sass": "node-sass ./index.scss --output ./dist --importer node_modules/node-sass-module-importer",
+    "sass": "node-sass ./index.module.scss --output ./dist --importer node_modules/node-sass-module-importer",
     "clean": "rimraf ./dist",
     "dist": "npm run clean && cross-env NODE_ENV=production npm run babel && npm run sass"
   }

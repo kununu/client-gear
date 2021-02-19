@@ -15,7 +15,7 @@
   "peerDependencies": {
     "@kununu/kununu-icons": "1.6.1",
     "@kununu/kununu-logo": "1.2.2",
-    "nukleus": "14.1.12",
+    "nukleus": "kununu/nukleus#e9c3026a207b04c7686d48dfdefefe7af4cf0658",
     "prop-types": ">=15.6.0",
     "react": ">=16.0.0"
   },
