@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`newRelic getConfig returns the config including the supplied license id 1`] = `
+Object {
+  "allow_all_headers": false,
+  "app_name": Array [
+    "test_service",
+    "test_service_group",
+  ],
+  "attributes": Object {
+    "exclude": Array [
+      "request.headers.cookie",
+      "request.headers.authorization",
+      "request.headers.proxyAuthorization",
+      "request.headers.setCookie*",
+      "request.headers.x*",
+      "response.headers.cookie",
+      "response.headers.authorization",
+      "response.headers.proxyAuthorization",
+      "response.headers.setCookie*",
+      "response.headers.x*",
+    ],
+  },
+  "distributed_tracing": Object {
+    "enabled": "true",
+  },
+  "license_key": "mylicensekey",
+  "logging": Object {
+    "level": "info",
+  },
+}
+`;
+
+exports[`newRelic getConfig returns the config without license id, if newRelic is disabled 1`] = `
+Object {
+  "allow_all_headers": false,
+  "app_name": Array [
+    "test_service",
+    "test_service_group",
+  ],
+  "attributes": Object {
+    "exclude": Array [
+      "request.headers.cookie",
+      "request.headers.authorization",
+      "request.headers.proxyAuthorization",
+      "request.headers.setCookie*",
+      "request.headers.x*",
+      "response.headers.cookie",
+      "response.headers.authorization",
+      "response.headers.proxyAuthorization",
+      "response.headers.setCookie*",
+      "response.headers.x*",
+    ],
+  },
+  "distributed_tracing": Object {
+    "enabled": "true",
+  },
+  "license_key": "0000000000000000",
+  "logging": Object {
+    "level": "info",
+  },
+}
+`;

@@ -1,9 +1,11 @@
 import {advanceTo, clear} from 'jest-date-mock'; // eslint-disable-line import/no-extraneous-dependencies
+import 'isomorphic-fetch';
 
 import expressLogger from './index';
 
 const express = require('express');
 const request = require('supertest');
+const Ajv = require('ajv');
 
 describe('expressLogger middleware', () => {
   const app = express();
@@ -13,12 +15,21 @@ describe('expressLogger middleware', () => {
   });
 
   let nodeEnv;
+  let defaultConsole;
   const spyFunc = jest.fn();
+  const errorFunc = jest.fn();
+  const warnFunc = jest.fn();
 
   beforeAll(() => {
     advanceTo(new Date(2019, 1, 1, 0, 0, 0));
 
-    global.console = {log: spyFunc};
+    defaultConsole = global.console;
+
+    global.console = {
+      log: spyFunc,
+      error: errorFunc,
+      warn: warnFunc,
+    };
 
     nodeEnv = process.env.NODE_ENV;
     process.env.NODE_ENV = 'production';
@@ -26,6 +37,8 @@ describe('expressLogger middleware', () => {
 
   afterEach(() => {
     spyFunc.mockClear();
+    errorFunc.mockClear();
+    warnFunc.mockClear();
   });
 
   afterAll(() => {
@@ -33,39 +46,18 @@ describe('expressLogger middleware', () => {
     clear();
   });
 
-  it('formats log correctly on request in', async () => {
-    await request(app).get('/');
-
-    expect(spyFunc.mock.calls.length).toBe(2);
-    expect(JSON.parse(spyFunc.mock.calls[0][0])).toMatchObject({
-      message: 'Request In: GET /',
-      level: 6,
-      level_name: 'INFO',
-      datetime: new Date().toISOString(),
-      application: 'app-example',
-      http: {
-        method: 'GET',
-        uri: '/',
-        local_ip: '::ffff:127.0.0.1',
-        user_agent: 'node-superagent/3.8.3',
-      },
-      channel: 'middleware',
-    });
-  });
-
   it('formats log correctly on request out', async () => {
     await request(app).get('/');
 
-    expect(spyFunc.mock.calls.length).toBe(2);
-    expect(JSON.parse(spyFunc.mock.calls[1][0])).toMatchObject({
+    expect(spyFunc.mock.calls.length).toBe(1);
+    expect(JSON.parse(spyFunc.mock.calls[0][0])).toMatchObject({
       message: 'Request Out: 200 OK - GET / - origin finish',
       level: 6,
       level_name: 'INFO',
       datetime: new Date().toISOString(),
-      application: 'app-example',
       http: {
         method: 'GET',
-        uri: '/',
+        request: '/',
         status: 200,
         local_ip: '::ffff:127.0.0.1',
         user_agent: 'node-superagent/3.8.3',
@@ -75,5 +67,31 @@ describe('expressLogger middleware', () => {
         time_taken_micros: 0,
       },
     });
+  });
+
+  it('validates the json schema', async () => {
+    const schemaUri = 'https://raw.githubusercontent.com/kununu/kununu-docker-logstash/v1.0.0/specs/application.schema';
+
+    const response = await fetch(schemaUri);
+    const schema = await response.json();
+
+    const ajv = new Ajv({allErrors: true});
+
+    await request(app)
+      .get('/')
+      .set('x-real-ip', '127.0.0.1')
+      .set('x-forwarded-host', 'www.test.dev')
+      .set('x-amzn-trace-id', 'Root=1-67891233-abcdef012345678912345678');
+    const output = JSON.parse(spyFunc.mock.calls[0][0]);
+
+    const validate = await ajv.compile(schema);
+
+    const valid = validate(output);
+
+    if (!valid) {
+      defaultConsole.log(validate.errors);
+    }
+
+    expect(valid).toEqual(true);
   });
 });
