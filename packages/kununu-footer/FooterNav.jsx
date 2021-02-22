@@ -2,7 +2,7 @@ import React, {PureComponent, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import IconPlus from '@kununu/kununu-icons/dist/Plus';
 
-import styles from './index.scss';
+import styles from './index.module.scss';
 
 export default class FooterNav extends PureComponent {
   state = {

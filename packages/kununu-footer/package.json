@@ -1,20 +1,20 @@
 {
   "name": "@kununu/kununu-footer",
-  "version": "3.0.0-beta.0",
+  "version": "3.0.0-beta.2",
   "description": "kununu Footer",
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
   "dependencies": {
     "@kununu/kununu-icons": "1.6.1",
-    "@kununu/kununu-logo": "1.2.2",
+    "@kununu/kununu-logo": "2.0.0-beta.0",
     "@kununu/kununu-theme-v2": "2.0.2",
     "node-sass-module-importer": "0.1.0",
     "nukleus": "kununu/nukleus#e9c3026a207b04c7686d48dfdefefe7af4cf0658"
   },
   "peerDependencies": {
     "@kununu/kununu-icons": "1.6.1",
-    "@kununu/kununu-logo": "1.2.2",
+    "@kununu/kununu-logo": "2.0.0-beta.0",
     "nukleus": "kununu/nukleus#e9c3026a207b04c7686d48dfdefefe7af4cf0658",
     "prop-types": ">=15.6.0",
     "react": ">=16.0.0"
