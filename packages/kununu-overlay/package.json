@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-overlay",
-  "version": "1.2.1",
+  "version": "2.0.0-beta.0",
   "description": "kununu page loading spinner",
   "main": "dist",
   "author": "kununu",
