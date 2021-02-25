@@ -6,7 +6,7 @@ import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
 import Logo from '@kununu/kununu-logo';
 
 import FooterNav from './FooterNav';
-import styles from './index.scss';
+import styles from './index.module.scss';
 import TuvIcon from './Tuv';
 
 export default function Footer ({

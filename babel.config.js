@@ -7,7 +7,7 @@ module.exports = {
   env: {
     production: {
       plugins: [
-        ['transform-rename-import', { 'original': './index.scss', 'replacement': './index.css' }]
+        ['transform-rename-import', { 'original': './index.module.scss', 'replacement': './index.module.css' }]
       ]
     }
   }

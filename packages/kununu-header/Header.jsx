@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Logo from '@kununu/kununu-logo';
 
-import styles from './index.scss';
+import styles from './index.module.scss';
 
 export default function Header ({
   children,
