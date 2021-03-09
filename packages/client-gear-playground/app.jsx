@@ -230,7 +230,6 @@ const getFooter = (pathname, country, menuItem) => (
   <Footer
     infoText={infoText}
     pathname={pathname}
-    tuv
     simpleMobile={false}
     items={{
       countrySwitcher: getFooterCountrySwitcher(country, menuItem),

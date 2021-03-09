@@ -180,7 +180,6 @@
   fill: $gray-base-40;
 }
 
-.tuvColumn,
 .menuColumns,
 .infoTextColumn {
   float: left;
@@ -198,7 +197,6 @@
 }
 
 .menuColumns,
-.tuvColumn,
 .infoTextColumn {
   @media (min-width: $screen-md-min) {
     flex-grow: 1;
@@ -214,21 +212,6 @@
 
   @media (min-width: $screen-sm-min) {
     width: 25%;
-  }
-}
-
-.tuvColumn {
-  padding: 0;
-  width: 8.333333%;
-
-  .tuvIcon {
-    padding: 0;
-    width: 128px;
-    height: auto;
-  }
-
-  @media (min-width: $screen-md-min) {
-    min-width: 120px;
   }
 }
 
@@ -341,14 +324,6 @@
   display: none;
 
   @media (min-width: $screen-sm-min) {
-    display: block;
-  }
-}
-
-.hiddenSm {
-  display: none;
-
-  @media (min-width: $screen-md-min) {
     display: block;
   }
 }
