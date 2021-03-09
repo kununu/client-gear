@@ -71,7 +71,7 @@ export default function Footer ({
               {' '}
               <HeartIcon className={`${styles.heart} ${styles.icon}`} />
               {' '}
-              in Vienna, Boston, Porto, Berlin
+              in Vienna, Porto, Berlin
             </p>
           </div>
         </div>
