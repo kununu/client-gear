@@ -2,7 +2,6 @@ import {lookup} from 'geoip-lite';
 
 import setKununuCountryIpCookie from '.';
 
-jest.mock('../../kununu-helpers/getCountryFromIp', () => () => 'at');
 jest.mock('geoip-lite', () => ({lookup: jest.fn()}));
 
 const req = {
@@ -19,7 +18,6 @@ const res = {
 
 const next = jest.fn();
 const cookieValues = {
-  domain: '.kununu.com',
   httpOnly: false,
   maxAge: 3600000,
   overwrite: true,
@@ -60,17 +58,6 @@ describe('setKununuCountryIpCookie', () => {
     setKununuCountryIpCookie(req, res, next);
 
     expect(res.cookie).toHaveBeenCalledWith('kununu_country_ip', 'pt', cookieValues);
-    expect(next).toHaveBeenCalled();
-  });
-
-  it('should not set domain to .kununu.com because it was dev env', () => {
-    req.get.mockImplementationOnce(() => 'www.dev.kununu.it');
-    setKununuCountryIpCookie(req, res, next);
-
-    expect(res.cookie).toHaveBeenCalledWith('kununu_country_ip', 'de', {
-      ...cookieValues,
-      domain: '.dev.kununu.it',
-    });
     expect(next).toHaveBeenCalled();
   });
 });

@@ -17,24 +17,11 @@ const getCountryFromIp = (req) => {
   return (geo && geo.country.toLowerCase()) || defaultLocale;
 };
 
-const getDomain = (req) => {
-  const domain = req.get('x-forwarded-host') || req.get('host') || 'www.kununu.com';
-
-  let countryDomain = domain.replace('www', '');
-
-  if (countryDomain !== '.dev.kununu.it') {
-    countryDomain = '.kununu.com';
-  }
-
-  return countryDomain;
-};
-
 const setKununuCountryIpCookie = (req, res, next) => {
   if (!req.cookies[cookieName]) {
     const country = getCountryFromIp(req);
-    const domain = getDomain(req);
 
-    res.cookie(cookieName, country, {...cookieOptions, domain});
+    res.cookie(cookieName, country, cookieOptions);
   }
 
   return next();
