@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ToolTip from 'nukleus/dist/components/ToolTip';
 import {DropDown, DropDownItem} from 'nukleus/dist/components/DropDown';
 import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
 import Logo from '@kununu/kununu-logo';
 
 import FooterNav from './FooterNav';
 import styles from './index.scss';
-import TuvIcon from './Tuv';
 
 export default function Footer ({
   container,
@@ -18,7 +16,6 @@ export default function Footer ({
   },
   pathname,
   simpleMobile,
-  tuv,
   assetsPath,
 }) {
   const activeCountry = () => {
@@ -62,26 +59,6 @@ export default function Footer ({
               />
             </div>
           ))}
-          {tuv && (
-            <div className={`${styles.tuvColumn} ${styles.hiddenSm}`}>
-              <ToolTip
-                icon={(
-                  <TuvIcon
-                    className={styles.tuvIcon}
-                    assetsPath={assetsPath}
-                  />
-                )}
-                label="TUV"
-                content={(
-                  <ul className={styles.tooltipContent}>
-                    <li>Anonyme Bewertung</li>
-                    <li>Schutz der persönlichen Daten</li>
-                    <li>Transparente Bewertungsstandards</li>
-                  </ul>
-                )}
-              />
-            </div>
-          )}
           <div className={styles.infoTextColumn}>
             <div className={styles.logoContainer}>
               <Logo assetsPath={assetsPath} />
@@ -94,7 +71,7 @@ export default function Footer ({
               {' '}
               <HeartIcon className={`${styles.heart} ${styles.icon}`} />
               {' '}
-              in Vienna, Boston, Porto, Berlin
+              in Vienna, Porto, Berlin
             </p>
           </div>
         </div>
@@ -163,7 +140,6 @@ Footer.propTypes = {
   }),
   pathname: PropTypes.string.isRequired,
   simpleMobile: PropTypes.bool,
-  tuv: PropTypes.bool,
 };
 
 Footer.defaultProps = {
@@ -171,5 +147,4 @@ Footer.defaultProps = {
   container: 'container-fluid',
   items: {},
   simpleMobile: false,
-  tuv: false,
 };

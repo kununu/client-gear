@@ -1,5 +1,8 @@
 import {advanceTo, clear} from 'jest-date-mock'; // eslint-disable-line import/no-extraneous-dependencies
+
 import 'isomorphic-fetch';
+
+import applicationSchema from './application.schema.json';
 
 import expressLogger from './index';
 
@@ -70,10 +73,7 @@ describe('expressLogger middleware', () => {
   });
 
   it('validates the json schema', async () => {
-    const schemaUri = 'https://raw.githubusercontent.com/kununu/kununu-docker-logstash/v1.0.0/specs/application.schema';
-
-    const response = await fetch(schemaUri);
-    const schema = await response.json();
+    const schema = applicationSchema;
 
     const ajv = new Ajv({allErrors: true});
 
