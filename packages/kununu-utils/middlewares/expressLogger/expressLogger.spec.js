@@ -1,8 +1,10 @@
 import {advanceTo, clear} from 'jest-date-mock'; // eslint-disable-line import/no-extraneous-dependencies
+
 import 'isomorphic-fetch';
 
-import expressLogger from './index';
 import applicationSchema from './application.schema.json';
+
+import expressLogger from './index';
 
 const express = require('express');
 const request = require('supertest');
