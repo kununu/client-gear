@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Kununu ELK Logging JSON Structure for Applications",
+  "$id": "https://github.com/kununu/kununu-docker-logstash/blob/v1.0.1/specs/application.schema",
+
+  "type": "object",
+  "properties": {
+
+    "channel": {
+      "description": "A unique name for a cluster of logical components",
+      "type": "string",
+      "examples": [ "com.solarmetric.kodo.impl.jdbc.SQL", "com.solarmetric.kodo.impl.jdbc.JDBC" ]
+    },
+    
+    "context": {
+      "description": "Used when we want to define different layers inside the application.  This can  be structured in a way that is valuable to the user application",
+      "type": "string",
+      "examples": [ "extra data can be a string", "{ \"exception\": \"Or specially formatted and escaped data\" }" ]
+    },
+
+    "datetime": {
+      "description": "When this event occured",
+      "type": "string",
+      "format": "date-time",
+      "examples": [ "2019-05-02T06:59:01.345464+00:00" ]
+    }, 
+
+    "extra": {
+      "description": "Extra data to be passed which is not implicitly within the context of the log.  This can be unstructured data.",
+      "type": "string",
+      "examples": [ "extra data can be a string", "{ \"header\": \"Or specially formatted and escaped data\" }" ]
+    },
+
+    "http": {
+      "description": "A collection of http specific fields",
+      "type": "object",
+      "properties": {
+
+         "host": {
+           "description": "The Virtual Hostname of this request",
+           "type": "string",
+           "format": "hostname",
+           "examples": [ "www.kununu.com" ]
+         },
+
+         "local_ip": {
+           "description": "The IP Address from the instance running the application",
+           "type": "string",
+           "format": "ipv4"
+         },
+          
+         "method": { "type": "string", "enum": [ "GET", "POST", "DELETE", "HEAD" ] },
+
+         "query": {
+           "description": "The CGI parameters sent with this request",
+           "type": "string"
+         },
+
+         "referer": {
+           "description": "Identifies the address of the webpage (ie the URI or URL) that linked to the resource being requested.",
+           "$comment": "TODO can we remove the '-' and just leave this empty?",
+           "type": "string",
+           "examples": [ "-", "https://www.google.com" ]
+         },
+
+         "request": {
+           "description": "The url requested",
+           "type": "string",
+           "examples": [
+             "/users"
+           ]
+         },
+
+         "status": {
+           "description": "The http status code.",
+           "type": "integer",
+           "minimum": 100,
+           "maximum": 599
+         },
+
+         "user_agent": {
+           "description": "The Browser used to make this request",
+           "type": "string",
+           "examples": [ "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko" ]
+         }
+
+      },
+      "required": [ "host", "local_ip", "method", "request", "status", "user_agent" ],
+      "additionalProperties": false
+    },
+
+    "level": {
+      "description": "An integer log level, based on level_name.",
+      "$comment": "TODO json-schema draft 7 does not permit to us extend definitions, so enforcing the level == level_name is not possible.",
+      "type": "integer",
+      "enum": [   0,           1,       2,         3,        4,         5,        6,      7, 
+                600,         550,     500,       400,      300,       250,      200,    100 ]
+    },
+
+    "level_name": {
+      "description": "A string representation of 'level'.",
+      "type": "string",
+      "enum": [ "EMERGENCY", "ALERT", "CRITICAL", "ERROR", "WARNING", "NOTICE", "INFO", "DEBUG" ]
+    },
+
+    "message": {
+      "description": "A text description of the problem",
+      "type": "string"
+    },
+
+    "metrics": {
+      "description": "A collection of metrics",
+      "type": "object",
+      "properties": {
+
+        "memory_mb": {
+          "description": "The memory consumed in this request (in Megabytes)",
+          "type": "number",
+          "minimum": 0
+        },
+
+        "time_taken_micros": {
+          "description": "The time the request took in microseconds (preferred).",
+          "type": "integer",
+          "mimimum": 0
+        },
+
+        "time_taken_secs": {
+          "description": "The time the request took in seconds (time_taken_micros is preferred).",
+          "$comment": "This exists because certain services have a hard time converting response times into microseconds (ie NginX).  This is a workaround for them.",
+          "type": "number",
+          "mimimum": 0,
+          "examples": [ 59.5, 56 ]
+        }
+
+      },
+      "additionalProperties": false
+    },
+
+
+    "trace_id": {
+      "description": "A unique id for this request.  'Root=' is the id for this request and subrequsts.  'Self=' is the id for the request within this component.",
+      "type": "string",
+      "pattern": "^(?:Self=[^;]+;)?Root=.+$",
+      "examples": [
+        "Self=1-5ccc277d-995dc546491ac7b85f7b35e6;Root=1-5ccc277d-c3d0255c6f9851a7260fe234",
+        "Root=1-5ccc277d-c3d0255c6f9851a7260fe234"
+      ]
+    }
+
+  },
+  "required": [ "datetime", "level", "level_name", "message", "metrics", "trace_id" ],
+  "additionalProperties": false
+}

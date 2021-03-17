@@ -71,7 +71,6 @@ import ThumbUp from '../kununu-icons/ThumbUp';
 import Trash from '../kununu-icons/Trash';
 import User from '../kununu-icons/User';
 import Verified from '../kununu-icons/Verified';
-import Tuv from '../kununu-icons/Tuv';
 
 import styles from './index.scss';
 
@@ -225,9 +224,6 @@ const Icon = () => (
         <Verified />
         <span>Verified</span>
       </div>
-    </div>
-    <div>
-      <Tuv />
     </div>
   </div>
 );
