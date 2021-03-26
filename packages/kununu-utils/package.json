@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-utils",
-  "version": "1.24.5-beta.7",
+  "version": "1.24.5",
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
