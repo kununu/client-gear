@@ -12,7 +12,7 @@ const INFO = 'info';
  * @param {Object} res
  * @param {requestCallback} next
  */
-const expressLogger = application => (req, res, next) => {
+const expressLogger = (application, ignoredRoutes = []) => (req, res, next) => {
   const startDate = new Date();
 
   function log () {
@@ -23,6 +23,8 @@ const expressLogger = application => (req, res, next) => {
 
     // Define log level on
     const level = res.statusCode >= 400 ? (res.statusCode >= 500 ? CRITICAL : ERROR) : INFO; // eslint-disable-line no-nested-ternary
+
+    if (ignoredRoutes.includes(req.originalUrl)) return;
 
     // Logs a request out using kununu-logger
     requestLogger.log(this.level ? this.level : level, {
