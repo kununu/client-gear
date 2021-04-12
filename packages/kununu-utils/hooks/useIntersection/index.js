@@ -43,7 +43,7 @@ const useIntersection = (options) => {
     }
 
     return () => {
-      observer.current.unobserve(ref.current);
+      observer.current.disconnect();
     };
   }, []);
   return [setRef, isIntersecting];
