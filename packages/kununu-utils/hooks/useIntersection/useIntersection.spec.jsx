@@ -7,10 +7,12 @@ import useIntersection from '.';
 
 const observeSpy = jest.fn();
 const unobserveSpy = jest.fn();
+const disconnectSpy = jest.fn();
 
 global.IntersectionObserver = jest.fn(() => ({
   observe: observeSpy,
   unobserve: unobserveSpy,
+  disconnect: disconnectSpy,
 }));
 
 jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
@@ -51,11 +53,10 @@ describe('useIntersection custom hook', () => {
   });
 
   it('should unmount the hook', () => {
-    const {container, unmount} = render(<HookComponent />);
-    const wrapper = container.querySelector('#wrapper');
+    const {unmount} = render(<HookComponent />);
 
     unmount();
-    expect(unobserveSpy).toHaveBeenCalledWith(wrapper);
+    expect(disconnectSpy).toHaveBeenCalledWith();
   });
 
   it('should trigger isIntersecting', () => {
