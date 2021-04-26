@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {DropDown, DropDownItem} from 'nukleus/dist/components/DropDown';
+import {Link} from 'react-router-dom';
 import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
 import Logo from '@kununu/kununu-logo';
 
@@ -102,6 +103,22 @@ export default function Footer ({
                   {item.link}
                 </DropDownItem>
               ))}
+            </DropDown>
+          </div>
+          <div className={`${styles.dropdown} ${styles.hiddenXs}`}>
+            <DropDown
+              direction="up"
+              shade="light"
+              showOnHover={false}
+              pullRight
+              title="English"
+            >
+              <DropDownItem>
+                <Link to="/at?x-lang=en_US">English</Link>
+              </DropDownItem>
+              <DropDownItem>
+                <Link to="/">German</Link>
+              </DropDownItem>
             </DropDown>
           </div>
         </div>

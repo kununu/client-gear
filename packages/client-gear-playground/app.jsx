@@ -99,7 +99,7 @@ const getFooterCountrySwitcher = (country, menuItem) => (
         alt="Austrian Flag"
         src={at}
       />,
-      link: <Link to={{pathname: `/at${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
+      link: <Link to={{pathname: `/at${menuItem ? `/${menuItem}` : ''}`}}>Austria</Link>,
       value: 'Austria',
     },
     {
@@ -109,7 +109,7 @@ const getFooterCountrySwitcher = (country, menuItem) => (
         alt="German Flag"
         src={de}
       />,
-      link: <Link to={{pathname: `/de${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
+      link: <Link to={{pathname: `/de${menuItem ? `/${menuItem}` : ''}`}}>German</Link>,
       value: 'German',
     },
     {
@@ -119,7 +119,7 @@ const getFooterCountrySwitcher = (country, menuItem) => (
         alt="Swiss Flag"
         src={ch}
       />,
-      link: <Link to={{pathname: `/ch${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
+      link: <Link to={{pathname: `/ch${menuItem ? `/${menuItem}` : ''}`}}>Switzerland</Link>,
       value: 'Switzerland',
     },
     {
@@ -129,7 +129,7 @@ const getFooterCountrySwitcher = (country, menuItem) => (
         alt="American Flag"
         src={us}
       />,
-      link: <Link to={{pathname: `/us${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
+      link: <Link to={{pathname: `/us${menuItem ? `/${menuItem}` : ''}`}}>United States</Link>,
       value: 'United States',
     },
   ]
