@@ -1,7 +1,8 @@
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import {DropDown, DropDownItem} from 'nukleus/dist/components/DropDown';
-import {Link} from 'react-router-dom';
 import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
 import Logo from '@kununu/kununu-logo';
 
@@ -13,6 +14,7 @@ export default function Footer ({
   infoText,
   items: {
     countrySwitcher,
+    languageSwitcher,
     navs,
   },
   pathname,
@@ -20,13 +22,35 @@ export default function Footer ({
   assetsPath,
 }) {
   const activeCountry = () => {
-    const active = countrySwitcher.filter(item => item.active);
+    const active = countrySwitcher.find(item => item.active);
 
     return (
       <span>
-        {active[0].value}
+        {active.value}
         {' '}
-        {active[0].icon}
+        {active.icon}
+      </span>
+    );
+  };
+
+  const activeLanguage = () => {
+    const active = languageSwitcher.find(item => item.active);
+
+    if (!active) {
+      return (
+        <span>
+          {languageSwitcher[0].value}
+          {' '}
+          {languageSwitcher[0].icon}
+        </span>
+      );
+    }
+
+    return (
+      <span>
+        {active.value}
+        {' '}
+        {active.icon}
       </span>
     );
   };
@@ -50,7 +74,7 @@ export default function Footer ({
           {navs.cols.map((item, index) => (
             <div
               className={styles.menuColumns}
-              key={index} // eslint-disable-line react/no-array-index-key
+              key={index}
             >
               <FooterNav
                 items={item.items}
@@ -80,7 +104,7 @@ export default function Footer ({
           <div>
             {navs.rows.map((item, index) => (
               <FooterNav
-                key={index} // eslint-disable-line react/no-array-index-key
+                key={index}
                 pathname={pathname}
                 items={item.items}
                 type="row"
@@ -97,7 +121,7 @@ export default function Footer ({
             >
               {countrySwitcher.map((item, index) => (
                 <DropDownItem
-                  key={index} // eslint-disable-line react/no-array-index-key
+                  key={index}
                   icon={item.icon}
                 >
                   {item.link}
@@ -111,14 +135,18 @@ export default function Footer ({
               shade="light"
               showOnHover={false}
               pullRight
-              title="English"
+              title={activeLanguage()}
             >
-              <DropDownItem>
-                <Link to="/at?x-lang=en_US">English</Link>
-              </DropDownItem>
-              <DropDownItem>
-                <Link to="/">German</Link>
-              </DropDownItem>
+              {
+                languageSwitcher.map((language, index) => (
+                  <DropDownItem
+                    key={index}
+                    icon={language.icon}
+                  >
+                    {language.link}
+                  </DropDownItem>
+                ))
+              }
             </DropDown>
           </div>
         </div>
@@ -137,6 +165,11 @@ Footer.propTypes = {
       icon: PropTypes.element,
       link: PropTypes.element.isRequired,
       value: PropTypes.string.isRequired,
+    })),
+    languageSwitcher: PropTypes.arrayOf(PropTypes.shape({
+      active: PropTypes.bool,
+      icon: PropTypes.element,
+      link: PropTypes.element.isRequired,
     })),
     navs: PropTypes.shape({
       cols: PropTypes.arrayOf(PropTypes.shape({

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import Tabs from 'nukleus/dist/components/Tabs';
@@ -135,6 +135,31 @@ const getFooterCountrySwitcher = (country, menuItem) => (
   ]
 );
 
+const getFooterLanguageSwitcher = (country, language, menuItem) => (
+  [
+    {
+      active: language === 'de',
+      icon: <img
+        title="German Flag"
+        alt="German Flag"
+        src={de}
+      />,
+      link: <Link to={{pathname: `/${country}${menuItem ? `/${menuItem}` : ''}`}}>German</Link>,
+      value: 'German'
+    },
+    {
+      active: language === 'en_US',
+      icon: <img
+        title="American Flag"
+        alt="American Flag"
+        src={us}
+      />,
+      link: <Link to={{pathname: `/${country}${menuItem ? `/${menuItem}` : ''}`, search: 'x-lang=en_US'}}>English</Link>,
+      value: 'English'
+    },
+  ]
+);
+
 const getFooterCols = country => (
   [
     {
@@ -226,13 +251,15 @@ const getFooterRows = country => (
     },
   ]
 );
-const getFooter = (pathname, country, menuItem) => (
+
+const getFooter = (pathname, country, menuItem, language) => (
   <Footer
     infoText={infoText}
     pathname={pathname}
     simpleMobile={false}
     items={{
       countrySwitcher: getFooterCountrySwitcher(country, menuItem),
+      languageSwitcher: getFooterLanguageSwitcher(country, language, menuItem),
       navs: {
         cols: getFooterCols(country),
         rows: getFooterRows(country),
@@ -241,49 +268,64 @@ const getFooter = (pathname, country, menuItem) => (
   />
 );
 
-const App = ({location: {pathname, hash}, match: {params: {country, menuItem}}}) => (
-  <div className="appContainer">
-    {getHeader()}
-    <main role="main">
-      <div className="container-fluid">
-        <div className={styles.menu}>
-          <Tabs
-            items={[
-              <Link to={{pathname: `/${country}`}}>Home</Link>,
-              <Link to={{pathname: `/${country}`, hash: '#icons'}}>Icons</Link>,
-              <Link to={{pathname: `/${country}`, hash: '#form-wrapper'}}>Form Wrapper</Link>,
-            ]}
-            pathname={`/${country}`}
-            hash={hash}
-          />
-          {!hash && <Home />}
-          {hash === '#icons' && <Icons />}
-          {hash === '#form-wrapper' && (
-            <FormWrapperComponent getInitialFields={() => ({
-              text_name: defaultField,
-              select_name: {
-                ...defaultField,
-                value: 'b',
-              },
-              minLengthValidation: {
-                ...defaultField,
-                validations: [
-                  {
-                    type: validationTypes.minLength,
-                    minLength: 2,
-                    message: 'min length',
-                  },
-                ],
-              },
-            })}
+const getSelectedLanguage = (search) => {
+  // TODO: add support to IE
+  const queryParams = new URLSearchParams(search);
+
+  return queryParams.get('x-lang');
+}
+
+const App = ({location: {pathname, hash, search}, location, match: {params: {country, menuItem}}}) => {
+  const [language, setLanguage] = useState(getSelectedLanguage(search));
+  
+  useEffect(() => {
+    setLanguage(getSelectedLanguage(search) || 'de')
+  }, [search])
+  
+  return (
+    <div className="appContainer">
+      {getHeader()}
+      <main role="main">
+        <div className="container-fluid">
+          <div className={styles.menu}>
+            <Tabs
+              items={[
+                <Link to={{pathname: `/${country}`}}>Home</Link>,
+                <Link to={{pathname: `/${country}`, hash: '#icons'}}>Icons</Link>,
+                <Link to={{pathname: `/${country}`, hash: '#form-wrapper'}}>Form Wrapper</Link>,
+              ]}
+              pathname={`/${country}`}
+              hash={hash}
             />
-          )}
+            {!hash && <Home />}
+            {hash === '#icons' && <Icons />}
+            {hash === '#form-wrapper' && (
+              <FormWrapperComponent getInitialFields={() => ({
+                text_name: defaultField,
+                select_name: {
+                  ...defaultField,
+                  value: 'b',
+                },
+                minLengthValidation: {
+                  ...defaultField,
+                  validations: [
+                    {
+                      type: validationTypes.minLength,
+                      minLength: 2,
+                      message: 'min length',
+                    },
+                  ],
+                },
+              })}
+              />
+            )}
+          </div>
         </div>
-      </div>
-    </main>
-    {getFooter(pathname, country, menuItem)}
-  </div>
-);
+      </main>
+      {getFooter(pathname, country, menuItem, language)}
+    </div>
+  );
+}
 
 App.propTypes = {
   location: PropTypes.shape({
