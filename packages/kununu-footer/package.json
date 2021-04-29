@@ -9,6 +9,7 @@
     "@kununu/kununu-icons": "1.6.1",
     "@kununu/kununu-logo": "1.2.2",
     "@kununu/kununu-theme-v2": "2.0.2",
+    "@kununu/kununu-utils": "1.25.0",
     "node-sass-module-importer": "0.1.0",
     "nukleus": "14.1.12"
   },
@@ -21,9 +22,16 @@
   },
   "scripts": {
     "prepare": "npm run dist",
-    "babel": "babel $(find ./ -name '*.jsx' ! -name '*.test.jsx' ! -ipath '*node_modules*') --out-dir ./dist --root-mode upward",
-    "sass": "node-sass ./index.scss --output ./dist --importer node_modules/node-sass-module-importer",
+    "babel": "babel src --out-dir ./dist --root-mode upward",
+    "sass": "node-sass ./src/index.scss --output ./dist --importer node_modules/node-sass-module-importer",
     "clean": "rimraf ./dist",
     "dist": "npm run clean && cross-env NODE_ENV=production npm run babel && npm run sass"
+  },
+  "devDependencies": {
+    "cross-env": "7.0.3",
+    "rimraf": "3.0.2",
+    "@babel/cli": "7.2.3",
+    "node-sass": "4.11.0",
+    "node-sass-module-importer": "0.1.0"
   }
 }

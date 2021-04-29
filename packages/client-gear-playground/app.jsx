@@ -27,6 +27,11 @@ const ch = require('./img/ch.gif');
 const de = require('./img/de.gif');
 const us = require('./img/us.gif');
 
+const TRANSLATIONS_MOCK = {
+  'AP_LANGUAGE_EN': 'English',
+  'AP_LANGUAGE_DE_DE': 'German',
+};
+
 const infoText = (
   <span>
     Auf kununu wurden bereits
@@ -135,31 +140,6 @@ const getFooterCountrySwitcher = (country, menuItem) => (
   ]
 );
 
-const getFooterLanguageSwitcher = (country, language, menuItem) => (
-  [
-    {
-      active: language === 'de',
-      icon: <img
-        title="German Flag"
-        alt="German Flag"
-        src={de}
-      />,
-      link: <Link to={{pathname: `/${country}${menuItem ? `/${menuItem}` : ''}`}}>German</Link>,
-      value: 'German'
-    },
-    {
-      active: language === 'en_US',
-      icon: <img
-        title="American Flag"
-        alt="American Flag"
-        src={us}
-      />,
-      link: <Link to={{pathname: `/${country}${menuItem ? `/${menuItem}` : ''}`, search: 'x-lang=en_US'}}>English</Link>,
-      value: 'English'
-    },
-  ]
-);
-
 const getFooterCols = country => (
   [
     {
@@ -259,29 +239,16 @@ const getFooter = (pathname, country, menuItem, language) => (
     simpleMobile={false}
     items={{
       countrySwitcher: getFooterCountrySwitcher(country, menuItem),
-      languageSwitcher: getFooterLanguageSwitcher(country, language, menuItem),
       navs: {
         cols: getFooterCols(country),
         rows: getFooterRows(country),
       },
     }}
+    renderTranslation={(key) => TRANSLATIONS_MOCK[key]}
   />
 );
 
-const getSelectedLanguage = (search) => {
-  // TODO: add support to IE
-  const queryParams = new URLSearchParams(search);
-
-  return queryParams.get('x-lang');
-}
-
-const App = ({location: {pathname, hash, search}, location, match: {params: {country, menuItem}}}) => {
-  const [language, setLanguage] = useState(getSelectedLanguage(search));
-  
-  useEffect(() => {
-    setLanguage(getSelectedLanguage(search) || 'de')
-  }, [search])
-  
+const App = ({location: {pathname, hash}, match: {params: {country, menuItem}}}) => {  
   return (
     <div className="appContainer">
       {getHeader()}
@@ -322,7 +289,7 @@ const App = ({location: {pathname, hash, search}, location, match: {params: {cou
           </div>
         </div>
       </main>
-      {getFooter(pathname, country, menuItem, language)}
+      {getFooter(pathname, country, menuItem)}
     </div>
   );
 }

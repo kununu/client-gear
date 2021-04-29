@@ -4,22 +4,61 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {DropDown, DropDownItem} from 'nukleus/dist/components/DropDown';
 import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
+import FlagDeIcon from '@kununu/kununu-icons/dist/FlagDe';
+import FlagUsIcon from '@kununu/kununu-icons/dist/FlagUs';
+import isClientRender from '@kununu/kununu-utils/kununu-helpers/isClientRender';
 import Logo from '@kununu/kununu-logo';
 
+import ActiveLanguage from './ActiveLanguage';
 import FooterNav from './FooterNav';
+import {setLanguageCookieOnBrowser} from './utils/languageCookie';
+import {X_LANG_REGEX, LANGUAGES} from './utils/languageConfigs';
+import getSelectedLanguage from './utils/getSelectedLanguage';
 import styles from './index.scss';
+
+// TODO: should we read from window.navigator.language
+// TODO: update cookie on first render if has a query
+// TODO: update package.json version
+// TODO: hide languages if x-lang is not on the url
+// TODO: Move languages functions to kununu-utils
+
+function buildLanguageUrl (language) {
+  if (isClientRender()) {
+    const {pathname, search, hash} = window.location;
+
+    const hasXLang = search.includes('x-lang=');
+    const xLangParameter = `x-lang=${language}`;
+    let normalizedSearch;
+
+    if (hasXLang) {
+      normalizedSearch = search.replace(X_LANG_REGEX, xLangParameter);
+    } else {
+      normalizedSearch = search ? `${search}&${xLangParameter}` : `?${xLangParameter}`;
+    }
+
+    return `${pathname}${normalizedSearch}${hash}`;
+  }
+
+  return '';
+}
+
+function makeHandleOnLanguageClick (language) {
+  return function handleOnLanguageClick () {
+    setLanguageCookieOnBrowser(language);
+  };
+}
 
 export default function Footer ({
   container,
   infoText,
   items: {
     countrySwitcher,
-    languageSwitcher,
     navs,
   },
   pathname,
   simpleMobile,
   assetsPath,
+  renderTranslation,
 }) {
   const activeCountry = () => {
     const active = countrySwitcher.find(item => item.active);
@@ -33,27 +72,7 @@ export default function Footer ({
     );
   };
 
-  const activeLanguage = () => {
-    const active = languageSwitcher.find(item => item.active);
-
-    if (!active) {
-      return (
-        <span>
-          {languageSwitcher[0].value}
-          {' '}
-          {languageSwitcher[0].icon}
-        </span>
-      );
-    }
-
-    return (
-      <span>
-        {active.value}
-        {' '}
-        {active.icon}
-      </span>
-    );
-  };
+  const selectedLanguage = getSelectedLanguage();
 
   return (
     <footer
@@ -135,18 +154,30 @@ export default function Footer ({
               shade="light"
               showOnHover={false}
               pullRight
-              title={activeLanguage()}
+              title={
+                (
+                  <ActiveLanguage
+                    language={selectedLanguage}
+                    renderTranslation={renderTranslation}
+                  />
+                )}
             >
-              {
-                languageSwitcher.map((language, index) => (
-                  <DropDownItem
-                    key={index}
-                    icon={language.icon}
-                  >
-                    {language.link}
-                  </DropDownItem>
-                ))
-              }
+              <DropDownItem icon={<FlagUsIcon className={styles.flag} />}>
+                <a
+                  onClick={makeHandleOnLanguageClick(LANGUAGES.en.default)}
+                  href={buildLanguageUrl(LANGUAGES.en.default)}
+                >
+                  {renderTranslation('AP_LANGUAGE_EN')}
+                </a>
+              </DropDownItem>
+              <DropDownItem icon={<FlagDeIcon className={styles.flag} />}>
+                <a
+                  onClick={makeHandleOnLanguageClick(LANGUAGES.de.default)}
+                  href={buildLanguageUrl(LANGUAGES.de.default)}
+                >
+                  {renderTranslation('AP_LANGUAGE_DE_DE')}
+                </a>
+              </DropDownItem>
             </DropDown>
           </div>
         </div>
@@ -159,17 +190,13 @@ Footer.propTypes = {
   assetsPath: PropTypes.string,
   container: PropTypes.string,
   infoText: PropTypes.element.isRequired,
+  renderTranslation: PropTypes.func.isRequired,
   items: PropTypes.shape({
     countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
       active: PropTypes.bool,
       icon: PropTypes.element,
       link: PropTypes.element.isRequired,
       value: PropTypes.string.isRequired,
-    })),
-    languageSwitcher: PropTypes.arrayOf(PropTypes.shape({
-      active: PropTypes.bool,
-      icon: PropTypes.element,
-      link: PropTypes.element.isRequired,
     })),
     navs: PropTypes.shape({
       cols: PropTypes.arrayOf(PropTypes.shape({
