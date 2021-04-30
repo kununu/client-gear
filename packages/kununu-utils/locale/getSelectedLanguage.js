@@ -1,6 +1,6 @@
-import isClientRender from '@kununu/kununu-utils/kununu-helpers/isClientRender';
+import isClientRender from '../kununu-helpers/isClientRender';
 
-import {getLanguageCookie} from './languageCookie';
+import {languageCookie} from './languageCookie';
 import {X_LANG_REGEX, DEFAULT_LOCALE} from './languageConfigs';
 
 function getLocaleByQuery () {
@@ -11,7 +11,7 @@ function getLocaleByQuery () {
 
 function getSelectedLanguage () {
   if (isClientRender()) {
-    return getLocaleByQuery() || getLanguageCookie() || DEFAULT_LOCALE;
+    return getLocaleByQuery() || languageCookie.browser.get() || DEFAULT_LOCALE;
   }
 
   return DEFAULT_LOCALE;

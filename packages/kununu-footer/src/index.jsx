@@ -7,20 +7,19 @@ import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
 import FlagDeIcon from '@kununu/kununu-icons/dist/FlagDe';
 import FlagUsIcon from '@kununu/kununu-icons/dist/FlagUs';
 import isClientRender from '@kununu/kununu-utils/kununu-helpers/isClientRender';
+import {languageCookie} from '@kununu/kununu-utils/locale/languageCookie';
+import {X_LANG_REGEX, LANGUAGES} from '@kununu/kununu-utils/locale/languageConfigs';
+import getSelectedLanguage from '@kununu/kununu-utils/locale/getSelectedLanguage';
 import Logo from '@kununu/kununu-logo';
 
 import ActiveLanguage from './ActiveLanguage';
 import FooterNav from './FooterNav';
-import {setLanguageCookieOnBrowser} from './utils/languageCookie';
-import {X_LANG_REGEX, LANGUAGES} from './utils/languageConfigs';
-import getSelectedLanguage from './utils/getSelectedLanguage';
 import styles from './index.scss';
 
-// TODO: should we read from window.navigator.language
+// TODO: should we read from window.navigator.language?
 // TODO: update cookie on first render if has a query
-// TODO: update package.json version
 // TODO: hide languages if x-lang is not on the url
-// TODO: Move languages functions to kununu-utils
+// TODO: handle case of when xlang on window.location.search is not valid for kununu UC
 
 function buildLanguageUrl (language) {
   if (isClientRender()) {
@@ -44,7 +43,7 @@ function buildLanguageUrl (language) {
 
 function makeHandleOnLanguageClick (language) {
   return function handleOnLanguageClick () {
-    setLanguageCookieOnBrowser(language);
+    languageCookie.browser.set(language);
   };
 }
 

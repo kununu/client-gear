@@ -1,11 +1,12 @@
 {
   "name": "@kununu/kununu-utils",
-  "version": "1.25.1",
+  "version": "1.27.0-beta.0",
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
     "@babel/cli": "7.4.4",
     "ajv": "6.10.2",
+    "cross-env": "7.0.3",
     "express": "4.17.1",
     "fetch-mock": "7.3.3",
     "jsonwebtoken": "8.5.1",

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import Tabs from 'nukleus/dist/components/Tabs';
@@ -10,7 +10,7 @@ import Tabs from 'nukleus/dist/components/Tabs';
 // import {Header, HeaderNav, HeaderNavItem} from '@kununu/kununu-header';
 // import {validationTypes} from '@kununu/kununu-utils/kununu-helpers/formValidation';
 
-import Footer from '../kununu-footer/index';
+import Footer from '../kununu-footer/src/index';
 import FormWrapper from '../kununu-form-wrapper/index';
 import IconSearch from '../kununu-icons/Search';
 import IconUser from '../kununu-icons/User';
@@ -28,8 +28,8 @@ const de = require('./img/de.gif');
 const us = require('./img/us.gif');
 
 const TRANSLATIONS_MOCK = {
-  'AP_LANGUAGE_EN': 'English',
-  'AP_LANGUAGE_DE_DE': 'German',
+  AP_LANGUAGE_EN: 'English',
+  AP_LANGUAGE_DE_DE: 'German',
 };
 
 const infoText = (
@@ -232,7 +232,7 @@ const getFooterRows = country => (
   ]
 );
 
-const getFooter = (pathname, country, menuItem, language) => (
+const getFooter = (pathname, country, menuItem) => (
   <Footer
     infoText={infoText}
     pathname={pathname}
@@ -244,55 +244,53 @@ const getFooter = (pathname, country, menuItem, language) => (
         rows: getFooterRows(country),
       },
     }}
-    renderTranslation={(key) => TRANSLATIONS_MOCK[key]}
+    renderTranslation={key => TRANSLATIONS_MOCK[key]}
   />
 );
 
-const App = ({location: {pathname, hash}, match: {params: {country, menuItem}}}) => {  
-  return (
-    <div className="appContainer">
-      {getHeader()}
-      <main role="main">
-        <div className="container-fluid">
-          <div className={styles.menu}>
-            <Tabs
-              items={[
-                <Link to={{pathname: `/${country}`}}>Home</Link>,
-                <Link to={{pathname: `/${country}`, hash: '#icons'}}>Icons</Link>,
-                <Link to={{pathname: `/${country}`, hash: '#form-wrapper'}}>Form Wrapper</Link>,
-              ]}
-              pathname={`/${country}`}
-              hash={hash}
+const App = ({location: {pathname, hash}, match: {params: {country, menuItem}}}) => (
+  <div className="appContainer">
+    {getHeader()}
+    <main role="main">
+      <div className="container-fluid">
+        <div className={styles.menu}>
+          <Tabs
+            items={[
+              <Link to={{pathname: `/${country}`}}>Home</Link>,
+              <Link to={{pathname: `/${country}`, hash: '#icons'}}>Icons</Link>,
+              <Link to={{pathname: `/${country}`, hash: '#form-wrapper'}}>Form Wrapper</Link>,
+            ]}
+            pathname={`/${country}`}
+            hash={hash}
+          />
+          {!hash && <Home />}
+          {hash === '#icons' && <Icons />}
+          {hash === '#form-wrapper' && (
+            <FormWrapperComponent getInitialFields={() => ({
+              text_name: defaultField,
+              select_name: {
+                ...defaultField,
+                value: 'b',
+              },
+              minLengthValidation: {
+                ...defaultField,
+                validations: [
+                  {
+                    type: validationTypes.minLength,
+                    minLength: 2,
+                    message: 'min length',
+                  },
+                ],
+              },
+            })}
             />
-            {!hash && <Home />}
-            {hash === '#icons' && <Icons />}
-            {hash === '#form-wrapper' && (
-              <FormWrapperComponent getInitialFields={() => ({
-                text_name: defaultField,
-                select_name: {
-                  ...defaultField,
-                  value: 'b',
-                },
-                minLengthValidation: {
-                  ...defaultField,
-                  validations: [
-                    {
-                      type: validationTypes.minLength,
-                      minLength: 2,
-                      message: 'min length',
-                    },
-                  ],
-                },
-              })}
-              />
-            )}
-          </div>
+          )}
         </div>
-      </main>
-      {getFooter(pathname, country, menuItem)}
-    </div>
-  );
-}
+      </div>
+    </main>
+    {getFooter(pathname, country, menuItem)}
+  </div>
+);
 
 App.propTypes = {
   location: PropTypes.shape({
