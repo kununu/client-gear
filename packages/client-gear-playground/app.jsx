@@ -10,7 +10,7 @@ import Tabs from 'nukleus/dist/components/Tabs';
 // import {Header, HeaderNav, HeaderNavItem} from '@kununu/kununu-header';
 // import {validationTypes} from '@kununu/kununu-utils/kununu-helpers/formValidation';
 
-import Footer from '../kununu-footer/index';
+import Footer from '../kununu-footer/src/index';
 import FormWrapper from '../kununu-form-wrapper/index';
 import IconSearch from '../kununu-icons/Search';
 import IconUser from '../kununu-icons/User';
@@ -26,6 +26,11 @@ const at = require('./img/at.gif');
 const ch = require('./img/ch.gif');
 const de = require('./img/de.gif');
 const us = require('./img/us.gif');
+
+const TRANSLATIONS_MOCK = {
+  AP_LANGUAGE_EN: 'English',
+  AP_LANGUAGE_DE_DE: 'German',
+};
 
 const infoText = (
   <span>
@@ -99,7 +104,7 @@ const getFooterCountrySwitcher = (country, menuItem) => (
         alt="Austrian Flag"
         src={at}
       />,
-      link: <Link to={{pathname: `/at${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
+      link: <Link to={{pathname: `/at${menuItem ? `/${menuItem}` : ''}`}}>Austria</Link>,
       value: 'Austria',
     },
     {
@@ -109,7 +114,7 @@ const getFooterCountrySwitcher = (country, menuItem) => (
         alt="German Flag"
         src={de}
       />,
-      link: <Link to={{pathname: `/de${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
+      link: <Link to={{pathname: `/de${menuItem ? `/${menuItem}` : ''}`}}>German</Link>,
       value: 'German',
     },
     {
@@ -119,7 +124,7 @@ const getFooterCountrySwitcher = (country, menuItem) => (
         alt="Swiss Flag"
         src={ch}
       />,
-      link: <Link to={{pathname: `/ch${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
+      link: <Link to={{pathname: `/ch${menuItem ? `/${menuItem}` : ''}`}}>Switzerland</Link>,
       value: 'Switzerland',
     },
     {
@@ -129,7 +134,7 @@ const getFooterCountrySwitcher = (country, menuItem) => (
         alt="American Flag"
         src={us}
       />,
-      link: <Link to={{pathname: `/us${menuItem ? `/${menuItem}` : ''}`}}>test</Link>,
+      link: <Link to={{pathname: `/us${menuItem ? `/${menuItem}` : ''}`}}>United States</Link>,
       value: 'United States',
     },
   ]
@@ -226,6 +231,7 @@ const getFooterRows = country => (
     },
   ]
 );
+
 const getFooter = (pathname, country, menuItem) => (
   <Footer
     infoText={infoText}
@@ -238,6 +244,7 @@ const getFooter = (pathname, country, menuItem) => (
         rows: getFooterRows(country),
       },
     }}
+    renderTranslation={key => TRANSLATIONS_MOCK[key]}
   />
 );
 

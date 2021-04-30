@@ -1,11 +1,51 @@
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import {DropDown, DropDownItem} from 'nukleus/dist/components/DropDown';
 import HeartIcon from '@kununu/kununu-icons/dist/HeartOutline';
+import FlagDeIcon from '@kununu/kununu-icons/dist/FlagDe';
+import FlagUsIcon from '@kununu/kununu-icons/dist/FlagUs';
+import isClientRender from '@kununu/kununu-utils/kununu-helpers/isClientRender';
+import {languageCookie} from '@kununu/kununu-utils/locale/languageCookie';
+import {X_ANY_LANGUAGE_REGEX, LANGUAGES} from '@kununu/kununu-utils/locale/languageConfigs';
+import getSelectedLanguage from '@kununu/kununu-utils/locale/getSelectedLanguage';
 import Logo from '@kununu/kununu-logo';
 
+import ActiveLanguage from './ActiveLanguage';
 import FooterNav from './FooterNav';
 import styles from './index.scss';
+
+// TODO: should we read from window.navigator.language?
+// TODO: update cookie on first render if has a query
+// TODO: hide languages if x-lang is not on the url
+// TODO: handle case of when xlang on window.location.search is not valid for kununu UC
+
+function buildLanguageUrl (language) {
+  if (isClientRender()) {
+    const {pathname, search, hash} = window.location;
+
+    const hasXLang = search.includes('x-lang=');
+    const xLangParameter = `x-lang=${language}`;
+    let normalizedSearch;
+
+    if (hasXLang) {
+      normalizedSearch = search.replace(X_ANY_LANGUAGE_REGEX, xLangParameter);
+    } else {
+      normalizedSearch = search ? `${search}&${xLangParameter}` : `?${xLangParameter}`;
+    }
+
+    return `${pathname}${normalizedSearch}${hash}`;
+  }
+
+  return '';
+}
+
+function makeHandleOnLanguageClick (language) {
+  return function handleOnLanguageClick () {
+    languageCookie.browser.set(language);
+  };
+}
 
 export default function Footer ({
   container,
@@ -17,18 +57,21 @@ export default function Footer ({
   pathname,
   simpleMobile,
   assetsPath,
+  renderTranslation,
 }) {
   const activeCountry = () => {
-    const active = countrySwitcher.filter(item => item.active);
+    const active = countrySwitcher.find(item => item.active);
 
     return (
       <span>
-        {active[0].value}
+        {active.value}
         {' '}
-        {active[0].icon}
+        {active.icon}
       </span>
     );
   };
+
+  const selectedLanguage = getSelectedLanguage();
 
   return (
     <footer
@@ -49,7 +92,7 @@ export default function Footer ({
           {navs.cols.map((item, index) => (
             <div
               className={styles.menuColumns}
-              key={index} // eslint-disable-line react/no-array-index-key
+              key={index}
             >
               <FooterNav
                 items={item.items}
@@ -79,7 +122,7 @@ export default function Footer ({
           <div>
             {navs.rows.map((item, index) => (
               <FooterNav
-                key={index} // eslint-disable-line react/no-array-index-key
+                key={index}
                 pathname={pathname}
                 items={item.items}
                 type="row"
@@ -96,12 +139,44 @@ export default function Footer ({
             >
               {countrySwitcher.map((item, index) => (
                 <DropDownItem
-                  key={index} // eslint-disable-line react/no-array-index-key
+                  key={index}
                   icon={item.icon}
                 >
                   {item.link}
                 </DropDownItem>
               ))}
+            </DropDown>
+          </div>
+          <div className={`${styles.dropdown} ${styles.hiddenXs}`}>
+            <DropDown
+              direction="up"
+              shade="light"
+              showOnHover={false}
+              pullRight
+              title={
+                (
+                  <ActiveLanguage
+                    language={selectedLanguage}
+                    renderTranslation={renderTranslation}
+                  />
+                )}
+            >
+              <DropDownItem icon={<FlagUsIcon className={styles.flag} />}>
+                <a
+                  onClick={makeHandleOnLanguageClick(LANGUAGES.en.default)}
+                  href={buildLanguageUrl(LANGUAGES.en.default)}
+                >
+                  {renderTranslation('AP_LANGUAGE_EN')}
+                </a>
+              </DropDownItem>
+              <DropDownItem icon={<FlagDeIcon className={styles.flag} />}>
+                <a
+                  onClick={makeHandleOnLanguageClick(LANGUAGES.de.default)}
+                  href={buildLanguageUrl(LANGUAGES.de.default)}
+                >
+                  {renderTranslation('AP_LANGUAGE_DE_DE')}
+                </a>
+              </DropDownItem>
             </DropDown>
           </div>
         </div>
@@ -114,6 +189,7 @@ Footer.propTypes = {
   assetsPath: PropTypes.string,
   container: PropTypes.string,
   infoText: PropTypes.element.isRequired,
+  renderTranslation: PropTypes.func.isRequired,
   items: PropTypes.shape({
     countrySwitcher: PropTypes.arrayOf(PropTypes.shape({
       active: PropTypes.bool,

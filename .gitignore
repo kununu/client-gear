@@ -48,3 +48,5 @@ build
 
 # vscode history files 
 .history/
+
+.DS_STORE

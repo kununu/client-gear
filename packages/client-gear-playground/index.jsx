@@ -11,7 +11,7 @@ render(
   <BrowserRouter>
     <Switch>
       <Route
-        path="/:country"
+        path="/:country(at|de|ch|us)(.*)"
         component={App}
       />
       <Route
