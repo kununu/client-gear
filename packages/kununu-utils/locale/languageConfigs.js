@@ -1,4 +1,5 @@
 export const X_LANG_REGEX = /x-lang=(de_DE|en_US)/gi;
+export const X_ANY_LANGUAGE_REGEX = /x-lang=(.+_.+)/gi;
 
 export const LANGUAGES = {
   de: {

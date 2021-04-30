@@ -8,7 +8,7 @@ import FlagDeIcon from '@kununu/kununu-icons/dist/FlagDe';
 import FlagUsIcon from '@kununu/kununu-icons/dist/FlagUs';
 import isClientRender from '@kununu/kununu-utils/kununu-helpers/isClientRender';
 import {languageCookie} from '@kununu/kununu-utils/locale/languageCookie';
-import {X_LANG_REGEX, LANGUAGES} from '@kununu/kununu-utils/locale/languageConfigs';
+import {X_ANY_LANGUAGE_REGEX, LANGUAGES} from '@kununu/kununu-utils/locale/languageConfigs';
 import getSelectedLanguage from '@kununu/kununu-utils/locale/getSelectedLanguage';
 import Logo from '@kununu/kununu-logo';
 
@@ -30,7 +30,7 @@ function buildLanguageUrl (language) {
     let normalizedSearch;
 
     if (hasXLang) {
-      normalizedSearch = search.replace(X_LANG_REGEX, xLangParameter);
+      normalizedSearch = search.replace(X_ANY_LANGUAGE_REGEX, xLangParameter);
     } else {
       normalizedSearch = search ? `${search}&${xLangParameter}` : `?${xLangParameter}`;
     }
