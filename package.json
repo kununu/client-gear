@@ -64,7 +64,7 @@
     "publish:logo": "lerna exec npm publish --scope @kununu/kununu-logo",
     "publish:overlay": "lerna exec npm publish --scope @kununu/kununu-overlay",
     "publish:scroll-to-element": "lerna exec npm publish --scope @kununu/kununu-scroll-to-element",
-    "publish:utils": "lerna exec npm publish --scope @kununu/kununu-utils -- --tag beta",
+    "publish:utils": "lerna exec npm publish --scope @kununu/kununu-utils",
     "start": "lerna exec npm run start --scope client-gear-playground",
     "test:watch": "jest --watch --verbose",
     "test": "jest --verbose --no-cache"
