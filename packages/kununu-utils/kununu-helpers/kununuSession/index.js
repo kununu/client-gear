@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid';
 import cookies from '../cookies';
 import isClientRender from '../isClientRender';
 
-const KUNUNU_SESSION_ID_NAME = 'kununu_session_id';
+export const KUNUNU_SESSION_ID_NAME = 'kununu_session_id';
 
 const publishLoggedInEvent = (fetchApi) => {
   const params = {
