@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  render, cleanup, fireEvent,
-} from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 
 import useTrapFocus from '..';
 
@@ -20,8 +18,6 @@ function TrapFocusComponent () {
 }
 
 describe('useTrapFocus', () => {
-  afterEach(cleanup);
-
   it('should add an event on the document', () => {
     const addEventListenerReference = document.addEventListener;
 
