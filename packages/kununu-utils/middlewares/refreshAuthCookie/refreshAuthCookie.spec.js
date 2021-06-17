@@ -8,7 +8,7 @@ import refreshAuthCookie from '.';
 const cookieParser = require('cookie-parser');
 
 const cookieKey = 'kununu_access_token_v1';
-const refreshURL = `${process.env.BFF_URL}/middlewares2/auth/refresh-token`;
+const refreshURL = `${process.env.BFF_URL}/middlewares/auth/refresh-token`;
 
 jest.mock('../../kununu-logger');
 

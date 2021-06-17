@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-utils",
-  "version": "1.25.4",
+  "version": "1.26.1",
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
@@ -28,6 +28,7 @@
     "nodegit": "0.27.0",
     "prop-types": "15.7.2",
     "react-scroll": "1.7.12",
+    "tabbable": "5.2.0",
     "uuid": "8.3.1",
     "winston": "3.2.1",
     "winston-transport": "4.3.0"
