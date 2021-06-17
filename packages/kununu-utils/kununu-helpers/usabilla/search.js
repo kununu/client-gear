@@ -17,7 +17,9 @@ export const getLastSearchStorage = () => {
 
   try {
     lastSearch = cookies.get(STORAGE_USABILLA_LAST_SEARCH);
-  } catch (e) {}
+  } catch (e) {
+    // No action needed
+  }
 
   return lastSearch;
 };
