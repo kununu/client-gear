@@ -134,7 +134,7 @@ function refreshAuthCookie (application) {
        * Add cookie header, but remove x-forwarded-host.
        * Otherwise ambassador would get "x-forwarded-host": "www.kununu.com, www.kununu.com"
        */
-      fetch(`${process.env.BFF_URL}/middlewares2/auth/refresh-token`, {
+      fetch(`${process.env.BFF_URL}/middlewares/auth/refresh-token`, {
         method: 'post',
         credentials: 'same-origin',
         headers: {
