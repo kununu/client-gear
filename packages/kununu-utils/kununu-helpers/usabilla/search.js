@@ -40,5 +40,5 @@ export const setProfilesVisibilityStorage = () => {
   cookies.set(STORAGE_USABILLA_PROFILE_SHOW, true, {expires: cookieExpireDate, path: '/'});
 };
 
-export const shouldShow = (sessionId, searchId, lastSearch) => sessionId && 
+export const shouldShow = (sessionId, searchId, lastSearch) => sessionId &&
   (!lastSearch.sessionId || (lastSearch.sessionId && (sessionId !== lastSearch.sessionId || searchId === lastSearch.searchId)));
