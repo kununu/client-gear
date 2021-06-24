@@ -1,19 +1,17 @@
 {
   "name": "@kununu/kununu-scroll-to-element",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "kununu page loading spinner",
   "main": "dist",
   "author": "kununu",
   "license": "ISC",
   "dependencies": {
-    "@kununu/kununu-utils": "1.10.2",
+    "@kununu/kununu-utils": "1.27.0",
     "react-scroll": "1.7.11"
   },
   "peerDependencies": {
-    "@kununu/kununu-utils": "1.10.2",
     "prop-types": ">=15.6.0",
-    "react": ">=16.0.0",
-    "react-scroll": "1.7.11"
+    "react": ">=16.0.0"
   },
   "scripts": {
     "prepare": "npm run dist",
