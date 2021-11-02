@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@testing-library/react": "9.3.0",
-    "branch-name": "1.0.0",
     "cookie": "0.4.0",
     "cookie-parser": "1.4.4",
     "fast-safe-stringify": "2.0.6",
@@ -24,7 +23,6 @@
     "jwt-decode": "2.2.0",
     "minimist": "1.2.5",
     "node-cache": "4.2.0",
-    "nodegit": "0.27.0",
     "prop-types": "15.7.2",
     "react-scroll": "1.7.12",
     "tabbable": "5.2.0",
