@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-utils",
-  "version": "1.27.0",
+  "version": "2.0.0",
   "description": "Utility functions used within kununu client applications",
   "main": "dist",
   "devDependencies": {
@@ -12,7 +12,6 @@
     "supertest": "4.0.2"
   },
   "dependencies": {
-    "@pact-foundation/pact-node": "10.12.2",
     "@testing-library/react": "9.3.0",
     "branch-name": "1.0.0",
     "cookie": "0.4.0",
