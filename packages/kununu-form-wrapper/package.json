@@ -1,6 +1,6 @@
 {
   "name": "@kununu/kununu-form-wrapper",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "kununu form wrapper HOC",
   "main": "dist",
   "author": "kununu",
@@ -9,7 +9,7 @@
     "@babel/cli": "7.2.3"
   },
   "dependencies": {
-    "@kununu/kununu-utils": "1.27.0"
+    "@kununu/kununu-utils": "2.0.0"
   },
   "peerDependencies": {
     "prop-types": ">=15.6.0",
