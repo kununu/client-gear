@@ -15,9 +15,16 @@ const INFO = 'info';
 const expressLogger = application => (req, res, next) => {
   const startDate = new Date();
 
+  requestLogger.log(INFO, {
+    req,
+    res,
+    application,
+    channel: 'middleware',
+    message: `Got request - ${req.method} ${req.originalUrl}`,
+  });
+
   function log () {
     // Remove listeners to ensure that no hanging listeners exists
-    res.removeListener('finish', log);
     res.removeListener('close', log);
     res.removeListener('error', log);
 
@@ -35,11 +42,8 @@ const expressLogger = application => (req, res, next) => {
     });
   }
 
-  // Logs successfully finished pipeline
-  res.on('finish', log.bind({origin: 'finish'}));
-
   // Logs any aborted pipeline
-  res.on('close', log.bind({level: 'error', origin: 'close'}));
+  res.on('close', log.bind({origin: 'close'}));
 
   // Logs any internal errors
   res.on('error', log.bind({level: 'error', origin: 'error'}));
