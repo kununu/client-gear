@@ -21,6 +21,7 @@ const expressLogger = application => (req, res, next) => {
     application,
     channel: 'middleware',
     message: `Got request - ${req.method} ${req.originalUrl}`,
+    metrics: {},
   });
 
   function log () {
