@@ -23,7 +23,12 @@
       "type": "string",
       "format": "date-time",
       "examples": [ "2019-05-02T06:59:01.345464+00:00" ]
-    }, 
+    },
+
+    "debugContainerHostname": {
+      "description": "The value used by the HOSTNAME env var",
+      "type": "string"
+    },
 
     "extra": {
       "description": "Extra data to be passed which is not implicitly within the context of the log.  This can be unstructured data.",

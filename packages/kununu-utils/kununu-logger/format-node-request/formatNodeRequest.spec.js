@@ -15,6 +15,7 @@ const metrics = {any_metric: 'any_metric_result'};
 
 beforeAll(() => {
   advanceTo(new Date(2019, 1, 1, 0, 0, 0));
+  process.env.HOSTNAME = 'dummy-hostname-id';
 });
 
 beforeEach(() => {
@@ -28,6 +29,7 @@ afterEach(() => {
 
 afterAll(() => {
   clear();
+  process.env.HOSTNAME = undefined;
 });
 
 describe('formatNodeRequest custom format', () => {
@@ -81,6 +83,7 @@ describe('formatNodeRequest custom format', () => {
       context: {
         any_context: 'any_context_result',
       },
+      debugContainerHostname: 'dummy-hostname-id',
       http: {
         method: 'GET',
         referer: '/referer',
@@ -107,6 +110,7 @@ describe('formatNodeRequest custom format', () => {
       context: {
         any_context: 'any_context_result',
       },
+      debugContainerHostname: 'dummy-hostname-id',
     }));
   });
 
@@ -127,6 +131,7 @@ describe('formatNodeRequest custom format', () => {
       context: {
         any_context: 'any_context_result',
       },
+      debugContainerHostname: 'dummy-hostname-id',
     }));
   });
 
@@ -138,6 +143,7 @@ describe('formatNodeRequest custom format', () => {
       level: false,
       datetime: '2019-02-01T00:00:00.000Z',
       channel: 'app',
+      debugContainerHostname: 'dummy-hostname-id',
     }));
   });
 });

@@ -34,6 +34,7 @@ const formatNodeRequest = ({
     channel,
     metrics,
     context,
+    debugContainerHostname: process.env.HOSTNAME,
   };
 
   // Add http object when req or res have entries
