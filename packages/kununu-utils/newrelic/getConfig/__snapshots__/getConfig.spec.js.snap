@@ -24,6 +24,11 @@ Object {
   "distributed_tracing": Object {
     "enabled": "true",
   },
+  "infinite_tracing": Object {
+    "trace_observer": Object {
+      "host": "",
+    },
+  },
   "license_key": "mylicensekey",
   "logging": Object {
     "level": "info",
@@ -54,6 +59,11 @@ Object {
   },
   "distributed_tracing": Object {
     "enabled": "true",
+  },
+  "infinite_tracing": Object {
+    "trace_observer": Object {
+      "host": "",
+    },
   },
   "license_key": "0000000000000000",
   "logging": Object {

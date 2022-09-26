@@ -35,6 +35,14 @@ module.exports = () => ({
   distributed_tracing: {
     enabled: 'true',
   },
+  /**
+   * Sets Infinite tracer host if available, see https://one.eu.newrelic.com/edge
+   */
+  infinite_tracing: {
+    trace_observer: {
+      host: (process.env.NR_INFINITE_TRACER_HOST) ? process.env.NR_INFINITE_TRACER_HOST : ''
+    }
+  },
   attributes: {
     /**
      * Prefix of attributes to exclude from all destinations. Allows * as wildcard
