@@ -40,7 +40,7 @@ module.exports = () => ({
    */
   infinite_tracing: {
     trace_observer: {
-      host: process.env.NR_INFINITE_TRACER_HOST ?? '',
+      host: (process.env.NR_INFINITE_TRACER_HOST) ? process.env.NR_INFINITE_TRACER_HOST : '',
     },
   },
   attributes: {
