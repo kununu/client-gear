@@ -31,7 +31,6 @@ const options = {
 
 /**
  * Default logger that is used by all logger calls
- * It uses Fingers Crossed when on production environment and Console on development
  */
 loggers.add('default', {
   ...options,
