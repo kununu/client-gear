@@ -9,8 +9,7 @@ The **request logger** is used by `@kununu/kununu-utils/dist/middlewares/express
 
 
 ## Default Logger
-This one has 2 types of transport. FingersCrossed if `NODE_ENV` is production, Console if not.
- - **FingersCrossed** - This follows the same logic as the [Symfony FingersCrossed built-in logger](https://symfony.com/doc/current/logging.html), which has a minimum log level that should be printed and an activation level that will trigger print every logs stores since the last time this log level was called. 
+This one has 1 type of transport, the console.
  - **Console** - A console log with a minimum log level.
 
 ## Request Logger
