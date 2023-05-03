@@ -1,11 +1,9 @@
 import {loggers, format, transports} from 'winston';
 
 import formatNodeRequest from './format-node-request';
-import FingersCrossed from './fingers-crossed';
 import {
   minimumLogLevel,
   requestMinimumLogLevel,
-  activationLogLevel,
   loggingLevels,
 } from './config';
 
@@ -13,31 +11,16 @@ const {timestamp, printf} = format;
 
 export const customFormat = printf(info => formatNodeRequest(info));
 
-const getTransportByEnv = () => {
-  if (process.env.NODE_ENV === 'production') {
-    return {
-      transports: [
-        new FingersCrossed({
-          level: minimumLogLevel,
-          activationLogLevel,
-          levels: loggingLevels,
-        }),
-      ],
-    };
-  }
-
-  return {
-    transports: [
-      new transports.Console({
-        name: 'console',
-        colorize: true,
-        showLevel: true,
-        level: minimumLogLevel,
-      }),
-    ],
-  };
-};
-
+const getTransportByEnv = () => ({
+  transports: [
+    new transports.Console({
+      name: 'console',
+      colorize: true,
+      showLevel: true,
+      level: minimumLogLevel,
+    }),
+  ],
+});
 const options = {
   levels: loggingLevels,
   format: format.combine(
